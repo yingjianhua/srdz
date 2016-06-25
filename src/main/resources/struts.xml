@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.devMode" value="false" /><!-- 开发模式 -->
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true"></constant>
+	<constant name="struts.multipart.maxSize" value="204857600" />
+	<constant name="struts.objectFactory" value="spring"/>
+	
+	<package name="wpt_resource" namespace="/wpt/resource" extends="struts-default">
+		<interceptors>
+			<!-- 拦截器配置 -->
+			<interceptor name="ItpExpandRecord" class="irille.pub.svr.ItpExpandRecord"/>
+			<interceptor name="ItpDb" class="irille.pub.svr.ItpDb" />
+
+			<!-- 拦截器栈配置,拦截栈可以包含拦截器栈 -->
+			<interceptor-stack name="wpt_resource">
+			    <interceptor-ref name="ItpExpandRecord" />
+				<interceptor-ref name="ItpDb" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		<global-results>
+			<result name="trends">${result}</result>
+			<result name="rtrends" type="redirect">${result}</result>
+			<result name="tact" type="chain">${result}</result>
+		</global-results>
+		<action name="city_*" class="cityAction" method="{1}"></action>
+		<action name="order_*" class="orderAction" method="{1}"></action>
+		<action name="top_*" class="topAction" method="{1}"></action>
+		<action name="feedBack_*" class="feedBackAction" method="{1}"></action>
+		<action name="seller_*" class="SellerAction" method="{1}"></action>
+		<action name="order_confirmOrder" class="orderAction" method="confirmOrder">
+			<interceptor-ref name="tokenSession" />
+			<interceptor-ref name="wpt_resource" />
+		</action>
+	</package>
+	
+	<package name="wpt" namespace="/wpt" extends="wpt_resource">
+	    <interceptors>
+			<interceptor name="authorizeInterceptor" class="irille.wpt.interceptor.AuthorizeInterceptor" />
+			<interceptor name="cityInterceptor" class="irille.wpt.interceptor.CityInterceptor" />
+			<interceptor name="jsCodeInterceptor" class="irille.wpt.interceptor.JsCodeInterceptor" />
+			
+			<interceptor-stack name="wpt">
+				<interceptor-ref name="authorizeInterceptor" />
+				<interceptor-ref name="cityInterceptor" />
+				<interceptor-ref name="jsCodeInterceptor" />
+				
+				<interceptor-ref name="wpt_resource" />
+			</interceptor-stack>
+	    </interceptors>
+		<!-- 将自定义拦截器设置为默认拦截器-->
+    	<default-interceptor-ref name="wpt"></default-interceptor-ref>
+	    
+		<action name="startJourney" class="startJourneyAction"></action>
+		<action name="applyService" class="applyServiceAction"></action>
+		<action name="listRestaurant" class="listRestaurantAction"></action>
+		<action name="selectService" class="selectServiceAction"></action>
+		<action name="inputContact" class="inputContactAction"></action>
+		<action name="comfirmOrder" class="comfirmOrderAction"></action>
+		<action name="listOrder" class="listOrderAction"></action>
+		<action name="showRestaurant" class="showRestaurantAction"></action>
+		<action name="showCombo" class="showComboAction"></action>
+		<action name="showOrder" class="showOrderAction"></action>
+		<action name="showMe" class="showMeAction"></action>
+		<action name="listCollect" class="listCollectAction"></action>
+		<action name="showTop" class="showTopAction"></action>
+		<action name="serviceCenter" class="serviceCenterAction"></action>
+		<action name="feedBack" class="feedBackAction"></action>
+		<action name="listTop" class="listTopAction"></action>
+		<action name="listFind" class="listFindAction"></action>
+		<action name="showFind" class="showFindAction"></action>
+		<action name="loginSeller" class="loginSellerAction"></action>
+		<action name="loginSeller" class="loginSellerAction"></action>
+		<action name="listSellerOrder" class="listSellerOrderAction"></action>
+		<action name="showQrcode" class="showQrcodeAction"></action>
+		<action name="showCash" class="showCashAction"></action>
+		
+	</package>
+	
+	<package name="irilleMng" namespace="/" extends="struts-default">
+		<interceptors>
+			<!-- 拦截器配置 -->
+			<interceptor name="ItpLogin" class="irille.pub.svr.ItpCheckLogin" />
+			<interceptor name="ItpDb" class="irille.pub.svr.ItpDb" />
+			<interceptor name="ItpFileUpload" class="irille.pub.svr.ItpFileUpload"/>
+			<interceptor name="ItpExpandRecord" class="irille.pub.svr.ItpExpandRecord"/>
+			
+
+			<!-- 拦截器栈配置,拦截栈可以包含拦截器栈 -->
+			<interceptor-stack name="irilleStack">
+			    <interceptor-ref name="ItpExpandRecord" />
+				<interceptor-ref name="ItpLogin" />
+				<interceptor-ref name="ItpDb" />
+				<interceptor-ref name="ItpFileUpload">
+					<param name="maximumSize">41943040</param>
+				</interceptor-ref>
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		
+		<!-- 将自定义拦截器设置为默认拦截器-->
+    	<default-interceptor-ref name="irilleStack"></default-interceptor-ref>
+
+		<global-results>
+			<result name="login">/mvc/login.jsp</result>
+			<result name="trends">${result}</result>
+			<result name="rtrends" type="redirect">${result}</result>
+			<result name="tact" type="chain">${result}</result>
+		</global-results>
+		
+		<!--
+		<action name="*_*_exportGrid" class="irille.action.{1}.{2}Action">  
+            <result name="success" type="stream">  
+                <param name="contentType">application/octet-stream</param>  
+                <param name="inputName">exportGrid</param>  
+                <param name="contentDisposition">attachment;filename="${expFileName}"</param>  
+                <param name="bufferSize">4096</param>  
+            </result>  
+        </action>
+        -->
+
+		<action name="wechat" class="irille.action.wx.WechatAction" method="execute">  
+			<interceptor-ref name="ItpDb" />
+			<interceptor-ref name="defaultStack" />
+        </action>
+		
+		<action name="*_*_*" class="irille.action.{1}.{2}Action" method="{3}">
+		</action>
+
+		<action name="download" class="irille.action.ActionDownload" method="down">  
+        </action>
+        
+        <action name="loadInfo" class="irille.action.ActionLineGoods" method="loadInfo">  
+        </action>
+		<!--
+        <action name="download" class="irille.action.ActionDownload">  
+            <result name="success" type="stream">  
+                <param name="contentType">application/octet-stream</param>  
+                <param name="inputName">inputStream</param>  
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>  
+                <param name="bufferSize">4096</param>  
+            </result>  
+        </action>
+		-->
+	</package>
+</struts>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<input type="text" name="aa">
+<button value="校验">jiao</button><br>
+<p>1</p>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script>
+$(function() {
+	var qq = /^[1-9]\d{4,12}$/;
+	$("button").click(function() {
+		var a = $("input").val();
+		if(!qq.test(a)) {
+			console.log("qq格式不正确")
+		}
+	})	
+})
+
+</script>
+
+<body>
+</body>
+</html>

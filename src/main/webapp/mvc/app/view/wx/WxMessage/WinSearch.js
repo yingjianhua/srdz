@@ -1,0 +1,224 @@
+Ext.define('mvc.view.wx.WxMessage.WinSearch',{
+extend : 'Ext.window.Window',
+oldId : 'WxMessage_searchWin_',
+width : 680,
+layout : 'fit',
+resizable : true,
+iconCls : 'app-icon',
+listCmp : null,
+initComponent : function(){
+	var strstore = Ext.create('mvc.combo.sys.SysOOptCht');
+	var datestore = Ext.create('mvc.combo.sys.SysOOptCht');
+	var numstore = Ext.create('mvc.combo.sys.SysOOptCht');
+	var outstore = Ext.create('mvc.combo.sys.SysOOptCht');
+	strstore.filter('value', new RegExp('^([1-4|9]|[1][0])$'));
+	datestore.filter('value', new RegExp('^([3-9]|[1][0-1])$'));
+	numstore.filter('value', new RegExp('^([3-9]|[1][0])$'));
+	outstore.filter('value', new RegExp('^([3|4|9]|[1][0])$'));
+	this.items ={
+	anchor : '100%',
+	plain : true,
+	items : [{
+			xtype : 'panel',
+			layout : 'form',
+			border : false,
+			frame : false,
+			bodyPadding : '5 5 5 5',
+			url : base_path+'/wx_WxMessage_list',
+			fieldDefaults : {
+				labelWidth : 100,
+				labelStyle : 'font-weight : bold'
+			},
+			items : [{
+					xtype : 'form',
+					border : false,
+					layout : {
+						type : 'table',
+						columns : 6,
+						itemCls : 'x-layout-table-items-form'
+					},
+					items : [{
+								xtype : 'label',
+								text : '消息类型'
+							},
+								mvc.Tools.crtComboBase(false,{
+											name : 'optcht_wxmsgType',
+											width : 80,
+											value : 3,
+											store : numstore
+										})
+							,mvc.Tools.crtComboForm(true,{
+											name : 'wxmsgType',
+											store : Ext.create('mvc.combo.wx.WxOWxMsgType')
+										})
+							
+						,{
+								xtype : 'label',
+								text : '消息方向'
+							},
+								mvc.Tools.crtComboBase(false,{
+											name : 'optcht_wxmsgDir',
+											width : 80,
+											value : 3,
+											store : numstore
+										})
+							,mvc.Tools.crtComboForm(true,{
+											name : 'wxmsgDir',
+											store : Ext.create('mvc.combo.wx.WxOWxMsgDir')
+										})
+							
+						,{
+								xtype : 'label',
+								text : '消息ID'
+							},
+								mvc.Tools.crtComboBase(false,{
+											name : 'optcht_msgId',
+											width : 80,
+											value : 3,
+											store : numstore
+										})
+							,{xtype : 'numberfield',name : 'msgId',allowDecimals : false}
+							
+						,{
+								xtype : 'label',
+								text : '消息內容'
+							},
+								mvc.Tools.crtComboBase(false,{
+											name : 'optcht_content',
+											width : 80,
+											value : 1,
+											store : strstore
+										})
+							,{xtype : 'textfield',name : 'content'}
+							
+						,{
+								xtype : 'label',
+								text : '回复标志'
+							},
+								mvc.Tools.crtComboBase(false,{
+											name : 'optcht_isReply',
+											width : 80,
+											value : 3,
+											store : numstore
+										})
+							,mvc.Tools.crtComboForm(true,{
+											name : 'isReply',
+											store : Ext.create('mvc.combo.sys.SysOYn')
+										})
+							
+						,{
+								xtype : 'label',
+								text : '收藏标志'
+							},
+								mvc.Tools.crtComboBase(false,{
+											name : 'optcht_isCollect',
+											width : 80,
+											value : 3,
+											store : numstore
+										})
+							,mvc.Tools.crtComboForm(true,{
+											name : 'isCollect',
+											store : Ext.create('mvc.combo.sys.SysOYn')
+										})
+							
+						,{
+								xtype : 'label',
+								text : '关注用户'
+							},
+								mvc.Tools.crtComboBase(false,{
+											name : 'optcht_wxUser',
+											width : 80,
+											value : 3,
+											store : outstore
+										})
+							,{
+								xtype : 'beantrigger',
+								name : 'wxUser',
+								bean : 'WxUser',
+								beanType : 'wx',
+								emptyText : form_empty_text
+							}
+						,{
+								xtype : 'label',
+								text : '创建时间'
+							},
+								mvc.Tools.crtComboBase(false,{
+											name : 'optcht_createdTime',
+											width : 80,
+											value : 7,
+											store : datestore,
+											listeners : {
+												scope : this,
+												change : function(field,newv,oldv,opts){
+this.onBetween(newv,this.oldId + 'createdTime',this.oldId + 'createdTimeEd',this.oldId + 'createdTime_empty');this.doLayout();											}
+											}
+										})
+							,{
+									xtype : 'datefield',
+									name : 'createdTime',
+									format : 'Y-m-d H:i:s',
+									itemId : this.oldId + 'createdTime'
+								},{
+									xtype : 'datefieldexp',
+									name : 'createdTimeEd',
+									format : 'Y-m-d',
+									hidden : true,
+									itemId : this.oldId + 'createdTimeEd'
+								}
+							
+						]
+				}]
+		}]
+};
+	this.buttonAlign = 'right',
+	this.buttons =[{
+		text : '重置',
+		scope : this,
+		iconCls : 'win-refresh-icon',
+		handler : this.onReset
+	},{
+		text : '关闭',
+		scope : this,
+		iconCls : 'win-close-icon',
+		handler : this.onClose
+	},{
+		text : '搜索',
+		scope : this,
+		iconCls : 'win-ok-icon',
+		handler : this.onSearchAdv
+	}];
+		this.callParent(arguments);
+		this.addEvents('create');
+		this.form = this.items.items[0];
+},
+setActiveRecord : function(record){
+		this.form.activeRecord = record;
+		if (record || this.form.activeRecord) {
+			this.form.getForm().loadRecord(record);
+		} else {
+			this.form.getForm().reset();
+		}
+},
+onBetween : function(newv,label,dateEd){
+	if(newv == 11) {
+		this.down('#'+label).hide();
+		this.down('#'+label).setValue(null);
+		this.down('#'+dateEd).show();
+	} else {
+		this.down('#'+label).show();
+		this.down('#'+dateEd).hide();
+		this.down('#'+dateEd).setValue(null);
+	}
+},
+onReset : function(){
+		this.setActiveRecord(this.form.activeRecord);
+},
+onClose : function(){
+		this.close();
+},
+onSearchAdv : function(){
+	var array = mvc.Tools.advancedSearchValues(this.down('form'));
+	this.listCmp.onSearchDo(array);
+	this.close();
+}
+});

@@ -1,0 +1,38 @@
+@CHARSET "UTF-8";
+
+/* ie9 */
+/*#headbar,#headbar-innerCt{
+	background-image:url(../images/mvc/header_bg.png)\9\0;
+	background-repeat: repeat-x\9\0;
+	border: 0px\9\0;
+	padding: 1px 0 0 0\9\0;
+	height : 60px\9\0;
+}
+#headfunc,#headfunc-innerCt{
+	background-image:url(../images/mvc/headfunc_bg.png)\9\0;
+	background-repeat: repeat-x\9\0;
+	border: 0px\9\0;
+	padding: 1px 0 0 0\9\0;
+	height : 32px\9\0;
+}*/
+
+/* ie8 */
+/*#headbar,#headbar-innerCt{
+	background-image:url(../images/mvc/header_bg.png)\9;
+	background-repeat: repeat-x\9;
+	border: 0px\9;
+	padding: 1px 0 0 0\9;
+	height : 60px\9;
+}
+#headfunc,#headfunc-innerCt{
+	background-image:url(../images/mvc/headfunc_bg.png)\9;
+	background-repeat: repeat-x\9;
+	border: 0px\9;
+	padding: 1px 0 0 0\9;
+	height : 32px\9;
+}
+.x-field{width:128px\9;}
+.x-form-item-body{width:100px\9;}
+.x-field{*width:128px;}
+.x-reset .x-form-field,.x-reset .x-form-display-field{margin:0;font:normal 12px tahoma,arial,verdana,sans-serif;}*/
+.x-item-disabled span{filter:alpha(opacity=30);}

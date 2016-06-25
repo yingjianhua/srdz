@@ -1,0 +1,317 @@
+/*user 我的*/
+
+.user_face{
+	position:relative;
+	overflow:hidden;	
+}
+.user_face .bg{
+	display:block;
+	width:640px;
+	height:auto;	
+}
+.user_face .re_face{
+	position:absolute;
+	width:100%;
+	left:0;
+	top:50%;
+	margin-top:-107px;
+	z-index:10;
+	text-align:center;	
+}
+.user_face .re_face dt{
+	height:161px;	
+}
+.user_face .face_outer{
+	display:inline-block;
+	width:151px;
+	height:151px;
+	border-radius:100%;
+	border:5px solid #fff;
+	overflow:hidden;	
+}
+.user_face .face_outer img{
+	display:block;
+	width:161px;
+	height:161px;	
+}
+.user_face dd{
+	height:64px;	
+	line-height:64px;
+	font-size:29px;
+	color:#fff;
+}
+.user_face .edit_a{
+	display:inline-block;
+	width:29px;
+	height:29px;
+	background:url("../images/user_edita.png") no-repeat center center;	
+	margin:0 0 0 10px;
+	position:relative;
+	top:2px;
+}
+.user_links{
+	width:570px;
+	margin:0 auto;	
+}
+.user_links a{
+	display:block;
+	height:30px;
+	line-height:30px;
+	padding:26px 0;
+	border-bottom:1px solid #e1e1e1;	
+	color:#3e3e3e;
+	clear:both;
+	background:url("../images/user_links.png") no-repeat right center;
+}
+.user_links .num{
+	float:right;
+	display:inline-block;
+	width:30px;
+	height:30px;
+	background:#ffc83b;	
+	border-radius:15px;
+	color:#fff;
+	text-align:center;
+	margin-right:30px;
+}
+
+.usorder_item{
+	display:block;
+	width:574px;
+	margin:0 auto;
+	padding:25px 0;
+	border-bottom:1px solid #c1c1c1;	
+}
+.usorder_item .photo{
+	float:left;
+	display:block;
+	width:286px;
+	height:214px;	
+}
+.usorder_item .txt{
+	float:right;
+	width:272px;	
+}
+.usorder_item .name{
+	height:76px;
+	border-bottom:2px solid #dcdcdc;
+	font-size:26px;
+	line-height:33px;	
+	background:url("../images/usorder_btn.png") no-repeat 240px 43px;
+}
+.usorder_item .chuli{
+	height:37px;
+	line-height:37px;
+	text-align:right;
+	color:#a4a4a4;
+	padding-right:20px;	
+}
+.usorder_item ul{
+	font-size:18px;
+	color:#9d9d9d;
+	line-height:43px;
+	padding-top:10px;
+}
+.usdet_zw{
+	height:35px;	
+}
+
+.uscombo_head{
+	width:520px;
+	margin:0 auto;
+	padding:40px 0 5px 0;
+	height:62px;
+	line-height:62px;
+	clear:both;	
+	background:url("../images/uscombo_head.png") repeat-x left bottom;
+}
+.uscombo_head strong{
+	float:left;	
+}
+.uscombo_head .type{
+	float:right;
+	display:inline-block;
+	height:28px;
+	line-height:28px;
+	background:#ffc83b;
+	border-radius:3px;
+	color:#fff;
+	padding:0 3px;
+	margin-top:17px;
+}
+.uscombo_info{
+	width:520px;
+	margin:0 auto;	
+}
+.uscombo_info li{
+	min-height:30px;
+	line-height:30px;
+	padding:18px 0;
+	border-bottom:2px solid #e6e6e6;	
+}
+.uscombo_info .tel{
+	display:block;
+	height:30px;
+	line-height:30px;
+	padding-left:50px;
+	background:url("../images/uscombo_tel.png") no-repeat left center;	
+}
+.uscombo_info .pos{
+	display:block;
+	line-height:30px;
+	padding-left:50px;
+	background:url("../images/hm_citybtn2.png") no-repeat left center;	
+}
+
+.uscombo_food{
+	background:#f7f7f7;	
+	width:520px;
+	margin:54px auto 35px auto;
+	padding:20px 0;
+	position:relative;
+}
+.cbdet_title{
+	width:100%;
+	height:44px;
+	position:absolute;
+	left:0;
+	top:-22px;
+	text-align:center;	
+}
+.cbdet_title span{
+	display:inline-block;
+	height:42px;
+	line-height:42px;
+	background:#fff;
+	border:1px solid #312d2e;
+	padding:0 20px;
+	font-weight:bold;
+	border-radius:5px;	
+}
+
+.uscombo_back{
+	width:520px;
+	margin:36px auto 35px auto;	
+}
+.uscombo_back h3{
+	height:56px;
+	line-height:56px;
+	border-bottom:2px solid #000;
+	font-size:22px;
+	font-weight:bold;	
+}
+.uscombo_back li{
+	height:70px;
+	line-height:70px;
+	clear:both;
+	border-bottom:2px solid #e8e8e8;	
+}
+
+.uscombo_ctrl{
+	width:520px;
+	margin:0 auto;	
+	height:68px;
+	clear:both;
+}
+.uscombo_ctrl a{
+	display:block;
+	width:250px;
+	height:68px;
+	line-height:68px;
+	text-align:center;
+	color:#fff;
+	background:#ffc83b;
+	border-radius:5px;
+	letter-spacing:2px;
+}
+.uscombo_ctrl .esc_btn{
+	background:#bdbdbd;	
+}
+
+.usct_item{
+	display:block;	
+	width:574px;
+	margin:0 auto;
+	padding:25px 0;
+	border-bottom:2px solid #aaa;
+	position:relative;
+}
+.usct_item .photo{
+	float:left;
+	display:block;
+	width:286px;
+	height:214px;	
+}
+.usct_item .txt{
+	float:right;
+	width:272px;	
+	height:214px;
+	position:relative;
+}
+.usct_item .name{
+	font-size:26px;
+	line-height:33px;	
+}
+.usct_item .time{
+	color:#a4a4a4;
+	position:absolute;
+	left:0;
+	bottom:0;
+	font-size:18px;	
+}
+
+.usser_top{
+	height:42px;
+	line-height:42px;
+	font-size:26px;
+	padding:22px 10px;
+	clear:both;
+	border-bottom:2px solid #ffde89;
+	margin:0 auto;
+	width:560px;
+}
+.usser_top .tel_btn{
+	float:right;
+	display:inline-block;
+	padding-right:48px;
+	color:#999;
+	background:url("../images/usser_telico.png") no-repeat right center;	
+}
+.usser_code{
+	text-align:center;
+	padding-top:135px;	
+}
+.usser_code dt{
+	line-height:33px;
+	font-size:20px;	
+	padding-bottom:40px;
+}
+.usser_code img{
+	display:block;
+	width:354px;
+	height:354px;
+	border:1px solid #646265;
+	margin:0 auto;	
+}
+
+.usba_in{
+	width:500px;
+	margin:0 auto;
+	border-top:0;	
+}
+.usba_mes{
+	display:block;
+	width:500px;
+	height:200px;
+	padding:10px;
+	border:0;
+	resize:none;
+	border-bottom:2px solid #e7e7e7;
+	margin:0 auto;
+}
+.usba_zw{
+	height:35px;
+	clear:both;	
+}
+
+/*user 我的*/

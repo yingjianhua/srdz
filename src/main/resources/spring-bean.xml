@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+	<bean id="wxJsCreater" class="irille.wpt.tools.WxJsCreater" scope="prototype">
+		<property name="debug" value="false"></property>
+	</bean>
+	<bean id="smsTool" class="irille.wpt.tools.SmsTool"></bean>
+	<bean class="irille.wxpub.js.JMOnMenuShareAppMessage" scope="prototype">
+		<property name="title" value="标题"></property>
+		<property name="desc" value="描述"></property>
+		<property name="link" value="http://www.51xiangshiguang.com/srdz3.0/wpt/startJourney"></property>
+		<property name="imgUrl" value="/"></property>
+		<property name="type" value="link"></property>
+	</bean>
+	<bean class="irille.wxpub.js.JMOnMenuShareTimeline" scope="prototype">
+		<property name="title" value="标题"></property>
+		<property name="link" value="http://www.51xiangshiguang.com/srdz3.0/wpt/startJourny"></property>
+		<property name="imgUrl" value="/"></property>
+	</bean>
+	<bean class="irille.wxpub.js.JMHideMenuItems" scope="prototype">
+		<property name="menuList">
+			<list>
+				<value>menuItem:copyUrl</value>
+				<value>menuItem:share:qq</value>
+				<value>menuItem:share:email</value>
+				<value>menuItem:openWithSafari</value>
+				<value>menuItem:favorite</value>
+				<value>menuItem:readMode</value>
+				<value>menuItem:share:QZone</value>
+			</list>
+		</property>
+	</bean>
+</beans>        

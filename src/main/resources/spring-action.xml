@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+	<bean id="startJourneyAction" class="irille.wpt.actions.StartJourneyAction" scope="prototype"></bean>
+	<bean id="applyServiceAction" class="irille.wpt.actions.ApplyServiceAction" scope="prototype"></bean>
+	<bean id="listRestaurantAction" class="irille.wpt.actions.ListRestaurantAction" scope="prototype">
+		<property name="service" ref="restaurantService"></property>
+	</bean>
+	<bean id="selectServiceAction" class="irille.wpt.actions.SelectServiceAction" scope="prototype"></bean>
+	<bean id="inputContactAction" class="irille.wpt.actions.InputContactAction" scope="prototype"></bean>
+	<bean id="comfirmOrderAction" class="irille.wpt.actions.ComfirmOrderAction" scope="prototype"></bean>
+	<bean id="listOrderAction" class="irille.wpt.actions.ListOrderAction" scope="prototype">
+		<property name="service" ref="orderService"></property>
+	</bean>
+	<bean id="showRestaurantAction" class="irille.wpt.actions.ShowRestaurantAction" scope="prototype"></bean>
+	<bean id="showComboAction" class="irille.wpt.actions.ShowComboAction" scope="prototype"></bean>
+	<bean id="showOrderAction" class="irille.wpt.actions.ShowOrderAction" scope="prototype"></bean>
+	<bean id="showMeAction" class="irille.wpt.actions.ShowMeAction" scope="prototype"></bean>
+	<bean id="listCollectAction" class="irille.wpt.actions.ListCollectAction" scope="prototype"></bean>
+	<bean id="showTopAction" class="irille.wpt.actions.ShowTopAction" scope="prototype"></bean>
+	<bean id="serviceCenterAction" class="irille.wpt.actions.ServiceCenterAction" scope="prototype"></bean>
+	<bean id="feedBackAction" class="irille.wpt.actions.FeedBackAction" scope="prototype">
+		<property name="service" ref="feedBackService"></property>
+	</bean>
+	<bean id="listTopAction" class="irille.wpt.actions.ListTopAction" scope="prototype">
+		<property name="service" ref="topService"></property>
+	</bean>
+	<bean id="listFindAction" class="irille.wpt.actions.ListFindAction" scope="prototype"></bean>
+	<bean id="showFindAction" class="irille.wpt.actions.ShowFindAction" scope="prototype"></bean>
+	<bean id="loginSellerAction" class="irille.wpt.actions.LoginSellerAction" scope="prototype"></bean>
+	<bean id="listSellerOrderAction" class="irille.wpt.actions.ListSellerOrderAction" scope="prototype">
+		<property name="service" ref="sellerService"></property>
+	</bean>
+	<bean id="showQrcodeAction" class="irille.wpt.actions.ShowQrcodeAction" scope="prototype"></bean>
+	<bean id="showCashAction" class="irille.wpt.actions.ShowCashAction" scope="prototype"></bean>
+	
+	<bean id="cityAction" class="irille.wpt.actions.CityAction" scope="prototype">
+		<property name="service" ref="cityService"></property>
+	</bean>
+	<bean id="orderAction" class="irille.wpt.actions.OrderAction" scope="prototype">
+		<property name="service" ref="orderService"></property>
+	</bean>
+	<bean id="topAction" class="irille.wpt.actions.TopAction" scope="prototype">
+		<property name="service" ref="topService"></property>
+	</bean>
+	<bean id="sellerAction" class="irille.wpt.actions.SellerAction" scope="prototype">
+		<property name="service" ref="sellerService"></property>
+	</bean>
+	
+	
+</beans>        

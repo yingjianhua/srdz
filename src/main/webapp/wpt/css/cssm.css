@@ -1,0 +1,213 @@
+*{
+	margin:0;
+	padding:0;	
+}
+body{		
+	-webkit-overflow-scrolling: touch;
+	margin:0 auto;
+	font-family:"Microsoft Yahei";
+	color:#000;	
+	position:relative;
+	overflow-x:hidden;
+	background:#fff;
+}
+a{
+	color:#000;
+	text-decoration:none;	
+}
+.lt{
+	float:left;	
+}
+.cm_flog{
+	position:fixed;
+	left:0;
+	top:0;
+	width:100%;	
+	height:100%;
+	z-index:200;
+	background-image:url("../css/bar.jpg");
+	opacity:0.2;
+	display : none;
+}
+.frdet_head{
+	padding:4.6vw 3.9vw;	
+}
+.frdet_head h2{
+	font-size:5.8vw;
+		font-family:"Microsoft Yahei";
+	line-height:8.55vw;	
+	color:#000;
+}
+.frdet_head .time{
+	float:left;
+	line-height:10.4vw;
+	font-size:3.67vw;
+	color:#777;	
+}
+.frdet_head .collect_a{
+	float:right;
+	display:block;
+	width:4.2vw;
+	height:4vw;
+	margin:2.5vw 3.1vw 0 0;
+	background:url("../images/collect_a.png") no-repeat left top;
+	background-size:cover;	
+}
+.frdet_head .collect_over{
+	background-position:left bottom;	
+}
+div.clear{
+	font: 0px Arial; line-height:0;
+	height:0; 
+	overflow:hidden;	
+	clear:both;	
+}
+.frdet_content{
+	padding:0 3.9vw;
+	text-align:center;	
+}
+.rich_media_area_primary {
+	padding:0 0 0 0;
+}
+.footer{
+	width:100%;	
+	height:13vw;
+	background:url("../images/footer_bg.png");
+	z-index:20;
+	position:fixed;	
+	bottom:0;
+	margin:0 auto;
+}
+.footer a{
+	display:block;
+	float:left;
+	width:25%;
+	height:12.1vw;
+	text-align:center;
+	padding-top:0.8vw;	
+	color:#fff;
+	font-size:2.8vw;
+	line-height:6vw;
+}
+.footer .hover{
+	color:#ffc83b;	
+}
+.footer .ft_ico{
+	display:block;
+	width:100%;
+	height:5.6vw;
+	background-repeat:no-repeat;
+	background-position:bottom center;	
+	background-size:auto 100%;
+}
+
+.footer .hover .ft_ico1{
+	background-image:url("../images/ft_ico1_hover.png");	
+}
+.footer .hover .ft_ico2{
+	background-image:url("../images/ft_ico2_hover.png");	
+}
+.footer .hover .ft_ico3{
+	background-image:url("../images/ft_ico3_hover.png");	
+}
+.footer .hover .ft_ico4{
+	background-image:url("../images/ft_ico4_hover.png");	
+}
+.footer .ft_ico1{
+	background-image:url("../images/ft_ico1_normal.png");	
+}
+.footer .ft_ico2{
+	background-image:url("../images/ft_ico2_normal.png");	
+}
+.footer .ft_ico3{
+	background-image:url("../images/ft_ico3_normal.png");	
+}
+.footer .ft_ico4{
+	background-image:url("../images/ft_ico4_normal.png");	
+}
+.usser_top{
+	height:6.5vw;
+	line-height:6.6vw;
+	font-size:4.07vw;
+	padding:3.5vw 1.6vw;
+	clear:both;
+	border-bottom:2px solid #ffde89;
+	margin:0 auto;
+	width:87.5vw;
+}
+.usser_top .tel_btn{
+	float:right;
+	display:inline-block;
+	padding-right:7.5vw;
+	color:#999;
+	background:url("../images/usser_telico.png") no-repeat right center;	
+	background-size:6.7vw 6.7vw;
+}
+.usser_code{
+	text-align:center;
+	padding-top:15.2vh;	
+}
+.usser_code dt{
+	line-height:5vw;
+	font-size:3.1vw;	
+	padding-bottom:6.2vw;
+}
+.usser_code img{
+	display:block;
+	width:54vw;
+	height:54vw;
+	border:1px solid #646265;
+	margin:0 auto;	
+}
+.cm_flog{
+	position:fixed;
+	left:0;
+	top:0;
+	width:100%;	
+	height:100%;
+	z-index:200;
+	background:#000;
+	opacity:0.2;
+	display:none;
+}
+.cm_win1{
+	width:70.8vw;	
+	position:fixed;
+	left:50%;
+	top:50%;
+	margin:-13.4vw 0 0 -35.4vw;
+	z-index:201;
+	background:url("../images/wbg95.png");
+	overflow:hidden;
+	text-align:center;
+	border-radius:3vw;
+	border:1px solid #dbdbdb;
+	display:none;
+}
+.cm_win1 .tip_txt{
+	line-height:7.4vw;
+	font-size:5vw;
+	padding:4.2vw 0;	
+	border-bottom:1px solid #dbdbdb;
+}
+.cm_win1 .btn{
+	width:50%;
+	height:11.6vw;
+	line-height:11.6vw;
+	text-align:center;
+	float:left;
+	margin-left:-1px;	
+	border-left:1px solid #dbdbdb;
+	font-size:4vw;
+	color:#ffc83b;
+}
+.cm_win1 .sbtn{
+	width:50%;
+	height:11.6vw;
+	line-height:11.6vw;
+	text-align:center;
+	float:left;
+	margin-left:17.7vw;	
+	font-size:4vw;
+	color:#ffc83b;
+}
