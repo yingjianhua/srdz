@@ -34,12 +34,6 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
-import com.drew.imaging.jpeg.JpegMetadataReader;
-import com.drew.metadata.Directory;
-import com.drew.metadata.Metadata;
-import com.drew.metadata.exif.ExifDirectory;
-import com.gif4j.GifDecoder;
-import com.gif4j.GifImage;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
 
@@ -101,7 +95,6 @@ public class ImageUtils {
 		InputStream fis = orig_img;
 		try {
 			if ("gif".equalsIgnoreCase(extendName)) {
-				GifImage gifImage = GifDecoder.decode(fis);
 				fis.close();
 				fis = null;
 				// GifImage newGif = GifTransformer.resize(gifImage, p_width,p_height,
@@ -215,45 +208,6 @@ public class ImageUtils {
 			out.close();
 		}
 		return true;
-	}
-
-	public static boolean fillExifInfo(File file, Photo photo) {
-		// Reading EXIF
-		try {
-			Metadata metadata = JpegMetadataReader.readMetadata(file);
-			if (!metadata.containsDirectory(ExifDirectory.class))
-				return false;
-			Directory exif = metadata.getDirectory(ExifDirectory.class);
-			if (exif != null) {
-				if (exif.containsTag(ExifDirectory.TAG_ORIENTATION))
-					photo.setOrientation(exif.getInt(ExifDirectory.TAG_ORIENTATION));
-				if (exif.containsTag(ExifDirectory.TAG_MAKE))
-					photo.setManufacturer(exif.getString(ExifDirectory.TAG_MAKE));
-				if (exif.containsTag(ExifDirectory.TAG_MODEL))
-					photo.setModel(exif.getString(ExifDirectory.TAG_MODEL));
-				if (exif.containsTag(ExifDirectory.TAG_APERTURE))
-					photo.setAperture(exif.getDescription(ExifDirectory.TAG_APERTURE));
-				if (exif.containsTag(ExifDirectory.TAG_COLOR_SPACE))
-					photo.setColorSpace(exif.getDescription(ExifDirectory.TAG_COLOR_SPACE));
-				if (exif.containsTag(ExifDirectory.TAG_EXPOSURE_BIAS))
-					photo.setExposureBias(exif.getDescription(ExifDirectory.TAG_EXPOSURE_BIAS));
-				if (exif.containsTag(ExifDirectory.TAG_FOCAL_LENGTH))
-					photo.setFocalLength(exif.getDescription(ExifDirectory.TAG_FOCAL_LENGTH));
-				if (exif.containsTag(ExifDirectory.TAG_ISO_EQUIVALENT))
-					photo.setISO(exif.getInt(ExifDirectory.TAG_ISO_EQUIVALENT));
-				if (exif.containsTag(ExifDirectory.TAG_SHUTTER_SPEED))
-					photo.setShutter(exif.getDescription(ExifDirectory.TAG_SHUTTER_SPEED));
-				if (exif.containsTag(ExifDirectory.TAG_EXPOSURE_TIME))
-					photo.setExposureTime(exif.getDescription(ExifDirectory.TAG_EXPOSURE_TIME));
-				return true;
-			}
-		} catch (Exception e) {
-			LOG.err("ExifInfo", "Exception occur when reading EXIF of " + file.getName());
-		}
-		return false;
-	}
-	public static boolean fillExifInfo(String img_path, Photo photo) {
-		return fillExifInfo(new File(img_path) ,photo);
 	}
 
 	public static boolean isImage(String fn) {

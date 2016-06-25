@@ -5,13 +5,10 @@ package irille.pub.dep;
 
 import irille.pub.ClassTools;
 import irille.pub.FileText;
-import irille.pub.FileTools;
 import irille.pub.IPubVars;
 import irille.pub.Log;
 import irille.pub.Str;
 import irille.pub.bean.Bean;
-import irille.pub.svr.DbMysql;
-import irille.pub.svr.DbOracle;
 import irille.pub.svr.DbPool;
 import irille.pub.svr.Env;
 import irille.pub.tb.Fld;

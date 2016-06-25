@@ -44,7 +44,7 @@
 	</div>
 	<div class="slod_zw"></div>
 	<div class="slod_list">
-	<s:iterator value="orders" id="line" status="st">
+	<s:iterator value="orders" var="line" status="st">
 	<div class="slod_item">
 		<dl>
 				<dt>FUN IN FOOD美食·家-${line.comboName}</dt>	

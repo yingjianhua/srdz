@@ -38,7 +38,7 @@
 		<span><a href="javascript:;" id="hot">热销</a></span>	
 	</div>
 	<div class="special">
-	<s:iterator value="specials" id="line" >
+	<s:iterator value="specials" var="line" >
 	<a href="javascript:;" class="find_spe" pkey="${line.pkey}">
 		<div class="txt">${line.title }</div>
 		<div class="findspe_flog"></div>
@@ -49,7 +49,7 @@
 	</div>
 	<!-- 热销 -->
 	<div class="hot">
-		<s:iterator value="hots" id="line" status="st">
+		<s:iterator value="hots" var="line" status="st">
 			<div class="hall_item">
 					<a href="javascript:;" class="hall_item1" pkey="${line.restaurant}" >
 					<img src="../${line.gtRestaurant().imgUrl}" class="photo" />

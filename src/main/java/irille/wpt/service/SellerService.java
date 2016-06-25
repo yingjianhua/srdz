@@ -31,8 +31,14 @@ public class SellerService {
 		c = c.replace("1234", code);
 		smsTool.doSent(manager, c);
 	}
+	public static void main(String[] args) {
+		boolean flag = true;
+		Boolean flag2 = (Boolean)flag;
+		System.out.println(flag);
+		System.out.println(flag2);
+	}
 	public boolean checkCode(String identify, Map<String, Object> session) {
-		long i = System.currentTimeMillis()- (long)session.get("date");
+		long i = System.currentTimeMillis()- (Long)session.get("date");
 		if(!identify.equals(session.get("msgCode")) || i > 300000){
 			return false;
 		} else {

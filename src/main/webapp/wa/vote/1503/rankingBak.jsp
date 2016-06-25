@@ -163,7 +163,7 @@ function vote(entrypkey) {
 			</div>
 			<div class="wxhd_conts" style="display:block;">
 				<ul class="clearfix">
-				<s:iterator status="i" value="listEntry" id="entry">
+				<s:iterator status="i" value="listEntry" var="entry">
 					<li entry=${entry.pkey}>
 						<img src="${listPhoto.get(i.index).photoUrl}" onclick="window.location.href='expand_wa_WaActVoteEntry_showInfo?pkey=${entry.pkey}'">
 						<p class="wxhd_conts_li_num">编号${entry.number}</p>

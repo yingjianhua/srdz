@@ -33,9 +33,9 @@ ${jsCode}
 <body>	
 	<div class="hall_top">超值私人定制套餐任选！选择套餐更划算哦！</div>
 	
-	<s:iterator value="mapCombo" id="restaurant">
+	<s:iterator value="mapCombo" var="restaurant">
 	<div class="hall_item">
-	<a href="#" class="hall_item1" pkey="<s:property value="key.pkey" />" combos="<s:iterator value="value" id="combo" status="st"><s:property value="#combo" /><s:if test="!#st.last">,</s:if></s:iterator>">
+	<a href="#" class="hall_item1" pkey="<s:property value="key.pkey" />" combos="<s:iterator value="value" var="combo" status="st"><s:property value="#combo" /><s:if test="!#st.last">,</s:if></s:iterator>">
 		<img src="../<s:property value="key.imgUrl" />" class="photo" />
 		<div class="item_flog"></div>
 	</a>

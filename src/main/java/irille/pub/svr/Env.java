@@ -61,8 +61,6 @@ public class Env implements IPubVars {
 		String db = getDbConf();
 		if (db.equals("DB2"))
 			_db = new DbDb2(); // 当前数据库指定
-		else if (db.equals("ORACLE"))
-			_db = new DbOracle();
 		else
 			_db = new DbMysql();
 		setConfDefault(SysConf.values());

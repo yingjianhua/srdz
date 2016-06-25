@@ -32,7 +32,7 @@
 	<h2 class="cm_head1">私人定制服务</h2>
 	
 	<div class="category_items">
-		<s:iterator value="services" id="service" >
+		<s:iterator value="services" var="service" >
 		<a href="javascript:;" class="cate_item" pkey="<s:property value="#service.pkey" />">
 			<i class="ico1" style="background-image:url(../<s:property value="#service.icon" />)"></i>
 			<span><s:property value="#service.name" /></span>	

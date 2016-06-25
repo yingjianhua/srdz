@@ -34,7 +34,7 @@
 	<h2 class="cbdet_head">${combo.name }</h2>
 	
 	<div class="cbdet_item">
-		<s:iterator value="comboLines" id="comboLine">
+		<s:iterator value="comboLines" var="comboLine">
 			<p><s:property value="#comboLine.gtMenu().name" /><s:if test="#comboLine.price.intValue()!=0"><span><s:property value="#comboLine.price.intValue()"/>元/份</span></s:if></p>
 		</s:iterator>
 	</div>

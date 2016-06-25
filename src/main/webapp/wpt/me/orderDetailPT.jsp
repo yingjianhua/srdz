@@ -54,7 +54,7 @@
 			<li>${order.formatDate }</li>
 			<s:if test="order.number"><li>${order.number }位</li></s:if>
 			<s:if test="order.consumption"><li>${order.consumption.intValue() }元/位</li></s:if>
-			<li><s:iterator value="orderServices" id="orderService">${orderService.name }  </s:iterator></li>
+			<li><s:iterator value="orderServices" var="orderService">${orderService.name }  </s:iterator></li>
 			<s:if test="order.rem!=null"><li>${order.rem }</li></s:if>			
 		</ul>
 	</div>

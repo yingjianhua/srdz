@@ -46,7 +46,7 @@
 			<li>${order.formatDate }</li>
 			<s:if test="order.num"><li>${order.number }位</li></s:if>
 			<s:if test="order.consumption"><li>${order.consumption }元/位</li></s:if>
-			<s:if test="orderServices.size()!=0"><li><s:iterator value="orderServices" id="line">${line.name } &nbsp;</s:iterator></li></s:if>
+			<s:if test="orderServices.size()!=0"><li><s:iterator value="orderServices" var="line">${line.name } &nbsp;</s:iterator></li></s:if>
 			<s:if test="order.gtRestaurant().name!=null"><li>${order.gtRestaurant().name } </li></s:if>
 			<s:if test="order.comboName!=null"><li>${order.comboName} </li><li>${order.price }元/套</li></s:if>
 			<s:if test="order.rem!=null"><li>${order.rem} </li></s:if>

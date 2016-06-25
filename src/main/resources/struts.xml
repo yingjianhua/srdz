@@ -130,6 +130,7 @@
 		<action name="*_*_*" class="irille.action.{1}.{2}Action" method="{3}">
 		</action>
 
+<action name="sys_SysUser_login" class="irille.action.sys.SysUserAction" method="login"></action>
 		<action name="download" class="irille.action.ActionDownload" method="down">  
         </action>
         

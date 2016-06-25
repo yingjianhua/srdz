@@ -40,7 +40,7 @@
 		<p>${special.intro}</p>
 	</div>
 	
-	<s:iterator value="restaurants" id="line" status="x">
+	<s:iterator value="restaurants" var="line" status="x">
 		<a href="javascript:;" class="fddet_item" pkey="${line.pkey}">
 		<dl><dt>${line.name}</dt> <dd>${line.des}</dd></dl>
 		<span class="xq">查看详情</span>

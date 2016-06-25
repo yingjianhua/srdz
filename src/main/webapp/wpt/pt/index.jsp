@@ -48,7 +48,7 @@ ${jsCode}
 	<!--hmcity_list 城市列表-->
 		<div class="hmcity_list">
 			<ul class="hmcity_items">
-			<s:iterator value="citys" id="city">
+			<s:iterator value="citys" var="city">
 				<li><a pkey="<s:property value="#city.pkey" />" href="javascript:;" ><s:property value="#city.name" /></a></li>
 			</s:iterator>
 			</ul>	

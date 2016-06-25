@@ -8,7 +8,7 @@
     </div>
     <div class="bd">
         <ul>
-        <s:iterator value="listBanner" id="banner"> <li><a href="${banner.url}"><img class="swiper-slide" src="${banner.picUrl}" des="${banner.description}" /></a></li> </s:iterator>
+        <s:iterator value="listBanner" var="banner"> <li><a href="${banner.url}"><img class="swiper-slide" src="${banner.picUrl}" des="${banner.description}" /></a></li> </s:iterator>
         </ul>
     </div>
 </div>

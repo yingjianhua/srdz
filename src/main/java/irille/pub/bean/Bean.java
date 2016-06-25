@@ -24,10 +24,6 @@ import java.sql.Clob;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.Date;
-
-import oracle.sql.RAW;
-import oracle.sql.TIMESTAMP;
 
 /**
  * Title: 数据模型基类<br>
@@ -629,10 +625,6 @@ public abstract class Bean<BEAN extends Bean, KEY extends Serializable> extends 
 						propertySet(fld, rs.getInt(i));
 					else if (fld.getJavaType().equals(Long.class))
 						propertySet(fld, rs.getLong(i));
-					else if (fld.isRaw()) // RAW类型字段
-						propertySet(fld, new RAW(rs.getBytes(i)).stringValue());
-					else if (rs.getObject(i) instanceof TIMESTAMP)
-						propertySet(fld, new Date(((TIMESTAMP) rs.getObject(i)).timestampValue().getTime()));
 					else
 						propertySet(fld, rs.getObject(i));
 				}

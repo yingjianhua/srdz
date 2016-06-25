@@ -101,7 +101,6 @@ public class FileSystemSaverNew {
 		String extendName = Str.getFileExtend(fileName).toLowerCase();
 		if(ImageUtils.isJPG(extendName)) {
 			//将图片的元数据保存到photo中
-			ImageUtils.fillExifInfo(fileTmp, photo);
 		} else if(ImageUtils.isBMP(extendName)) {
 			compress = true;
 			extendName = "jpg";
@@ -146,7 +145,6 @@ public class FileSystemSaverNew {
 		if (ImageUtils.isJPG(extendName)) {
 			try {
 				//将图片的元数据保存到photo中
-				ImageUtils.fillExifInfo(oldFile, photo);
 			} catch (Exception e) {
 				throw LOG.err("upload", "Exception occur when reading EXIF of " + oldFile);
 			}

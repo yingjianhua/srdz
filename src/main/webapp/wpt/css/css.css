@@ -2169,12 +2169,16 @@ div.clear{
 	height: 300px;
     width: 300px;
 }
-.cash_main p,h1{
+.cash_main p{
 	color: #33383b;
     font-size: 0.46rem;
     text-align: center;
 }
-    
+.cash_main h1{
+	color: #33383b;
+    font-size: 0.46rem;
+    text-align: center;
+}
 .cash_main .btn{
 	color: #fff;
     font-size: 25px;

@@ -125,7 +125,7 @@ function vote() {
 	            </div>
 	            <div class="bd">
 	                <ul>
-					<s:iterator value="listPhoto" id="photo">
+					<s:iterator value="listPhoto" var="photo">
 	                    <li><a href="#"><img src="${photo.photoUrl}"/></a></li>
 					</s:iterator>
 	                </ul>

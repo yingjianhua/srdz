@@ -59,7 +59,7 @@ ${jsCode}
 				</ul>
 			</div>
 			<div id="wx_container" class="wxhd_conts " style="display:block; visibility:visible">
-			<s:iterator status="i" value="listEntry" id="entry">
+			<s:iterator status="i" value="listEntry" var="entry">
             	<div class="item" entry=${entry.pkey }>
                     <a href="javascript:void(0)" onclick="window.location.href='expand_wa_WaActVoteEntry_showInfo?pkey=${entry.pkey}'">
                     	<img src="${listPhoto.get(i.index).photoUrl}">

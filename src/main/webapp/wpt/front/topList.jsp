@@ -47,7 +47,7 @@
 	<!--城市下拉-->
 	<div class="front_slide">
 		<a href="javascript:;" pkey="0" class="cityLineList">全部</a>
-		<s:iterator value="areas" id="line" status="st">
+		<s:iterator value="areas" var="line" status="st">
 		<a href="javascript:;" pkey=${line.pkey} class="cityLineList">${line.name}</a>
 		</s:iterator>
 		<div class="clear"></div>	
@@ -56,7 +56,7 @@
 	<!--主题下拉-->
 	<div class="front_slide">
 		<a href="javascript:;" pkey="0" class="banquetList">全部</a>
-		<s:iterator value="banquets" id="line" status="st">
+		<s:iterator value="banquets" var="line" status="st">
 		<a href="javascript:;" pkey=${line.pkey} class="banquetList">${line.name}</a>
         </s:iterator>		
 		<div class="clear"></div>	
@@ -64,7 +64,7 @@
 	<!--主题下拉-->	
 	<div class="front_flog"></div>
 	<div class="front_list">
-		<s:iterator value="tops" id="line" status="st">
+		<s:iterator value="tops" var="line" status="st">
 			<a href="javascript:;" ur="${line.url}" pkey="${line.pkey}" class="front_item">
 			<img src="../${line.imgUrl}" class="photo"/>
 			<dl>${line.title}

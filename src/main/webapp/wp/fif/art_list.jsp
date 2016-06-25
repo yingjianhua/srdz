@@ -163,7 +163,7 @@ $(function(){
         	<div class="search-box-list clearfix">
                 <ul>
                 <li pkey="0" class="themeList"><a>全部主题</a></li>
-                <s:iterator value="themeList" id="line" status="st">
+                <s:iterator value="themeList" var="line" status="st">
                     <li pkey=${line.pkey} class="themeList"><a>${line.name}</a></li>
                 </s:iterator>
                     <li class="left_fix"></li>
@@ -175,7 +175,7 @@ $(function(){
         	<div class="search-box-list clearfix">
                 <ul>
                 <li pkey="0" class="areaList"><a>全部区域</a></li>
-                <s:iterator value="areaList" id="line" status="st">
+                <s:iterator value="areaList" var="line" status="st">
                     <li pkey=${line.pkey} class="areaList"><a>${line.name}</a></li>
                 </s:iterator>
                     <li class="left_fix"></li>
@@ -187,7 +187,7 @@ $(function(){
         	<div class="search-box-list clearfix">
                 <ul>
                 <li pkey ="0" class="ctgList"><a>全部分类</a></li>
-                <s:iterator value="ctgList" id="line" status="st">
+                <s:iterator value="ctgList" var="line" status="st">
                     <li pkey=${line.pkey} class="ctgList"><a>${line.name}</a></li>
                 </s:iterator>
                     <li class="left_fix"></li>
@@ -197,14 +197,14 @@ $(function(){
         </div>
 		<div class="search-list">
 			<ul>
-			    <s:iterator value="list" id="line" status="st">
+			    <s:iterator value="list" var="line" status="st">
 				<li><a href="${line.url}"><img src="${line.imgUrl}">
 					<div class="search-bg"></div>
 						<div class="search-about">
 							<p>${line.title}</p>
 							<p class="ttb">
-							<s:iterator value="themeList" id="t" status="s"><s:if test="#line.theme== #t.pkey">${sarg1} · ${t.name}</s:if></s:iterator>
-							<s:iterator value="bsnList" id="b" status="x"><s:if test="#line.bsn== #b.pkey"><i class="icon-map-marker" style="height:50px;" latitude="${b.latitude}" longitude="${b.longitude}" name="${b.name}" address="${b.addr}"></i>${b.name}</s:if></s:iterator>
+							<s:iterator value="themeList" var="t" status="s"><s:if test="#line.theme== #t.pkey">${sarg1} · ${t.name}</s:if></s:iterator>
+							<s:iterator value="bsnList" var="b" status="x"><s:if test="#line.bsn== #b.pkey"><i class="icon-map-marker" style="height:50px;" latitude="${b.latitude}" longitude="${b.longitude}" name="${b.name}" address="${b.addr}"></i>${b.name}</s:if></s:iterator>
 							</p>
 						</div>
 					</a>

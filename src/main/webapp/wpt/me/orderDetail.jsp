@@ -48,7 +48,7 @@
 		</div>
 		
 		<div class="cbdet_item">
-			<s:iterator value="listLine" id="line">
+			<s:iterator value="listLine" var="line">
 			<p>${line.name }<span>${line.price.intValue() }元/份</span></p>
 			</s:iterator>
 		</div>

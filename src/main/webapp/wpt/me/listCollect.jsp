@@ -29,8 +29,8 @@
 
 <body>	
 
-		<s:iterator value="tops" id="t">
-		<s:iterator value="collects" id="line">
+		<s:iterator value="tops" var="t">
+		<s:iterator value="collects" var="line">
 			<s:if test="#line.top==#t.pkey">
 			<a href="#" class="usct_item" pkey="${t.pkey}">
 			<img src="${t.imgUrl}" class="photo" />

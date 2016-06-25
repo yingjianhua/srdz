@@ -133,7 +133,7 @@
 					<div class="wxhd_form_input">
 						<ul class="wxhd_sign_img_list clearfix" id="imgUL">
 							<s:if test="voteEntry!=null">
-								<s:iterator value="listPhoto" id="photo">
+								<s:iterator value="listPhoto" var="photo">
 									<img src="${photo.photoUrl}">
 								</s:iterator>
 							</s:if>

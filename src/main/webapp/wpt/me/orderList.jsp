@@ -28,7 +28,7 @@
 </head>
 
 <body>	
-	<s:iterator value="orders" id="order">
+	<s:iterator value="orders" var="order">
 	<a href="#" class="usorder_item" pkey="${order.pkey }">
 		<img src="${order.gtRestaurant().imgUrl }" class="photo" />
 		<div class="txt">

@@ -93,12 +93,12 @@ ${jsCode}
     	</div>
     	<div class="bd">
         	<ul>
-        	 <s:iterator value="bannerList" id="banner">
+        	 <s:iterator value="bannerList" var="banner">
         	<li><a href="${banner.artObj.url}"><img src="${banner.artObj.imgUrl}">
         		<div class="banner-about">
 					<p class="tt1">${banner.artObj.title}</p>
-					<s:iterator value="themeList" id="t" status="s"><s:if test="#banner.artObj.theme== #t.pkey">${sarg1} ·${t.name}</s:if></s:iterator>
-					<s:iterator value="bsnList" id="b" status="x"><s:if test="#banner.artObj.bsn== #b.pkey"><i class="icon-map-marker"></i>${b.name}</s:if></s:iterator>
+					<s:iterator value="themeList" var="t" status="s"><s:if test="#banner.artObj.theme== #t.pkey">${sarg1} ·${t.name}</s:if></s:iterator>
+					<s:iterator value="bsnList" var="b" status="x"><s:if test="#banner.artObj.bsn== #b.pkey"><i class="icon-map-marker"></i>${b.name}</s:if></s:iterator>
 				</div></a>
 					</li>
         	</s:iterator>
@@ -111,7 +111,7 @@ ${jsCode}
 
 		<div class="index-list clearfix">
 			<ul>
-			<s:iterator value="themeList" id="line" status="st">
+			<s:iterator value="themeList" var="line" status="st">
 				<li><a href="expand_wp_WpArt_showList?show.pkey=${bean.pkey}&theme.pkey=${line.pkey}"><img src="${line.imgUrl}">
 					<div class="list-bg"></div>
 					<div class="list-box">

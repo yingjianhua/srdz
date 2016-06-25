@@ -37,7 +37,7 @@
 				<span class="select_txt">宴会类型</span>
 				<select name="banquetId">
 					<option value="" selected="true" disabled="true" style="display:none">选择宴会类型</option>
-				<s:iterator value="banquets" id="banquet">
+				<s:iterator value="banquets" var="banquet">
 					<option value="<s:property value="#banquet.pkey" />"><s:property value="#banquet.name" /></option>
 				</s:iterator>
 				</select>
@@ -58,7 +58,7 @@
 					<span class="select_txt">区域</span>
 					<select name="areaId">
 						<option value="" selected="true" disabled="true" style="display:none">选择区域</option>
-						<s:iterator value="areas" id="area">
+						<s:iterator value="areas" var="area">
 							<option value="<s:property value="#area.pkey" />"><s:property value="#area.name" /></option>
 						</s:iterator>
 					</select>
