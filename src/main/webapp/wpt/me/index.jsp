@@ -55,9 +55,9 @@
 			</div>
 	 	</a>
 	 	<div class="double_line"></div>
-		<a href="#"><div>我的私人订单<em class="icon num" id="num0">1</em></div></a>	
-		<a href="#"><div>我的收藏<em class="icon" id="num1"></em></div></a>
-		<a href="#"><div>我的粉丝<em class="icon text">0人</em></div></a>
+		<a href="listOrder?account.pkey=${account.pkey}"><div>我的私人订单<em class="icon" id="num0">${orderNum }</em></div></a>	
+		<a href="listCollect?account.pkey=${account.pkey}"><div>我的收藏<em class="icon" id="num1">${collectNum }</em></div></a>
+		<a href="listFans?account.pkey=${account.pkey}"><div>我的粉丝<em class="icon text">${fansNum }人</em></div></a>
 		<a href="#"><div>粉丝销量<p class="icon text">0.00元</p></div></a>	
 		<div class="double_line"></div>
 		<a href="#"><div>客服中心</div></a>	
@@ -85,16 +85,10 @@ $(function() {
 			})
 		}
 	})
-	$(".user_links a:eq(0)").click(function() {
-		location.href = "listOrder?account.pkey="+${account.pkey};
-	})
-	$(".user_links a:eq(1)").click(function(){
-		window.location.href = "listCollect?account.pkey="+${account.pkey};
-	})
-	$(".user_links a:eq(2)").click(function(){
+	$(".user_links a:eq(3)").click(function(){
 		window.location.href = "serviceCenter?account.pkey="+${account.pkey};
 	})
-	$(".user_links a:eq(3)").click(function(){
+	$(".user_links a:eq(4)").click(function(){
 		window.location.href = "feedBack?account.pkey="+${account.pkey};
 	})
 })

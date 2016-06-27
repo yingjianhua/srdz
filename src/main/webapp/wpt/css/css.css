@@ -2156,37 +2156,79 @@ div.clear{
 /*cash 提现相关*/
 
 .cash_main{
+	position:fixed;
 	padding-top:10px;
 	width: 640px;
-	background: #f0f0f0 none repeat scroll 0 0
+	background: #f0f0f0 none repeat scroll 0 0;
+	min-height: 100%;
 }
 .cash_main .reward{
-	height: 300px;
-    margin: 60px auto 0;
-    width: 300px;
+    margin: 44px auto 0;
+    width: 220px;
 }
 .cash_main .reward img{
-	height: 300px;
-    width: 300px;
+    width: 220px;
 }
-.cash_main p{
-	color: #33383b;
-    font-size: 0.46rem;
+.cash_main .cash_list p{
+	color:#646464;
+	line-height:47px;
+    font-size:29px;
     text-align: center;
 }
-.cash_main h1{
-	color: #33383b;
-    font-size: 0.46rem;
-    text-align: center;
+.cash_main .cash_list .price{
+	letter-spacing:5px;
+	color: #464646;
+	font-weight:bold;
+	font-size:57px;
+	line-height:60px;
+	padding-bottom: 10px;
 }
 .cash_main .btn{
 	color: #fff;
     font-size: 25px;
-    height: 60px;
-    line-height: 60px;
-    margin: 10px 20px 0;
+    height: 80px;
+    line-height: 80px;
+    margin: 22px 36px 0;
     text-align: center;
-    width: 600px;
-    border-radius: 5px;
+    width: 568px;
+	border: 1px solid #949494;
+    border-radius: 8px;
+}
+.cash_main .white{
+	background:#fff;
+	color:#000;
+}
+.cash_main .gray{
+	background:#767676;
+	color:#CACACA;
+}
+.cash_main .black{
+	background:#050102;
+	color:#fff;
+}
+.cash_main .content{
+	width: 508px;
+	margin: 22px 36px 0;
+	border: 3px solid #000;
+	padding: 22px 30px;
+	background: #fff;
+}
+.cash_main .des{
+	font-size: 26px;
+	margin-left: 8px;
+}
+.cash_main .tip{
+	font-size: 19px;
+	margin-left: 8px;
+	color: #b3b3b3;
+}
+.cash_main input{
+	font-size: 43px;
+    border-style: none none solid;
+    border-width: medium medium 4px;
+    color: #b3b3b3;
+    margin: 0 0 15px;
+    padding: 17px 17px 17px 0;
+    width: 95%;
 }
 /*cash 提现相关*/

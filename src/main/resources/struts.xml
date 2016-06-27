@@ -35,6 +35,7 @@
 			<interceptor-ref name="tokenSession" />
 			<interceptor-ref name="wpt_resource" />
 		</action>
+		<action name="user_*" class="userAction" method="{1}"></action>
 	</package>
 	
 	<package name="wpt" namespace="/wpt" extends="wpt_resource">
@@ -77,6 +78,8 @@
 		<action name="listSellerOrder" class="listSellerOrderAction"></action>
 		<action name="showQrcode" class="showQrcodeAction"></action>
 		<action name="showCash" class="showCashAction"></action>
+		<action name="listCashHistory" class="listCashHistoryAction"></action>
+		<action name="listFans" class="listFansAction"></action>
 		
 	</package>
 	

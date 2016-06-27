@@ -1,5 +1,11 @@
 package irille.wpt.actions;
 
+import java.math.BigDecimal;
+import java.util.Map;
+
+import irille.pub.bean.Bean;
+import irille.pub.idu.Idu;
+import irille.wpt.service.UserService;
 import irille.wx.wpt.Wpt;
 import irille.wx.wpt.WptCollect;
 import irille.wx.wpt.WptOrder;
@@ -14,6 +20,9 @@ public class ShowMeAction extends AbstractWptAction {
 	private WxUser user;
 	private int orderNum;
 	private int collectNum;
+	private int fansNum;
+	
+	private UserService service;
 	/**
 	 * 显示我的页面
 	 */
@@ -22,6 +31,7 @@ public class ShowMeAction extends AbstractWptAction {
 		user = chkWxUser();
 		orderNum = WptOrder.list(WptOrder.class, WptOrder.T.WXUSER + " = ?" + " AND " + WptOrder.T.STATUS + "<>"+ Wpt.OStatus.FINISH.getLine().getKey() + " AND " + WptOrder.T.STATUS + " <>" + Wpt.OStatus.CLOSE.getLine().getKey(), false, user).size();
 		collectNum = WptCollect.list(WptCollect.class, WptCollect.T.WXUSER + " = ?", false, user.getPkey()).size();
+		fansNum = service.getFansNum(user.getPkey());
 		setResult("me/index.jsp");
 		return TRENDS;
 	}
@@ -43,5 +53,17 @@ public class ShowMeAction extends AbstractWptAction {
 	}
 	public void setCollectNum(int collectNum) {
 		this.collectNum = collectNum;
+	}
+	public int getFansNum() {
+		return fansNum;
+	}
+	public void setFansNum(int fansNum) {
+		this.fansNum = fansNum;
+	}
+	public UserService getService() {
+		return service;
+	}
+	public void setService(UserService service) {
+		this.service = service;
 	}
 }

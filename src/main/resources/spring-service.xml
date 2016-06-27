@@ -26,5 +26,5 @@
 	<bean id="distributionRuleService" class="irille.wpt.service.DistributionRuleService">
 		<property name="commissionJournalDao" ref="commissionJournalDao"></property>
 	</bean>
-	
+	<bean id="userService" class="irille.wpt.service.UserService"></bean>
 </beans>        

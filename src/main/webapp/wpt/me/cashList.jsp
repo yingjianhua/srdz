@@ -28,23 +28,23 @@
 
 <body>	
 <div class="cash_main">
-		<div class="tx2" style="display: none;">
-			<div class="content">
-				<h1>提现金额(元)</h1>
-				<input type="tel" placeholder="请输入提现金额" id="inp"></input>
-				<p class="ytx">可提现金额:<span id="withdrawCash">0.00</span>元</p>
-			</div>
-			<button class="unBtn"  id="sbtn" disabled="disabled" >申请提现</button>
+	<div class="cash_list">
+		<div class="reward">
+			<img src="images/reward.png">
 		</div>
-		<div class="tx1">
-			<div class="reward">
-				<img src="images/reward.jpg">
-			</div>
-			<p>可提现金额(元)</p>
-			<h1>0.00</h1>
-			<div class="btn gray" style="background:#949494;">成为捕手后可提现</div>
-			<a href="/ygg-hqbs/withdrawals/getWithdrawalsLogs"><div class="btn white" style="background:#fff;color:#000;">提现历史</div></a>
+		<p>可提现金额(元)</p>
+		<p class="price">￥0.00</p>
+		<div class="btn gray">成为代言人后可提现</div>
+		<div class="btn black" style="display: none;">立即提现</div>
+		<div class="btn white"><a href="listCashHistory?account.pkey=${account.pkey }">提现历史</a></div>
+	</div>
+	<div class="cash_done" style="display: none;">
+		<div class="content">
+			<p class="des">提现金额(元)</p>
+			<input type="number" placeholder=" | 请输入提现金额" id="cashinput"></input>
+			<p class="tip">可提现金额:<span id="cashLimit">0.00</span>元</p>
 		</div>
+		<div class="btn black" id="cash">申请提现</div>
 	</div>
 </div>
 </body>
@@ -54,66 +54,69 @@
 ${jsCode}
 </script>
 <script>
-function cancelOrder(clicked) {
-	if(clicked == OK) {
-		$.ajax({
-			url : "resource/order_cancel",
-			type : "POST",
-			dataType : "json",
-			data : {
-				"orderId" : "${order.orderid}"
-			},
-			success : function(result) {
-				if(result.success) {
-					tipbox(result.succMsg, function() {
-						location.reload();
-					})
-				}
-			}
-		})
-	}
-}
-function payOrder() {
+var cashLimit = 0.00;
+var reg=/^(([1-9]\d{0,9})|0)(\.\d{1,2})?$/;
+$(function() {
+	 $("#cashinput").focus(function(){
+		    
+		  $(this).css("color","#000");
+		
+		  $("#cashinput").bind("input propertychange",function(){
+			   var val = $.trim($(this).val());
+			   if(val.length==0){
+				   $(".tip").html("可提现金额:<span id='cashLimit'>"+cashLimit+"</span>元");
+				   $("#sbtn").attr("disabled","diabled");
+			   }else if(val>cashLimit){
+				   $(".tip").html("<span style='color:red;font-weight:normal;'>输入金额超过可提现金额</span>");
+				   $("#sbtn").attr("disabled","diabled");
+/* 			   }else if(val<50){
+				   $(".tip").html("<span style='color:red;font-weight:normal;'>提现最低50元起</span>");
+				   $("#sbtn").attr("disabled","diabled"); */
+			   }else if(!reg.test(val)){
+				   $(".tip").html("<span style='color:red;font-weight:normal;'>请输入正确金额</span>");
+				   $("#tip").attr("disabled","diabled");
+			   }else if(reg.test(val)){
+				   $("#sbtn").removeAttr("disabled");
+				   $(".tip").html("可提现金额:<span id='cashLimit'>"+cashLimit+"</span>元");  
+				  
+			   }  
+		  });
+	 });
 	$.ajax({
-		url : "resource/order_preparePay?orderId=${order.orderid}",
+		url : "resource/user_cashDetail?account.pkey=${account.pkey}",
 		type : "POST",
 		dataType : "json",
 		success : function(result) {
-			if(result.success) {
-				wx.chooseWXPay({
-					timestamp: result.timeStamp, 
-				    nonceStr: result.nonceStr, 
-				    package: result.package, 
-				    signType: result.signType,
-				    paySign: result.paySign, 
-				    success: function (res) {
-						tipbox("支付成功", function() {
-							location.href = "listOrder?account.pkey=${account.pkey}";
-						})
-				    	// 支付成功后的回调函数
-				    }
-				})
+			cashLimit = new Number(result.commission).toFixed(2);
+			$(".price").text("￥"+ cashLimit);
+			$("#cashLimit").text(cashLimit);
+			if(result.isMember) {
+				$(".btn.black").show();
+				$(".btn.gray").hide();
+			} else {
+				$(".btn.black").hide();
+				$(".btn.gray").show();
 			}
 		}
 	})
-}
-$(function() {
-	var status = "${order.status}";
-	$(".cancelOrder").click(function() {
-		messagebox("您真的要取消订单吗？",cancelOrder);
+	$(".black").click(function() {
+		$(".cash_done").show();
+		$(".cash_list").hide();
 	})
-	$(".payOrder").click(function() {
-		payOrder();
+	$("#cash").click(function() {
+		if(reg.test(val)) {
+			$.ajax({
+				url : "resource/user_cash?account.pkey=${account.pkey}",
+				type : "POST",
+				dataType : "json",
+				data : {
+					amt : $("#cashinput").val()
+				},
+				success : function(result) {
+				}
+			})
+		}
 	})
-	$(".addr").click(function() {
-		wx.openLocation({
-			latitude : parseFloat($(this).attr('latitude')),
-			longitude : parseFloat($(this).attr('longitude')),
-			name : $(this).attr('name'),
-			address : $(this).attr('address'),
-			scale : 14
-		});
-	});
 })
 </script>
 </html>
