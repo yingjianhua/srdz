@@ -92,17 +92,17 @@ function onSearch() {
 		dataType : "json",
 		success : function(result) {
 			var list = "";
-			$.each(resul, function() {
+			$.each(result, function(index, order) {
 				list += '<div class="slod_item">';
 				list += '<dl>';
-				list += '		<dt>FUN IN FOOD美食·家-'+result.comboName+'</dt>';
-				list += '		<span class="lt">订单编号　'+result.orderId+'</span>';
+				list += '		<dt>FUN IN FOOD美食·家-'+order.comboName+'</dt>';
+				list += '		<span class="lt">订单编号　'+order.orderId+'</span>';
 				list += '		<span class="rt">';
 				list += '			<em class="lt">RMB</em>';
-				list += '			<i class="price rt">'+result.price+'</i>';
+				list += '			<i class="price rt">'+order.price+'</i>';
 				list += '		</span>';
 				list += '</dl>';
-				list += '<a href="javascript:;" class="slod_btn" pkey="'+result.orderId+'">确认用餐</a>';
+				list += '<a href="javascript:;" class="slod_btn" pkey="'+order.orderId+'">确认用餐</a>';
 				list += '<div class="clear"></div>';
 				list += '</div>';
 			})

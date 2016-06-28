@@ -62,7 +62,7 @@
 		<property name="service" ref="sellerService"></property>
 	</bean>
 	<bean id="userAction" class="irille.wpt.actions.UserAction" scope="prototype">
-		<property name="service" ref="UserService"></property>
+		<property name="service" ref="userService"></property>
 	</bean>
 	
 </beans>        

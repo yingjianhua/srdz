@@ -1,0 +1,64 @@
+/*通用类*/
+*{
+	margin:0;
+	padding:0;	
+}
+body{		
+	-webkit-overflow-scrolling: touch;
+	margin:0 auto;
+	font-family:"Microsoft Yahei";
+	color:#000;	
+	position:relative;
+	overflow-x:hidden;
+	background:#fff none repeat scroll 0 0;
+}
+.gray-bg{
+	background:#f7f7f7;	
+}
+
+img{
+	border:none;	
+}
+h1,h2,h3{
+	font-weight:normal;	
+}
+a{
+	color:#000;
+	text-decoration:none;	
+}
+input,textarea,select{
+	font-family:"Microsoft Yahei";	
+	font-size:1em;
+	outline:none;
+}
+input::-webkit-input-placeholder {
+	color: #999 !important;
+}
+input[type='button'], input[type='submit'], input[type='reset'], input[type='time'], input[type='date']  {
+	-webkit-appearance: none;
+}
+textarea,select{ 
+	-webkit-appearance: none;
+}
+ul{
+	list-style-type:none;	
+}
+em{
+	font-style:normal;	
+}
+.lt{
+	float:left;	
+}
+.rt{
+	float:right;	
+}
+input.sub,label{
+	border:none;	
+	cursor:pointer;
+}
+div.clear{
+	font: 0px Arial; line-height:0;
+	height:0; 
+	overflow:hidden;	
+	clear:both;	
+}

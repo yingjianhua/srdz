@@ -3,9 +3,14 @@ package irille.wpt.actions;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.List;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
+import irille.wpt.service.UserService;
 import irille.wx.wx.WxUser;
 
 public class UserAction extends AbstractWptAction {
@@ -14,6 +19,11 @@ public class UserAction extends AbstractWptAction {
 	 * 
 	 */
 	private static final long serialVersionUID = -3883419323449309464L;
+	private int level;
+	private String userid;
+	private int fanid;
+	
+	private UserService service;
 
 	public void cashDetail() {
 		WxUser user = chkWxUser();
@@ -35,5 +45,49 @@ public class UserAction extends AbstractWptAction {
 	 */
 	public void cash() {
 		//TODO
+	}
+	public void fans() {
+		List<WxUser> fans = service.getFansByCondition(userid, getAccount().getPkey(), level, fanid);
+		JSONArray result = new JSONArray();
+		for(WxUser fan:fans) {
+			JSONObject o = new JSONObject();
+			o.put("head", fan.getImageUrl());
+			o.put("nick", fan.getNickname());
+			o.put("id", fan.getPkey());
+			o.put("subtime", DateFormat.getDateTimeInstance().format(fan.getSubscribeTime()));
+			result.put(o);
+		}
+		PrintWriter writer;
+		try {
+			writer = getResponse().getWriter();
+			writer.print(result.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public int getLevel() {
+		return level;
+	}
+	public void setLevel(int level) {
+		this.level = level;
+	}
+	public String getUserid() {
+		return userid;
+	}
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+	public int getFanid() {
+		return fanid;
+	}
+	public void setFanid(int fanid) {
+		this.fanid = fanid;
+	}
+	public UserService getService() {
+		return service;
+	}
+	public void setService(UserService service) {
+		this.service = service;
 	}
 }

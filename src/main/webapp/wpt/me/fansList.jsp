@@ -6,66 +6,82 @@
 <head>
 <meta charset="utf-8">
 <meta name="format-detection" content="telephone=no" />
-<link type="text/css" rel="stylesheet" href="css/css.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<script type="text/javascript" src="js/flexible.js"></script>
+<link type="text/css" rel="stylesheet" href="css/base.css" />
+<link type="text/css" rel="stylesheet" href="css/me_fansList.css" />
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-<script type="text/javascript">
-    var phoneWidth =  parseInt(window.screen.width);
-    var phoneScale = phoneWidth/640;
-    var ua = navigator.userAgent;
-    if (/Android (\d+\.\d+)/.test(ua)){
-        var version = parseFloat(RegExp.$1);
-        if(version>2.3){
-            document.write('<meta name="viewport" content="width=640, minimum-scale = '+phoneScale+', maximum-scale = '+phoneScale+', target-densitydpi=device-dpi">');
-        }else{
-            document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
-        }
-    } else {
-        document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
-    }
-</script>
 <title>享食光-私人定制</title>
 </head>
 <body>
 	<div class="main">
-		<div class="search">
-			<img src="sousuo.png">
-			<div style="border: 1px solid; height: 0.84rem;">
-				<input type="text" placeholder="输入粉丝ID" id="inp"></input>
+		<div class="search-bar">
+			<div class="search">
+				<img class="search_icon" src="images/search.png">
+				<input class="search-input" type="text" placeholder="输入粉丝ID" id="idinput"></input>
+				<div class="search-submit" id=search-btn>搜索</div>
 			</div>
-			<div class="searchBtn" id="btn">搜索</div>
 		</div>
 		<div class="nav">
 			<ul>
-				<li class="change"><div class="num">我的粉丝（1）</div></li>
-				<li><div class="num">粉丝圈（1）</div></li>
+				<li class="select">我的粉丝（${fans1Num }）</li>
+				<li>粉丝圈（${fans2Num }）</li>
+				<li>粉丝圈（${fans3Num }）</li>
 			</ul>
 			<div class="clean"></div>
 		</div>
 		<div class="list">
-			<ul class="listul">
-			</ul>
-			<div class="empty">
-				<img src="fans.png">
-				<p class="emptyT">
-					你还没有<span></span>粉丝呢
-				</p>
-			</div>
-			<div class="more">
-				<div class="morebtn" id="morebtn">
-					<span>查看更多</span> <img src="down.png">
-				</div>
-			</div>
+			<ul id="list"></ul>
 		</div>
-	</div>
-	<div class="tongjicnzz" style="display: none;">
-		<script
-			src="http://s95.cnzz.com/z_stat.php?id=1258654236&web_id=1258654236"
-			language="JavaScript"></script>
 	</div>
 </body>
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="js/base.js"></script>
 <script>
 ${jsCode}
+</script>
+<script>
+function getFans(level, fanid) {
+	console.log(fanid)
+	$.ajax({
+		url: "resource/user_fans?account.pkey=${account.pkey}",
+		type: "post",
+		data: {
+			userid: "${sessionScope.openid}",
+			level: level,
+			fanid: fanid?fanid:undefined,
+		},
+		datatype: "json",
+		success: function(result) {
+			var content = "";
+			$.each(result, function(index, fan) {
+				content += '<li class="fan"><ul>';
+				content += '<li class="fan-detail-head"><img src="'+fan.head+'"></li>';
+				content += '<li class="fan-detail-nick"><p>'+fan.nick+'</p></li>';
+				content += '<li class="fan-detail-id"><p>ID:'+fan.id+'</p></li>';
+				content += '<li class="fan-detail-subtime"><p>'+fan.subtime+'关注</p></li>';
+				content += '</ul></li>';
+			});
+			$("#list").html(content);
+		}
+	})
+}
+$(function() {
+	getFans(1);
+	$("#search-btn").click(function() {
+		var fanid = $("#idinput").val();
+		if(fanid) {
+			$(".nav").hide();
+			getFans(undefined, fanid);
+		} else {
+			$(".nav").show();
+			getFans(1);			
+		}
+
+	});
+	$(".nav li").click(function() {
+		$(this).addClass("select").siblings().removeClass("select");
+		getFans($(this).index()+1);
+	})
+})
 </script>
 </html>
