@@ -58,12 +58,12 @@
 		<a href="listOrder?account.pkey=${account.pkey}"><div>我的私人订单<em class="icon" id="num0">${orderNum }</em></div></a>	
 		<a href="listCollect?account.pkey=${account.pkey}"><div>我的收藏<em class="icon" id="num1">${collectNum }</em></div></a>
 		<a href="listFans?account.pkey=${account.pkey}"><div>我的粉丝<em class="icon text">${fansNum }人</em></div></a>
-		<a href="#"><div>粉丝销量<p class="icon text">0.00元</p></div></a>	
+		<a href="listFansSale?account.pkey=${account.pkey}"><div>粉丝销量<p class="icon text">${fansSaleAmount }元</p></div></a>	
 		<div class="double_line"></div>
-		<a href="#"><div>客服中心</div></a>	
-		<a href="#"><div>意见反馈</div></a>	
+		<a href="serviceCenter?account.pkey=${account.pkey}"><div>客服中心</div></a>	
+		<a href="feedBack?account.pkey=${account.pkey}"><div>意见反馈</div></a>	
 	</div>
-	<div class="user_invited">您是由 xxxxxx 推荐</div>
+	<div class="user_invited">您是由 【<s:if test="user.invited3!=null">${user.gtInvited3().nickname }</s:if><s:else>${user.gtAccount().accountName }</s:else>】 推荐</div>
 </body>
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="js/base.js"></script>
@@ -84,12 +84,6 @@ $(function() {
 				
 			})
 		}
-	})
-	$(".user_links a:eq(3)").click(function(){
-		window.location.href = "serviceCenter?account.pkey="+${account.pkey};
-	})
-	$(".user_links a:eq(4)").click(function(){
-		window.location.href = "feedBack?account.pkey="+${account.pkey};
 	})
 })
 </script>

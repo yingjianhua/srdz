@@ -50,9 +50,10 @@ function getFans(level, fanid) {
 			level: level,
 			fanid: fanid?fanid:undefined,
 		},
-		datatype: "json",
+		dataType: "json",
 		success: function(result) {
 			var content = "";
+			console.log(result)
 			$.each(result, function(index, fan) {
 				content += '<li class="fan"><ul>';
 				content += '<li class="fan-detail-head"><img src="'+fan.head+'"></li>';

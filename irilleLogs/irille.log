@@ -1,0 +1,36 @@
+[2016-06-29 10:13:24][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.sys.Sys】信息...
+[2016-06-29 10:13:24][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.lg.Lg】信息...
+[2016-06-29 10:13:24][INFO ] irille.pub.svr.DbPool
+DbPool初始化开始
+[2016-06-29 10:13:24][INFO ] snaq.db.ConnectionPoolManager
+Loaded ConnectionPoolManager properties with encoding UTF-8
+[2016-06-29 10:13:24][INFO ] snaq.db.ConnectionPoolManager.irille
+irille: Created pool irille (minpool=0,maxpool=100,maxsize=100,idleTimeout=60)
+[2016-06-29 10:13:24][INFO ] irille.pub.svr.DbPool
+DbPool初始化成功
+[2016-06-29 10:13:24][INFO ] irille.pub.svr.DbPool
+init poolManager end...
+[2016-06-29 10:13:24][INFO ] snaq.db.ConnectionPool.irille
+irille: Getting connection (user/password): jdbc:mysql://localhost:3306/srdz3.0?useUnicode=true&characterEncoding=UTF8
+[2016-06-29 10:13:24][INFO ] snaq.db.ConnectionPool.irille
+irille: Created a new connection
+[2016-06-29 10:13:42][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.sys.Sys】信息...
+[2016-06-29 10:13:42][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.lg.Lg】信息...
+[2016-06-29 10:13:43][INFO ] irille.pub.svr.DbPool
+DbPool初始化开始
+[2016-06-29 10:13:43][INFO ] snaq.db.ConnectionPoolManager
+Loaded ConnectionPoolManager properties with encoding UTF-8
+[2016-06-29 10:13:43][INFO ] snaq.db.ConnectionPoolManager.irille
+irille: Created pool irille (minpool=0,maxpool=100,maxsize=100,idleTimeout=60)
+[2016-06-29 10:13:43][INFO ] irille.pub.svr.DbPool
+DbPool初始化成功
+[2016-06-29 10:13:43][INFO ] irille.pub.svr.DbPool
+init poolManager end...
+[2016-06-29 10:13:43][INFO ] snaq.db.ConnectionPool.irille
+irille: Getting connection (user/password): jdbc:mysql://localhost:3306/srdz3.0?useUnicode=true&characterEncoding=UTF8
+[2016-06-29 10:13:43][INFO ] snaq.db.ConnectionPool.irille
+irille: Created a new connection

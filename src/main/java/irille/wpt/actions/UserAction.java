@@ -4,13 +4,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.text.DateFormat;
-import java.util.Date;
 import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import irille.wpt.service.UserService;
+import irille.wx.wpt.WptCommissionJournal;
 import irille.wx.wx.WxUser;
 
 public class UserAction extends AbstractWptAction {
@@ -22,6 +22,7 @@ public class UserAction extends AbstractWptAction {
 	private int level;
 	private String userid;
 	private int fanid;
+	private String orderOrFan;
 	
 	private UserService service;
 
@@ -65,6 +66,31 @@ public class UserAction extends AbstractWptAction {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * 获取佣金流水记录
+	 */
+	public void fanOrders() {
+		List<WptCommissionJournal> journals = service.getCommissionJournal(userid, getAccount().getPkey(), orderOrFan);
+		JSONArray result = new JSONArray();
+		for(WptCommissionJournal journal:journals) {
+			JSONObject o = new JSONObject();
+			o.put("orderid", journal.getOrderid());
+			o.put("createTime", DateFormat.getDateTimeInstance().format(journal.getCreateTime()));
+			o.put("price", journal.getPrice());
+			o.put("commission", journal.getCommission());
+			o.put("fanid", journal.getFans());
+			o.put("head", journal.getImageUrl());
+			o.put("nick", journal.getNickname());
+			result.put(o);
+		}
+		PrintWriter writer;
+		try {
+			writer = getResponse().getWriter();
+			writer.print(result.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public int getLevel() {
 		return level;
@@ -83,6 +109,12 @@ public class UserAction extends AbstractWptAction {
 	}
 	public void setFanid(int fanid) {
 		this.fanid = fanid;
+	}
+	public String getOrderOrFan() {
+		return orderOrFan;
+	}
+	public void setOrderOrFan(String orderOrFan) {
+		this.orderOrFan = orderOrFan;
 	}
 	public UserService getService() {
 		return service;

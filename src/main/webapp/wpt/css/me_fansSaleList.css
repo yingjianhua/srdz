@@ -1,0 +1,129 @@
+.bg{
+	background: url(../images/bbg25.png) 0 0 repeat-y;
+}
+.gray{
+	background: #f0f0f0;
+}
+.main .amount{
+	background: #f0f0f0;
+	height: 2.15rem;
+	text-align: center;
+}
+.main .amount div{
+	height: 1.61rem;
+	margin-top: 0.35rem;
+}
+.amount-commission{
+	border-right: 2px solid #4c4c4c;
+	width: 50%;
+	float: left;
+}
+.amount-sale{
+	margin-left: -2px;
+	width: 50%;
+	float: left;
+}
+.main .amount dt{
+	color: #4c4c4c;
+	line-height: 0.82rem;
+	font-size: 0.4rem;
+	font-weight: bold;
+}
+.main .amount dd{
+	color: #4c4c4c;
+	line-height: 0.76rem;
+	font-size: 0.37rem;
+	font-weight: bold;
+}
+.main .search-bar{
+	background: #fff;
+	padding: 0.37rem 0.64rem 0.53rem 0.64rem;
+}
+.main .search{
+	height: 0.85rem;
+	border: 2px solid #000;
+	position: relative;
+}
+.main .search_icon{
+	position: absolute;
+	width: 0.61rem;
+	margin: 0.12rem 0 0.12rem 0.31rem;
+}
+.main .search-input{
+	padding-left: 0.92rem;
+	height: 0.85rem;
+	width: 85%;
+	border: none;
+	font-size: 0.33rem;
+}
+.main .search-submit{
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 0.85rem;
+	line-height: 0.85rem;
+	width: 2.23rem;
+	color: #fff;
+	background: black;
+	text-align: center;
+	font-size: 0.4rem;
+}
+.main .list{
+	margin: 0 0.67rem;
+	position: relative;
+	background: #fff;
+}
+.main .order{
+	margin-bottom: 0.5rem;
+}
+.main .list dt{
+	height: 0.4rem;
+	font-size: 0.27rem;
+	border-bottom: 1px solid #a8a8a8;
+}
+.main .list dd{
+	padding: 0.19rem 0 0.22rem;
+	height: 1.06rem;
+	border-bottom: 2px solid #a8a8a8;
+	position: relative;
+}
+.main .list p{
+	position: absolute;
+}
+.main .list .orderId{
+	color: #6d6d6d;
+	left: 0;
+}
+.main .list .createTime{
+	color: #a8a8a8;
+	right: 0;
+}
+.main .list .head{
+	width: 1.06rem;
+	border-radius: 100%;
+}
+.main .list .nick{
+	font-size: 0.33rem;
+	font-weight: bold;
+	top: 0.25rem;
+	left: 1.5rem;
+}
+.main .list .userId{
+	color: #6d6d6d;
+	font-size: 0.27rem;
+	top: 0.80rem;
+	left: 1.5rem;
+}
+.main .list .orderStatus{
+	color: #4a4a4a;
+	font-size: 0.33rem;
+	top: 0.25rem;
+	right: 0;
+}
+.main .list .price{
+	color: #4a4a4a;
+	font-size: 0.33rem;
+	font-weight: bold;
+	top: 0.74rem;
+	right: 0;
+}

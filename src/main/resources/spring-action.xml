@@ -48,7 +48,9 @@
 	<bean id="listFansAction" class="irille.wpt.actions.ListFansAction" scope="prototype">
 		<property name="service" ref="userService"></property>
 	</bean>
-	
+	<bean id="listFansSaleAction" class="irille.wpt.actions.ListFansSaleAction" scope="prototype">
+		<property name="service" ref="userService"></property>
+	</bean>
 	<bean id="cityAction" class="irille.wpt.actions.CityAction" scope="prototype">
 		<property name="service" ref="cityService"></property>
 	</bean>

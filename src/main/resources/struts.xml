@@ -80,6 +80,7 @@
 		<action name="showCash" class="showCashAction"></action>
 		<action name="listCashHistory" class="listCashHistoryAction"></action>
 		<action name="listFans" class="listFansAction"></action>
+		<action name="listFansSale" class="listFansSaleAction"></action>
 		
 	</package>
 	
