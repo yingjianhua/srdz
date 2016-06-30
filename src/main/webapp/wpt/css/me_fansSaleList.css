@@ -1,5 +1,16 @@
 .bg{
-	background: url(../images/bbg25.png) 0 0 repeat-y;
+	position: relative;
+	margin-top: 3rem;
+	text-align: center;
+	width: 100%;
+}
+.bg img{
+	width: 3.13rem;
+}
+.bg p{
+	font-size: 0.4rem;
+	margin-top: 0.32rem;
+	color: #9a9a9a;
 }
 .gray{
 	background: #f0f0f0;
@@ -14,7 +25,7 @@
 	margin-top: 0.35rem;
 }
 .amount-commission{
-	border-right: 2px solid #4c4c4c;
+	border-right: 2px solid #7c7c7c;
 	width: 50%;
 	float: left;
 }

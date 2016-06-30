@@ -7,7 +7,7 @@ import irille.wx.wpt.WptCommissionJournal;
 
 public class CommissionJournalDao {
 	
-	public void ins(String orderid, BigDecimal price, BigDecimal commission, Integer fans, String imageUrl, String nickname, Integer wxuser, Integer account) {
+	public WptCommissionJournal ins(String orderid, BigDecimal price, BigDecimal commission, Integer fans, String imageUrl, String nickname, Integer wxuser, Integer account) {
 		WptCommissionJournal journal = new WptCommissionJournal();
 		journal.setOrderid(orderid);
 		journal.setPrice(price);
@@ -20,5 +20,6 @@ public class CommissionJournalDao {
 		journal.setAccount(account);
 		journal.setRowVersion((short)1);
 		journal.ins();
+		return journal;
 	}
 }

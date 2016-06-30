@@ -215,23 +215,19 @@ public class WechatAction extends ActionBase {
 						// 通过扫描二维码关注
 						String eventKey = requestMap.get("EventKey");
 						String ticket = requestMap.get("Ticket");
-						WxUserDAO.subscribe(toUserName, fromUserName,
-								createTime);// 将关注用户添加到数据库中
-						 respMessage = WxSubscribeDAO.getMessage(account,
-						 toUserName, fromUserName);//回复关注欢迎语
+						WxUserDAO.subscribe(toUserName, fromUserName, createTime, eventKey);// 将关注用户添加到数据库中
+						respMessage = WxSubscribeDAO.getMessage(account, toUserName, fromUserName);//回复关注欢迎语
 					} else {
 						// 通过普通方式关注
-						WxUserDAO.subscribe(toUserName, fromUserName,
-								createTime);// 将关注用户添加到数据库中
-						respMessage = WxSubscribeDAO.getMessage(account,
-								toUserName, fromUserName);// 回复关注欢迎语
+						WxUserDAO.subscribe(toUserName, fromUserName, createTime, null);// 将关注用户添加到数据库中
+						respMessage = WxSubscribeDAO.getMessage(account, toUserName, fromUserName);// 回复关注欢迎语
 					}
 				} else if (eventType.equals(MessageUtil.EVENT_TYPE_SCAN)) {
 					// 扫描二维码
 					String eventKey = requestMap.get("EventKey");
 					String ticket = requestMap.get("Ticket");
 					WaQRCodeDAO qrDao = new WaQRCodeDAO();
-					qrDao.scan(account, toUserName, fromUserName, createTime);
+					qrDao.scan(account, toUserName, fromUserName, createTime, eventKey);
 					respMessage = WxSubscribeDAO.getMessage(account, toUserName, fromUserName);//回复关注欢迎语
 				} else if (eventType.equals(MessageUtil.EVENT_TYPE_UNSUBSCRIBE)) {
 					// 取消关注

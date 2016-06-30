@@ -242,11 +242,8 @@ public class WaQRCodeDAO {
 		}
 	}
 	
-	public void scan(int account, String accountId, String openId, String createTime) throws UnsupportedEncodingException, JSONException {
-		WxUser user = WxUser.chkUniqueOpenIdAccount(false, openId, account);
-		if(user == null) {
-			WxUserDAO.subscribe(accountId, openId, createTime);
-		}
+	public void scan(int account, String accountId, String openId, String createTime, String SceneKey) throws UnsupportedEncodingException, JSONException {
+		WxUserDAO.subscribe(accountId, openId, createTime, SceneKey);
 	}
 
 }

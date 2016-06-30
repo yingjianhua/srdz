@@ -43,12 +43,11 @@ public class UserService {
 		return fanses;
 	}
 	public List<WxUser> getFansByCondition(String openid, Integer accountPkey, int level, int fanid) {
-		if(fanid != 0) {
-			List<WxUser> list = new ArrayList<WxUser>();
-			list.add(Bean.load(WxUser.class, fanid));
-			return list;
-		}
 		WxUser user = WxUser.loadUniqueOpenIdAccount(false, openid, accountPkey);
+		WxUser.T t = WxUser.T.PKEY;
+		if(fanid != 0) {
+			return Bean.list(WxUser.class, t+"=? and ("+t.INVITED1+"=? or "+t.INVITED2+"=? or "+t.INVITED3+"=?)", false, fanid, user.getPkey(), user.getPkey(), user.getPkey());
+		}
 		if(level == 1) {
 			return Bean.list(WxUser.class, WxUser.T.INVITED3+"=?", false, user.getPkey());
 		} else if(level == 2){

@@ -17,6 +17,7 @@ import irille.pub.PubInfs.IMsg;
 import irille.wpt.actions.AbstractWptAction;
 import irille.wpt.tools.WxJsCreater;
 import irille.wx.wx.WxAccount;
+import irille.wx.wx.WxUser;
 import irille.wxpub.js.JMHideMenuItems;
 import irille.wxpub.js.JMOnMenuShareAppMessage;
 import irille.wxpub.js.JMOnMenuShareTimeline;
@@ -58,13 +59,13 @@ public class JsCodeInterceptor extends AbstractInterceptor{
 			request = (HttpServletRequest)actionContext.get(ServletActionContext.HTTP_REQUEST);
 			wptAction.addExtraWxJsCode();
 			WxJsCreater jsCreater = wptAction.getJsCreater();
-			
+			WxUser user = wptAction.chkWxUser();
 			JMOnMenuShareAppMessage msam = getFactory().getBean(JMOnMenuShareAppMessage.class);
 			//分享给朋友 ，带上account.pkey和openid两个参数
-			msam.setLink(msam.getLink().getV().toString()+"?account.pkey="+account.getPkey()+"&invitedOpenid="+wptAction.getSession().get("openid"));
+			msam.setLink(msam.getLink().getV().toString()+"?account.pkey="+account.getPkey()+"&invitedId="+user.getPkey());
 			//分享到朋友圈，
 			JMOnMenuShareTimeline mstl = getFactory().getBean(JMOnMenuShareTimeline.class);
-			mstl.setLink(mstl.getLink().getV().toString()+"?account.pkey="+account.getPkey()+"&invitedOpenid="+wptAction.getSession().get("openid"));
+			mstl.setLink(mstl.getLink().getV().toString()+"?account.pkey="+account.getPkey()+"&invitedId="+user.getPkey());
 			//隐藏菜单功能 
 			JMHideMenuItems hmi = getFactory().getBean(JMHideMenuItems.class);
 			

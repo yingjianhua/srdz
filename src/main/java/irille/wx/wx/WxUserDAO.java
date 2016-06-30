@@ -38,6 +38,8 @@ public class WxUserDAO {
 	} //@formatter:on
 	public static final Log LOG = new Log(WxUserDAO.class);
 
+	/** 拉取用户信息(需scope为 snsapi_userinfo) 网页授权**/
+	public static final String USERINFO_URL = "https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
 	//获取用户基本信息接口
 	public final static String user_info_url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
 	//获取用户列表信息
@@ -140,55 +142,64 @@ public class WxUserDAO {
 			System.out.println(str);
 		}
 	}
-	public static JSONObject getInfoJson(String openid, int accountid) {
-		WxUser user = WxUser.chkUniqueOpenIdAccount(false, openid, accountid);
-		String accessToken = WxAccountDAO.getAccessToken(user.gtAccount());
+	private static JSONObject getInfoJsonByAuthorize(String accessToken, String openid) {
+		String requestUrl = USERINFO_URL.replace("ACCESS_TOKEN", accessToken).replaceAll("OPENID", openid);
+		return WeixinUtil.httpRequest(requestUrl, "GET", null);
+	}
+	private static JSONObject getInfoJsonByGeneral(String accessToken, String openid) {
 		String requestUrl = user_info_url.replace("ACCESS_TOKEN", accessToken).replaceAll("OPENID", openid);
 		return WeixinUtil.httpRequest(requestUrl, "GET", null);
 	}
 	
-	/** 拉取用户信息(需scope为 snsapi_userinfo) **/
-	public static final String USERINFO_URL = "https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
 	/**
 	 * 根据网页授权获取的用户信息，新增用户
 	 * @param accessToken
 	 * @param openid
 	 * @return
 	 */
-	public static WxUser ins(String accessToken, String openid, WxAccount account, String invitedOpenid) {
-		String requestUrl = USERINFO_URL.replace("ACCESS_TOKEN", accessToken).replace("OPENID", openid);
-		JSONObject result = WeixinUtil.httpRequest(requestUrl, "GET", null);
-		WxUser user = createWxUser(result, account);
-		if(user != null) {
-			if(invitedOpenid != null) { 
-				WxUser invited3 = WxUser.loadUniqueOpenIdAccount(false, invitedOpenid, account.getPkey());
-				Integer invited2 = invited3.getInvited3();
-				Integer invited1 = invited3.getInvited2();
-				user.stInvited3(invited3);
-				user.setInvited2(invited2);
-				user.setInvited1(invited1);
-			}
-			user.ins();
-			try {
-				Svr.getConn().commit();
-			} catch (SQLException e) {
-				e.printStackTrace();
-				return null;
-			}
+	public static WxUser insByAuthorize(String accessToken, String openid, WxAccount account, Long invitedId) {
+		return ins(getInfoJsonByAuthorize(accessToken, openid), account.getPkey(), invitedId);
+	}
+	public static WxUser insByGeneral(String accessToken, String openid, WxAccount account, Long invitedId) {
+		return ins(getInfoJsonByGeneral(accessToken, openid), account.getPkey(), invitedId);
+	}
+	private static WxUser ins(JSONObject json, Integer accountPkey, Long invitedId) {
+		WxUser user = buildWxUser(null, json, accountPkey);
+		if(invitedId != null) { 
+			WxUser invited3 = WxUser.load(WxUser.class, invitedId);
+			Integer invited2 = invited3.getInvited3();
+			Integer invited1 = invited3.getInvited2();
+			user.stInvited3(invited3);
+			user.setInvited2(invited2);
+			user.setInvited1(invited1);
 		}
+		user.ins();
+		return user;
+	}
+	public static WxUser updByGeneral(String accessToken, String openid, WxAccount account) {
+		return upd(getInfoJsonByGeneral(accessToken, openid), account.getPkey());
+	}
+	private static WxUser upd(JSONObject json, Integer accountPkey) {
+		WxUser user = buildWxUser(null, json, accountPkey);
+		user.upd();
 		return user;
 	}
 	/**
-	 * 根据JSON中的内容新建一个wxUser对象，没有pkey
+	 * 根据JSON中的内容新建一个wxUser对象或更新一个wxUser
 	 * @param json
 	 * @param account
 	 * @return
 	 */
-	private static WxUser createWxUser(JSONObject json, WxAccount account) {
-		WxUser user = null;
+	private static WxUser buildWxUser(WxUser user, JSONObject json, Integer accountPkey) {
 		try {
-			user = new WxUser();
-			user.stAccount(account);
+			if(user == null) {
+				user = new WxUser();
+				user.stIsMember(false);
+				user.setHistoryCommission(BigDecimal.ZERO);
+				user.setCashableCommission(BigDecimal.ZERO);
+				user.setAccount(accountPkey);
+				user.stSyncStatus(true);
+			}
 			user.setOpenId(json.getString("openid"));
 			user.setNickname(json.getString("nickname"));
 			user.setSex((byte)json.getInt("sex"));
@@ -196,23 +207,19 @@ public class WxUserDAO {
 			user.setCity(json.getString("city"));
 			user.setCountry(json.getString("country"));
 			user.setImageUrl(json.getString("headimgurl"));
-			user.stIsMember(false);
-			user.setHistoryCommission(BigDecimal.ZERO);
-			user.setCashableCommission(BigDecimal.ZERO);
 			if(json.has("unionid")) {
 				user.setUnionId(json.getString("unionid"));
 			}
 			if(json.has("groupid")) {
-				user.stUserGroup(WxUserGroup.loadUniqueWxidAccount(false, json.getInt("groupid"), account.getPkey()));
+				user.stUserGroup(WxUserGroup.loadUniqueWxidAccount(false, json.getInt("groupid"), accountPkey));
 			} else {
-				user.stUserGroup(WxUserGroup.loadUniqueWxidAccount(false, 0, account.getPkey()));
+				user.stUserGroup(WxUserGroup.loadUniqueWxidAccount(false, 0, accountPkey));
 			}
 			if(json.has("subscribe")) {
 				user.stStatus(json.getInt("subscribe")==0?Wx.OStatus.NOFOLLOW:Wx.OStatus.FOLLOW);
 			} else {
 				user.stStatus(Wx.OStatus.FOLLOW);
 			}
-			user.stSyncStatus(true);
 			if(json.has("subscribe_time")) {
 				user.setSubscribeTime(new Date(Long.parseLong(json.get("subscribe_time")+"000")));
 			} else {
@@ -226,23 +233,6 @@ public class WxUserDAO {
 			return null;
 		}
 		return user;
-	}
-	private static void singleGet(WxUser user, WxAccount account) throws JSONException, UnsupportedEncodingException {
-		String accessToken = WxAccountDAO.getAccessToken(account);
-		String requestUrl = user_info_url.replace("ACCESS_TOKEN", accessToken).replaceAll("OPENID", user.getOpenId());
-		JSONObject json = WeixinUtil.httpRequest(requestUrl, "GET", null);
-		user.setNickname(json.getString("nickname"));
-		user.setSex((byte)json.getInt("sex")); 
-		user.setCity(json.getString("city"));
-		user.setCountry(json.getString("country"));
-		user.setProvince(json.getString("province"));
-		user.setImageUrl(json.getString("headimgurl"));
-		user.setSubscribeTime(new Date(Long.parseLong(json.get("subscribe_time")+"000")));
-		if(json.has("unionid")) {
-			user.setUnionId(json.getString("unionid"));
-		}
-		user.setRem(json.getString("remark"));
-		user.stUserGroup(WxUserGroup.loadUniqueWxidAccount(false, json.getInt("groupid"), account.getPkey())); 
 	}
 	
 	private void batchget(List<WxUser> list, Integer account, String accessToken) throws JSONException, UnsupportedEncodingException {
@@ -380,36 +370,25 @@ public class WxUserDAO {
 	public static long useMemory() {
 		return Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
 	}
-	public static WxUser subscribe(String accountId,String openId, String createTime) throws UnsupportedEncodingException, JSONException {
+	
+	public static WxUser subscribe(String accountId, String openId, String createTime, String SceneKey) throws UnsupportedEncodingException, JSONException {
 		WxAccount account = WxAccount.loadUniqueAccountId(false, accountId);
 		WxUser user = WxUser.chkUniqueOpenIdAccount(false, openId, account.getPkey());
-		WxUserGroup defaultGroup = WxUserGroup.loadUniqueWxidAccount(false, 0, account.getPkey());
-		if(user!=null) {
-			user.setSubscribeTime(WeixinUtil.tranDate(Long.parseLong(createTime)));
-			user.stStatus(Wx.OStatus.FOLLOW);
-			user.stUserGroup(defaultGroup);
-			user.upd();
-			Svr.commit();
-			singleGet(user, account);
-			user.upd();
+		String accessToken = WxAccountDAO.getAccessToken(account);
+		Long invitedId = null;
+		try {
+			invitedId = Long.parseLong(SceneKey);
+		} catch (NumberFormatException e) {
+		}
+		if(user == null) {
+			user = insByGeneral(accessToken, openId, account, invitedId);
+			WxMessageDAO.notifyInvited(accessToken, user);
 		} else {
-			user = new WxUser();
-			user.stIsMember(false);
-			user.stAccount(account);
-			user.setOpenId(openId);
-			user.stUserGroup(defaultGroup);
-			user.stStatus(Wx.OStatus.FOLLOW);
-			user.stSyncStatus(true);
-			user.setSubscribeTime(WeixinUtil.tranDate(Long.parseLong(createTime)));
-			user.setHistoryCommission(BigDecimal.ZERO);
-			user.setCashableCommission(BigDecimal.ZERO);
-			user.ins();
-			Svr.commit();
-			singleGet(user, account);
-			user.upd();
+			updByGeneral(accessToken, openId, account);
 		}
 		return user;
 	}
+	
 	public static WxUser unsubscribe(String accountId, String openId, String createTime) {
 		WxAccount account = WxAccount.loadUniqueAccountId(false, accountId);
 		WxUser user = WxUser.chkUniqueOpenIdAccount(false, openId, account.getPkey());
@@ -419,6 +398,5 @@ public class WxUserDAO {
 	  	user.upd();
 	  }
 	  return user;
-  }
-	
+	}
 }

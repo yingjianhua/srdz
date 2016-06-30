@@ -1,18 +1,19 @@
 package irille.wx.wx;
 
+import java.text.DateFormat;
+import java.util.Date;
+
+import org.json.JSONObject;
+
 import irille.pub.Cn;
 import irille.pub.Log;
 import irille.pub.PubInfs.IMsg;
 import irille.pub.idu.Idu;
 import irille.pub.idu.IduOther;
+import irille.wx.wpt.WptCommissionJournal;
 import irille.wx.wx.Wx.OWxMsgDir;
 import irille.wx.wx.Wx.OWxMsgType;
 import irille.wxpub.util.WeixinUtil;
-
-import java.util.Date;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class WxMessageDAO {
 	public enum Msgs implements IMsg {// 信息定义的类名必须为Msgs, 以便系统能检索 @formatter:off
@@ -76,23 +77,61 @@ public class WxMessageDAO {
     String accessToken = WxAccountDAO.getAccessToken(Idu.getUser());
     String openId = message.gtWxUser().getOpenId();
     String content = message.getContent();
-    JSONObject jsonType = new JSONObject();
-    JSONObject jsonMain = new JSONObject();
-    JSONObject jsonObject = new JSONObject();
-    try {
-      jsonType.put("touser", openId);
-      jsonType.put("msgtype", "text");
-      jsonMain.put("content", content);
-      jsonType.put("text", jsonMain);
-      String url = WeixinUtil.SEND_MESSAGE_URL.replace("ACCESS_TOKEN", accessToken);
-      jsonObject = WeixinUtil.httpRequest(url, "POST", jsonType.toString());
-      if (0 != jsonObject.getInt("errcode")) {
-        throw LOG.err(Msgs.replyErr , jsonObject);
-      }
-    } catch (JSONException e) {
-      e.printStackTrace();
-    }
-
+    sendTextMessage(accessToken, openId, content);
+  }
+  public static void sendTextMessage(final String accessToken, final String openId, final String content) {
+	  final String template = "{\"touser\":\"{OPENID}\",\"msgtype\":\"text\",\"text\":{\"content\":\"{CONTENT}\"}}";
+	  String url = WeixinUtil.SEND_MESSAGE_URL.replace("ACCESS_TOKEN", accessToken);
+	  JSONObject result = WeixinUtil.httpRequest(url, "POST", template.replace("{OPENID}", openId).replace("{CONTENT}", content));
+	  if(!result.has("errcode")) {
+		  
+	  } else {
+		  int errcode = result.getInt("errcode");
+		  if(errcode != 0) {
+			  throw LOG.err(Msgs.replyErr, result.getString("errmsg"));
+		  }
+	  }
+  }
+  /**
+   * 提醒粉丝的邀请人粉丝关注的消息
+   * @param user
+   */
+  public static void notifyInvited(String accessToken, WxUser user) {
+	  WxUser invited3 = null;
+	  WxUser invited2 = null;
+	  WxUser invited1 = null;
+	  if((invited3=user.gtInvited3()) != null) {
+		  sendTextMessage(accessToken, invited3.getOpenId(), user.getNickname()+"通过您的邀请成为您的粉丝!");
+		  if((invited2=user.gtInvited2()) != null) {
+			  sendTextMessage(accessToken, invited2.getOpenId(), "您的朋友"+invited3.getNickname()+"新增粉丝"+user.getNickname());
+			  if((invited1=user.gtInvited1()) != null) {
+				  sendTextMessage(accessToken, invited1.getOpenId(), "您的朋友"+invited2.getNickname()+"新增粉丝"+user.getNickname());  
+			  }
+		  }
+	  }
+  }
+  /**
+   * 当用户获得一份佣金的时候，提醒用户
+   */
+  public static void notifyCommissionJournal(String accessToken, String openId, WptCommissionJournal journal){
+	  StringBuilder content = new StringBuilder();
+	  content.append("您的粉丝").append(journal.getNickname());
+	  content.append("在").append(DateFormat.getDateTimeInstance().format(journal.getCreateTime())).append("购物\n");
+	  content.append("订单号：").append(journal.getOrderid()).append("\n");
+	  content.append("订单金额：").append(journal.getPrice()).append("元\n");
+	  content.append("获得分享金额：").append(journal.getCommission()).append("元\n");
+	  sendTextMessage(accessToken, openId, content.toString());
+  }
+  public static void notifyCommissionJournal(String accessToken, WptCommissionJournal journal3, String openId3, WptCommissionJournal journal2, String openId2, WptCommissionJournal journal1, String openId1){
+	  if(journal3!=null) {
+		  notifyCommissionJournal(accessToken, openId3, journal3);
+		  if(journal2!=null) {
+			  notifyCommissionJournal(accessToken, openId2, journal2);
+			  if(journal1!=null) {
+				  notifyCommissionJournal(accessToken, openId1, journal1);
+			  }
+		  }
+	  }
   }
 
 }

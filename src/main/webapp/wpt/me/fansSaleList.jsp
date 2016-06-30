@@ -25,7 +25,7 @@
 				<dd>￥${saleAmount }</dd>
 			</div>
 		</div>
-		<div class="search-bar" style="display: none;">
+		<div class="search-bar">
 			<div class="search">
 				<img class="search_icon" src="images/search.png">
 				<input class="search-input" type="text" placeholder="输入订单号、粉丝ID" id="idinput"></input>
@@ -38,7 +38,8 @@
 		</div>
 	</div>
 	<div class="bg" style="display: none;">
-		<img alt="" src="">
+		<img alt="" src="images/emptyJ.png">
+		<p>粉丝还没有腐败过</p>
 	</div>
 </body>
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
@@ -46,6 +47,12 @@
 ${jsCode}
 </script>
 <script>
+var amount_sale = Number.parseFloat($(".amount-sale dd").text().substring(1));
+if(amount_sale == 0) {
+	$(".bg").show();
+	$("body").addClass("gray");
+	$(".search-bar").hide();
+}
 function getFans(condition) {
 	$.ajax({
 		url: "resource/user_fanOrders?account.pkey=${account.pkey}",
@@ -57,14 +64,6 @@ function getFans(condition) {
 		dataType: "json",
 		success: function(result) {
 			var content = "";
-			if(result.length == 0) {
-				$(".search-bar").hide();
-				$(".bg").show();
-				$("body").addClass("gray");
-			} else {
-				$(".search-bar").show();
-				$("body").removeClass("gray");
-			}
 			$.each(result, function(index, journal) {
 				content += '<li class="order">';
 				content += '<dt>';

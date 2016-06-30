@@ -20,6 +20,8 @@ import irille.pub.Log;
 import irille.pub.PubInfs.IMsg;
 import irille.wx.wx.Wx.OAccountType;
 import irille.wx.wx.WxAccount;
+import irille.wx.wx.WxAccountDAO;
+import irille.wx.wx.WxMessageDAO;
 import irille.wx.wx.WxUser;
 import irille.wx.wx.WxUserDAO;
 import irille.wxpub.util.WeixinUtil;
@@ -80,7 +82,7 @@ public class AuthorizeInterceptor extends AbstractInterceptor {
 		if(codes != null && codes.length > 0) {
 			code = codes[0];
 		}
-		String[] invitedOpenids = (String[])map.get("invitedOpenid");
+		String[] invitedOpenids = (String[])map.get("invitedId");
 		if(invitedOpenids != null && invitedOpenids.length > 0) {
 			invitedOpenid = invitedOpenids[0];
 		}
@@ -104,7 +106,7 @@ public class AuthorizeInterceptor extends AbstractInterceptor {
 	 * @return
 	 * @throws JSONException
 	 */
-	public boolean doAuthorize(WxAccount account, String state, String code, String invitedOpenid, String requestUrl, Map<String, Object> session, HttpServletRequest request, HttpServletResponse response) {
+	public boolean doAuthorize(WxAccount account, String state, String code, String invitedId, String requestUrl, Map<String, Object> session, HttpServletRequest request, HttpServletResponse response) {
 		if(account.gtAccountType() == OAccountType.SUBSCRIPTION) {
 			throw LOG.err(Msgs.oauthErr);
 		}
@@ -130,7 +132,9 @@ public class AuthorizeInterceptor extends AbstractInterceptor {
 				session.put("accountPkey", account.getPkey());
 				WxUser user = WxUser.chkUniqueOpenIdAccount(false, openid, account.getPkey());
 				if(user == null) {
-					user = WxUserDAO.ins(access_token, openid, account, invitedOpenid);
+					user = WxUserDAO.insByAuthorize(access_token, openid, account, Long.parseLong(invitedId));
+					//公众号提醒邀请人 有一个新的粉丝加入了
+					WxMessageDAO.notifyInvited(WxAccountDAO.getAccessToken(account), user);
 				}
 			} catch (JSONException e) {
 				e.printStackTrace();
