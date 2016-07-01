@@ -204,7 +204,7 @@ public class FileTools implements IPubVars {
 	 * @return
 	 */
 	public static String tranSrcFileDir(Class clazz) {
-		return Env.getUserDir() + "src" + FILE_SEPARATOR
+		return Env.getUserDir() + "src" + FILE_SEPARATOR + "main" + FILE_SEPARATOR + "java" + FILE_SEPARATOR
 				+ tranClassToFileDir(clazz) + ".java";
 	}
 	

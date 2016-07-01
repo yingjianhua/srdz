@@ -45,9 +45,9 @@ import irille.wxpub.js.JsFldDefine;
 import irille.wxpub.js.JsFunDefine;
 import irille.wxpub.util.Crypto;
 import irille.wxpub.util.HttpRequestUtil;
-import irille.wxpub.util.MchUtil;
 import irille.wxpub.util.WeixinUtil;
 import irille.wxpub.util.WxMaterialUtil;
+import irille.wxpub.util.mch.MchUtil;
 
 import java.io.File;
 import java.io.IOException;

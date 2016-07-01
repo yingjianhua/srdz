@@ -55,7 +55,7 @@ Ext.define('mvc.view.wpt.WptQrcodeRule.Win', {
 				submitEmptyText : false,
 				type : 'ajax',
 				success : function(form, action) {
-					this.fireEvent('create', this, form.result);
+					this.fireEvent('create', this, action.result);
 					this.close();
 				},
 				failure : mvc.Tools.formFailure(),

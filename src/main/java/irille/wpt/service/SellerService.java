@@ -15,7 +15,7 @@ import irille.wx.wpt.WptOrder;
 import irille.wx.wpt.WptRestaurant;
 import irille.wx.wpt.WptRestaurantBsn;
 import irille.wx.wx.WxUser;
-import irille.wxpub.util.MchUtil;
+import irille.wxpub.util.mch.MchUtil;
 
 public class SellerService {
 	public static final Log LOG = new Log(SellerService.class);

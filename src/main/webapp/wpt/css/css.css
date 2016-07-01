@@ -499,7 +499,7 @@ div.clear{
 	height:100%;	
 	z-index:10;
 	background:#000;
-	opacity:0.5;
+	opacity:0.1;
 }
 .hall_item dl{
 	color:#fff;

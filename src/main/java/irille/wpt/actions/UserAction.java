@@ -7,6 +7,7 @@ import java.text.DateFormat;
 import java.util.List;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import irille.wpt.service.UserService;
@@ -31,13 +32,15 @@ public class UserAction extends AbstractWptAction {
 		BigDecimal commission = user.getCashableCommission();
 		boolean isMember = user.gtIsMember();
 		JSONObject json = new JSONObject();
-		json.put("commission", commission);
-		json.put("isMember", isMember);
-		PrintWriter writer;
 		try {
+			json.put("commission", commission);
+			json.put("isMember", isMember);
+			PrintWriter writer;
 			writer = getResponse().getWriter();
 			writer.print(json.toString());
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 	}
@@ -50,19 +53,21 @@ public class UserAction extends AbstractWptAction {
 	public void fans() {
 		List<WxUser> fans = service.getFansByCondition(userid, getAccount().getPkey(), level, fanid);
 		JSONArray result = new JSONArray();
-		for(WxUser fan:fans) {
-			JSONObject o = new JSONObject();
-			o.put("head", fan.getImageUrl());
-			o.put("nick", fan.getNickname());
-			o.put("id", fan.getPkey());
-			o.put("subtime", DateFormat.getDateTimeInstance().format(fan.getSubscribeTime()));
-			result.put(o);
-		}
-		PrintWriter writer;
 		try {
+			for(WxUser fan:fans) {
+				JSONObject o = new JSONObject();
+				o.put("head", fan.getImageUrl());
+				o.put("nick", fan.getNickname());
+				o.put("id", fan.getPkey());
+				o.put("subtime", DateFormat.getDateTimeInstance().format(fan.getSubscribeTime()));
+				result.put(o);
+			}
+			PrintWriter writer;
 			writer = getResponse().getWriter();
 			writer.print(result.toString());
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 	}
@@ -72,22 +77,24 @@ public class UserAction extends AbstractWptAction {
 	public void fanOrders() {
 		List<WptCommissionJournal> journals = service.getCommissionJournal(userid, getAccount().getPkey(), orderOrFan);
 		JSONArray result = new JSONArray();
-		for(WptCommissionJournal journal:journals) {
-			JSONObject o = new JSONObject();
-			o.put("orderid", journal.getOrderid());
-			o.put("createTime", DateFormat.getDateTimeInstance().format(journal.getCreateTime()));
-			o.put("price", journal.getPrice());
-			o.put("commission", journal.getCommission());
-			o.put("fanid", journal.getFans());
-			o.put("head", journal.getImageUrl());
-			o.put("nick", journal.getNickname());
-			result.put(o);
-		}
-		PrintWriter writer;
 		try {
+			for(WptCommissionJournal journal:journals) {
+				JSONObject o = new JSONObject();
+				o.put("orderid", journal.getOrderid());
+				o.put("createTime", DateFormat.getDateTimeInstance().format(journal.getCreateTime()));
+				o.put("price", journal.getPrice());
+				o.put("commission", journal.getCommission());
+				o.put("fanid", journal.getFans());
+				o.put("head", journal.getImageUrl());
+				o.put("nick", journal.getNickname());
+				result.put(o);
+			}
+			PrintWriter writer;
 			writer = getResponse().getWriter();
 			writer.print(result.toString());
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 	}

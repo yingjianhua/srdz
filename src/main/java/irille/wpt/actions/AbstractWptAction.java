@@ -87,8 +87,8 @@ public abstract class AbstractWptAction extends ActionSupport implements Session
 	 * @return
 	 */
 	public WxUser chkWxUser() {
-		String openid = (String)session.get("openid");
-		Integer accountPkey = (Integer)session.get("accountPkey");
+		String openid = (String)getSession().get("openid");
+		Integer accountPkey = (Integer)getSession().get("accountPkey");
 		if(openid != null && accountPkey != null) {
 			return WxUser.chkUniqueOpenIdAccount(false, openid, accountPkey);
 		} else {

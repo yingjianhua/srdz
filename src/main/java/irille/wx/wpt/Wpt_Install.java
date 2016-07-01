@@ -45,6 +45,7 @@ public class Wpt_Install extends InstallBase {
 		
 		m.proc(WptDistributionRule.TB, 151, wptRule);
 		m.proc(WptQrcodeRule.TB, 152, wptRule);
+		m.proc(WptRedPackRule.TB, 153, wptRule);
 		
 	}
 }

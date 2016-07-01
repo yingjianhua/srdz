@@ -44,7 +44,12 @@ onSetWin : function(selection) {
 	});
 	win.show();
 	win.setActiveRecord(selection);
-	win.on('create', this.onSearch, this);
+	win.on('create', function(form, data) {
+		var selection = this.getView().getSelectionModel().getSelection()[0];
+		var bean = Ext.create('mvc.model.wpt.WptDistributionRule', data);
+		Ext.apply(selection.data,bean.data);
+		selection.commit();
+	}, this);
 },
 onSearch : function(){
 		this.store.clearFilter();

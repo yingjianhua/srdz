@@ -1,6 +1,6 @@
-Ext.define('mvc.view.wpt.WptQrcodeRule.List',{
+Ext.define('mvc.view.wpt.WptRedPackRule.List',{
 extend : 'Ext.grid.Panel',
-oldId : 'btn_WptQrcodeRule',
+oldId : 'btn_WptRedPackRule',
 lock : true,
 disableSelection : false,
 loadMask : true,
@@ -19,11 +19,11 @@ initComponent : function(){
 		}];
 	}
 	this.columns = [
-	                {text : '单笔消费金额',width : 100,dataIndex : 'bean.single',sortable : true,renderer : mvc.Tools.numberRenderer(),align : 'right'},
-	                {text : '累计消费金额',width : 100,dataIndex : 'bean.amount',sortable : true,renderer : mvc.Tools.numberRenderer(),align : 'right'},
-	                {text : '有效天数',width : 100,dataIndex : 'bean.validityPeriod',sortable : true}
+	                {text : '商户名称',width : 100,dataIndex : 'bean.sendName',sortable : true},
+	                {text : '红包祝福语',width : 100,dataIndex : 'bean.wishing',sortable : true},
+	                {text : '活动名称',width : 100,dataIndex : 'bean.actName',sortable : true}
 	                ];
-	this.store=Ext.create('mvc.store.wpt.WptQrcodeRule'); 
+	this.store=Ext.create('mvc.store.wpt.WptRedPackRule'); 
 	this.store.remoteFilter = true;
 	this.store.proxy.filterParam = 'filter';
 	this.on({cellclick:mvc.Tools.onCellclick});
@@ -35,18 +35,17 @@ initComponent : function(){
 onSet : function(){
 	this.getView().getSelectionModel().selectAll();
 	var selection = this.getView().getSelectionModel().getSelection()[0];
-	console.log(selection)
 	this.onSetWin(selection);
 },
 onSetWin : function(selection) {
-	var win = Ext.create('mvc.view.wpt.WptQrcodeRule.Win', {
+	var win = Ext.create('mvc.view.wpt.WptRedPackRule.Win', {
 		title : this.title + '>设置',
 	});
 	win.show();
 	win.setActiveRecord(selection);
 	win.on('create', function(form, data) {
 		var selection = this.getView().getSelectionModel().getSelection()[0];
-		var bean = Ext.create('mvc.model.wpt.WptQrcodeRule', data);
+		var bean = Ext.create('mvc.model.wpt.WptRedPackRule', data);
 		Ext.apply(selection.data,bean.data);
 		selection.commit();
 	}, this);

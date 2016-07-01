@@ -24,7 +24,7 @@ import irille.wx.wpt.Wpt.OContactStatus;
 import irille.wx.wpt.Wpt.OStatus;
 import irille.wx.wx.WxAccount;
 import irille.wx.wx.WxUser;
-import irille.wxpub.util.MchUtil;
+import irille.wxpub.util.mch.MchUtil;
 
 public class WptOrder extends BeanInt<WptOrder> implements IOrder {
 	private static final Log LOG = new Log(WptOrder.class);

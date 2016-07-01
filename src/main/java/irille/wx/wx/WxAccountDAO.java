@@ -19,6 +19,7 @@ import irille.pub.svr.Env;
 import irille.pub.svr.Svr;
 import irille.wx.wpt.WptDistributionRuleDAO;
 import irille.wx.wpt.WptQrcodeRuleDAO;
+import irille.wx.wpt.WptRedPackRuleDAO;
 import irille.wx.wx.Wx.OAccountType;
 import irille.wxpub.util.WeixinUtil;
 
@@ -64,7 +65,8 @@ public class WxAccountDAO {
         WptQrcodeRuleDAO.initQrcodeRule(getB().getPkey());
         // 初始化分销规则配置
         WptDistributionRuleDAO.initDistributionRule(getB().getPkey());
-        
+        // 初始化红包规则配置
+        WptRedPackRuleDAO.initRedPack(getB().getPkey());
       } catch (Exception e) {
         e.printStackTrace();
       }

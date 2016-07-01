@@ -1,4 +1,4 @@
-Ext.define('mvc.view.wpt.WptDistributionRule.Win', {
+Ext.define('mvc.view.wpt.WptRedPackRule.Win', {
 	extend : 'Ext.window.Window',
 	width : 400,
 	layout : 'fit',
@@ -11,7 +11,7 @@ Ext.define('mvc.view.wpt.WptDistributionRule.Win', {
 		this.items = {
 			anchor : '100%',
 			plain : true,
-			xtype : Ext.create('mvc.view.wpt.WptDistributionRule.Form')
+			xtype : Ext.create('mvc.view.wpt.WptRedPackRule.Form')
 		};
 		this.buttonAlign = 'right', this.buttons = [ {
 			text : '重置',

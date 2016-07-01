@@ -17,12 +17,13 @@ import irille.pub.idu.Idu;
 import irille.pub.idu.IduDel;
 import irille.pub.idu.IduInsLines;
 import irille.pub.idu.IduUpdLines;
-import irille.wpt.actions.OrderAction;
 import irille.wx.wpt.Wpt.OStatus;
 import irille.wx.wx.WxAccount;
 import irille.wx.wx.WxAccountDAO;
 import irille.wx.wx.WxUser;
-import irille.wxpub.util.MchUtil;
+import irille.wxpub.util.mch.MchUtil;
+import irille.wxpub.util.mch.RefundOrder;
+import irille.wxpub.util.mch.UnifiedOrder;
 
 public class WptOrderDAO {
 	public enum Msgs implements IMsg {// 信息定义的类名必须为Msgs, 以便系统能检索 @formatter:off
@@ -110,7 +111,7 @@ public class WptOrderDAO {
 	 */
 	private static Map<String, String> unifiedOrder(WxAccount account, WxUser wxUser, WptOrder order, HttpServletRequest request) throws Exception {
 		String spbill_create_id = request.getRemoteAddr();
-		Map<String, String> result = MchUtil.unifiedorder(account, order, "WEB", order.getClass().getName(), null, spbill_create_id, null, null, null, 
+		Map<String, String> result = UnifiedOrder.unifiedorder(account, order, "WEB", order.getClass().getName(), null, spbill_create_id, null, null, null, 
 				notify_pay_url, "JSAPI", null, null, wxUser.getOpenId());
 		return result;
 	}
@@ -122,7 +123,7 @@ public class WptOrderDAO {
 	 * @throws Exception 
 	 */
 	private static Map<String, String> refundOrder(WxAccount account, WptOrder order) throws Exception {
-		Map<String, String> result = MchUtil.refundorder(account, order, null, null);
+		Map<String, String> result = RefundOrder.refundorder(account, order, null, null);
 		return result;
 	}
 	/**

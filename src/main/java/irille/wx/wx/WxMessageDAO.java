@@ -3,6 +3,7 @@ package irille.wx.wx;
 import java.text.DateFormat;
 import java.util.Date;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import irille.pub.Cn;
@@ -86,9 +87,14 @@ public class WxMessageDAO {
 	  if(!result.has("errcode")) {
 		  
 	  } else {
-		  int errcode = result.getInt("errcode");
-		  if(errcode != 0) {
-			  throw LOG.err(Msgs.replyErr, result.getString("errmsg"));
+		  try {
+			int errcode = result.getInt("errcode");
+			if(errcode != 0) {
+				String errmsg = result.getString("errmsg");
+				LOG.err(Msgs.replyErr, errmsg);
+			}
+		  } catch (JSONException e) {
+			  e.printStackTrace();
 		  }
 	  }
   }

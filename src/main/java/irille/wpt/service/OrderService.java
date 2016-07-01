@@ -28,7 +28,7 @@ import irille.wx.wpt.WptService;
 import irille.wx.wpt.WptServiceCen;
 import irille.wx.wx.WxAccount;
 import irille.wx.wx.WxUser;
-import irille.wxpub.util.MchUtil;
+import irille.wxpub.util.mch.MchUtil;
 
 public class OrderService {
 	public static final Log LOG = new Log(OrderService.class);

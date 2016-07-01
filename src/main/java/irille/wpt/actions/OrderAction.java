@@ -16,8 +16,8 @@ import irille.wpt.service.OrderService;
 import irille.wx.wpt.WptOrder;
 import irille.wx.wx.WxAccount;
 import irille.wx.wx.WxUser;
-import irille.wxpub.util.MchUtil;
 import irille.wxpub.util.MessageUtil;
+import irille.wxpub.util.mch.MchUtil;
 
 public class OrderAction extends AbstractWptAction {
 	/**

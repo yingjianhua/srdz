@@ -2,7 +2,8 @@ package irille.wx.pay;
 
 import irille.wx.wx.WxAccount;
 import irille.wx.wx.WxUser;
-import irille.wxpub.util.MchUtil;
+import irille.wxpub.util.mch.MchUtil;
+import irille.wxpub.util.mch.UnifiedOrder;
 
 import java.math.BigDecimal;
 import java.security.NoSuchAlgorithmException;
@@ -51,7 +52,7 @@ public class PayOrderDAO {
 	 * @throws Exception
 	 */
 	public static void unifiedOrder(WxAccount account, WxUser user, PayOrder order, HttpServletRequest request, String spbill_create_id) throws Exception {
-		Map<String, String> result = MchUtil.unifiedorder(account, order, "WEB", "支付测试", null, request.getRemoteAddr(), null, null, null, 
+		Map<String, String> result = UnifiedOrder.unifiedorder(account, order, "WEB", "支付测试", null, request.getRemoteAddr(), null, null, null, 
 				"http://wxpay.weixin.qq.com/pub_v2/pay/notify.v2.php", "JSAPI", null, null, "oUpF8uMuAJO_M2pxb1Q9zNjWeS6o");
 	}
 	public static void main(String[] args) {
