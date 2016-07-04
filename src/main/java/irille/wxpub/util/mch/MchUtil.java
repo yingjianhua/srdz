@@ -3,6 +3,11 @@ package irille.wxpub.util.mch;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.lang.annotation.Annotation;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 import java.lang.reflect.Field;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
@@ -141,8 +146,10 @@ public abstract class MchUtil {
 		Map<String, Object> map = new TreeMap<String, Object>();
 		for(Field field:fields) {
 			try {
-				if(field.get(this)==null) continue;
-				map.put(field.getName(), field.get(this));
+				if(field.getAnnotation(Sendable.class) != null) {
+					if(field.get(this)==null) continue;
+					map.put(field.getName(), field.get(this));
+				}
 			} catch (IllegalArgumentException | IllegalAccessException e) {
 				e.printStackTrace();
 			}
@@ -166,10 +173,12 @@ public abstract class MchUtil {
 		for(Field field:fields) {
 			System.out.println(field.getName());
 			try {
-				if(field.get(this)==null) continue;
-				buffer.append("<"+field.getName()+">");
-				buffer.append(field.get(this));
-				buffer.append("</"+field.getName()+">\r\n");
+				if(field.getAnnotation(Sendable.class) != null){
+					if(field.get(this)==null) continue;
+					buffer.append("<"+field.getName()+">");
+					buffer.append(field.get(this));
+					buffer.append("</"+field.getName()+">\r\n");
+				}
 			} catch (IllegalArgumentException | IllegalAccessException e) {
 				e.printStackTrace();
 			}
@@ -177,7 +186,8 @@ public abstract class MchUtil {
 		buffer.append("</xml>");
 		return buffer.toString();
 	}
-	@interface Sendable {
-		
+	@Retention(RetentionPolicy.RUNTIME)
+	@Target(ElementType.FIELD)
+	public @interface Sendable {
 	}
 }

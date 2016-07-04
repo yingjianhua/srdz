@@ -1,5 +1,6 @@
 package irille.wx.wx;
 
+import irille.core.sys.Sys;
 import irille.pub.Log;
 import irille.pub.PropertyUtils;
 import irille.pub.bean.Bean;
@@ -111,7 +112,7 @@ public class WxAutoDAO {
    * @return 关键字自动回复
    */
   public static String autoReceive(String content, String accountId, String openId, String createTime) {
-    String sql = WxAuto.T.KEYWORD.getFld().getCodeSqlField() + " LIKE '%"+content+"%' AND " + WxAuto.T.ENABLED.getFld().getCodeSqlField() + " <> 2 AND " + WxAuto.T.ACCOUNT.getFld().getCodeSqlField() + "=? ORDER BY " + WxAuto.T.KEYWORD.getFld().getCodeSqlField();
+    String sql = WxAuto.T.KEYWORD + " LIKE '%"+content+"%' AND " + WxAuto.T.ENABLED + "<>" +Sys.OEnabled.FALSE.getLine().getKey()+ " AND " + WxAuto.T.ACCOUNT + "=? ORDER BY " + WxAuto.T.KEYWORD;
     List<WxAuto> list = BeanBase.list(WxAuto.class, sql, false, WxAccount.chkUniqueAccountId(false, accountId).getPkey());
     if(list.size()==0) return null;
     WxAuto bean = list.get(0);

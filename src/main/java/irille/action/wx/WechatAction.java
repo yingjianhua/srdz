@@ -269,15 +269,7 @@ public class WechatAction extends ActionBase {
 //				// TODO: handle exception
 //			}
 			if(respMessage == null) {
-				// 默认回复此文本消息
-				TextMessageResp textMessage = new TextMessageResp();
-				textMessage.setToUserName(fromUserName);
-				textMessage.setFromUserName(toUserName);
-				textMessage.setCreateTime(new Date().getTime());
-				textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
-				textMessage.setContent(respContent);
-				// 将文本消息对象转换成xml字符串
-				respMessage = MessageUtil.textMessageToXml(textMessage);
+				respMessage = "success";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

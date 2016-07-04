@@ -45,11 +45,11 @@
 			<interceptor name="jsCodeInterceptor" class="irille.wpt.interceptor.JsCodeInterceptor" />
 			
 			<interceptor-stack name="wpt">
+				<interceptor-ref name="wpt_resource" />
 				<interceptor-ref name="authorizeInterceptor" />
 				<interceptor-ref name="cityInterceptor" />
 				<interceptor-ref name="jsCodeInterceptor" />
 				
-				<interceptor-ref name="wpt_resource" />
 			</interceptor-stack>
 	    </interceptors>
 		<!-- 将自定义拦截器设置为默认拦截器-->

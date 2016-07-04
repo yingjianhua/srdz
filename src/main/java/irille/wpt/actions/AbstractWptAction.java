@@ -35,6 +35,7 @@ public abstract class AbstractWptAction extends ActionSupport implements Session
 	public Map<String, Object> getSession() {
 		if(session == null)
 			session = ServletActionContext.getContext().getSession();
+		System.out.println(session);
 		return session;
 	}
 	public void setSession(Map<String, Object> session) {

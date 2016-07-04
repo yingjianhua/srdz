@@ -58,5 +58,7 @@ public class SmsTool {
 			throw LOG.err(Msgs.xmlErr,"IO异常");
 		}
 	}
-	
+	public static void main(String[] args) {
+		new SmsTool().doSent("15825662366", "【享食光】私人订制有新订单生成,内容如下:订单号:201604226972 餐厅 :重庆火锅 用餐时间:2016-04-22 20:30 联系人:小凡 联系方式:手机18702765875 服务 :[摄像 拍照 名卡 海报 头条 制服 ] 套餐:重庆火锅最便宜的套餐 备注:备注");
+	}
 }

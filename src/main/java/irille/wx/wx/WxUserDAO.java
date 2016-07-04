@@ -14,6 +14,7 @@ import org.json.JSONObject;
 import irille.pub.Log;
 import irille.pub.PubInfs.IMsg;
 import irille.pub.Str;
+import irille.pub.bean.Bean;
 import irille.pub.bean.BeanBase;
 import irille.pub.idu.Idu;
 import irille.pub.svr.Svr;

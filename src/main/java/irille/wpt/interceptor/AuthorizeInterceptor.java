@@ -91,11 +91,12 @@ public class AuthorizeInterceptor extends AbstractInterceptor {
 		response = (HttpServletResponse)actionContext.get(ServletActionContext.HTTP_RESPONSE);
 		String query = request.getQueryString();
 		requestUrl = request.getRequestURL() + (query == null ? "" : "?" + query);
-		
+		System.out.println("--------------AuthorizeInterceptor.intercept--------------");
 		if(doAuthorize(account, state, code, invitedOpenid, requestUrl, session, request, response)) {
 			return null;
 		}
 		String result = actionInvocation.invoke();
+		System.out.println("--------------AuthorizeInterceptor.intercept--------------");
 		return result;
 	}
 	/**
@@ -110,8 +111,6 @@ public class AuthorizeInterceptor extends AbstractInterceptor {
 		if(account.gtAccountType() == OAccountType.SUBSCRIPTION) {
 			throw LOG.err(Msgs.oauthErr);
 		}
-		session.put("accountPkey", 3);
-		session.put("openid", "oXYeOwvAtiup-XCvVqm0EVqBx3_w");
 		if(session.get("openid") != null && account.getPkey().equals(session.get("accountPkey"))) {
 			//已经做过网页授权，不用再重复做了
 			return false;
@@ -120,6 +119,7 @@ public class AuthorizeInterceptor extends AbstractInterceptor {
 				throw LOG.err(Msgs.oauthErr2);
 			//网页授权重定向回来 
 			try {
+				System.out.println("--------------AuthorizeInterceptor.doAuthorize--------------");
 				requestUrl = OAUTH2_ACCESS_TOKEN_URL.replace("APPID", account.getAccountAppid()).replace("SECRET", account.getAccountAppsecret())
 						.replaceAll("CODE", code);
 				JSONObject result = WeixinUtil.httpRequest(requestUrl, "POST", null);
@@ -132,10 +132,11 @@ public class AuthorizeInterceptor extends AbstractInterceptor {
 				session.put("accountPkey", account.getPkey());
 				WxUser user = WxUser.chkUniqueOpenIdAccount(false, openid, account.getPkey());
 				if(user == null) {
-					user = WxUserDAO.insByAuthorize(access_token, openid, account, Long.parseLong(invitedId));
+					user = WxUserDAO.insByAuthorize(access_token, openid, account, invitedId==null?null:Long.parseLong(invitedId));
 					//公众号提醒邀请人 有一个新的粉丝加入了
 					WxMessageDAO.notifyInvited(WxAccountDAO.getAccessToken(account), user);
 				}
+				System.out.println("--------------AuthorizeInterceptor.doAuthorize--------------");
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
