@@ -161,7 +161,7 @@ $(function() {
 				"areaId" : "${areaId}",
 				"services" : "${services}",
 				"struts.token.name" : "token", 
-				"token" : $("form input[name=token]").val(), 
+				"struts.token" : $("form input[name='struts.token']").val(), 
 				"account.pkey" : "${account.pkey}"
 			},
 			success : function(result, data2) {

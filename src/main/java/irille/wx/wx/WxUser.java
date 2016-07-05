@@ -59,6 +59,7 @@ public class WxUser extends BeanInt<WxUser> implements IExtName{
     public static final Index IDX_UNION_ID_ACCOUNT = TB.addIndex("unionIdAccount", true, T.UNION_ID, T.ACCOUNT);
     public static final Index IDX_NICKNAME_ACCOUNT = TB.addIndex("nicknameAccount", false, T.NICKNAME, T.ACCOUNT);
     public static final Index IDX_REM_ACCOUNT = TB.addIndex("remAccount", false, T.REM, T.ACCOUNT);
+    public static final Index IDX_ACCOUNT = TB.addIndex("account", false, T.ACCOUNT);
     
     private Fld _fld;
     private T(Class clazz, String name, boolean... isnull) {

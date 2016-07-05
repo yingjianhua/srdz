@@ -103,7 +103,7 @@ public class WaxBnftPrizeDAO {
 				content = URLEncoder.encode("【享食光】验证码: 2878 (享食光手机注册验证，请完成验证)，如非本人操作，请忽略本条短息。", "utf-8");
 				//短信机请求，获取返回的xml文件格式的字符串
 				String xmlStr = HttpRequestUtil.httpRequestPost(
-						"http://218.244.141.161:8888/sms.aspx?action=send&userid=339&account=bl1174&password=123456&mobile="+mobiles+"&content="
+						"http://218.244.141.161:8888/sms.aspx?action=send&userid=339&account=bl1174&password=xiangshiguang1030&mobile="+mobiles+"&content="
 								+ content + "&sendTime=&extno=");
 				//打印获取的xml格式的字符串
 				System.out.println(xmlStr);

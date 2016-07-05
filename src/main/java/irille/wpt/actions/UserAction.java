@@ -24,6 +24,7 @@ public class UserAction extends AbstractWptAction {
 	private String userid;
 	private int fanid;
 	private String orderOrFan;
+	private BigDecimal amt;
 	
 	private UserService service;
 
@@ -48,7 +49,10 @@ public class UserAction extends AbstractWptAction {
 	 * 佣金提现
 	 */
 	public void cash() {
-		//TODO
+		System.out.println("------------user_cash------------");
+		System.out.println(getAmt());
+		System.out.println(getAmt().toString());
+		System.out.println("------------user_cash------------");
 	}
 	public void fans() {
 		List<WxUser> fans = service.getFansByCondition(userid, getAccount().getPkey(), level, fanid);
@@ -128,5 +132,11 @@ public class UserAction extends AbstractWptAction {
 	}
 	public void setService(UserService service) {
 		this.service = service;
+	}
+	public BigDecimal getAmt() {
+		return amt;
+	}
+	public void setAmt(BigDecimal amt) {
+		this.amt = amt;
 	}
 }

@@ -67,7 +67,7 @@ ${jsCode}
 <script>
 $(function() {
 	$(".usorder_item").click(function() {
-		location.href = "showOrder?id="+$(this).attr("pkey")
+		location.href = "showOrder?account.pkey=${account.pkey}&id="+$(this).attr("pkey")
 	})
 })
 </script>

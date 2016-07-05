@@ -13,9 +13,11 @@ public class SendRedPack extends MchUtil {
 	private static final Log LOG = new Log(RefundOrder.class);
 	private static final String SEND_RED_PACK_URL = "https://api.mch.weixin.qq.com/mmpaymkttransfers/sendredpack";
 	@Sendable
-	private String mch_billno,mch_id,wxappid,send_name,re_openid,wishing,client_ip,act_name,remark,nonce_str,sign;
+	protected String sign,nonce_str;
 	@Sendable
-	public int total_amount, total_num;
+	protected String mch_billno,mch_id,wxappid,send_name,re_openid,wishing,client_ip,act_name,remark;
+	@Sendable
+	protected int total_amount, total_num;
 
 	private SendRedPack(WxAccount account, String openId, String mch_billno, String send_name, String re_openid, int total_amount,
 			int total_num, String wishing, String client_ip, String act_name, String remark)
@@ -48,12 +50,12 @@ public class SendRedPack extends MchUtil {
 		return map_result;
 	}
 	public static void main(String[] args) throws Exception {
-		System.out.println(SendRedPack.class.getField("total_amount").getAnnotation(Sendable.class));
+		System.out.println(SendRedPack.class.getDeclaredField("total_amount").getAnnotation(Sendable.class));
 		System.out.println(SendRedPack.class.getDeclaredField("total_amount").getAnnotation(Sendable.class));
 		WxAccount.TB.getCode();
 		WxAccount account = WxAccount.get(WxAccount.class, 10);
 		SendRedPack uorder = new SendRedPack(account, "openId", "1", "2", "3", 4, 5, "6", "7", "8", "9");
 		
-		//System.out.println(uorder.trans2XML());
+		System.out.println(uorder.trans2XML());
 	}
 }

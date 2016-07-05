@@ -27,7 +27,7 @@ public class ShowMeAction extends AbstractWptAction {
 	@Override
 	public String execute() throws Exception {
 		user = chkWxUser();
-		orderNum = WptOrder.list(WptOrder.class, WptOrder.T.WXUSER + " = ?" + " AND " + WptOrder.T.STATUS + "<>"+ Wpt.OStatus.FINISH.getLine().getKey() + " AND " + WptOrder.T.STATUS + " <>" + Wpt.OStatus.CLOSE.getLine().getKey(), false, user).size();
+		orderNum = WptOrder.list(WptOrder.class, WptOrder.T.WXUSER + " = ?" + " AND " + WptOrder.T.STATUS + "<>"+ Wpt.OStatus.FINISH.getLine().getKey() + " AND " + WptOrder.T.STATUS + " <>" + Wpt.OStatus.CLOSE.getLine().getKey(), false, user.getPkey()).size();
 		collectNum = WptCollect.list(WptCollect.class, WptCollect.T.WXUSER + " = ?", false, user.getPkey()).size();
 		fansNum = service.getFansNum(user.getPkey());
 		fansSaleAmount = service.getFansSaleAmount(user.getPkey());

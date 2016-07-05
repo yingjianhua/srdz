@@ -7,11 +7,21 @@
 <input type="text" name="aa">
 <button value="校验">jiao</button><br>
 <p>1</p>
+<form>
+	<input name="tel" type="tel" value="136"/>
+	<input name="struts.token" type="text" value="tttt"/>
+</form>
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 <script>
 $(function() {
-	console.log(1.81.toFixed(2))
-console.log()
+	console.log($("form input[name=tel]"));
+	console.log($("form input[name='struts.token']").val())
+	console.log($("form input").val())
+	$("form input").each(function(index, input) {
+		console.log(index)
+		console.log(input)
+		console.log(input.name+":"+input.value)
+	})
 })
 var result = [];
 console.log(result)

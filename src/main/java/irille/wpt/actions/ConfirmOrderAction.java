@@ -9,7 +9,7 @@ import irille.wx.wpt.WptOrderService;
 import irille.wxpub.js.JMChooseWXPay;
 import irille.wxpub.js.JsFunDefine;
 
-public class ComfirmOrderAction extends AbstractWptAction {
+public class ConfirmOrderAction extends AbstractWptAction {
 	/**
 	 * 
 	 */

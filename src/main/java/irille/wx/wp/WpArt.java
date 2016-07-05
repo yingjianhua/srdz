@@ -25,7 +25,7 @@ public class WpArt extends BeanInt<WpArt> implements IExtName {
 		ART_SHOW(WpArtShow.fldOutKey()),
 		TITLE(SYS.STR__100,"标题"),
 		IMG_URL(SYS.PHOTO__NULL,"图片"),
-		URL(SYS.URL__NULL, "链接"),
+		URL(SYS.STR__1000_NULL, "链接"),
 		DESCRIPTION(SYS.REM__200_NULL,"描述"),//描述
 		DATE(SYS.DATE,"时间"),
 	    THEME(WpArtTheme.fldOutKey().setName("主题")),

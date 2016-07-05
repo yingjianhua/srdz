@@ -17,7 +17,7 @@
 	</bean>
 	<bean id="selectServiceAction" class="irille.wpt.actions.SelectServiceAction" scope="prototype"></bean>
 	<bean id="inputContactAction" class="irille.wpt.actions.InputContactAction" scope="prototype"></bean>
-	<bean id="comfirmOrderAction" class="irille.wpt.actions.ComfirmOrderAction" scope="prototype"></bean>
+	<bean id="confirmOrderAction" class="irille.wpt.actions.ConfirmOrderAction" scope="prototype"></bean>
 	<bean id="listOrderAction" class="irille.wpt.actions.ListOrderAction" scope="prototype">
 		<property name="service" ref="orderService"></property>
 	</bean>

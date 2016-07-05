@@ -35,7 +35,7 @@ public class AuthorizeInterceptor extends AbstractInterceptor {
 	
 	public enum Msgs implements IMsg {// 信息定义的类名必须为Msgs, 以便系统能检索 @formatter:off
 		AccountNotExist("没有该公众号"),
-		noAccountPkey("缺少订阅号参数"),
+		noAccountPkey("缺少公众号参数"),
 		oauthErr("订阅号没有绑定三方授权代理号，不能进行网页授权"),
 		oauthErr2("网页授权失败，未知错误"),
 		;

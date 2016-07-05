@@ -21,6 +21,10 @@
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 		</interceptors>
+		
+		<!-- 将自定义拦截器设置为默认拦截器-->
+    	<default-interceptor-ref name="wpt_resource"></default-interceptor-ref>
+    	
 		<global-results>
 			<result name="trends">${result}</result>
 			<result name="rtrends" type="redirect">${result}</result>
@@ -60,7 +64,7 @@
 		<action name="listRestaurant" class="listRestaurantAction"></action>
 		<action name="selectService" class="selectServiceAction"></action>
 		<action name="inputContact" class="inputContactAction"></action>
-		<action name="comfirmOrder" class="comfirmOrderAction"></action>
+		<action name="confirmOrder" class="confirmOrderAction"></action>
 		<action name="listOrder" class="listOrderAction"></action>
 		<action name="showRestaurant" class="showRestaurantAction"></action>
 		<action name="showCombo" class="showComboAction"></action>
@@ -131,15 +135,12 @@
 			<interceptor-ref name="defaultStack" />
         </action>
 		
-		<action name="*_*_*" class="irille.action.{1}.{2}Action" method="{3}">
-		</action>
+		<action name="*_*_*" class="irille.action.{1}.{2}Action" method="{3}"></action>
 
-<action name="sys_SysUser_login" class="irille.action.sys.SysUserAction" method="login"></action>
-		<action name="download" class="irille.action.ActionDownload" method="down">  
-        </action>
+		<action name="sys_SysUser_login" class="irille.action.sys.SysUserAction" method="login"></action>
+		<action name="download" class="irille.action.ActionDownload" method="down"></action>
         
-        <action name="loadInfo" class="irille.action.ActionLineGoods" method="loadInfo">  
-        </action>
+        <action name="loadInfo" class="irille.action.ActionLineGoods" method="loadInfo"></action>
 		<!--
         <action name="download" class="irille.action.ActionDownload">  
             <result name="success" type="stream">  

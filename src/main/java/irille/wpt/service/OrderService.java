@@ -132,7 +132,7 @@ public class OrderService {
 			}
 		}
 		//添加订单的服务
-		if(services != null) {
+		if(services != null && !services.equals("")) {
 			for(WptService line:BeanBase.list(WptService.class, WptService.T.PKEY+" in ("+services+")", false)) {
 				WptOrderService orderService = new WptOrderService();
 				orderService.setName(line.getName());

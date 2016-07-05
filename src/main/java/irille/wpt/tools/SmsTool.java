@@ -36,7 +36,7 @@ public class SmsTool {
 			content = URLEncoder.encode(content, "utf-8");
 			//短信机请求，获取返回的xml文件格式的字符串
 			String xmlStr = HttpRequestUtil.httpRequestPost(
-					"http://218.244.141.161:8888/sms.aspx?action=send&userid=339&account=bl1174&password=123456&mobile="+mobile+"&content="
+					"http://218.244.141.161:8888/sms.aspx?action=send&userid=339&account=bl1174&password=xiangshiguang1030&mobile="+mobile+"&content="
 							+ content + "&sendTime=&extno=");
 			//打印获取的xml格式的字符串
 			System.out.println(xmlStr);
