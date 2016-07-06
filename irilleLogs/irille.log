@@ -1,72 +1,100 @@
-[2016-07-05 10:01:00][INFO ] irille.pub.bean.PackageBase
+[2016-07-06 10:10:53][INFO ] irille.pub.bean.PackageBase
 初始化模块【class irille.core.sys.Sys】信息...
-[2016-07-05 10:01:01][INFO ] irille.pub.bean.PackageBase
+[2016-07-06 10:10:53][INFO ] irille.pub.bean.PackageBase
 初始化模块【class irille.core.lg.Lg】信息...
-[2016-07-05 10:01:01][INFO ] irille.pub.svr.DbPool
+[2016-07-06 10:10:54][INFO ] irille.pub.FileText
+文件[D:\workspace\srdz\src\main\java\irille\wx\wpt\WptCommissionJournal.java]已修改, 请按【F5】键同步显示内容!
+[2016-07-06 10:10:54][INFO ] irille.pub.svr.DbPool
 DbPool初始化开始
-[2016-07-05 10:01:01][INFO ] snaq.db.ConnectionPoolManager
+[2016-07-06 10:10:54][INFO ] snaq.db.ConnectionPoolManager
 Loaded ConnectionPoolManager properties with encoding UTF-8
-[2016-07-05 10:01:01][INFO ] snaq.db.ConnectionPoolManager.irille
+[2016-07-06 10:10:54][INFO ] snaq.db.ConnectionPoolManager.irille
 irille: Created pool irille (minpool=0,maxpool=100,maxsize=100,idleTimeout=60)
-[2016-07-05 10:01:01][INFO ] irille.pub.svr.DbPool
+[2016-07-06 10:10:54][INFO ] irille.pub.svr.DbPool
 DbPool初始化成功
-[2016-07-05 10:01:01][INFO ] irille.pub.svr.DbPool
+[2016-07-06 10:10:54][INFO ] irille.pub.svr.DbPool
 init poolManager end...
-[2016-07-05 10:01:01][INFO ] snaq.db.ConnectionPool.irille
+[2016-07-06 10:10:54][INFO ] snaq.db.ConnectionPool.irille
 irille: Getting connection (user/password): jdbc:mysql://localhost:3306/srdz3.0?useUnicode=true&characterEncoding=UTF8
-[2016-07-05 10:01:01][INFO ] snaq.db.ConnectionPool.irille
+[2016-07-06 10:10:54][INFO ] snaq.db.ConnectionPool.irille
 irille: Created a new connection
-[2016-07-05 10:03:19][INFO ] irille.pub.bean.PackageBase
+[2016-07-06 10:11:39][INFO ] irille.pub.bean.PackageBase
 初始化模块【class irille.core.sys.Sys】信息...
-[2016-07-05 10:03:19][INFO ] irille.pub.bean.PackageBase
+[2016-07-06 10:11:39][INFO ] irille.pub.bean.PackageBase
 初始化模块【class irille.core.lg.Lg】信息...
-[2016-07-05 10:03:19][INFO ] irille.pub.svr.DbPool
+[2016-07-06 10:11:39][INFO ] irille.pub.FileText
+文件[D:\workspace\srdz\src\main\java\irille\wx\wpt\WptCommissionJournal.java]已修改, 请按【F5】键同步显示内容!
+[2016-07-06 10:11:39][INFO ] irille.pub.svr.DbPool
 DbPool初始化开始
-[2016-07-05 10:03:19][INFO ] snaq.db.ConnectionPoolManager
+[2016-07-06 10:11:39][INFO ] snaq.db.ConnectionPoolManager
 Loaded ConnectionPoolManager properties with encoding UTF-8
-[2016-07-05 10:03:19][INFO ] snaq.db.ConnectionPoolManager.irille
+[2016-07-06 10:11:39][INFO ] snaq.db.ConnectionPoolManager.irille
 irille: Created pool irille (minpool=0,maxpool=100,maxsize=100,idleTimeout=60)
-[2016-07-05 10:03:19][INFO ] irille.pub.svr.DbPool
+[2016-07-06 10:11:39][INFO ] irille.pub.svr.DbPool
 DbPool初始化成功
-[2016-07-05 10:03:19][INFO ] irille.pub.svr.DbPool
+[2016-07-06 10:11:39][INFO ] irille.pub.svr.DbPool
 init poolManager end...
-[2016-07-05 10:03:19][INFO ] snaq.db.ConnectionPool.irille
+[2016-07-06 10:11:39][INFO ] snaq.db.ConnectionPool.irille
 irille: Getting connection (user/password): jdbc:mysql://localhost:3306/srdz3.0?useUnicode=true&characterEncoding=UTF8
-[2016-07-05 10:03:19][INFO ] snaq.db.ConnectionPool.irille
+[2016-07-06 10:11:40][INFO ] snaq.db.ConnectionPool.irille
 irille: Created a new connection
-[2016-07-05 10:03:30][INFO ] irille.pub.bean.PackageBase
+[2016-07-06 10:40:44][INFO ] irille.pub.bean.PackageBase
 初始化模块【class irille.core.sys.Sys】信息...
-[2016-07-05 10:03:30][INFO ] irille.pub.bean.PackageBase
+[2016-07-06 10:40:44][INFO ] irille.pub.bean.PackageBase
 初始化模块【class irille.core.lg.Lg】信息...
-[2016-07-05 10:03:30][INFO ] irille.pub.svr.DbPool
+[2016-07-06 10:40:44][INFO ] irille.pub.FileText
+文件[D:\workspace\srdz\src\main\java\irille\wx\wpt\WptCommissionJournal.java]已修改, 请按【F5】键同步显示内容!
+[2016-07-06 10:40:44][INFO ] irille.pub.svr.DbPool
 DbPool初始化开始
-[2016-07-05 10:03:30][INFO ] snaq.db.ConnectionPoolManager
+[2016-07-06 10:40:44][INFO ] snaq.db.ConnectionPoolManager
 Loaded ConnectionPoolManager properties with encoding UTF-8
-[2016-07-05 10:03:30][INFO ] snaq.db.ConnectionPoolManager.irille
+[2016-07-06 10:40:44][INFO ] snaq.db.ConnectionPoolManager.irille
 irille: Created pool irille (minpool=0,maxpool=100,maxsize=100,idleTimeout=60)
-[2016-07-05 10:03:30][INFO ] irille.pub.svr.DbPool
+[2016-07-06 10:40:44][INFO ] irille.pub.svr.DbPool
 DbPool初始化成功
-[2016-07-05 10:03:30][INFO ] irille.pub.svr.DbPool
+[2016-07-06 10:40:44][INFO ] irille.pub.svr.DbPool
 init poolManager end...
-[2016-07-05 10:03:30][INFO ] snaq.db.ConnectionPool.irille
+[2016-07-06 10:40:44][INFO ] snaq.db.ConnectionPool.irille
 irille: Getting connection (user/password): jdbc:mysql://localhost:3306/srdz3.0?useUnicode=true&characterEncoding=UTF8
-[2016-07-05 10:03:30][INFO ] snaq.db.ConnectionPool.irille
+[2016-07-06 10:40:44][INFO ] snaq.db.ConnectionPool.irille
 irille: Created a new connection
-[2016-07-05 10:06:51][INFO ] irille.pub.bean.PackageBase
+[2016-07-06 10:41:33][INFO ] irille.pub.bean.PackageBase
 初始化模块【class irille.core.sys.Sys】信息...
-[2016-07-05 10:06:51][INFO ] irille.pub.bean.PackageBase
+[2016-07-06 10:41:33][INFO ] irille.pub.bean.PackageBase
 初始化模块【class irille.core.lg.Lg】信息...
-[2016-07-05 10:06:51][INFO ] irille.pub.svr.DbPool
+[2016-07-06 10:41:34][INFO ] irille.pub.FileText
+文件[D:\workspace\srdz\src\main\java\irille\wx\wpt\WptCommissionJournal.java]已修改, 请按【F5】键同步显示内容!
+[2016-07-06 10:41:34][INFO ] irille.pub.svr.DbPool
 DbPool初始化开始
-[2016-07-05 10:06:51][INFO ] snaq.db.ConnectionPoolManager
+[2016-07-06 10:41:34][INFO ] snaq.db.ConnectionPoolManager
 Loaded ConnectionPoolManager properties with encoding UTF-8
-[2016-07-05 10:06:51][INFO ] snaq.db.ConnectionPoolManager.irille
+[2016-07-06 10:41:34][INFO ] snaq.db.ConnectionPoolManager.irille
 irille: Created pool irille (minpool=0,maxpool=100,maxsize=100,idleTimeout=60)
-[2016-07-05 10:06:51][INFO ] irille.pub.svr.DbPool
+[2016-07-06 10:41:34][INFO ] irille.pub.svr.DbPool
 DbPool初始化成功
-[2016-07-05 10:06:51][INFO ] irille.pub.svr.DbPool
+[2016-07-06 10:41:34][INFO ] irille.pub.svr.DbPool
 init poolManager end...
-[2016-07-05 10:06:51][INFO ] snaq.db.ConnectionPool.irille
+[2016-07-06 10:41:34][INFO ] snaq.db.ConnectionPool.irille
 irille: Getting connection (user/password): jdbc:mysql://localhost:3306/srdz3.0?useUnicode=true&characterEncoding=UTF8
-[2016-07-05 10:06:51][INFO ] snaq.db.ConnectionPool.irille
+[2016-07-06 10:41:34][INFO ] snaq.db.ConnectionPool.irille
+irille: Created a new connection
+[2016-07-06 16:13:51][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.sys.Sys】信息...
+[2016-07-06 16:13:51][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.lg.Lg】信息...
+[2016-07-06 16:13:51][INFO ] irille.pub.FileText
+文件[D:\workspace\srdz\src\main\java\irille\wx\wpt\WptCommissionJournal.java]已修改, 请按【F5】键同步显示内容!
+[2016-07-06 16:13:51][INFO ] irille.pub.svr.DbPool
+DbPool初始化开始
+[2016-07-06 16:13:51][INFO ] snaq.db.ConnectionPoolManager
+Loaded ConnectionPoolManager properties with encoding UTF-8
+[2016-07-06 16:13:51][INFO ] snaq.db.ConnectionPoolManager.irille
+irille: Created pool irille (minpool=0,maxpool=100,maxsize=100,idleTimeout=60)
+[2016-07-06 16:13:51][INFO ] irille.pub.svr.DbPool
+DbPool初始化成功
+[2016-07-06 16:13:51][INFO ] irille.pub.svr.DbPool
+init poolManager end...
+[2016-07-06 16:13:51][INFO ] snaq.db.ConnectionPool.irille
+irille: Getting connection (user/password): jdbc:mysql://localhost:3306/srdz3.0?useUnicode=true&characterEncoding=UTF8
+[2016-07-06 16:13:51][INFO ] snaq.db.ConnectionPool.irille
 irille: Created a new connection

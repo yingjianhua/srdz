@@ -87,7 +87,7 @@ ${jsCode}
 function cancelOrder(clicked) {
 	if(clicked == OK) {
 		$.ajax({
-			url : "resource/order_cancel",
+			url : "resource/order_cancel?account.pkey=${account.pkey}",
 			type : "POST",
 			dataType : "json",
 			data : {

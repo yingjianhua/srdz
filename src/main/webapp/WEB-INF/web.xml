@@ -68,7 +68,7 @@
   </context-param>
   <context-param>
     <param-name>webPath</param-name>
-    <param-value>http://www.51xiangshiguang.com/srdz</param-value>
+    <param-value>http://www.51xiangshiguang.com/srdz3.0</param-value>
   </context-param>
   <mime-mapping>
     <extension>txt</extension>

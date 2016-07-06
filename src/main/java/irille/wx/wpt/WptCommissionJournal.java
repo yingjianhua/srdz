@@ -11,6 +11,7 @@ import irille.pub.tb.IEnumFld;
 import irille.pub.tb.Tb;
 import irille.pub.tb.Tb.Index;
 import irille.wx.CmbWx;
+import irille.wx.wpt.Wpt.OStatus;
 import irille.wx.wx.WxAccount;
 import irille.wx.wx.WxUser;
 
@@ -37,6 +38,8 @@ public class WptCommissionJournal extends BeanInt<WptCommissionJournal> {
 	  NICKNAME(SYS.STR__200_NULL,"昵称"),
 	  //微信用户
 	  WXUSER(WxUser.fldOutKey("wxuser", "微信用户")),
+	  //订单状态
+	  STATUS(TB.crt(Wpt.OStatus.DEFAULT)),
 	  CMB_WX(CmbWx.fldFlds()),
     //>>>以下是自动产生的源代码行--内嵌字段定义--请保留此行用于识别>>>
 		ACCOUNT(TB.get("account")),	//公众帐号
@@ -46,7 +49,9 @@ public class WptCommissionJournal extends BeanInt<WptCommissionJournal> {
     //>>>以下是自动产生的源代码行--自动建立的索引定义--请保留此行用于识别>>>
     //<<<以上是自动产生的源代码行--自动建立的索引定义--请保留此行用于识别<<<
     // 索引
-	public static final Index IDX_WXUSER = TB.addIndex("wxuser",true, WXUSER);
+	public static final Index IDX_WXUSER = TB.addIndex("wxuser",false, WXUSER);
+	public static final Index IDX_ORDERID = TB.addIndex("orderid", false, ORDERID);
+	public static final Index IDX_ORDERID_WXUSER = TB.addIndex("orderid_wxuser", true, WXUSER, ORDERID);
 	  
     private Fld _fld;
     private T(Class clazz, String name, boolean... isnull) {
@@ -102,6 +107,16 @@ public class WptCommissionJournal extends BeanInt<WptCommissionJournal> {
   private String _imageUrl;	// 头像  STR(200)<null>
   private String _nickname;	// 昵称  STR(200)<null>
   private Integer _wxuser;	// 微信用户 <表主键:WxUser>  INT
+  private Byte _status;	// 订单状态 <OStatus>  BYTE
+	// UNPAYMENT:0,未付款
+	// NOTACCEPTED:1,未受理
+	// ACCEPTED:2,已受理
+	// DEPOSIT:3,已付定金
+	// PAYMENT:4,已付款
+	// FINISH:5,已完成
+	// CLOSE:6,已关闭
+	// CANCEL:7,申请取消订单
+	// REFUND:8,申请退款
   private Integer _account;	// 公众帐号 <表主键:WxAccount>  INT
   private Short _rowVersion;	// 版本  SHORT
 
@@ -116,17 +131,18 @@ public class WptCommissionJournal extends BeanInt<WptCommissionJournal> {
     _imageUrl=null;	// 头像  STR(200)
     _nickname=null;	// 昵称  STR(200)
     _wxuser=null;	// 微信用户 <表主键:WxUser>  INT
+    _status=OStatus.DEFAULT.getLine().getKey();	// 订单状态 <OStatus>  BYTE
     _account=null;	// 公众帐号 <表主键:WxAccount>  INT
     _rowVersion=0;	// 版本  SHORT
     return this;
   }
 
   //方法----------------------------------------------
-  public static WptCommissionJournal loadUniqueWxuser(boolean lockFlag,Integer wxuser) {
-    return (WptCommissionJournal)loadUnique(T.IDX_WXUSER,lockFlag,wxuser);
+  public static WptCommissionJournal loadUniqueOrderid_wxuser(boolean lockFlag,Integer wxuser,String orderid) {
+    return (WptCommissionJournal)loadUnique(T.IDX_ORDERID_WXUSER,lockFlag,wxuser,orderid);
   }
-  public static WptCommissionJournal chkUniqueWxuser(boolean lockFlag,Integer wxuser) {
-    return (WptCommissionJournal)chkUnique(T.IDX_WXUSER,lockFlag,wxuser);
+  public static WptCommissionJournal chkUniqueOrderid_wxuser(boolean lockFlag,Integer wxuser,String orderid) {
+    return (WptCommissionJournal)chkUnique(T.IDX_ORDERID_WXUSER,lockFlag,wxuser,orderid);
   }
   public Integer getPkey(){
     return _pkey;
@@ -203,6 +219,18 @@ public class WptCommissionJournal extends BeanInt<WptCommissionJournal> {
       setWxuser(null);
     else
       setWxuser(wxuser.getPkey());
+  }
+  public Byte getStatus(){
+    return _status;
+  }
+  public void setStatus(Byte status){
+    _status=status;
+  }
+  public OStatus gtStatus(){
+    return (OStatus)(OStatus.UNPAYMENT.getLine().get(_status));
+  }
+  public void stStatus(OStatus status){
+    _status=status.getLine().getKey();
   }
   public Integer getAccount(){
     return _account;

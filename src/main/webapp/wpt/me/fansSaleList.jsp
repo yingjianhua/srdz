@@ -74,7 +74,7 @@ function getFans(condition) {
 				content += '<img class="head" src="'+journal.head+'">';
 				content += '<p class="nick">'+journal.nick+'</p>';
 				content += '<p class="userId">ID:'+journal.fanid+'</p>';
-				content += '<p class="orderStatus">已完成</p>';
+				content += '<p class="orderStatus">'+journal.status+'</p>';
 				content += '<p class="price">￥'+journal.commission+'</p>';
 				content += '</dd>';
 				content += '</li>';

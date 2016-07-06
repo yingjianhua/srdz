@@ -144,7 +144,7 @@ $(function() {
 		if(!toValid() ) return;
 		submited = true;
 		$.ajax({
-			url : "resource/order_confirmOrder",
+			url : "resource/order_confirmOrder?account.pkey=${account.pkey}",
 			type : "POST",
 			dataType : "json",
 			data : {
@@ -160,9 +160,8 @@ $(function() {
 				"perCapitaBudget" : "${perCapitaBudget}",
 				"areaId" : "${areaId}",
 				"services" : "${services}",
-				"struts.token.name" : "token", 
-				"struts.token" : $("form input[name='struts.token']").val(), 
-				"account.pkey" : "${account.pkey}"
+				"struts.token.name" : "struts.token", 
+				"struts.token" : $("form input[name='struts.token']").val() 
 			},
 			success : function(result, data2) {
 				if(result.success) {

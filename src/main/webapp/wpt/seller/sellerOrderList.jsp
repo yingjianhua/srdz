@@ -83,7 +83,7 @@ function href(){
 }
 function onSearch() {
 	$.ajax({
-		url : "resource/seller_listOrder",
+		url : "resource/seller_listOrder?account.pkey=${account.pkey}",
 		type : "post",
 		data : {
 			restaurantId : $("input[name=restaurantId]").val(),
@@ -134,11 +134,10 @@ $(function() {
 	
 	$(".slod_sub").on("click",function(){
 	    $.ajax({
-	        url:'resource/order_checkCode',
+	        url:'resource/order_checkCode?account.pkey=${account.pkey}',
 	        type:"POST",
 	        data:{
 	        	"orderId" : pkey,
-	        	"account.pkey" : "${account.pkey}",
 	        	"checkCode" : $(".slod_win input").val(),
 	        },
 	        success: function(data) {

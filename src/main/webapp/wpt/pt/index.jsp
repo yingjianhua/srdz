@@ -90,7 +90,7 @@ ${jsCode}
 <script type="text/javascript">
 $(function() {
 	$.ajax({
-		url : "resource/city_currCity",
+		url : "resource/city_currCity?account.pkey=${account.pkey}",
 		type : "post",
 		dataType : "json",
 		success : function(result) {
@@ -139,7 +139,7 @@ $(function() {
 		$(".hmcity_flog").removeClass("hmcity_flogshow");	
 		$.ajax({
 			dataType : "json",
-			url : "resource/city_select",
+			url : "resource/city_select?account.pkey=${account.pkey}",
 			type : "POST",
 			data : {"id" : $(this).attr("pkey")}
 		})
@@ -166,10 +166,11 @@ $(function() {
 			$(".hmcity_add").hide();
 			$(".hmcity_flog").removeClass("hmcity_flogshow");
 			$.ajax({
-				url : "resource/city_petition",
+				url : "resource/city_petition?account.pkey=${account.pkey}",
 				type : "POST",
-				data : {"petitionCity" : $(".hmcity_add .new_city").val(),
-						"account.pkey"  : "${account.pkey}"},
+				data : {
+					"petitionCity" : $(".hmcity_add .new_city").val()
+				},
 				success: function(data){
 					tipbox(data);
 				}	

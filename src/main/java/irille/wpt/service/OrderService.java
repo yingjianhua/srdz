@@ -229,7 +229,7 @@ public class OrderService {
 		//假如订单完成
 		if(order.gtStatus() == OStatus.FINISH) {
 			qrcodeRuleService.create(order.gtWxuser());
-			distributionRuleService.distribution(order.gtWxuser(), order);
+			distributionRuleService.orderBeenComplete(order);
 		}
 		return order;
 	}
@@ -273,22 +273,30 @@ public class OrderService {
 	 * @return
 	 */
 	public boolean paidCallback(String outTradeNo, String totalFee, String time_end) {
+		System.out.println("--------------paidCallback--------------");
 		WptOrder order = WptOrder.chkUniqueDepPayId(false, outTradeNo);
 		if(order == null) {
-			//假如不是定金的支付回调
+			System.out.println("----------支付完成-----------");
+			//假如不是定金的支付回调,说明是普通订单的支付或者是私人订制订单的余款支付，总之订单会进入已付款状态
 			order = WptOrder.chkUniqueOrderid(false, outTradeNo);
+			order.setCheckcode(MchUtil.createRandomNum(6));
 			order.stStatus(OStatus.PAYMENT);
+			System.out.println(order);
+			//根据分销规则进行处理
+			distributionRuleService.orderBeenPaid(order.gtWxuser(), order);
 			//订单完成
 			if(order.gtIsPt()) {
+				System.out.println("------------是私人订制------------");
+				//若是私人订制的订单，需要设置余款的支付方式为微信支付
 				order.stResidueIsWxpay(true);
-			} else {
-				order.setCheckcode(MchUtil.createRandomNum(6));
 			}
 		} else {
+			System.out.println("-----------支付定金-----------");
 			//是支付定金的回调
 			order.stStatus(OStatus.DEPOSIT);
 		}
 		order.upd();
+		System.out.println("--------------paidCallback--------------");
 		return true;
 	}
 	

@@ -93,7 +93,7 @@ function search() {
 	$(".front_flog").hide();
 	$(".front_slide").hide();
 	$.ajax({
-		url:"resource/top_list",
+		url:"resource/top_list?account.pkey=${account.pkey}",
 		data : {
 			cityId : "${sessionScope.city.pkey}",
 			areaId : areaId==0?"":areaId,

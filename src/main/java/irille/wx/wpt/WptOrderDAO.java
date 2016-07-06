@@ -100,7 +100,7 @@ public class WptOrderDAO {
 			delLine(getLines(WptOrderService.T.WPTORDER, getB().getPkey()));
 		}
 	}
-	private static final String notify_pay_url = ServletActionContext.getServletContext().getInitParameter("webPath")+"/order_notifyPay";
+	private static final String notify_pay_url = ServletActionContext.getServletContext().getInitParameter("webPath")+"/wpt/resource/order_notifyPay";
 	/**
 	 * 统一下单
 	 * @param account 公众账号
@@ -165,6 +165,7 @@ public class WptOrderDAO {
 		order.stStatus(OStatus.PAYMENT);
 		order.stResidueIsWxpay(false);
 		order.stResidueMan(Idu.getUser());
+		order.setCheckcode(MchUtil.createRandomNum(6));
 		order.upd();
 	}
 	/**

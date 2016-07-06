@@ -87,7 +87,7 @@ ${jsCode}
 function chooseWxPay() {
 	$(".cm_btn1-btn.cood_btn").attr("href","javascript:;");
 	$.ajax({
-		url : "resource/order_preparePay?orderId=${orderId}&account.pkey=$(account.pkey)",
+		url : "resource/order_preparePay?orderId=${orderId}&account.pkey=${account.pkey}",
 		type : "POST",
 		dataType : "json",
 		data : {comboNumber : $("input[name=comboNumber]").val()},

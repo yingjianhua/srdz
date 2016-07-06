@@ -129,15 +129,23 @@ public class WxMessageDAO {
 	  sendTextMessage(accessToken, openId, content.toString());
   }
   public static void notifyCommissionJournal(String accessToken, WptCommissionJournal journal3, String openId3, WptCommissionJournal journal2, String openId2, WptCommissionJournal journal1, String openId1){
+	  System.out.println("----------notifyCommissionJournal----------");
 	  if(journal3!=null) {
+		  System.out.println("journal3 != null");
 		  notifyCommissionJournal(accessToken, openId3, journal3);
 		  if(journal2!=null) {
+			  System.out.println("journal2 != null");
 			  notifyCommissionJournal(accessToken, openId2, journal2);
 			  if(journal1!=null) {
+				  System.out.println("journal1 != null");
 				  notifyCommissionJournal(accessToken, openId1, journal1);
 			  }
 		  }
 	  }
+	  System.out.println("----------notifyCommissionJournal----------");
+  }
+  public static void nnn() {
+	  System.out.println("nnnn");
   }
 
 }

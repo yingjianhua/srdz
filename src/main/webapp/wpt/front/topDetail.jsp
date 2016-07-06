@@ -61,7 +61,7 @@ $(function() {
 	$(".collect_a").on("click",function(){
 		var _this = this;
 		$.ajax({
-			url : "resource/top_collect",
+			url : "resource/top_collect?account.pkey=${account.pkey}",
 			type : "POST",
 			data : {"id" : $("input").attr("pkey")},
 			success : function(data){

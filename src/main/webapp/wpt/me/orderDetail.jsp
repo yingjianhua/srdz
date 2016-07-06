@@ -77,7 +77,7 @@ ${jsCode}
 function cancelOrder(clicked) {
 	if(clicked == OK) {
 		$.ajax({
-			url : "resource/order_cancel",
+			url : "resource/order_cancel?account.pkey=${account.pkey}",
 			type : "POST",
 			dataType : "json",
 			data : {
@@ -95,7 +95,7 @@ function cancelOrder(clicked) {
 }
 function payOrder() {
 	$.ajax({
-		url : "resource/order_preparePay?orderId=${order.orderid}",
+		url : "resource/order_preparePay?orderId=${order.orderid}&account.pkey=${account.pkey}",
 		type : "POST",
 		dataType : "json",
 		success : function(result) {

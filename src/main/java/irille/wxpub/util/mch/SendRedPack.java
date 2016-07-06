@@ -49,13 +49,4 @@ public class SendRedPack extends MchUtil {
 		
 		return map_result;
 	}
-	public static void main(String[] args) throws Exception {
-		System.out.println(SendRedPack.class.getDeclaredField("total_amount").getAnnotation(Sendable.class));
-		System.out.println(SendRedPack.class.getDeclaredField("total_amount").getAnnotation(Sendable.class));
-		WxAccount.TB.getCode();
-		WxAccount account = WxAccount.get(WxAccount.class, 10);
-		SendRedPack uorder = new SendRedPack(account, "openId", "1", "2", "3", 4, 5, "6", "7", "8", "9");
-		
-		System.out.println(uorder.trans2XML());
-	}
 }

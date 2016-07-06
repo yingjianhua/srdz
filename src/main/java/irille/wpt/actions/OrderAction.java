@@ -131,6 +131,7 @@ public class OrderAction extends AbstractWptAction {
 	 * @throws Exception 
 	 */
 	public void notifyPay() throws Exception {
+		System.out.println("-------------notifyPay-------------");
 		PrintWriter writer = getResponse().getWriter();
 		try {
 			// xml请求解析
@@ -156,6 +157,7 @@ public class OrderAction extends AbstractWptAction {
 				System.out.println("签名正确");
 				service.paidCallback(requestMap.get("out_trade_no"), requestMap.get("total_fee"), requestMap.get("time_end")); 
 				writer.print("<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>");
+				System.out.println("回复完毕");
 				return;
 			} else {
 				System.out.println("签名错误");
@@ -165,6 +167,7 @@ public class OrderAction extends AbstractWptAction {
 		} catch (Exception e) {
 			writer.print("<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[未知错误]]></return_msg></xml>");
 		}
+		System.out.println("-------------notifyPay-------------");
 	}
 
 	

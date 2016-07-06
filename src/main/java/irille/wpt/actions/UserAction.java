@@ -91,6 +91,7 @@ public class UserAction extends AbstractWptAction {
 				o.put("fanid", journal.getFans());
 				o.put("head", journal.getImageUrl());
 				o.put("nick", journal.getNickname());
+				o.put("status", journal.gtStatus().getLine().getName());
 				result.put(o);
 			}
 			PrintWriter writer;
