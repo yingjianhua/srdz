@@ -38,6 +38,16 @@ initComponent : function(){
 				         }
 				         ]
 			},{
+				xtype : 'toolbar',
+				itemId : this.oldId+'act',
+				items : [{
+					text : '成为会员',
+					iconCls : 'upd-icon',
+					itemId : this.oldId+'upd',
+					scope : this,
+					handler : this.onBeenMember,
+				}]
+			},{
 				xtype : 'form',
 				itemId :  this.oldId+'main',
 				bodyPadding : '5 5 0 5',
@@ -103,18 +113,52 @@ initComponent : function(){
 					itemId : this.oldId+'linetable2',
 					iconCls : 'tab-user-icon'
 				})
-	}]
+			}]
 	}];
-		this.callParent(arguments);
-		this.mdSearch = this.down('#'+this.oldId+'search');
-		this.mdMain = this.down('#'+this.oldId+'main');
-		this.mdMainTable = this.down('#'+this.oldId+'maintable');
-		this.mdLineTable = this.down('#'+this.oldId+'linetable');
-		this.mdLineTable2 = this.down('#'+this.oldId+'linetable2');
-		mvc.Tools.onENTER2SearchBar(this.mdSearch,this);
+	this.callParent(arguments);
+	this.mdSearch = this.down('#'+this.oldId+'search');
+	this.mdMain = this.down('#'+this.oldId+'main');
+	this.mdMainTable = this.down('#'+this.oldId+'maintable');
+	this.mdLineTable = this.down('#'+this.oldId+'linetable');
+	this.mdLineTable2 = this.down('#'+this.oldId+'linetable2');
+	mvc.Tools.onENTER2SearchBar(this.mdSearch,this);
 },
 getStore : function(){
 		return this.mdMainTable.store;
+},
+onBeenMember : function() {
+	var selections = this.mdMainTable.getView().getSelectionModel().getSelection();
+	if (selections){
+		var selection = selections[0];
+		var me = this;
+		Ext.MessageBox.confirm(msg_confirm_title, "确认吗?", 
+			function(btn) {
+				if (btn != 'yes')
+					return;
+				Ext.Ajax.request({
+					url : base_path+'/wx_WxUser_beenMember?bean.pkey='+selection.get('bean.pkey')+'&bean.rowVersions='+selection.get('bean.rowVersion'),
+					success : function (response, options) {
+						var result = Ext.decode(response.responseText);
+						if (result.success){
+							var selection = me.mdMainTable.getView().getSelectionModel().getSelection()[0];
+							var bean = Ext.create('mvc.model.wx.WxUser', result);
+							Ext.apply(selection.data,result);
+							selection.commit();
+							this.getView().select(selection);
+							Ext.example.msg(msg_title, msg_text);
+						}else{
+							Ext.MessageBox.show({
+								title : msg_title, 
+								msg : result.msg,
+								buttons : Ext.MessageBox.OK,
+								icon : Ext.MessageBox.ERROR
+							});
+						}
+					}
+				});
+			}
+		);
+	}
 },
 onSaveRecord : function(form, data){
 		this.mdMainTable.store.insert(0,data);

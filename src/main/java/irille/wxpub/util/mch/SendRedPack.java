@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import irille.pub.Log;
+import irille.wpt.tools.TradeNoFactory;
 import irille.wx.wx.WxAccount;
 import irille.wxpub.util.MessageUtil;
 import irille.wxpub.util.WeixinUtil;
@@ -19,16 +20,16 @@ public class SendRedPack extends MchUtil {
 	@Sendable
 	protected int total_amount, total_num;
 
-	private SendRedPack(WxAccount account, String openId, String mch_billno, String send_name, String re_openid, int total_amount,
-			int total_num, String wishing, String client_ip, String act_name, String remark)
+	private SendRedPack(WxAccount account, String send_name, String re_openid, int total_amount, 
+			String wishing, String client_ip, String act_name, String remark)
 					throws NoSuchAlgorithmException {
-		this.mch_billno = mch_billno;
+		this.mch_billno = TradeNoFactory.createMchBillNo(account.getMchId());
 		this.mch_id = account.getMchId();
 		this.wxappid = account.getAccountAppid();
 		this.send_name = send_name;
-		this.re_openid = openId;
+		this.re_openid = re_openid;
 		this.total_amount = total_amount;
-		this.total_num = total_num;
+		this.total_num = 1;
 		this.wishing = wishing;
 		this.client_ip = client_ip;
 		this.act_name = act_name;
@@ -37,9 +38,9 @@ public class SendRedPack extends MchUtil {
 		this.sign = createSign(account.getMchKey());
 	}
 
-	public static Map<String, String> sendRedPack(WxAccount account, String openId, String mch_billno, String send_name, String re_openid, int total_amount,
-			int total_num, String wishing, String client_ip, String act_name, String remark) throws Exception {
-		SendRedPack uorder = new SendRedPack(account, openId, mch_billno, send_name, re_openid, total_amount, total_num, wishing, client_ip, act_name, remark);
+	public static Map<String, String> sendRedPack(WxAccount account, String openId, String send_name, int total_amount,
+			String wishing, String client_ip, String act_name, String remark) throws Exception {
+		SendRedPack uorder = new SendRedPack(account, send_name, openId, total_amount, wishing, client_ip, act_name, remark);
 		String result = WeixinUtil.httpPost(SEND_RED_PACK_URL, uorder.trans2XML(), createSSLFactory(account));
 		Map<String, String> map_result = MessageUtil.parseXml(result);
 		map_result = new TreeMap<String, String>(map_result);

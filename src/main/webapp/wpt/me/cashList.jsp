@@ -113,6 +113,9 @@ $(function() {
 					amt : $("#cashinput").val()
 				},
 				success : function(result) {
+					if(result.success) {
+						alert("提现成功，将通过微信红包的方式发送的您的微信上");
+					}
 				}
 			})
 		}

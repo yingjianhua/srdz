@@ -1,19 +1,22 @@
 package irille.wpt.service;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import irille.pub.Log;
 import irille.pub.bean.Bean;
 import irille.pub.idu.Idu;
-import irille.wx.wpt.Wpt;
+import irille.wx.wpt.WptCashJournal;
 import irille.wx.wpt.WptCommissionJournal;
-import irille.wx.wpt.WptOrder;
+import irille.wx.wpt.WptRedPackRule;
 import irille.wx.wx.WxUser;
+import irille.wxpub.util.mch.SendRedPack;
 
 public class UserService {
-
+	public static final Log LOG = new Log(UserService.class);
+	private CashJournalService cashJournalService;
+	
 	public int getFans1Num(Integer userid){
 		String sql = Idu.sqlString("select count(*) fansNum from {0} where {1}=?", WxUser.class, WxUser.T.INVITED3);
 		Map<String, Object> resultMap = Bean.executeQueryMap(sql, userid)[0];
@@ -59,14 +62,12 @@ public class UserService {
 		}
 	}
 	/**
-	 * 获取粉丝销量统计
+	 * 获取粉丝销量统计 包括已付款和已完成的
 	 */
 	public BigDecimal getFansSaleAmount(Integer userid) {
-		WptOrder.T ot = WptOrder.T.PKEY;
-		WxUser.T ut = WxUser.T.PKEY;
-		String sql = Idu.sqlString("select sum({0}) amount from {1} where {2} in (select {3} from {4} where {5}=? or {6}=? or {7}=?) and {8}=?",
-				ot.PRICE, WptOrder.class, ot.WXUSER, ut.PKEY, WxUser.class, ut.INVITED1, ut.INVITED2, ut.INVITED3, ot.STATUS);
-		Map<String, Object> amountMap = Bean.executeQueryMap(sql, userid, userid, userid, Wpt.OStatus.FINISH.getLine().getKey())[0];
+		String sql = Idu.sqlString("select sum({0}) amount from {1} where {2}=?", 
+				WptCommissionJournal.T.PRICE, WptCommissionJournal.class, WptCommissionJournal.T.WXUSER);
+		Map<String, Object> amountMap = Bean.executeQueryMap(sql, userid)[0];
 		BigDecimal amount = (BigDecimal)amountMap.get("amount");
 		return amount==null?BigDecimal.ZERO:amount;
 	}
@@ -85,5 +86,26 @@ public class UserService {
 			where = Idu.sqlString("{0}=? and ({1}=? or {2}=?)", WptCommissionJournal.T.WXUSER, WptCommissionJournal.T.FANS, WptCommissionJournal.T.ORDERID);
 			return Bean.list(WptCommissionJournal.class, where, false, user.getPkey(), orderOrFan, orderOrFan);
 		}
+	}
+	/**
+	 * 提现
+	 * @throws Exception 
+	 */
+	public WptCashJournal cash(BigDecimal amt, WxUser user, String client_ip, String remark) throws Exception {
+		WptRedPackRule rule = Bean.get(WptRedPackRule.class, user.getAccount());
+		if(amt.compareTo(rule.getLeastAmt()) < 0) {
+			throw LOG.err("less than least", "提现金额少于最少提现金额");
+		} else if(amt.compareTo(user.getCashableCommission()) > 0) {
+			throw LOG.err("more than cashable", "提现金额多于用户可提现佣金");
+		}
+		SendRedPack.sendRedPack(user.gtAccount(), user.getOpenId(), rule.getSendName(), amt.multiply(BigDecimal.valueOf(100)).intValue(), rule.getWishing(), client_ip, rule.getActName(), remark);
+		return cashJournalService.add(user, amt);
+	}
+	
+	public CashJournalService getCashJournalService() {
+		return cashJournalService;
+	}
+	public void setCashJournalService(CashJournalService cashJournalService) {
+		this.cashJournalService = cashJournalService;
 	}
 }

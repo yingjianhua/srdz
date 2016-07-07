@@ -53,7 +53,11 @@ public class DistributionRuleService {
 		String accessToken = WxAccountDAO.getAccessToken(user.gtAccount());
 		
 		try {
-			WxMessageDAO.notifyCommissionJournal(accessToken, commissionJournal3, invited3.getOpenId(), commissionJournal2, invited2.getOpenId(), commissionJournal1, invited1.getOpenId());
+			WxMessageDAO.nnn();
+			WxMessageDAO.notifyCommissionJournal(accessToken, commissionJournal3, invited3==null?null:invited3.getOpenId(), commissionJournal2, invited2==null?null:invited2.getOpenId(), commissionJournal1, invited1==null?null:invited1.getOpenId());
+			System.out.println("------");
+			WxMessageDAO.nnn();
+			System.out.println("------");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

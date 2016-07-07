@@ -16,6 +16,8 @@ fields : [{name : 'bean.pkey',mapping : 'pkey',type : 'int',useNull : true}
 	,{name : 'bean.country',mapping : 'country',type : 'string'}
 	,{name : 'bean.imageUrl',mapping : 'imageUrl',type : 'string'}
 	,{name : 'bean.rem',mapping : 'rem',type : 'string'}
+	,{name : 'bean.qrcode',mapping : 'qrcode',type : 'string'}
+	,{name : 'bean.qrcodeExpireTime',mapping : 'qrcodeExpireTime',type : 'date',dateFormat : 'Y-m-d H:i:s'}
 	,{name : 'bean.userGroup',mapping : 'userGroup',type : 'string',outkey : true}
 	,{name : 'bean.subscribeTime',mapping : 'subscribeTime',type : 'date',dateFormat : 'Y-m-d H:i:s'}
 	,{name : 'bean.syncTime',mapping : 'syncTime',type : 'date',dateFormat : 'Y-m-d H:i:s'}

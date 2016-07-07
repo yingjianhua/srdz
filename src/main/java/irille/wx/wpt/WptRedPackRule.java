@@ -1,5 +1,7 @@
 package irille.wx.wpt;
 
+import java.math.BigDecimal;
+
 import irille.pub.Log;
 import irille.pub.bean.BeanInt;
 import irille.pub.tb.Fld;
@@ -16,6 +18,7 @@ public class WptRedPackRule extends BeanInt<WptRedPackRule> {
 		SEND_NAME(SYS.STR__100, "商户名称"),
 		WISHING(SYS.STR__200, "红包祝福语"),
 		ACT_NAME(SYS.STR__100, "活动名称"),
+		LEAST_AMT(SYS.AMT, "最少提现金额"),
 		ROW_VERSION(SYS.ROW_VERSION),
 
 		// >>>以下是自动产生的源代码行--内嵌字段定义--请保留此行用于识别>>>
@@ -73,6 +76,7 @@ public class WptRedPackRule extends BeanInt<WptRedPackRule> {
   private String _sendName;	// 商户名称  STR(100)
   private String _wishing;	// 红包祝福语  STR(200)
   private String _actName;	// 活动名称  STR(100)
+  private BigDecimal _leastAmt;	// 最少提现金额  DEC(16,2)
   private Short _rowVersion;	// 版本  SHORT
 
 	@Override
@@ -81,6 +85,7 @@ public class WptRedPackRule extends BeanInt<WptRedPackRule> {
     _sendName=null;	// 商户名称  STR(100)
     _wishing=null;	// 红包祝福语  STR(200)
     _actName=null;	// 活动名称  STR(100)
+    _leastAmt=ZERO;	// 最少提现金额  DEC(16,2)
     _rowVersion=0;	// 版本  SHORT
     return this;
   }
@@ -116,6 +121,12 @@ public class WptRedPackRule extends BeanInt<WptRedPackRule> {
   }
   public void setActName(String actName){
     _actName=actName;
+  }
+  public BigDecimal getLeastAmt(){
+    return _leastAmt;
+  }
+  public void setLeastAmt(BigDecimal leastAmt){
+    _leastAmt=leastAmt;
   }
   public Short getRowVersion(){
     return _rowVersion;

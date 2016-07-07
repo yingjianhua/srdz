@@ -14,6 +14,7 @@ import irille.action.ActionBase;
 import irille.pub.Str;
 import irille.pub.idu.Idu;
 import irille.pub.idu.IduPage;
+import irille.wpt.service.QrcodeRuleService;
 import irille.wx.wx.WxAccount;
 import irille.wx.wx.WxAccountDAO;
 import irille.wx.wx.WxUser;
@@ -69,6 +70,18 @@ public class WxUserAction extends ActionBase<WxUser> {
     json.put("success", true).put("msg", "操作完成");
     response.getWriter().print(json.toString());
   }
+	/**
+	 * 让一个用户成为会员
+	 * @throws Exception 
+	 */
+	public void beenMember() throws Exception {
+		QrcodeRuleService service = new QrcodeRuleService();
+		WxUser user = WxUser.load(WxUser.class, getBean().getPkey());
+		service.create(user, true);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		JSONObject json = crtJsonByBean(user, "bean.");
+		response.getWriter().print(json.put("success", true).toString());
+	}
   
   @Override
   public void list() throws Exception {

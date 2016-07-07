@@ -19,12 +19,12 @@ public class WptQrcodeRuleAction extends ActionBase<WptQrcodeRule> {
 	public Class beanClazz() {
 		return WptQrcodeRule.class;
 	}
-	 public String crtAll() {
-	    WxAccount account = WxAccountDAO.getByUser(Idu.getUser());
-	    if(account==null){
+	public String crtAll() {
+		WxAccount account = WxAccountDAO.getByUser(Idu.getUser());
+		if(account == null) {
 	      return "1=2";
-	    }else{
-	      return WptQrcodeRule.T.PKEY + "=" + account.getPkey();
-	    }
-	  }
+		} else {
+			return WptQrcodeRule.T.PKEY + "=" + account.getPkey();
+		}
+	}
 }

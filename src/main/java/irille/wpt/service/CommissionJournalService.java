@@ -3,7 +3,6 @@ package irille.wpt.service;
 import java.math.BigDecimal;
 import java.util.List;
 
-import irille.pub.bean.Bean;
 import irille.wpt.dao.impl.CommissionJournalDao;
 import irille.wx.wpt.Wpt.OStatus;
 import irille.wx.wpt.WptCommissionJournal;

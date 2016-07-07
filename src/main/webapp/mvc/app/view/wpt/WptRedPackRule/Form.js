@@ -34,6 +34,15 @@ Ext.define('mvc.view.wpt.WptRedPackRule.Form', {
 		},
 		{
 			xtype : 'numberfield',
+			name : 'bean.leastAmt',
+			afterLabelTextTpl : required,
+			allowBlank : false,
+			value : 0,
+			fieldLabel : '最少提现金额',
+			decimalPrecision : 2
+		},
+		{
+			xtype : 'numberfield',
 			name : 'bean.rowVersion',
 			value : 0,
 			afterLabelTextTpl : required,

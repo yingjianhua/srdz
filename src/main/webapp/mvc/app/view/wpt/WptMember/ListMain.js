@@ -16,6 +16,8 @@ this.columns =[
                {text : '头像',width : 100,dataIndex : 'bean.imageUrl',sortable : true, renderer: function(v) {return "<img src='"+v+"' height='50px'/ >"}},
                {text : '备注',width : 100,dataIndex : 'bean.rem',sortable : true},
                {text : '关注时间',width : 140,dataIndex : 'bean.subscribeTime',sortable : true,renderer : Ext.util.Format.dateRenderer('Y-m-d H:i:s')},
+               {text : '推广二维码',width : 100,dataIndex : 'bean.qrcode',sortable : true, renderer: function(v) {return "<img src='.."+v+"' height='50px'/ >"}},
+               {text : '二维码到期时间',width : 140,dataIndex : 'bean.qrcodeExpireTime',sortable : true,renderer : Ext.util.Format.dateRenderer('Y-m-d H:i:s')},
 	];
 		this.store=Ext.create('mvc.store.wx.WxUser');
 		this.store.remoteFilter = true;

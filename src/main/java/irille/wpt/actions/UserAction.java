@@ -50,8 +50,14 @@ public class UserAction extends AbstractWptAction {
 	 */
 	public void cash() {
 		System.out.println("------------user_cash------------");
-		System.out.println(getAmt());
-		System.out.println(getAmt().toString());
+		try {
+			service.cash(amt, chkWxUser(), getRequest().getRemoteHost(), "");
+			PrintWriter writer;
+			writer = getResponse().getWriter();
+			writer.print(new JSONObject().put("success", true).toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		System.out.println("------------user_cash------------");
 	}
 	public void fans() {

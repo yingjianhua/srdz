@@ -26,9 +26,14 @@
 	<bean id="distributionRuleService" class="irille.wpt.service.DistributionRuleService">
 		<property name="commissionJournalService" ref="commissionJournalService"></property>
 	</bean>
-	<bean id="userService" class="irille.wpt.service.UserService"></bean>
+	<bean id="userService" class="irille.wpt.service.UserService">
+		<property name="cashJournalService" ref="cashJournalService"></property>
+	</bean>
 	<bean id="commissionJournalService" class="irille.wpt.service.CommissionJournalService">
 		<property name="commissionJournalDao" ref="commissionJournalDao"></property>
+	</bean>
+	<bean id="cashJournalService" class="irille.wpt.service.CashJournalService">
+		<property name="cashJournalDao" ref="cashJournalDao"></property>
 	</bean>
 	
 </beans>        

@@ -11,4 +11,5 @@
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop.xsd">
 	<bean id="commissionJournalDao" class="irille.wpt.dao.impl.CommissionJournalDao"></bean>
+	<bean id="cashJournalDao" class="irille.wpt.dao.impl.CashJournalDao"></bean>
 </beans>        

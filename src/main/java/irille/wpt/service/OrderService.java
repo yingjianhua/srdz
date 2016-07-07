@@ -15,6 +15,7 @@ import irille.pub.Log;
 import irille.pub.bean.BeanBase;
 import irille.pub.idu.Idu;
 import irille.wpt.tools.SmsTool;
+import irille.wpt.tools.TradeNoFactory;
 import irille.wx.wpt.Wpt.OStatus;
 import irille.wx.wpt.WptCityLine;
 import irille.wx.wpt.WptCombo;
@@ -37,21 +38,6 @@ public class OrderService {
 	private QrcodeRuleService qrcodeRuleService;
 	
 	private static final SimpleDateFormat INPUT_DATE_FORMAT = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-	/**
-	 * 生成一个订单号，如："201506015842" 前8位是当前日期，后4位是随机4位数字
-	 * @return
-	 */
-	public String createOrderidUnique() {
-		int num = 100;
-		String orderid = "";
-		while(num-->0) {
-			orderid = WptOrderDAO.createOrderid();
-			if(WptOrder.chkUniqueOrderid(false, orderid) == null) {
-				break;
-			}
-		}
-		return orderid;
-	}
 	/**
 	 * 根据参数生成一个订单对象
 	 * @param contactMan 联系人姓名
@@ -115,7 +101,7 @@ public class OrderService {
 			order.stIsPt(false);
 			order.stStatus(OStatus.UNPAYMENT);
 		}
-		order.setOrderid(this.createOrderidUnique());
+		order.setOrderid(TradeNoFactory.createOrderidUnique());
 		order.setDepPayId(order.getOrderid()+"d");
 		order.ins();
 		//添加订单的菜品
@@ -217,9 +203,7 @@ public class OrderService {
 		throw LOG.err("showMsg", msg);
 	}
 	public WptOrder complete(WptOrder order, String checkCode) {
-		if(order.gtIsPt()){
-			throw LOG.err("notComboOrder", "不是普通套餐订单");
-		} else if(order.gtStatus() != OStatus.PAYMENT){
+		if(order.gtStatus() != OStatus.PAYMENT){
 			throw LOG.err("statusErr", "订单未付款");
 		} else if(!order.getCheckcode().equals(checkCode)) {
 			throw LOG.err("validCheckCode", "核验码不正确");
@@ -228,7 +212,7 @@ public class OrderService {
 		order.upd();
 		//假如订单完成
 		if(order.gtStatus() == OStatus.FINISH) {
-			qrcodeRuleService.create(order.gtWxuser());
+			qrcodeRuleService.create(order.gtWxuser(), false);
 			distributionRuleService.orderBeenComplete(order);
 		}
 		return order;

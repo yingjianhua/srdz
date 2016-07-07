@@ -17,6 +17,7 @@ import irille.pub.idu.Idu;
 import irille.pub.idu.IduDel;
 import irille.pub.idu.IduInsLines;
 import irille.pub.idu.IduUpdLines;
+import irille.wpt.tools.TradeNoFactory;
 import irille.wx.wpt.Wpt.OStatus;
 import irille.wx.wx.WxAccount;
 import irille.wx.wx.WxAccountDAO;
@@ -35,30 +36,6 @@ public class WptOrderDAO {
 		public String getMsg() {return _msg; }
 	} //@formatter:on
 	public static final Log LOG = new Log(WptOrderDAO.class);
-	private static final SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-
-	/**
-	 * 生成一个订单号，如："201506015842" 前8位是当前日期，后4位是随机4位数字
-	 * @return
-	 */
-	public static String createOrderid() {
-		return format.format(new Date())+MchUtil.createRandomNum(4);
-	}
-	/**
-	 * 生成一个订单号，如："201506015842" 前8位是当前日期，后4位是随机4位数字
-	 * @return
-	 */
-	public static String createOrderidUnique() {
-		int num = 100;
-		String orderid = "";
-		while(num-->0) {
-			orderid = WptOrderDAO.createOrderid();
-			if(WptOrder.chkUniqueOrderid(false, orderid) == null) {
-				break;
-			}
-		}
-		return orderid;
-	}
 	
 	public static class Ins extends IduInsLines<Ins, WptOrder, WptOrderLine> {
 		public void run() {};
@@ -176,7 +153,7 @@ public class WptOrderDAO {
 	public static void refundOrder(WptOrder order) throws Exception {
 		if(order.gtStatus() != OStatus.REFUND) throw LOG.err("statusErr", "状态异常"); 
 		if(!order.gtIsPt() || order.gtResidueIsWxpay()) {
-			order.setOutRefundNo(createOrderidUnique());
+			order.setOutRefundNo(TradeNoFactory.createOutRefundNoUnique());
 			refundOrder(order.gtAccount(), order);
 		}
 		order.stStatus(OStatus.CLOSE);

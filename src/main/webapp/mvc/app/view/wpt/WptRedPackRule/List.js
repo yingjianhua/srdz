@@ -21,7 +21,8 @@ initComponent : function(){
 	this.columns = [
 	                {text : '商户名称',width : 100,dataIndex : 'bean.sendName',sortable : true},
 	                {text : '红包祝福语',width : 100,dataIndex : 'bean.wishing',sortable : true},
-	                {text : '活动名称',width : 100,dataIndex : 'bean.actName',sortable : true}
+	                {text : '活动名称',width : 100,dataIndex : 'bean.actName',sortable : true},
+	                {text : '最少提现金额',width : 100,dataIndex : 'bean.leastAmt',sortable : true,renderer : mvc.Tools.numberRenderer(),align : 'right'}
 	                ];
 	this.store=Ext.create('mvc.store.wpt.WptRedPackRule'); 
 	this.store.remoteFilter = true;
