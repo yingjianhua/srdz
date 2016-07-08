@@ -51,7 +51,7 @@ public class UserAction extends AbstractWptAction {
 	public void cash() {
 		System.out.println("------------user_cash------------");
 		try {
-			service.cash(amt, chkWxUser(), getRequest().getRemoteHost(), "");
+			service.cash(amt, chkWxUser(), getRequest().getRemoteHost());
 			PrintWriter writer;
 			writer = getResponse().getWriter();
 			writer.print(new JSONObject().put("success", true).toString());

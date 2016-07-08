@@ -104,7 +104,7 @@ $(function() {
 		$(".cash_list").hide();
 	})
 	$("#cash").click(function() {
-		if(reg.test(val)) {
+		if(reg.test($("#cashinput").val())) {
 			$.ajax({
 				url : "resource/user_cash?account.pkey=${account.pkey}",
 				type : "POST",

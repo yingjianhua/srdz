@@ -27,7 +27,7 @@
 <title>享食光-私人定制</title>
 </head>
 
-<body class="seller_orderbg">	
+<body class="seller_orderbg">
 	
 	<div class="slod_bar">
 		<div class="slod_search">
@@ -36,10 +36,13 @@
 				<input type="search" class="text" name="orderId" placeHolder="请输入订单编号"/>
 				<input type="hidden" name="restaurantId" value="${restaurant.pkey}">
 				<input type="hidden" name="account.pkey" value="${account.pkey }">
-			</form>				
-		</div>		
+			</form>
+		</div>
 		<div id="esc">
 			<a href="#" class="esc_a">取消</a>
+		</div>
+		<div class="slod_switch">
+			<a>历史订单</a>
 		</div>
 	</div>
 	<div class="slod_zw"></div>
@@ -47,7 +50,7 @@
 	<s:iterator value="orders" var="line" status="st">
 	<div class="slod_item">
 		<dl>
-				<dt>FUN IN FOOD美食·家-${line.comboName}</dt>	
+				<dt>FUN IN FOOD美食·家-${line.comboName}</dt>
 				<span class="lt">订单编号　${line.orderid}</span>
 				<span class="rt">
 					<em class="lt">RMB</em>
@@ -87,7 +90,8 @@ function onSearch() {
 		type : "post",
 		data : {
 			restaurantId : $("input[name=restaurantId]").val(),
-			orderId : $("input[name=orderId]").val()
+			orderId : $("input[name=orderId]").val(),
+			isHistory: $(".slod_switch").hasClass("slod_switch_hover")
 		},
 		dataType : "json",
 		success : function(result) {
@@ -124,12 +128,16 @@ $(function() {
 			$(this).attr("placeHolder","请输入订单编号");	
 		}
 	});
+	$(".slod_switch").click(function() {
+		$(this).toggleClass("slod_switch_hover");
+		onSearch();
+	});
 	var pkey;
 	//核验码弹窗
 	$(".slod_btn").on("click",function(){
 		pkey = $(this).attr("pkey");
 		$(".slod_win").show();
-		$(".cm_flog").show();	
+		$(".cm_flog").show();
 	});
 	
 	$(".slod_sub").on("click",function(){

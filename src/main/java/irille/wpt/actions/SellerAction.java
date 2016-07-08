@@ -24,6 +24,7 @@ public class SellerAction extends AbstractWptAction {
 	private String identify;
 	private String orderId;
 	private Integer restaurantId;
+	private boolean isHistory;
 	
 	private SellerService service;
 	
@@ -44,7 +45,12 @@ public class SellerAction extends AbstractWptAction {
 		service.sendCheckCode(manager, getSession());
 	}
 	public void listOrder() {
-		JSONArray result = service.listOrder4Json(restaurantId, orderId, OStatus.PAYMENT);
+		JSONArray result;
+		if(isHistory) {
+			result = service.listOrder4Json(restaurantId, orderId, OStatus.FINISH);	
+		} else {
+			result = service.listOrder4Json(restaurantId, orderId, OStatus.PAYMENT);
+		}
 		PrintWriter writer;
 		try {
 			writer = ServletActionContext.getResponse().getWriter();
@@ -90,6 +96,12 @@ public class SellerAction extends AbstractWptAction {
 	}
 	public void setRestaurantId(Integer restaurantId) {
 		this.restaurantId = restaurantId;
+	}
+	public boolean isHistory() {
+		return isHistory;
+	}
+	public void setHistory(boolean isHistory) {
+		this.isHistory = isHistory;
 	}
 	public SellerService getService() {
 		return service;

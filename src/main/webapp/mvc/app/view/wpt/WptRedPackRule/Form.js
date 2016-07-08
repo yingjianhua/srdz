@@ -33,6 +33,13 @@ Ext.define('mvc.view.wpt.WptRedPackRule.Form', {
 			allowBlank : false
 		},
 		{
+			xtype : 'textfield',
+			name : 'bean.remark',
+			fieldLabel : '备注',
+			afterLabelTextTpl : required,
+			allowBlank : false
+		},
+		{
 			xtype : 'numberfield',
 			name : 'bean.leastAmt',
 			afterLabelTextTpl : required,

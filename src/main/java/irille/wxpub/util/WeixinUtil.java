@@ -84,6 +84,28 @@ public class WeixinUtil {
 	/** 微信下载多媒体文件CODE */
 	public static String MEDIA_DOWNLOAD_URL = "http://file.api.weixin.qq.com/cgi-bin/media/get?access_token=ACCESS_TOKEN&media_id=MEDIA_ID";
 
+	public static void main(String[] args) {
+		String str = "<xml>"+
+						"<act_name>美食分享</act_name>"+
+						"<client_ip>115.218.232.76</client_ip>"+
+						"<mch_billno>1265333801201607080000000001</mch_billno>"+
+						"<mch_id>1265333801</mch_id>"+
+						"<nonce_str>MVL7OKH4BV7P5JO0YEO2CJZ7GP1GEN51</nonce_str>"+
+						"<re_openid>oaCY9t0WVQA8Jr40AYYR3uZYSaZo</re_openid>"+
+						"<remark>感谢您对享食光的支持</remark>"+
+						"<send_name>享食光</send_name>"+
+						"<total_amount>100</total_amount>"+
+						"<total_num>1</total_num>"+
+						"<wishing>感谢您对享食光的支持</wishing>"+
+						"<wxappid>wx13443f418ef53874</wxappid>"+
+						"<sign>791D02CA775E6F5ED48E373FB046F8C6</sign>"+
+					"</xml>";
+		System.out.println(str);
+		Matcher m = Pattern.compile("\\\\u([0-9a-fA-F]{4})").matcher(str);
+		while (m.find())
+			str = str.replaceAll("\\" + m.group(), "" + (char) Integer.parseInt(m.group(1), 16));
+		System.out.println(str);
+	}
 	public static String httpPost(String requestUrl, String outputStr, SSLConnectionSocketFactory sslFactory) throws ClientProtocolException, IOException, JSONException {
 		if (outputStr != null) {
 			Matcher m = Pattern.compile("\\\\u([0-9a-fA-F]{4})").matcher(outputStr);
@@ -100,7 +122,7 @@ public class WeixinUtil {
 		String buffer = "";
 		try {
 			if(outputStr!=null) {
-				httppost.setEntity(new StringEntity(outputStr));
+				httppost.setEntity(new StringEntity(outputStr, "utf-8"));
 			}
 			CloseableHttpResponse response = httpclient.execute(httppost);
 			try {

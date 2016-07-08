@@ -91,14 +91,14 @@ public class UserService {
 	 * 提现
 	 * @throws Exception 
 	 */
-	public WptCashJournal cash(BigDecimal amt, WxUser user, String client_ip, String remark) throws Exception {
+	public WptCashJournal cash(BigDecimal amt, WxUser user, String client_ip) throws Exception {
 		WptRedPackRule rule = Bean.get(WptRedPackRule.class, user.getAccount());
 		if(amt.compareTo(rule.getLeastAmt()) < 0) {
 			throw LOG.err("less than least", "提现金额少于最少提现金额");
 		} else if(amt.compareTo(user.getCashableCommission()) > 0) {
 			throw LOG.err("more than cashable", "提现金额多于用户可提现佣金");
 		}
-		SendRedPack.sendRedPack(user.gtAccount(), user.getOpenId(), rule.getSendName(), amt.multiply(BigDecimal.valueOf(100)).intValue(), rule.getWishing(), client_ip, rule.getActName(), remark);
+		SendRedPack.sendRedPack(user.gtAccount(), user.getOpenId(), rule.getSendName(), amt.multiply(BigDecimal.valueOf(100)).intValue(), rule.getWishing(), client_ip, rule.getActName(), rule.getRemark());
 		return cashJournalService.add(user, amt);
 	}
 	

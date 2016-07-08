@@ -1862,7 +1862,16 @@ div.clear{
 .slod_zw{
 	height:74px;	
 }
-
+.slod_switch a{
+	border-bottom:3px solid #1b1a20;
+	display:inline-block;
+	float:right;
+	margin-right: 40px;
+	color: #fff;
+}
+.slod_switch_hover a{
+	border-color:#ffaa3d;	
+}
 .slod_item{
 	width:580px;	
 	min-height:95px;

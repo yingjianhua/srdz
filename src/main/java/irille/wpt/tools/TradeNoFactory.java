@@ -13,6 +13,7 @@ import irille.wxpub.util.mch.MchUtil;
  */
 public class TradeNoFactory {
 	private static final SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+	private static final SimpleDateFormat format2 = new SimpleDateFormat("yyyyMMddHHmmss");
 	/**
 	 * 生成一个订单号，如："201506015842" 前8位是当前日期，后4位是随机4位数字
 	 * @return
@@ -45,13 +46,13 @@ public class TradeNoFactory {
 	 * @return
 	 */
 	public synchronized static String createMchBillNo(String mch_id) {
-		if(a >= 20000000000L) {
-			a = 10000000000L;
+		if(a >= 20000) {
+			a = 10000;
 		}
 		StringBuilder str = new StringBuilder(mch_id);
-		str.append(format.format(new Date()));
+		str.append(format2.format(new Date()));
 		str.append(((a++)+"").substring(1));
 		return str.toString();
 	}
-	private static long a = 10000000000L;
+	private static long a = 10000;
 }

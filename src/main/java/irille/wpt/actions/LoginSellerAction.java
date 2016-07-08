@@ -8,7 +8,7 @@ public class LoginSellerAction extends AbstractWptAction {
 	 * 
 	 */
 	private static final long serialVersionUID = -6551598661979904482L;
-	public static final String RESTAURANT = "resturant";
+	public static final String RESTAURANT = "restaurant";
 
 	/**
 	 * 登录界面
@@ -19,7 +19,7 @@ public class LoginSellerAction extends AbstractWptAction {
 		WptRestaurantBsn bsn = WptRestaurantBsn.chkUniqueWxUserAccount(false, user.getPkey(), getAccount().getPkey());
 		if(bsn != null){
 			getSession().put(RESTAURANT, bsn.getRestaurant());
-			setResult("listSellerOrder");
+			setResult("listSellerOrder?account.pkey="+getAccount().getPkey());
 			return RTRENDS;
 		}
 		setResult("seller/sellerLogin.jsp");

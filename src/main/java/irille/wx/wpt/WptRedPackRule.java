@@ -18,6 +18,7 @@ public class WptRedPackRule extends BeanInt<WptRedPackRule> {
 		SEND_NAME(SYS.STR__100, "商户名称"),
 		WISHING(SYS.STR__200, "红包祝福语"),
 		ACT_NAME(SYS.STR__100, "活动名称"),
+		remark(SYS.STR__200, "备注"),
 		LEAST_AMT(SYS.AMT, "最少提现金额"),
 		ROW_VERSION(SYS.ROW_VERSION),
 
@@ -76,6 +77,7 @@ public class WptRedPackRule extends BeanInt<WptRedPackRule> {
   private String _sendName;	// 商户名称  STR(100)
   private String _wishing;	// 红包祝福语  STR(200)
   private String _actName;	// 活动名称  STR(100)
+  private String _remark;	// 备注  STR(200)
   private BigDecimal _leastAmt;	// 最少提现金额  DEC(16,2)
   private Short _rowVersion;	// 版本  SHORT
 
@@ -85,6 +87,7 @@ public class WptRedPackRule extends BeanInt<WptRedPackRule> {
     _sendName=null;	// 商户名称  STR(100)
     _wishing=null;	// 红包祝福语  STR(200)
     _actName=null;	// 活动名称  STR(100)
+    _remark=null;	// 备注  STR(200)
     _leastAmt=ZERO;	// 最少提现金额  DEC(16,2)
     _rowVersion=0;	// 版本  SHORT
     return this;
@@ -121,6 +124,12 @@ public class WptRedPackRule extends BeanInt<WptRedPackRule> {
   }
   public void setActName(String actName){
     _actName=actName;
+  }
+  public String getRemark(){
+    return _remark;
+  }
+  public void setRemark(String remark){
+    _remark=remark;
   }
   public BigDecimal getLeastAmt(){
     return _leastAmt;

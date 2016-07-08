@@ -9,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import irille.pub.Log;
+import irille.wpt.actions.LoginSellerAction;
 import irille.wpt.tools.SmsTool;
 import irille.wx.wpt.Wpt.OStatus;
 import irille.wx.wpt.WptOrder;
@@ -46,8 +47,8 @@ public class SellerService {
 		}
 	}
 	public WptRestaurant sellerLogin(Map<String, Object> session, String identify, Integer accountId, WxUser user) {
-		if((Integer)session.get("restaurant") != null) {
-			return WptRestaurant.get(WptRestaurant.class, (Integer) session.get("restaurant"));
+		if((Integer)session.get(LoginSellerAction.RESTAURANT) != null) {
+			return WptRestaurant.get(WptRestaurant.class, (Integer) session.get(LoginSellerAction.RESTAURANT));
 		} else {
 			if(!identify.equals((String) session.get("identify"))){
 				LOG.err("invalidCheckCode", "验证码错误");
