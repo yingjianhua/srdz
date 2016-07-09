@@ -26,4 +26,5 @@ public class SetCharacterEncodingFilter implements Filter {
 		response.setContentType("text/html;charset=" + encoding);
 		chain.doFilter(request, response);
 	}
+	
 }
