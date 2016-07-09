@@ -162,6 +162,7 @@ $(function() {
 	$("#esc").click(function(){
 		$("input[name='orderId']").val("");
 	});	
+	onSearch();
 })
 </script>
 </html>

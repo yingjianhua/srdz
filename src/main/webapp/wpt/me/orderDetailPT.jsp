@@ -105,7 +105,7 @@ function cancelOrder(clicked) {
 }
 function payDeposit() {
 	$.ajax({
-		url : "resource/order_preparePay?orderId=${order.orderid}",
+		url : "resource/order_preparePay?account.pkey=${account.pkey}&orderId=${order.orderid}",
 		type : "POST",
 		dataType : "json",
 		success : function(result) {

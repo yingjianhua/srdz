@@ -5,6 +5,7 @@ import java.util.List;
 
 import irille.pub.idu.Idu;
 import irille.wx.wpt.WptCombo;
+import irille.wx.wpt.WptComboBanner;
 import irille.wx.wpt.WptComboLine;
 
 public class ShowComboAction extends AbstractWptAction {
@@ -18,6 +19,7 @@ public class ShowComboAction extends AbstractWptAction {
 	private Integer id;
 	private WptCombo combo;
 	private List<WptComboLine> comboLines;
+	private List<WptComboBanner> banners;
 	private BigDecimal origPrice = BigDecimal.ZERO;
 	/**
 	 * 显示套餐详情
@@ -27,6 +29,8 @@ public class ShowComboAction extends AbstractWptAction {
 		combo = WptCombo.load(WptCombo.class, id);
 		String where = Idu.sqlString("{0}=? order by {1}", WptComboLine.T.COMBO, WptComboLine.T.SORT);
 		comboLines = WptComboLine.list(WptComboLine.class, where, false, combo.getPkey());
+		where = Idu.sqlString("{0}=? order by {1}", WptComboBanner.T.COMBO, WptComboBanner.T.SORT);
+		banners = WptComboBanner.list(WptComboBanner.class, where, false, id);
 		if(combo.getOrigPrice().intValue() == 0) {
 			for(WptComboLine line:comboLines) {
 				origPrice = origPrice.add(line.getPrice());
@@ -55,6 +59,12 @@ public class ShowComboAction extends AbstractWptAction {
 	}
 	public void setComboLines(List<WptComboLine> comboLines) {
 		this.comboLines = comboLines;
+	}
+	public List<WptComboBanner> getBanners() {
+		return banners;
+	}
+	public void setBanners(List<WptComboBanner> banners) {
+		this.banners = banners;
 	}
 	public BigDecimal getOrigPrice() {
 		return origPrice;

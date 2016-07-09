@@ -1,4 +1,4 @@
-﻿package irille.action;
+package irille.action;
 
 import java.io.IOException;
 
@@ -10,7 +10,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 public class SetCharacterEncodingFilter implements Filter {
-
 	protected String encoding = null;
 
 	public void destroy() {
@@ -21,10 +20,10 @@ public class SetCharacterEncodingFilter implements Filter {
 		this.encoding = filterConfig.getInitParameter("encoding");
 	}
 
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
 		request.setCharacterEncoding(encoding);
 		response.setContentType("text/html;charset=" + encoding);
 		chain.doFilter(request, response);
 	}
-	
 }

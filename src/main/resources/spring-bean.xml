@@ -23,7 +23,7 @@
 	</bean>
 	<bean class="irille.wxpub.js.JMOnMenuShareTimeline" scope="prototype">
 		<property name="title" value="享食光带你吃遍全城美食"></property>
-		<property name="link" value="http://www.51xiangshiguang.com/srdz3.0/wpt/startJourny"></property>
+		<property name="link" value="http://www.51xiangshiguang.com/srdz3.0/wpt/startJourney"></property>
 		<property name="imgUrl" value="http://www.51xiangshiguang.com/srdz3.0/wpt/images/share.jpg"></property>
 	</bean>
 	<bean class="irille.wxpub.js.JMHideMenuItems" scope="prototype">

@@ -16,7 +16,7 @@ import irille.wx.wx.WxAccount;
 
 public class WptCombo extends BeanInt<WptCombo> implements IExtName {
 	private static final Log LOG = new Log(WptCombo.class);
-	public static final Tb TB = new Tb(WptCombo.class, "套餐").setAutoIncrement().addActIUDL();
+	public static final Tb TB = new Tb(WptCombo.class, "套餐").setAutoIncrement().addActIUDL().addActOpt("bannerSet", "轮播图设置", "edit-icon");
 
 	public enum T implements IEnumFld {// @formatter:off
 		PKEY(TB.crtIntPkey()), // 主键

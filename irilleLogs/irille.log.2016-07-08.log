@@ -1,22 +1,22 @@
-[2016-07-09 13:28:25][INFO ] irille.pub.bean.PackageBase
+[2016-07-08 10:05:54][INFO ] irille.pub.bean.PackageBase
 初始化模块【class irille.core.sys.Sys】信息...
-[2016-07-09 13:28:25][INFO ] irille.pub.bean.PackageBase
+[2016-07-08 10:05:54][INFO ] irille.pub.bean.PackageBase
 初始化模块【class irille.core.lg.Lg】信息...
-[2016-07-09 13:28:26][INFO ] irille.pub.FileText
-文件[D:\workspace\srdz\src\main\java\irille\wx\wpt\WptComboBanner.java]已修改, 请按【F5】键同步显示内容!
-[2016-07-09 13:28:26][INFO ] irille.pub.svr.DbPool
+[2016-07-08 10:05:54][INFO ] irille.pub.FileText
+文件[D:\workspace\srdz\src\main\java\irille\wx\wpt\WptRedPackRule.java]已修改, 请按【F5】键同步显示内容!
+[2016-07-08 10:05:54][INFO ] irille.pub.svr.DbPool
 DbPool初始化开始
-[2016-07-09 13:28:26][INFO ] snaq.db.ConnectionPoolManager
+[2016-07-08 10:05:54][INFO ] snaq.db.ConnectionPoolManager
 Loaded ConnectionPoolManager properties with encoding UTF-8
-[2016-07-09 13:28:26][INFO ] snaq.db.ConnectionPoolManager.irille
+[2016-07-08 10:05:54][INFO ] snaq.db.ConnectionPoolManager.irille
 irille: Created pool irille (minpool=0,maxpool=100,maxsize=100,idleTimeout=60)
-[2016-07-09 13:28:26][INFO ] irille.pub.svr.DbPool
+[2016-07-08 10:05:54][INFO ] irille.pub.svr.DbPool
 DbPool初始化成功
-[2016-07-09 13:28:26][INFO ] irille.pub.svr.DbPool
+[2016-07-08 10:05:54][INFO ] irille.pub.svr.DbPool
 init poolManager end...
-[2016-07-09 13:28:26][INFO ] snaq.db.ConnectionPool.irille
+[2016-07-08 10:05:54][INFO ] snaq.db.ConnectionPool.irille
 irille: Getting connection (user/password): jdbc:mysql://localhost:3306/srdz3.0?useUnicode=true&characterEncoding=UTF8
-[2016-07-09 13:28:26][INFO ] snaq.db.ConnectionPool.irille
+[2016-07-08 10:05:55][INFO ] snaq.db.ConnectionPool.irille
 irille: Can't create a new connection for jdbc:mysql://localhost:3306/srdz3.0?useUnicode=true&characterEncoding=UTF8
 java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
 	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:957)
@@ -58,7 +58,7 @@ java.sql.SQLException: Access denied for user 'root'@'localhost' (using password
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
-[2016-07-09 13:28:26][WARN ] snaq.db.ConnectionPool.irille
+[2016-07-08 10:05:55][WARN ] snaq.db.ConnectionPool.irille
 irille: Error getting connection
 java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
 	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:957)
@@ -100,7 +100,7 @@ java.sql.SQLException: Access denied for user 'root'@'localhost' (using password
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
-[2016-07-09 13:28:26][ERROR] irille.pub.svr.DbPool
+[2016-07-08 10:05:55][ERROR] irille.pub.svr.DbPool
 连接池取对象出错
 java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
 	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:957)
@@ -142,9 +142,9 @@ java.sql.SQLException: Access denied for user 'root'@'localhost' (using password
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
-[2016-07-09 13:28:26][INFO ] snaq.db.ConnectionPool.irille
+[2016-07-08 10:05:55][INFO ] snaq.db.ConnectionPool.irille
 irille: Getting connection (user/password): jdbc:mysql://localhost:3306/srdz3.0?useUnicode=true&characterEncoding=UTF8
-[2016-07-09 13:28:26][INFO ] snaq.db.ConnectionPool.irille
+[2016-07-08 10:05:55][INFO ] snaq.db.ConnectionPool.irille
 irille: Can't create a new connection for jdbc:mysql://localhost:3306/srdz3.0?useUnicode=true&characterEncoding=UTF8
 java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
 	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:957)
@@ -185,7 +185,7 @@ java.sql.SQLException: Access denied for user 'root'@'localhost' (using password
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
-[2016-07-09 13:28:26][WARN ] snaq.db.ConnectionPool.irille
+[2016-07-08 10:05:55][WARN ] snaq.db.ConnectionPool.irille
 irille: Error getting connection
 java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
 	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:957)
@@ -226,7 +226,7 @@ java.sql.SQLException: Access denied for user 'root'@'localhost' (using password
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
-[2016-07-09 13:28:26][ERROR] irille.pub.svr.DbPool
+[2016-07-08 10:05:55][ERROR] irille.pub.svr.DbPool
 连接池取对象出错
 java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
 	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:957)

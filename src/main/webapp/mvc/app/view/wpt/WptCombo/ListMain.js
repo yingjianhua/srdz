@@ -43,6 +43,13 @@ onUpdateRecord : function(form, data){
 		this.getView().select(selection);
 		Ext.example.msg(msg_title, msg_text);
 },
+onMenuRecord : function(form, data){
+	var selection = this.getView().getSelectionModel().getSelection()[0];
+	selection.commit();
+	this.getSelectionModel().deselectAll();
+	this.getView().select(selection);
+	Ext.example.msg(msg_title, msg_text);
+	},
 onUpdRow : function(grid, rowIndex){
 		var selection = this.getStore().getAt(rowIndex);
 		this.getView().deselect(this.getView().getSelectionModel().getSelection());

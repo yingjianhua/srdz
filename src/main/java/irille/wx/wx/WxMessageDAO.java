@@ -1,5 +1,6 @@
 package irille.wx.wx;
 
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.util.Date;
 
@@ -144,8 +145,4 @@ public class WxMessageDAO {
 	  }
 	  System.out.println("----------notifyCommissionJournal----------");
   }
-  public static void nnn() {
-	  System.out.println("nnnn");
-  }
-
 }

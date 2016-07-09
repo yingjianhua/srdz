@@ -38,6 +38,15 @@ mainActs.push({
 		handler : this.onDel,
 		disabled : this.lock
 	});
+		if (this.roles.indexOf('del') != -1)
+mainActs.push({
+		text : '设置轮播图',
+		iconCls : 'upd-icon',
+		itemId : this.oldId+'bannerSet',
+		scope : this,
+		handler : this.onBannerSet,
+		disabled : this.lock
+	});
 		this.items =[{
 		region : 'north',
 		xtype : 'panel',
@@ -119,10 +128,13 @@ mainActs.push({
 				                    if (records.length === 1){
 				                        this.mdMain.getForm().loadRecord(records[0]);
         								this.mdLineTable.store.filter([{'id':'filter', 'property':'combo','value':records[0].get('bean.pkey')}]);
-    									if (this.roles.indexOf('upd') != -1)
+        								this.mdBannerLineTable.store.filter([{'id':'filter', 'property':'combo','value':records[0].get('bean.pkey')}]);
+        								if (this.roles.indexOf('upd') != -1)
 											this.down('#'+this.oldId+'upd').setDisabled(false);
 										if (this.roles.indexOf('del') != -1)
 											this.down('#'+this.oldId+'del').setDisabled(false);
+										if (this.roles.indexOf('bannerSet') != -1)
+											this.down('#'+this.oldId+'bannerSet').setDisabled(false);
 				                    }else{
 				                    	this.mdMain.getForm().reset();
 				                    	this.mdLineTable.store.removeAll();
@@ -130,6 +142,8 @@ mainActs.push({
 											this.down('#'+this.oldId+'upd').setDisabled(true);
 										if (this.roles.indexOf('del') != -1)
 											this.down('#'+this.oldId+'del').setDisabled(true);
+										if (this.roles.indexOf('bannerSet') != -1)
+											this.down('#'+this.oldId+'bannerSet').setDisabled(true);
 				                    }
 				                }
 			                }
@@ -141,6 +155,12 @@ mainActs.push({
 							itemId : this.oldId+'linetable',
 							iconCls : 'tab-user-icon'
 						})
+			},{
+				xtype : Ext.create('mvc.view.wpt.WptCombo.ListLineWptComboBanner',{
+					title : '轮播图',
+					itemId : this.oldId+'bannerlinetable',
+					iconCls : 'tab-user-icon'
+				})
 			}]
 	}];
 		this.callParent(arguments);
@@ -149,6 +169,7 @@ mainActs.push({
 		this.mdMain = this.down('#'+this.oldId+'main');
 		this.mdMainTable = this.down('#'+this.oldId+'maintable');
 		this.mdLineTable = this.down('#'+this.oldId+'linetable');
+		this.mdBannerLineTable = this.down('#'+this.oldId+'bannerlinetable');
 		mvc.Tools.onENTER2SearchBar(this.mdSearch,this);
 		if (mainActs.length == 0)
 			this.down('[region=north]').remove(this.mdAct);
@@ -206,6 +227,21 @@ onDel : function(){
 				}
 			);
 		}
+},
+onBannerSet : function() {
+	var selection = this.mdMainTable.getView().getSelectionModel().getSelection()[0];
+	this.onBannerSetWin(selection);
+},
+onBannerSetWin : function(selection) {
+	if (selection) {
+		var win = Ext.create(
+				'mvc.view.wpt.WptComboBanner.Win', {
+					title : this.title + '>轮播图设置',
+				});
+		win.show();
+		win.setActiveRecord(selection);
+		win.on('create',this.mdMainTable.onMenuRecord,this.mdMainTable);
+	}
 },
 onSearchCancel : function(){
 		this.mdMainTable.getSelectionModel().deselectAll();

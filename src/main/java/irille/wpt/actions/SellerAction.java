@@ -45,19 +45,23 @@ public class SellerAction extends AbstractWptAction {
 		service.sendCheckCode(manager, getSession());
 	}
 	public void listOrder() {
+		System.out.println("------------SellerAction.listOrder()------------");
 		JSONArray result;
+		System.out.println("isHistory:"+isHistory);
 		if(isHistory) {
 			result = service.listOrder4Json(restaurantId, orderId, OStatus.FINISH);	
 		} else {
 			result = service.listOrder4Json(restaurantId, orderId, OStatus.PAYMENT);
 		}
+		System.out.println("result.length:"+result.length());
 		PrintWriter writer;
 		try {
 			writer = ServletActionContext.getResponse().getWriter();
-			writer.println(result.toString());
+			writer.print(result.toString());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		System.out.println("------------SellerAction.listOrder()------------");
 	}
 	/**
 	 * 核对校验码
@@ -97,10 +101,10 @@ public class SellerAction extends AbstractWptAction {
 	public void setRestaurantId(Integer restaurantId) {
 		this.restaurantId = restaurantId;
 	}
-	public boolean isHistory() {
+	public boolean getIsHistory() {
 		return isHistory;
 	}
-	public void setHistory(boolean isHistory) {
+	public void setIsHistory(boolean isHistory) {
 		this.isHistory = isHistory;
 	}
 	public SellerService getService() {

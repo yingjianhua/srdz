@@ -33,7 +33,7 @@ public class DistributionRuleService {
 		if(user.getInvited3() != null) {
 			System.out.println("invited3 != null");
 			invited3 = Bean.load(WxUser.class, user.getInvited3());
-			BigDecimal commission3 = order.getPrice().multiply(BigDecimal.valueOf(rule.getBonus3()).divide(BigDecimal.valueOf(100), 2, BigDecimal.ROUND_FLOOR));
+			BigDecimal commission3 = order.getPrice().multiply(BigDecimal.valueOf(rule.getBonus3())).divide(BigDecimal.valueOf(100), 2, BigDecimal.ROUND_FLOOR);
 			commissionJournal3 = commissionJournalService.add(order, user, commission3, invited3);
 			if(user.getInvited2() != null) {
 				System.out.println("invited2 != null");
@@ -53,11 +53,7 @@ public class DistributionRuleService {
 		String accessToken = WxAccountDAO.getAccessToken(user.gtAccount());
 		
 		try {
-			WxMessageDAO.nnn();
 			WxMessageDAO.notifyCommissionJournal(accessToken, commissionJournal3, invited3==null?null:invited3.getOpenId(), commissionJournal2, invited2==null?null:invited2.getOpenId(), commissionJournal1, invited1==null?null:invited1.getOpenId());
-			System.out.println("------");
-			WxMessageDAO.nnn();
-			System.out.println("------");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

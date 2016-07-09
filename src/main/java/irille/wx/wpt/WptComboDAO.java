@@ -1,5 +1,7 @@
 package irille.wx.wpt;
 
+import java.util.List;
+
 import irille.pub.Log;
 import irille.pub.PropertyUtils;
 import irille.pub.PubInfs.IMsg;
@@ -8,6 +10,7 @@ import irille.pub.idu.Idu;
 import irille.pub.idu.IduDel;
 import irille.pub.idu.IduInsLines;
 import irille.pub.idu.IduUpdLines;
+import irille.pub.svr.Svr;
 import irille.wx.wx.WxAccount;
 import irille.wx.wx.WxAccountDAO;
 
@@ -47,6 +50,14 @@ public class WptComboDAO {
 					throw LOG.err(Msgs.difference);
 			}
 			insLine(getB(), getLines(), WptComboLine.T.COMBO.getFld());
+			if(getB().getImgUrl() != null){//把餐厅图片添加到餐厅顶图中
+				WptComboBanner banner = new WptComboBanner();
+				banner.setAccount(account.getPkey());
+				banner.setImgUrl(getB().getImgUrl());
+				banner.setSort(0);
+				banner.setCombo(getB().getPkey());
+				banner.ins();
+			}
 		}
 	}
 
@@ -90,5 +101,17 @@ public class WptComboDAO {
 			super.after();
 			delLine(getLines(WptComboLine.T.COMBO.getFld(), getB().getPkey()));
 		}
+	}
+	public static void main(String[] args) {
+		List<WptCombo> combos = Bean.list(WptCombo.class, "1=1", false);
+		for(WptCombo combo:combos) {
+			WptComboBanner banner = new WptComboBanner();
+			banner.setAccount(combo.getAccount());
+			banner.setImgUrl(combo.getImgUrl());
+			banner.setSort(0);
+			banner.setCombo(combo.getPkey());
+			banner.ins();
+		}
+		Svr.commit();
 	}
 }
