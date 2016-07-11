@@ -7,6 +7,7 @@ viewConfig : {enableTextSelection : true},
 initComponent : function(){
 		this.columns = [
 		                {text : '订单编号',width : 100,dataIndex : 'bean.orderid',sortable : true},
+		            	{text : '订单状态',width : 60,dataIndex : 'bean.status',sortable : true,renderer : mvc.Tools.optRenderer('wpt','Wpt','OStatus')},
 		                {text : '订单金额',width : 100,dataIndex : 'bean.price',sortable : true,renderer : mvc.Tools.numberRenderer(),align : 'right'},
 		                {text : '佣金',width : 100,dataIndex : 'bean.commission',sortable : true,renderer : mvc.Tools.numberRenderer(),align : 'right'},
 		                {text : '产生时间',width : 140,dataIndex : 'bean.createTime',sortable : true,renderer : Ext.util.Format.dateRenderer('Y-m-d H:i:s')},

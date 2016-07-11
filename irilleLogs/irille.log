@@ -1,22 +1,62 @@
-[2016-07-09 13:28:25][INFO ] irille.pub.bean.PackageBase
+[2016-07-11 10:46:49][INFO ] irille.pub.bean.PackageBase
 初始化模块【class irille.core.sys.Sys】信息...
-[2016-07-09 13:28:25][INFO ] irille.pub.bean.PackageBase
+[2016-07-11 10:46:49][INFO ] irille.pub.bean.PackageBase
 初始化模块【class irille.core.lg.Lg】信息...
-[2016-07-09 13:28:26][INFO ] irille.pub.FileText
-文件[D:\workspace\srdz\src\main\java\irille\wx\wpt\WptComboBanner.java]已修改, 请按【F5】键同步显示内容!
-[2016-07-09 13:28:26][INFO ] irille.pub.svr.DbPool
+[2016-07-11 10:46:49][INFO ] irille.pub.FileText
+文件[D:\workspace\srdz\src\main\java\irille\wx\wpt\WptWxTips.java]已修改, 请按【F5】键同步显示内容!
+[2016-07-11 10:46:49][INFO ] irille.pub.svr.DbPool
 DbPool初始化开始
-[2016-07-09 13:28:26][INFO ] snaq.db.ConnectionPoolManager
+[2016-07-11 10:46:49][INFO ] snaq.db.ConnectionPoolManager
 Loaded ConnectionPoolManager properties with encoding UTF-8
-[2016-07-09 13:28:26][INFO ] snaq.db.ConnectionPoolManager.irille
+[2016-07-11 10:46:49][INFO ] snaq.db.ConnectionPoolManager.irille
 irille: Created pool irille (minpool=0,maxpool=100,maxsize=100,idleTimeout=60)
-[2016-07-09 13:28:26][INFO ] irille.pub.svr.DbPool
+[2016-07-11 10:46:49][INFO ] irille.pub.svr.DbPool
 DbPool初始化成功
-[2016-07-09 13:28:26][INFO ] irille.pub.svr.DbPool
+[2016-07-11 10:46:49][INFO ] irille.pub.svr.DbPool
 init poolManager end...
-[2016-07-09 13:28:26][INFO ] snaq.db.ConnectionPool.irille
+[2016-07-11 10:46:49][INFO ] snaq.db.ConnectionPool.irille
 irille: Getting connection (user/password): jdbc:mysql://localhost:3306/srdz3.0?useUnicode=true&characterEncoding=UTF8
-[2016-07-09 13:28:26][INFO ] snaq.db.ConnectionPool.irille
+[2016-07-11 10:46:49][INFO ] snaq.db.ConnectionPool.irille
+irille: Created a new connection
+[2016-07-11 11:48:25][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.sys.Sys】信息...
+[2016-07-11 11:48:25][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.lg.Lg】信息...
+[2016-07-11 11:48:25][INFO ] irille.pub.FileText
+文件[D:\workspace\srdz\src\main\java\irille\wx\wx\WxPreviewUsr.java]已修改, 请按【F5】键同步显示内容!
+[2016-07-11 11:48:25][INFO ] irille.pub.svr.DbPool
+DbPool初始化开始
+[2016-07-11 11:48:25][INFO ] snaq.db.ConnectionPoolManager
+Loaded ConnectionPoolManager properties with encoding UTF-8
+[2016-07-11 11:48:25][INFO ] snaq.db.ConnectionPoolManager.irille
+irille: Created pool irille (minpool=0,maxpool=100,maxsize=100,idleTimeout=60)
+[2016-07-11 11:48:25][INFO ] irille.pub.svr.DbPool
+DbPool初始化成功
+[2016-07-11 11:48:25][INFO ] irille.pub.svr.DbPool
+init poolManager end...
+[2016-07-11 11:48:25][INFO ] snaq.db.ConnectionPool.irille
+irille: Getting connection (user/password): jdbc:mysql://localhost:3306/srdz3.0?useUnicode=true&characterEncoding=UTF8
+[2016-07-11 11:48:25][INFO ] snaq.db.ConnectionPool.irille
+irille: Created a new connection
+[2016-07-11 13:51:57][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.sys.Sys】信息...
+[2016-07-11 13:51:57][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.lg.Lg】信息...
+[2016-07-11 13:51:57][INFO ] irille.pub.FileText
+文件[D:\workspace\srdz\src\main\java\irille\wx\wpt\WptOrder.java]已修改, 请按【F5】键同步显示内容!
+[2016-07-11 13:51:57][INFO ] irille.pub.svr.DbPool
+DbPool初始化开始
+[2016-07-11 13:51:57][INFO ] snaq.db.ConnectionPoolManager
+Loaded ConnectionPoolManager properties with encoding UTF-8
+[2016-07-11 13:51:57][INFO ] snaq.db.ConnectionPoolManager.irille
+irille: Created pool irille (minpool=0,maxpool=100,maxsize=100,idleTimeout=60)
+[2016-07-11 13:51:57][INFO ] irille.pub.svr.DbPool
+DbPool初始化成功
+[2016-07-11 13:51:57][INFO ] irille.pub.svr.DbPool
+init poolManager end...
+[2016-07-11 13:51:57][INFO ] snaq.db.ConnectionPool.irille
+irille: Getting connection (user/password): jdbc:mysql://localhost:3306/srdz3.0?useUnicode=true&characterEncoding=UTF8
+[2016-07-11 13:51:57][INFO ] snaq.db.ConnectionPool.irille
 irille: Can't create a new connection for jdbc:mysql://localhost:3306/srdz3.0?useUnicode=true&characterEncoding=UTF8
 java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
 	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:957)
@@ -58,7 +98,7 @@ java.sql.SQLException: Access denied for user 'root'@'localhost' (using password
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
-[2016-07-09 13:28:26][WARN ] snaq.db.ConnectionPool.irille
+[2016-07-11 13:51:57][WARN ] snaq.db.ConnectionPool.irille
 irille: Error getting connection
 java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
 	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:957)
@@ -100,7 +140,7 @@ java.sql.SQLException: Access denied for user 'root'@'localhost' (using password
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
-[2016-07-09 13:28:26][ERROR] irille.pub.svr.DbPool
+[2016-07-11 13:51:57][ERROR] irille.pub.svr.DbPool
 连接池取对象出错
 java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
 	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:957)
@@ -142,9 +182,9 @@ java.sql.SQLException: Access denied for user 'root'@'localhost' (using password
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
-[2016-07-09 13:28:26][INFO ] snaq.db.ConnectionPool.irille
+[2016-07-11 13:51:57][INFO ] snaq.db.ConnectionPool.irille
 irille: Getting connection (user/password): jdbc:mysql://localhost:3306/srdz3.0?useUnicode=true&characterEncoding=UTF8
-[2016-07-09 13:28:26][INFO ] snaq.db.ConnectionPool.irille
+[2016-07-11 13:51:57][INFO ] snaq.db.ConnectionPool.irille
 irille: Can't create a new connection for jdbc:mysql://localhost:3306/srdz3.0?useUnicode=true&characterEncoding=UTF8
 java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
 	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:957)
@@ -185,7 +225,7 @@ java.sql.SQLException: Access denied for user 'root'@'localhost' (using password
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
-[2016-07-09 13:28:26][WARN ] snaq.db.ConnectionPool.irille
+[2016-07-11 13:51:57][WARN ] snaq.db.ConnectionPool.irille
 irille: Error getting connection
 java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
 	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:957)
@@ -226,7 +266,276 @@ java.sql.SQLException: Access denied for user 'root'@'localhost' (using password
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
-[2016-07-09 13:28:26][ERROR] irille.pub.svr.DbPool
+[2016-07-11 13:51:57][ERROR] irille.pub.svr.DbPool
+连接池取对象出错
+java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:957)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3878)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3814)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:871)
+	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1694)
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1215)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2255)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2286)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2085)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:795)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:44)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:404)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:400)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:327)
+	at java.sql.DriverManager.getConnection(DriverManager.java:571)
+	at java.sql.DriverManager.getConnection(DriverManager.java:215)
+	at snaq.db.ConnectionPool.create(ConnectionPool.java:246)
+	at snaq.db.ConnectionPool.create(ConnectionPool.java:62)
+	at snaq.util.ObjectPool.checkOut(ObjectPool.java:378)
+	at snaq.db.ConnectionPool.getConnection(ConnectionPool.java:361)
+	at snaq.db.ConnectionPoolManager.getConnection(ConnectionPoolManager.java:1148)
+	at irille.pub.svr.DbPool.getConnection(DbPool.java:71)
+	at irille.pub.svr.DbPool.getConnection(DbPool.java:64)
+	at irille.pub.svr.DbPool.getConn(DbPool.java:91)
+	at irille.pub.svr.DbMysql.db(DbMysql.java:261)
+	at irille.pub.dep.BeanSrc.outSrc(BeanSrc.java:51)
+	at irille.pub.bean.Bean.countTestCases(Bean.java:300)
+	at junit.framework.TestSuite.countTestCases(TestSuite.java:165)
+	at org.eclipse.jdt.internal.junit.runner.junit3.JUnit3TestReference.countTestCases(JUnit3TestReference.java:70)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.countTests(RemoteTestRunner.java:479)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:447)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+[2016-07-11 15:15:09][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.sys.Sys】信息...
+[2016-07-11 15:15:09][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.lg.Lg】信息...
+[2016-07-11 15:15:09][INFO ] irille.pub.FileText
+文件[D:\workspace\srdz\src\main\java\irille\wx\wpt\WptCommissionJournal.java]已修改, 请按【F5】键同步显示内容!
+[2016-07-11 15:15:09][INFO ] irille.pub.svr.DbPool
+DbPool初始化开始
+[2016-07-11 15:15:09][INFO ] snaq.db.ConnectionPoolManager
+Loaded ConnectionPoolManager properties with encoding UTF-8
+[2016-07-11 15:15:09][INFO ] snaq.db.ConnectionPoolManager.irille
+irille: Created pool irille (minpool=0,maxpool=100,maxsize=100,idleTimeout=60)
+[2016-07-11 15:15:09][INFO ] irille.pub.svr.DbPool
+DbPool初始化成功
+[2016-07-11 15:15:09][INFO ] irille.pub.svr.DbPool
+init poolManager end...
+[2016-07-11 15:15:09][INFO ] snaq.db.ConnectionPool.irille
+irille: Getting connection (user/password): jdbc:mysql://localhost:3306/srdz3.0?useUnicode=true&characterEncoding=UTF8
+[2016-07-11 15:15:09][INFO ] snaq.db.ConnectionPool.irille
+irille: Can't create a new connection for jdbc:mysql://localhost:3306/srdz3.0?useUnicode=true&characterEncoding=UTF8
+java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:957)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3878)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3814)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:871)
+	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1694)
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1215)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2255)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2286)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2085)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:795)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:44)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:404)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:400)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:327)
+	at java.sql.DriverManager.getConnection(DriverManager.java:571)
+	at java.sql.DriverManager.getConnection(DriverManager.java:215)
+	at snaq.db.ConnectionPool.create(ConnectionPool.java:246)
+	at snaq.db.ConnectionPool.create(ConnectionPool.java:62)
+	at snaq.util.ObjectPool.checkOut(ObjectPool.java:378)
+	at snaq.db.ConnectionPool.getConnection(ConnectionPool.java:361)
+	at snaq.db.ConnectionPoolManager.getConnection(ConnectionPoolManager.java:1148)
+	at irille.pub.svr.DbPool.getConnection(DbPool.java:71)
+	at irille.pub.svr.DbPool.getConnection(DbPool.java:64)
+	at irille.pub.svr.DbPool.getConn(DbPool.java:91)
+	at irille.pub.svr.DbMysql.dbIsExists(DbMysql.java:234)
+	at irille.pub.svr.DbMysql.db(DbMysql.java:260)
+	at irille.pub.dep.BeanSrc.outSrc(BeanSrc.java:51)
+	at irille.pub.bean.Bean.countTestCases(Bean.java:300)
+	at junit.framework.TestSuite.countTestCases(TestSuite.java:165)
+	at org.eclipse.jdt.internal.junit.runner.junit3.JUnit3TestReference.countTestCases(JUnit3TestReference.java:70)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.countTests(RemoteTestRunner.java:479)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:447)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+[2016-07-11 15:15:09][WARN ] snaq.db.ConnectionPool.irille
+irille: Error getting connection
+java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:957)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3878)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3814)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:871)
+	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1694)
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1215)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2255)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2286)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2085)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:795)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:44)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:404)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:400)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:327)
+	at java.sql.DriverManager.getConnection(DriverManager.java:571)
+	at java.sql.DriverManager.getConnection(DriverManager.java:215)
+	at snaq.db.ConnectionPool.create(ConnectionPool.java:246)
+	at snaq.db.ConnectionPool.create(ConnectionPool.java:62)
+	at snaq.util.ObjectPool.checkOut(ObjectPool.java:378)
+	at snaq.db.ConnectionPool.getConnection(ConnectionPool.java:361)
+	at snaq.db.ConnectionPoolManager.getConnection(ConnectionPoolManager.java:1148)
+	at irille.pub.svr.DbPool.getConnection(DbPool.java:71)
+	at irille.pub.svr.DbPool.getConnection(DbPool.java:64)
+	at irille.pub.svr.DbPool.getConn(DbPool.java:91)
+	at irille.pub.svr.DbMysql.dbIsExists(DbMysql.java:234)
+	at irille.pub.svr.DbMysql.db(DbMysql.java:260)
+	at irille.pub.dep.BeanSrc.outSrc(BeanSrc.java:51)
+	at irille.pub.bean.Bean.countTestCases(Bean.java:300)
+	at junit.framework.TestSuite.countTestCases(TestSuite.java:165)
+	at org.eclipse.jdt.internal.junit.runner.junit3.JUnit3TestReference.countTestCases(JUnit3TestReference.java:70)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.countTests(RemoteTestRunner.java:479)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:447)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+[2016-07-11 15:15:09][ERROR] irille.pub.svr.DbPool
+连接池取对象出错
+java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:957)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3878)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3814)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:871)
+	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1694)
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1215)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2255)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2286)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2085)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:795)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:44)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:404)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:400)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:327)
+	at java.sql.DriverManager.getConnection(DriverManager.java:571)
+	at java.sql.DriverManager.getConnection(DriverManager.java:215)
+	at snaq.db.ConnectionPool.create(ConnectionPool.java:246)
+	at snaq.db.ConnectionPool.create(ConnectionPool.java:62)
+	at snaq.util.ObjectPool.checkOut(ObjectPool.java:378)
+	at snaq.db.ConnectionPool.getConnection(ConnectionPool.java:361)
+	at snaq.db.ConnectionPoolManager.getConnection(ConnectionPoolManager.java:1148)
+	at irille.pub.svr.DbPool.getConnection(DbPool.java:71)
+	at irille.pub.svr.DbPool.getConnection(DbPool.java:64)
+	at irille.pub.svr.DbPool.getConn(DbPool.java:91)
+	at irille.pub.svr.DbMysql.dbIsExists(DbMysql.java:234)
+	at irille.pub.svr.DbMysql.db(DbMysql.java:260)
+	at irille.pub.dep.BeanSrc.outSrc(BeanSrc.java:51)
+	at irille.pub.bean.Bean.countTestCases(Bean.java:300)
+	at junit.framework.TestSuite.countTestCases(TestSuite.java:165)
+	at org.eclipse.jdt.internal.junit.runner.junit3.JUnit3TestReference.countTestCases(JUnit3TestReference.java:70)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.countTests(RemoteTestRunner.java:479)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:447)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+[2016-07-11 15:15:09][INFO ] snaq.db.ConnectionPool.irille
+irille: Getting connection (user/password): jdbc:mysql://localhost:3306/srdz3.0?useUnicode=true&characterEncoding=UTF8
+[2016-07-11 15:15:10][INFO ] snaq.db.ConnectionPool.irille
+irille: Can't create a new connection for jdbc:mysql://localhost:3306/srdz3.0?useUnicode=true&characterEncoding=UTF8
+java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:957)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3878)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3814)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:871)
+	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1694)
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1215)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2255)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2286)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2085)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:795)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:44)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:404)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:400)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:327)
+	at java.sql.DriverManager.getConnection(DriverManager.java:571)
+	at java.sql.DriverManager.getConnection(DriverManager.java:215)
+	at snaq.db.ConnectionPool.create(ConnectionPool.java:246)
+	at snaq.db.ConnectionPool.create(ConnectionPool.java:62)
+	at snaq.util.ObjectPool.checkOut(ObjectPool.java:378)
+	at snaq.db.ConnectionPool.getConnection(ConnectionPool.java:361)
+	at snaq.db.ConnectionPoolManager.getConnection(ConnectionPoolManager.java:1148)
+	at irille.pub.svr.DbPool.getConnection(DbPool.java:71)
+	at irille.pub.svr.DbPool.getConnection(DbPool.java:64)
+	at irille.pub.svr.DbPool.getConn(DbPool.java:91)
+	at irille.pub.svr.DbMysql.db(DbMysql.java:261)
+	at irille.pub.dep.BeanSrc.outSrc(BeanSrc.java:51)
+	at irille.pub.bean.Bean.countTestCases(Bean.java:300)
+	at junit.framework.TestSuite.countTestCases(TestSuite.java:165)
+	at org.eclipse.jdt.internal.junit.runner.junit3.JUnit3TestReference.countTestCases(JUnit3TestReference.java:70)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.countTests(RemoteTestRunner.java:479)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:447)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+[2016-07-11 15:15:10][WARN ] snaq.db.ConnectionPool.irille
+irille: Error getting connection
+java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:957)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3878)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3814)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:871)
+	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1694)
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1215)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2255)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2286)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2085)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:795)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:44)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:404)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:400)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:327)
+	at java.sql.DriverManager.getConnection(DriverManager.java:571)
+	at java.sql.DriverManager.getConnection(DriverManager.java:215)
+	at snaq.db.ConnectionPool.create(ConnectionPool.java:246)
+	at snaq.db.ConnectionPool.create(ConnectionPool.java:62)
+	at snaq.util.ObjectPool.checkOut(ObjectPool.java:378)
+	at snaq.db.ConnectionPool.getConnection(ConnectionPool.java:361)
+	at snaq.db.ConnectionPoolManager.getConnection(ConnectionPoolManager.java:1148)
+	at irille.pub.svr.DbPool.getConnection(DbPool.java:71)
+	at irille.pub.svr.DbPool.getConnection(DbPool.java:64)
+	at irille.pub.svr.DbPool.getConn(DbPool.java:91)
+	at irille.pub.svr.DbMysql.db(DbMysql.java:261)
+	at irille.pub.dep.BeanSrc.outSrc(BeanSrc.java:51)
+	at irille.pub.bean.Bean.countTestCases(Bean.java:300)
+	at junit.framework.TestSuite.countTestCases(TestSuite.java:165)
+	at org.eclipse.jdt.internal.junit.runner.junit3.JUnit3TestReference.countTestCases(JUnit3TestReference.java:70)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.countTests(RemoteTestRunner.java:479)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:447)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+[2016-07-11 15:15:10][ERROR] irille.pub.svr.DbPool
 连接池取对象出错
 java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
 	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:957)

@@ -34,7 +34,7 @@
 		<action name="order_*" class="orderAction" method="{1}"></action>
 		<action name="top_*" class="topAction" method="{1}"></action>
 		<action name="feedBack_*" class="feedBackAction" method="{1}"></action>
-		<action name="seller_*" class="ellerAction" method="{1}"></action>
+		<action name="seller_*" class="sellerAction" method="{1}"></action>
 		<action name="order_confirmOrder" class="orderAction" method="confirmOrder">
 			<interceptor-ref name="tokenSession" />
 			<interceptor-ref name="wpt_resource" />

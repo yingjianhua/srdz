@@ -30,7 +30,7 @@
 <body>	
 	<s:iterator value="orders" var="order">
 	<a href="#" class="usorder_item" pkey="${order.pkey }">
-		<img src="${order.gtRestaurant().imgUrl }" class="photo" />
+		<img src="../${order.gtRestaurant().imgUrl }" class="photo" />
 		<div class="txt">
 			<div class="name">
 				<s:if test="#order.gtRestaurant()">

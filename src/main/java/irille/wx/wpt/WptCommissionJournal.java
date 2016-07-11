@@ -51,7 +51,7 @@ public class WptCommissionJournal extends BeanInt<WptCommissionJournal> {
     // 索引
 	public static final Index IDX_WXUSER = TB.addIndex("wxuser",false, WXUSER);
 	public static final Index IDX_ORDERID = TB.addIndex("orderid", false, ORDERID);
-	public static final Index IDX_ORDERID_WXUSER = TB.addIndex("orderid_wxuser", true, WXUSER, ORDERID);
+	public static final Index IDX_ORDERID_WXUSER = TB.addIndex("orderidWxuser", true, WXUSER, ORDERID);
 	  
     private Fld _fld;
     private T(Class clazz, String name, boolean... isnull) {
@@ -138,10 +138,10 @@ public class WptCommissionJournal extends BeanInt<WptCommissionJournal> {
   }
 
   //方法----------------------------------------------
-  public static WptCommissionJournal loadUniqueOrderid_wxuser(boolean lockFlag,Integer wxuser,String orderid) {
+  public static WptCommissionJournal loadUniqueOrderidWxuser(boolean lockFlag,Integer wxuser,String orderid) {
     return (WptCommissionJournal)loadUnique(T.IDX_ORDERID_WXUSER,lockFlag,wxuser,orderid);
   }
-  public static WptCommissionJournal chkUniqueOrderid_wxuser(boolean lockFlag,Integer wxuser,String orderid) {
+  public static WptCommissionJournal chkUniqueOrderidWxuser(boolean lockFlag,Integer wxuser,String orderid) {
     return (WptCommissionJournal)chkUnique(T.IDX_ORDERID_WXUSER,lockFlag,wxuser,orderid);
   }
   public Integer getPkey(){

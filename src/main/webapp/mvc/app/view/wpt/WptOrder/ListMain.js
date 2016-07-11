@@ -7,9 +7,8 @@ roles : '',
 selModel : {selType : 'checkboxmodel'},
 viewConfig : {enableTextSelection : true},
 initComponent : function(){
-this.columns =[{text : '订单号',width : 100,dataIndex : 'bean.orderid',sortable : true}
-	,{text : '定金订单号',width : 100,dataIndex : 'bean.depPayId',sortable : true}
-	,{text : '退款单号',width : 100,dataIndex : 'bean.outRefundNo',sortable : true}
+this.columns =[{text : '订单号',width : 110,dataIndex : 'bean.orderid',sortable : true}
+	,{text : '订单状态',width : 60,dataIndex : 'bean.status',sortable : true,renderer : mvc.Tools.optRenderer('wpt','Wpt','OStatus')}
 	,{text : '关注用户',width : 100,dataIndex : 'bean.wxuser',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wxex',mn : 'view.wx.WxUser.List'}
 	,{text : '餐厅',width : 100,dataIndex : 'bean.restaurant',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wpt',mn : 'view.wpt.WptRestaurant.List'}
 	,{text : '宴会类型',width : 100,dataIndex : 'bean.banquet',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wpt',mn : 'view.wpt.WptBanquet.List'}
@@ -18,7 +17,6 @@ this.columns =[{text : '订单号',width : 100,dataIndex : 'bean.orderid',sortab
 	,{text : '人均预算',width : 100,dataIndex : 'bean.consumption',sortable : true,renderer : mvc.Tools.numberRenderer(),align : 'right'}
 	,{text : '城市',width : 100,dataIndex : 'bean.city',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wpt',mn : 'view.wpt.WptCity.List'}
 	,{text : '创建时间',width : 140,dataIndex : 'bean.createTime',sortable : true,renderer : Ext.util.Format.dateRenderer('Y-m-d H:i:s')}
-	,{text : '订单状态',width : 60,dataIndex : 'bean.status',sortable : true,renderer : mvc.Tools.optRenderer('wpt','Wpt','OStatus')}
 	,{text : '定金',width : 100,dataIndex : 'bean.deposit',sortable : true,renderer : mvc.Tools.numberRenderer(),align : 'right'}
 	,{text : '余款',width : 100,dataIndex : 'bean.residue',sortable : true,renderer : mvc.Tools.numberRenderer(),align : 'right'}
 	,{text : '联系人',width : 100,dataIndex : 'bean.contactMan',sortable : true}

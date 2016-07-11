@@ -7,6 +7,7 @@ proxy : {
 },
 fields : [{name : 'bean.pkey',mapping : 'pkey',type : 'int',useNull : true}
 	,{name : 'bean.orderid',mapping : 'orderid',type : 'string'}
+	,{name : 'bean.status',mapping : 'status',type : 'int',useNull : true}
 	,{name : 'bean.createTime',mapping : 'createTime',type : 'date',dateFormat : 'Y-m-d H:i:s'}
 	,{name : 'bean.price',mapping : 'price',type : 'float',useNull : true}
 	,{name : 'bean.commission',mapping : 'commission',type : 'float',useNull : true}

@@ -94,6 +94,17 @@ public class WptOrderAction extends ActionWx<WptOrder,WptOrderAction> {
 		ServletActionContext.getResponse().getWriter().print(crtJsonByBean(order, "bean.").put(SUCCESS, true));
 	}
 	/**
+	 * 由工作人员确认已收取定金
+	 * @throws Exception 
+	 * @throws JSONException 
+	 * @throws IOException 
+	 */
+	public void deposit() throws IOException, JSONException, Exception {
+		WptOrder order = WptOrder.load(WptOrder.class, getPkey());
+		WptOrderDAO.deposit(order);
+		ServletActionContext.getResponse().getWriter().print(crtJsonByBean(order, "bean.").put(SUCCESS, true));
+	}
+	/**
 	 * 由工作人员确认已收取余款
 	 * @throws Exception 
 	 * @throws JSONException 

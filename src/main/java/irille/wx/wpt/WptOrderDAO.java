@@ -137,6 +137,13 @@ public class WptOrderDAO {
 		order.stStatus(OStatus.ACCEPTED);
 		order.upd();
 	}
+	public static void deposit(WptOrder order) {
+		if(order.gtStatus() != OStatus.ACCEPTED) throw LOG.err("statusErr", "状态异常");
+		order.stStatus(OStatus.DEPOSIT);
+		order.stDepositIsWxpay(false);
+		order.stDepositMan(Idu.getUser());
+		order.upd();
+	}
  	public static void residue(WptOrder order) {
 		if(order.gtStatus() != OStatus.DEPOSIT) throw LOG.err("statusErr", "状态异常");
 		order.stStatus(OStatus.PAYMENT);
@@ -155,6 +162,7 @@ public class WptOrderDAO {
 		if(!order.gtIsPt() || order.gtResidueIsWxpay()) {
 			order.setOutRefundNo(TradeNoFactory.createOutRefundNoUnique());
 			refundOrder(order.gtAccount(), order);
+			WptCommissionJournal.loadUniqueOrderidWxuser(false, order.getWxuser(), order.getOrderid()).del();
 		}
 		order.stStatus(OStatus.CLOSE);
 		order.upd();

@@ -17,9 +17,9 @@ public class WptWxTips extends BeanInt<WptWxTips> {
 		USER(WxUser.fldOneToOne()), //自动新建 PKEY字段
 		CMB_WX(CmbWx.fldFlds()),
 	    //>>>以下是自动产生的源代码行--内嵌字段定义--请保留此行用于识别>>>
-			PKEY(TB.get("pkey")),	//编号
-			ACCOUNT(TB.get("account")),	//公众帐号
-			ROW_VERSION(TB.get("rowVersion")),	//版本
+		PKEY(TB.get("pkey")),	//编号
+		ACCOUNT(TB.get("account")),	//公众帐号
+		ROW_VERSION(TB.get("rowVersion")),	//版本
 	    //<<<以上是自动产生的源代码行--内嵌字段定义--请保留此行用于识别<<<
 	    ;
 	    //>>>以下是自动产生的源代码行--自动建立的索引定义--请保留此行用于识别>>>
@@ -60,56 +60,56 @@ public class WptWxTips extends BeanInt<WptWxTips> {
 	    return Tb.crtOutKey(TB, code, name);
 	  }
 	  //>>>以下是自动产生的源代码行--源代码--请保留此行用于识别>>>
-	  //实例变量定义-----------------------------------------
-	  private Integer _pkey;	// 编号  INT
-	  private Integer _account;	// 公众帐号 <表主键:WxAccount>  INT
-	  private Short _rowVersion;	// 版本  SHORT
+  //实例变量定义-----------------------------------------
+  private Integer _pkey;	// 编号  INT
+  private Integer _account;	// 公众帐号 <表主键:WxAccount>  INT
+  private Short _rowVersion;	// 版本  SHORT
 
-		@Override
-	  public WptWxTips init(){
-			super.init();
-	    _account=null;	// 公众帐号 <表主键:WxAccount>  INT
-	    _rowVersion=0;	// 版本  SHORT
-	    return this;
-	  }
+	@Override
+  public WptWxTips init(){
+		super.init();
+    _account=null;	// 公众帐号 <表主键:WxAccount>  INT
+    _rowVersion=0;	// 版本  SHORT
+    return this;
+  }
 
-	  //方法----------------------------------------------
-	  public Integer getPkey(){
-	    return _pkey;
-	  }
-	  public void setPkey(Integer pkey){
-	    _pkey=pkey;
-	  }
-	  //取一对一表对象: WxUser
-	  public WxUser gtUser(){
-	    return get(WxUser.class,getPkey());
-	  }
-	  public void stUser(WxUser user){
-	      setPkey(user.getPkey());
-	  }
-	  public Integer getAccount(){
-	    return _account;
-	  }
-	  public void setAccount(Integer account){
-	    _account=account;
-	  }
-	  public WxAccount gtAccount(){
-	    if(getAccount()==null)
-	      return null;
-	    return (WxAccount)get(WxAccount.class,getAccount());
-	  }
-	  public void stAccount(WxAccount account){
-	    if(account==null)
-	      setAccount(null);
-	    else
-	      setAccount(account.getPkey());
-	  }
-	  public Short getRowVersion(){
-	    return _rowVersion;
-	  }
-	  public void setRowVersion(Short rowVersion){
-	    _rowVersion=rowVersion;
-	  }
+  //方法----------------------------------------------
+  public Integer getPkey(){
+    return _pkey;
+  }
+  public void setPkey(Integer pkey){
+    _pkey=pkey;
+  }
+  //取一对一表对象: WxUser
+  public WxUser gtUser(){
+    return get(WxUser.class,getPkey());
+  }
+  public void stUser(WxUser user){
+      setPkey(user.getPkey());
+  }
+  public Integer getAccount(){
+    return _account;
+  }
+  public void setAccount(Integer account){
+    _account=account;
+  }
+  public WxAccount gtAccount(){
+    if(getAccount()==null)
+      return null;
+    return (WxAccount)get(WxAccount.class,getAccount());
+  }
+  public void stAccount(WxAccount account){
+    if(account==null)
+      setAccount(null);
+    else
+      setAccount(account.getPkey());
+  }
+  public Short getRowVersion(){
+    return _rowVersion;
+  }
+  public void setRowVersion(Short rowVersion){
+    _rowVersion=rowVersion;
+  }
 
 	  //<<<以上是自动产生的源代码行--源代码--请保留此行用于识别<<<
 }

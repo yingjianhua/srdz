@@ -49,6 +49,15 @@ if (this.roles.indexOf('accept') != -1)
 			handler : this.onAccept,
 			disabled : this.lock
 		});
+if (this.roles.indexOf('deposit') != -1)
+	mainActs.push({
+			text : '收取定金',
+			iconCls : 'edit-icon',
+			itemId : this.oldId+'deposit',
+			scope : this,
+			handler : this.onDeposit,
+			disabled : this.lock
+		});
 if (this.roles.indexOf('residue') != -1)
 	mainActs.push({
 			text : '收取余款',
@@ -185,6 +194,8 @@ if (this.roles.indexOf('agreeRefund') != -1)
 											this.down('#'+this.oldId+'service').setDisabled(status != 0 && status != 1);
 										if (this.roles.indexOf('accept') != -1)
 											this.down('#'+this.oldId+'accept').setDisabled(status != 1);
+										if (this.roles.indexOf('deposit') != -1)
+											this.down('#'+this.oldId+'deposit').setDisabled(status != 2);
 										if (this.roles.indexOf('residue') != -1)
 											this.down('#'+this.oldId+'residue').setDisabled(status != 3);
 										if (this.roles.indexOf('agreeRefund') != -1)
@@ -201,6 +212,8 @@ if (this.roles.indexOf('agreeRefund') != -1)
 											this.down('#'+this.oldId+'service').setDisabled(true);
 										if (this.roles.indexOf('accept') != -1)
 											this.down('#'+this.oldId+'accept').setDisabled(true);
+										if (this.roles.indexOf('deposit') != -1)
+											this.down('#'+this.oldId+'deposit').setDisabled(true);
 										if (this.roles.indexOf('residue') != -1)
 											this.down('#'+this.oldId+'residue').setDisabled(true);
 										if (this.roles.indexOf('agreeRefund') != -1)
@@ -299,6 +312,37 @@ onAccept : function() {
 					var result = Ext.decode(response.responseText);
 					if (result.success){
 						var bean = Ext.create('mvc.model.wpt.WptOrder', result);
+						Ext.apply(selection.data,bean.data);
+						selection.commit();
+						me.mdMainTable.getSelectionModel().deselectAll();
+						me.mdMainTable.getView().select(selection);
+						Ext.example.msg(msg_title, msg_text);
+					}else{
+						Ext.MessageBox.show({
+							title : msg_title, 
+							msg : result.msg,
+							buttons : Ext.MessageBox.OK,
+							icon : Ext.MessageBox.ERROR
+						});
+					}
+				}
+			});
+		}
+	);
+},
+onDeposit : function() {
+	var me = this;
+	var selection = this.mdMainTable.getView().getSelectionModel().getSelection()[0];
+	Ext.MessageBox.confirm(msg_confirm_title, "请确认是否已收取定金"+selection.get("bean.deposit")+" 元", 
+		function(btn) {
+			if (btn != 'yes')
+				return;
+			Ext.Ajax.request({
+				url : base_path+'/wpt_WptOrder_deposit?pkey='+selection.get("bean.pkey")+'&rowVersions='+selection.get("bean.rowVersion"),
+				success : function (response, options) {
+					var result = Ext.decode(response.responseText);
+					if (result.success){
+						var bean = Ext.create('mvc.model.wpt.WptOrder', result.items);
 						Ext.apply(selection.data,bean.data);
 						selection.commit();
 						me.mdMainTable.getSelectionModel().deselectAll();

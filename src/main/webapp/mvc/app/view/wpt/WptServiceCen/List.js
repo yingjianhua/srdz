@@ -14,13 +14,22 @@ Ext.define('mvc.view.wpt.WptServiceCen.List', {
 	},
 	initComponent : function() {
 		var mainActs = [];
-		mainActs.push({
-			text : '设置',
-			iconCls : 'ins-icon',
-			itemId : this.oldId + 'set',
-			scope : this,
-			handler : this.onSet
-		});
+		if (this.roles.indexOf('set') != -1)
+			mainActs.push({
+				text : '设置',
+				iconCls : 'ins-icon',
+				itemId : this.oldId + 'set',
+				scope : this,
+				handler : this.onSet
+			});
+		if (this.roles.indexOf('wxTip') != -1)
+			mainActs.push({
+					text : '微信提醒用户组',
+					iconCls : 'upd-icon',
+					itemId : this.oldId+'wxTip',
+					scope : this,
+					handler : this.onWxTip
+				});
 		this.columns = [ {
 			text : '客服电话',
 			width : 100,
@@ -63,6 +72,16 @@ Ext.define('mvc.view.wpt.WptServiceCen.List', {
 		this.getSelectionModel().deselectAll();
 		this.getView().select(selection);
 		Ext.example.msg(msg_title, msg_text);
+	},
+	onWxTip : function() {
+		var win = Ext.create("Ext.window.Window", {
+			title: '微信提醒用户组',
+		    height: 500,
+		    width: 550,
+		    layout: 'fit',
+		    items: Ext.create("mvc.view.wpt.WptWxTips.List")
+		}).show();
+		win.down("grid").onSearchCancel();
 	},
 	onSearch : function() {
 		var array = mvc.Tools.searchValues(this.down('toolbar'));

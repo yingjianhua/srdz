@@ -12,7 +12,8 @@ import irille.wx.wx.WxAccount;
 
 public class WptServiceCen extends BeanInt<WptServiceCen> {
 	private static final Log LOG = new Log(WptServiceCen.class);
-	public static final Tb TB = new Tb(WptServiceCen.class, "客服中心").setAutoLocal().addActList().addActOpt("set", "设置", "edit-icon");
+	public static final Tb TB = new Tb(WptServiceCen.class, "客服中心").setAutoLocal().addActList()
+			.addActOpt("set", "设置", "edit-icon").addActOpt("wxTip", "微信提醒用户", "edit-icon");
 
 	public enum T implements IEnumFld {// @formatter:off
 		PKEY(TB.crtIntPkey()), // 主键

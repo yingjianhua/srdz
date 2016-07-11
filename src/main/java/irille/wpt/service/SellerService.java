@@ -82,8 +82,7 @@ public class SellerService {
 		if(status != null) {
 			where.append(" and ").append(WptOrder.T.STATUS).append("="+status.getLine().getKey());
 		}
-		where.append(" and ").append(WptOrder.T.IS_PT).append("=?");
-		List<WptOrder> list = WptOrder.list(WptOrder.class, where.toString(), false, restaurantId, WptOrder.booleanToByte(false));
+		List<WptOrder> list = WptOrder.list(WptOrder.class, where.toString(), false, restaurantId);
 		return list;
 	}
 	public JSONArray listOrder4Json(Integer restaurantId, String orderId, OStatus status) {

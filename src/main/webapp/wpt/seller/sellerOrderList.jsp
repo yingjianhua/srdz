@@ -47,20 +47,6 @@
 	</div>
 	<div class="slod_zw"></div>
 	<div class="slod_list">
-	<s:iterator value="orders" var="line" status="st">
-	<div class="slod_item">
-		<dl>
-				<dt>FUN IN FOOD美食·家-${line.comboName}</dt>
-				<span class="lt">订单编号　${line.orderid}</span>
-				<span class="rt">
-					<em class="lt">RMB</em>
-					<i class="price rt">${line.price}</i>	
-				</span>
-		</dl>
-		<a href="javascript:;" class="slod_btn" pkey="${line.orderid }">确认用餐</a>
-		<div class="clear"></div>	
-	</div>
-	</s:iterator>
 	</div>
 	
 	<div class="cm_flog"></div><!--半透明遮罩层-->
@@ -85,13 +71,14 @@ function href(){
 	location.href = "listSellerOrder?account.pkey=${account.pkey}";
 }
 function onSearch() {
+	var isHistory = $(".slod_switch").hasClass("slod_switch_hover");
 	$.ajax({
 		url : "resource/seller_listOrder?account.pkey=${account.pkey}",
 		type : "post",
 		data : {
 			restaurantId : $("input[name=restaurantId]").val(),
 			orderId : $("input[name=orderId]").val(),
-			isHistory: $(".slod_switch").hasClass("slod_switch_hover")
+			isHistory: isHistory
 		},
 		dataType : "json",
 		success : function(result) {
@@ -106,11 +93,17 @@ function onSearch() {
 				list += '			<i class="price rt">'+order.price+'</i>';
 				list += '		</span>';
 				list += '</dl>';
-				list += '<a href="javascript:;" class="slod_btn" pkey="'+order.orderId+'">确认用餐</a>';
+				list += '<a href="javascript:;" class="slod_btn'+(isHistory?'':' confirmOrder')+'" pkey="'+order.orderId+'">'+(isHistory?'已完成':'确认用餐')+'</a>';
 				list += '<div class="clear"></div>';
 				list += '</div>';
 			})
 			$(".slod_list").html(list);
+			//核验码弹窗
+			$(".slod_btn").on("click",function(){
+				pkey = $(this).attr("pkey");
+				$(".slod_win").show();
+				$(".cm_flog").show();
+			});
 		}
 	})
 	return false;
@@ -134,7 +127,7 @@ $(function() {
 	});
 	var pkey;
 	//核验码弹窗
-	$(".slod_btn").on("click",function(){
+	$(".confirmOrder").on("click",function(){
 		pkey = $(this).attr("pkey");
 		$(".slod_win").show();
 		$(".cm_flog").show();

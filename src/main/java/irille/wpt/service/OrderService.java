@@ -1,6 +1,7 @@
 package irille.wpt.service;
 
 import java.math.BigDecimal;
+import java.sql.ResultSet;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.json.JSONObject;
 
 import irille.pub.Log;
+import irille.pub.bean.Bean;
 import irille.pub.bean.BeanBase;
 import irille.pub.idu.Idu;
 import irille.wpt.tools.SmsTool;
@@ -27,7 +29,10 @@ import irille.wx.wpt.WptOrderService;
 import irille.wx.wpt.WptRestaurant;
 import irille.wx.wpt.WptService;
 import irille.wx.wpt.WptServiceCen;
+import irille.wx.wpt.WptWxTips;
 import irille.wx.wx.WxAccount;
+import irille.wx.wx.WxAccountDAO;
+import irille.wx.wx.WxMessageDAO;
 import irille.wx.wx.WxUser;
 import irille.wxpub.util.mch.MchUtil;
 
@@ -128,7 +133,8 @@ public class OrderService {
 				orderService.ins();
 			}
 		}
-		if(order.gtIsPt() == true)
+		//假如是私人订制的订单,或者有备注的订单发送短信和微信提醒 
+		if(order.gtIsPt() == true || (order.getRem()!= null && !order.getRem().trim().equals("")))
 			doSent(order);
 		return order;
 	}
@@ -224,29 +230,39 @@ public class OrderService {
 	public void doSent(WptOrder order){
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		WptServiceCen serviceCen = WptServiceCen.load(WptServiceCen.class, order.getAccount());
+		StringBuilder c = new StringBuilder("【享食光】私人订制有新订单生成,内容如下:");
+		c.append("订单号:").append(order.getOrderid());
+		c.append(" 餐厅 :").append(order.getRestaurant()!=null?order.gtRestaurant().getName():"无");
+		c.append(" 用餐时间:").append(format.format(order.getTime()));
+		c.append(" 联系人:").append(order.getContactMan());
+		c.append(" ").append(order.gtContactType().getLine().getName()).append(":").append(order.getContactWay());
+		c.append(" 宴会类型:").append(order.gtBanquet() != null?order.gtBanquet().getExtName():"无");
+		c.append(" 服务 :[");
+		for( WptOrderService service : (List<WptOrderService>)Idu.getLines(WptOrderService.T.WPTORDER, order.getPkey())) {
+			c.append(service.getName()).append(" ");
+		}
+		c.append("]");
+		if(order.getComboName() != null) {
+			c.append(" 套餐:").append(order.getComboName());
+		}
+		if(order.getRem() != null) {
+			c.append(" 备注:").append(order.getRem());
+		}
 		for(String line : serviceCen.getSmsTips().split(",")){
-			StringBuilder c = new StringBuilder("【享食光】私人订制有新订单生成,内容如下:");
-			c.append("订单号:").append(order.getOrderid());
-			c.append(" 餐厅 :").append(order.gtRestaurant().getName());
-			c.append(" 用餐时间:").append(format.format(order.getTime()));
-			c.append(" 联系人:").append(order.getContactMan());
-			c.append(" ").append(order.gtContactType().getLine().getName()).append(":").append(order.getContactWay());
-			if(order.gtBanquet() != null) {
-				c.append(" 宴会类型:").append(order.gtBanquet());
-			}
-			c.append(" 服务 :[");
-			for( WptOrderService service : (List<WptOrderService>)Idu.getLines(WptOrderService.T.WPTORDER, order.getPkey())) {
-				c.append(service.getName()).append(" ");
-			}
-			c.append("]");
-			if(order.getComboName() != null) {
-				c.append(" 套餐:").append(order.getComboName());
-			}
-			if(order.getRem() != null) {
-				c.append(" 备注:").append(order.getRem());
-			}
 			smsTool.doSent(line, c.toString());
 		}
+		
+		String sql = Idu.sqlString("select r.* from {0} r right join {1} s on (r.{2}=s.{3}) where s.{4}=?", WxUser.class, WptWxTips.class, WxUser.T.PKEY, WptWxTips.T.PKEY, WptWxTips.T.ACCOUNT);
+		List<WxUser> users = BeanBase.list(sql, new BeanBase.ResultSetBean<WxUser>() {
+			@Override
+			public WxUser tran(ResultSet set) {
+				WxUser bean = Bean.newInstance(WxUser.class);
+				bean.fromResultSet(set);
+				return bean;
+			}
+		}, order.getAccount());
+		String accessToken = WxAccountDAO.getAccessToken(order.gtAccount());
+		smsTool.doSend(accessToken, users, c.toString());
 	}
 	
 	/**
@@ -277,6 +293,7 @@ public class OrderService {
 		} else {
 			System.out.println("-----------支付定金-----------");
 			//是支付定金的回调
+			order.stDepositIsWxpay(true);
 			order.stStatus(OStatus.DEPOSIT);
 		}
 		order.upd();

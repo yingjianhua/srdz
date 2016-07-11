@@ -24,12 +24,11 @@ import irille.wx.wpt.Wpt.OContactStatus;
 import irille.wx.wpt.Wpt.OStatus;
 import irille.wx.wx.WxAccount;
 import irille.wx.wx.WxUser;
-import irille.wxpub.util.mch.MchUtil;
 
 public class WptOrder extends BeanInt<WptOrder> implements IOrder {
 	private static final Log LOG = new Log(WptOrder.class);
 	public static final Tb TB = new Tb(WptOrder.class, "订单").setAutoIncrement().addActUpd().addActDel().addActList()
-			.addActOpt("service", "服务", "edit-icon").addActOpt("accept", "确认").addActOpt("residue", "收取余款")
+			.addActOpt("service", "服务", "edit-icon").addActOpt("accept", "确认").addActOpt("deposit", "收取定金").addActOpt("residue", "收取余款")
 			.addActOpt("agreeRefund", "同意退款");
 
 	public enum T implements IEnumFld {// @formatter:off
@@ -52,7 +51,9 @@ public class WptOrder extends BeanInt<WptOrder> implements IOrder {
 		STATUS(TB.crt(Wpt.OStatus.DEFAULT)),
 		DEPOSIT(SYS.AMT,"定金", true),
 		RESIDUE(SYS.AMT,"余款",true),
-		RESIDUE_IS_WXPAY(SYS.YN, "微信支付", true),//余款的支付方式是否为微信支付
+		DEPOSIT_IS_WXPAY(SYS.YN, "定金微信支付", true),//余款的支付方式是否为微信支付
+		DEPOSIT_MAN(SYS.USER_SYS, "定金收取人", true),//收取余款的操作人员
+		RESIDUE_IS_WXPAY(SYS.YN, "余款微信支付", true),//余款的支付方式是否为微信支付
 		RESIDUE_MAN(SYS.USER_SYS, "余款收取人", true),//收取余款的操作人员
 		CONTACT_MAN(SYS.STR__10,"联系人"),
 		CONTACT_SEX(SYS.SEX),
@@ -214,7 +215,11 @@ public class WptOrder extends BeanInt<WptOrder> implements IOrder {
 	// REFUND:8,申请退款
   private BigDecimal _deposit;	// 定金  DEC(16,2)<null>
   private BigDecimal _residue;	// 余款  DEC(16,2)<null>
-  private Byte _residueIsWxpay;	// 微信支付 <OYn>  BYTE<null>
+  private Byte _depositIsWxpay;	// 定金微信支付 <OYn>  BYTE<null>
+	// YES:1,是
+	// NO:0,否
+  private Integer _depositMan;	// 定金收取人 <表主键:SysUser>  INT<null>
+  private Byte _residueIsWxpay;	// 余款微信支付 <OYn>  BYTE<null>
 	// YES:1,是
 	// NO:0,否
   private Integer _residueMan;	// 余款收取人 <表主键:SysUser>  INT<null>
@@ -260,7 +265,9 @@ public class WptOrder extends BeanInt<WptOrder> implements IOrder {
     _status=OStatus.DEFAULT.getLine().getKey();	// 订单状态 <OStatus>  BYTE
     _deposit=null;	// 定金  DEC(16,2)
     _residue=null;	// 余款  DEC(16,2)
-    _residueIsWxpay=OYn.DEFAULT.getLine().getKey();	// 微信支付 <OYn>  BYTE
+    _depositIsWxpay=OYn.DEFAULT.getLine().getKey();	// 定金微信支付 <OYn>  BYTE
+    _depositMan=null;	// 定金收取人 <表主键:SysUser>  INT
+    _residueIsWxpay=OYn.DEFAULT.getLine().getKey();	// 余款微信支付 <OYn>  BYTE
     _residueMan=null;	// 余款收取人 <表主键:SysUser>  INT
     _contactMan=null;	// 联系人  STR(10)
     _contactSex=OSex.DEFAULT.getLine().getKey();	// 性别 <OSex>  BYTE
@@ -458,6 +465,35 @@ public class WptOrder extends BeanInt<WptOrder> implements IOrder {
   }
   public void setResidue(BigDecimal residue){
     _residue=residue;
+  }
+  public Byte getDepositIsWxpay(){
+    return _depositIsWxpay;
+  }
+  public void setDepositIsWxpay(Byte depositIsWxpay){
+    _depositIsWxpay=depositIsWxpay;
+  }
+  public Boolean gtDepositIsWxpay(){
+    return byteToBoolean(_depositIsWxpay);
+  }
+  public void stDepositIsWxpay(Boolean depositIsWxpay){
+    _depositIsWxpay=booleanToByte(depositIsWxpay);
+  }
+  public Integer getDepositMan(){
+    return _depositMan;
+  }
+  public void setDepositMan(Integer depositMan){
+    _depositMan=depositMan;
+  }
+  public SysUser gtDepositMan(){
+    if(getDepositMan()==null)
+      return null;
+    return (SysUser)get(SysUser.class,getDepositMan());
+  }
+  public void stDepositMan(SysUser depositMan){
+    if(depositMan==null)
+      setDepositMan(null);
+    else
+      setDepositMan(depositMan.getPkey());
   }
   public Byte getResidueIsWxpay(){
     return _residueIsWxpay;

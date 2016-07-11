@@ -11,6 +11,8 @@ import org.xml.sax.SAXException;
 
 import irille.pub.Log;
 import irille.pub.PubInfs.IMsg;
+import irille.wx.wx.WxMessageDAO;
+import irille.wx.wx.WxUser;
 import irille.wxpub.util.HttpRequestUtil;
 import irille.wxpub.util.ReadXmlUtil;
 
@@ -56,6 +58,11 @@ public class SmsTool {
 			throw LOG.err(Msgs.xmlErr,"SAX解析异常");
 		} catch (IOException e) {
 			throw LOG.err(Msgs.xmlErr,"IO异常");
+		}
+	}
+	public void doSend(String accessToken, List<WxUser> users, String content) {
+		for(WxUser user:users) {
+			WxMessageDAO.sendTextMessage(accessToken, user.getOpenId(), content);
 		}
 	}
 	public static void main(String[] args) {
