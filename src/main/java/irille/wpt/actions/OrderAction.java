@@ -78,7 +78,9 @@ public class OrderAction extends AbstractWptAction {
 	public void cancel() {
 		WptOrder order = WptOrder.loadUniqueOrderid(false, orderId);
 		WxUser wxUser = chkWxUser();
-		if(order.getWxuser() != wxUser.getPkey()) { 
+		System.out.println("order.wxUser:"+order.getWxuser());
+		System.out.println("wxUser:"+wxUser);
+		if(!order.getWxuser().equals(wxUser.getPkey())) { 
 			return ;
 		}
 		try {
