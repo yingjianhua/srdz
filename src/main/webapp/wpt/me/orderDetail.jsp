@@ -66,7 +66,7 @@
 	
 	<div class="usdet_zw"></div>
 	<jsp:include page="../messagebox.jsp"></jsp:include>
-	
+	<jsp:include page="../loading.jsp"/>
 </body>
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="js/base.js"></script>
@@ -94,11 +94,13 @@ function cancelOrder(clicked) {
 	}
 }
 function payOrder() {
+	$(".loading_float").show();
 	$.ajax({
 		url : "resource/order_preparePay?orderId=${order.orderid}&account.pkey=${account.pkey}",
 		type : "POST",
 		dataType : "json",
 		success : function(result) {
+			$(".loading_float").hide();
 			if(result.success) {
 				wx.chooseWXPay({
 					timestamp: result.timeStamp, 

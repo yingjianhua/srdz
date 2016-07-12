@@ -17,14 +17,14 @@
 	<bean class="irille.wxpub.js.JMOnMenuShareAppMessage" scope="prototype">
 		<property name="title" value="享食光带你吃遍全城美食"></property>
 		<property name="desc" value="享食光带你吃遍全城美食"></property>
-		<property name="link" value="http://www.51xiangshiguang.com/srdz3.0/wpt/startJourney"></property>
-		<property name="imgUrl" value="http://www.51xiangshiguang.com/srdz3.0/wpt/images/share.jpg"></property>
+		<property name="link" value="http://www.51xiangshiguang.com/srdz/wpt/startJourney"></property>
+		<property name="imgUrl" value="http://www.51xiangshiguang.com/srdz/wpt/images/share.jpg"></property>
 		<property name="type" value="link"></property>
 	</bean>
 	<bean class="irille.wxpub.js.JMOnMenuShareTimeline" scope="prototype">
 		<property name="title" value="享食光带你吃遍全城美食"></property>
-		<property name="link" value="http://www.51xiangshiguang.com/srdz3.0/wpt/startJourney"></property>
-		<property name="imgUrl" value="http://www.51xiangshiguang.com/srdz3.0/wpt/images/share.jpg"></property>
+		<property name="link" value="http://www.51xiangshiguang.com/srdz/wpt/startJourney"></property>
+		<property name="imgUrl" value="http://www.51xiangshiguang.com/srdz/wpt/images/share.jpg"></property>
 	</bean>
 	<bean class="irille.wxpub.js.JMHideMenuItems" scope="prototype">
 		<property name="menuList">

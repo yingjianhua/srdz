@@ -48,6 +48,7 @@
 	<div class="resok_info">
 		<h2>订单编号：${order.orderid }</h2>	
 		<ul>
+			<s:if test="order.checkcode != null"><li>核验码　${order.checkcode }</li></s:if>
 			<li><span class="name">${order.contactMan }</span><i class="sex_ico <s:if test="order.contactSex==1">nav</s:if><s:elseif test="order.contactSex==2">nv</s:elseif>"></i></li><!--class="sex_ico nan"就是男图标-->
 			<li><span class="<s:if test="order.contactType==0">tel_ico</s:if><s:elseif test="order.contactType==1">wx_ico</s:elseif><s:else>qq_ico</s:else>"></span><a href="tel:${order.contactWay }">${order.contactWay }</a></li>
 			<s:if test="order.banquet"><li>${order.gtBanquet().name }</li></s:if>
@@ -76,7 +77,7 @@
 	
 	<div class="usdet_zw"></div>
 	<jsp:include page="../messagebox.jsp"></jsp:include>
-	
+	<jsp:include page="../loading.jsp"/>
 </body>
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="js/base.js"></script>
@@ -104,11 +105,13 @@ function cancelOrder(clicked) {
 	}
 }
 function payDeposit() {
+	$(".loading_float").show();
 	$.ajax({
 		url : "resource/order_preparePay?account.pkey=${account.pkey}&orderId=${order.orderid}",
 		type : "POST",
 		dataType : "json",
 		success : function(result) {
+			$(".loading_float").hide();
 			if(result.success) {
 				wx.chooseWXPay({
 					timestamp: result.timeStamp, 

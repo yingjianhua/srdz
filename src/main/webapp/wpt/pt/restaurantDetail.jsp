@@ -67,15 +67,15 @@
 	</div>
 	
 	<div class="hait_det">
-		
-		<div class="title">
-			关于${restaurant.name }做过的私人定制案例介绍<br />私人定制的案例介绍	
-		</div>
+		<s:if test="cases.size() > 0">
+			<div class="title">
+				关于${restaurant.name }做过的私人定制案例介绍<br />私人定制的案例介绍	
+			</div>
+		</s:if>
 		<s:iterator value="cases" var="case">
 			<img src="../<s:property value="#case.imgUrl" />" class="photo" />
 			<s:property value="#case.des" />
 		</s:iterator>
-		
 		<div class="hait_info">
 			<h2>餐厅信息</h2>	
 			<p>营业时间：${restaurant.startdate }-${restaurant.stopdate }</p>

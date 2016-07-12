@@ -230,23 +230,23 @@ public class OrderService {
 	public void doSent(WptOrder order){
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		WptServiceCen serviceCen = WptServiceCen.load(WptServiceCen.class, order.getAccount());
-		StringBuilder c = new StringBuilder("【享食光】私人订制有新订单生成,内容如下:");
-		c.append("订单号:").append(order.getOrderid());
-		c.append(" 餐厅 :").append(order.getRestaurant()!=null?order.gtRestaurant().getName():"无");
-		c.append(" 用餐时间:").append(format.format(order.getTime()));
-		c.append(" 联系人:").append(order.getContactMan());
-		c.append(" ").append(order.gtContactType().getLine().getName()).append(":").append(order.getContactWay());
-		c.append(" 宴会类型:").append(order.gtBanquet() != null?order.gtBanquet().getExtName():"无");
+		StringBuilder c = new StringBuilder("【享食光】私人订制有新订单生成,内容如下:\n");
+		c.append("订单号:").append(order.getOrderid()).append("\n");
+		c.append(" 餐厅 :").append(order.getRestaurant()!=null?order.gtRestaurant().getName():"无").append("\n");
+		c.append(" 用餐时间:").append(format.format(order.getTime())).append("\n");
+		c.append(" 联系人:").append(order.getContactMan()).append("\n");
+		c.append(" ").append(order.gtContactType().getLine().getName()).append(":").append(order.getContactWay()).append("\n");
+		c.append(" 宴会类型:").append(order.gtBanquet() != null?order.gtBanquet().getExtName():"无").append("\n");
 		c.append(" 服务 :[");
 		for( WptOrderService service : (List<WptOrderService>)Idu.getLines(WptOrderService.T.WPTORDER, order.getPkey())) {
 			c.append(service.getName()).append(" ");
 		}
-		c.append("]");
+		c.append("]").append("\n");
 		if(order.getComboName() != null) {
-			c.append(" 套餐:").append(order.getComboName());
+			c.append(" 套餐:").append(order.getComboName()).append("\n");
 		}
 		if(order.getRem() != null) {
-			c.append(" 备注:").append(order.getRem());
+			c.append(" 备注:").append(order.getRem()).append("\n");
 		}
 		for(String line : serviceCen.getSmsTips().split(",")){
 			smsTool.doSent(line, c.toString());

@@ -118,8 +118,8 @@ function search() {
 			if(banquetId == 0) {
 				banquetName = default_banquetName;
 			}
-			$(".frbar_btn:eq(1)").html(areaName);
-			$(".frbar_btn:eq(2)").html(banquetName);
+			$(".frbar_btn:eq(0) span a").html(areaName);
+			$(".frbar_btn:eq(1) span a").html(banquetName);
 			$(".front_item").click(function(){
 				var pkey = $(this).attr("pkey");
 				var ur = $(this).attr("ur");

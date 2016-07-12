@@ -46,6 +46,8 @@
 		</div>
 		<div class="btn black" id="cash">申请提现</div>
 	</div>
+	<jsp:include page="../messagebox.jsp"></jsp:include>
+	<jsp:include page="../loading.jsp"/>
 </div>
 </body>
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
@@ -105,6 +107,7 @@ $(function() {
 	})
 	$("#cash").click(function() {
 		if(reg.test($("#cashinput").val())) {
+			$(".loading_float").show();
 			$.ajax({
 				url : "resource/user_cash?account.pkey=${account.pkey}",
 				type : "POST",
@@ -113,8 +116,9 @@ $(function() {
 					amt : $("#cashinput").val()
 				},
 				success : function(result) {
+					$(".loading_float").hide();
 					if(result.success) {
-						alert("提现成功，将通过微信红包的方式发送的您的微信上");
+						tipbox("提现成功<br>将通过微信红包的方式发送到您的微信上", function() {location.href = location.href});
 					}
 				}
 			})

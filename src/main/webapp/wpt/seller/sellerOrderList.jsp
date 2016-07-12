@@ -59,7 +59,7 @@
 			</dd>
 		</dl>	
 	</div>
-<jsp:include page="../messagebox.jsp"/>	
+<jsp:include page="../messagebox.jsp"/>
 </body>
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="js/base.js"></script>
@@ -70,6 +70,7 @@ ${jsCode}
 function href(){
 	location.href = "listSellerOrder?account.pkey=${account.pkey}";
 }
+var pkey;
 function onSearch() {
 	var isHistory = $(".slod_switch").hasClass("slod_switch_hover");
 	$.ajax({
@@ -99,7 +100,7 @@ function onSearch() {
 			})
 			$(".slod_list").html(list);
 			//核验码弹窗
-			$(".slod_btn").on("click",function(){
+			$(".confirmOrder").on("click",function(){
 				pkey = $(this).attr("pkey");
 				$(".slod_win").show();
 				$(".cm_flog").show();
@@ -124,13 +125,6 @@ $(function() {
 	$(".slod_switch").click(function() {
 		$(this).toggleClass("slod_switch_hover");
 		onSearch();
-	});
-	var pkey;
-	//核验码弹窗
-	$(".confirmOrder").on("click",function(){
-		pkey = $(this).attr("pkey");
-		$(".slod_win").show();
-		$(".cm_flog").show();
 	});
 	
 	$(".slod_sub").on("click",function(){

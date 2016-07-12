@@ -77,6 +77,7 @@
 	
 	<a href="javascript:chooseWxPay()" class="cm_btn1 cood_btn">支付</a>
 <jsp:include page="../messagebox.jsp"/>	
+<jsp:include page="../loading.jsp"/>
 </body>
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="js/base.js"></script>
@@ -86,12 +87,14 @@ ${jsCode}
 <script type="text/javascript">
 function chooseWxPay() {
 	$(".cm_btn1-btn.cood_btn").attr("href","javascript:;");
+	$(".loading_float").show();
 	$.ajax({
 		url : "resource/order_preparePay?orderId=${orderId}&account.pkey=${account.pkey}",
 		type : "POST",
 		dataType : "json",
 		data : {comboNumber : $("input[name=comboNumber]").val()},
 		success : function(result) {
+			$(".loading_float").hide();
 			if(result.success) {
 				wx.chooseWXPay({
 					timestamp: result.timeStamp, 

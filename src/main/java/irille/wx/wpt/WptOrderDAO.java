@@ -13,11 +13,14 @@ import org.apache.struts2.ServletActionContext;
 import irille.pub.Log;
 import irille.pub.PropertyUtils;
 import irille.pub.PubInfs.IMsg;
+import irille.pub.bean.Bean;
 import irille.pub.idu.Idu;
 import irille.pub.idu.IduDel;
 import irille.pub.idu.IduInsLines;
 import irille.pub.idu.IduUpdLines;
+import irille.wpt.tools.SmsTool;
 import irille.wpt.tools.TradeNoFactory;
+import irille.wx.wpt.Wpt.OContactStatus;
 import irille.wx.wpt.Wpt.OStatus;
 import irille.wx.wx.WxAccount;
 import irille.wx.wx.WxAccountDAO;
@@ -136,6 +139,26 @@ public class WptOrderDAO {
 		if(order.gtStatus() != OStatus.NOTACCEPTED) throw LOG.err("statusErr", "状态异常");
 		order.stStatus(OStatus.ACCEPTED);
 		order.upd();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		StringBuilder builder = new StringBuilder();
+		builder.append("【享食光私人订制】您的订单已处理，订单内容如下\n");
+		builder.append("订单号:").append(order.getOrderid()).append("\n");
+		builder.append("定金:").append(order.getDeposit()).append("\n");
+		builder.append("余款:").append(order.getResidue()).append("\n");
+		builder.append("餐厅 :").append(order.getRestaurant()!=null?order.gtRestaurant().getName():"无").append("\n");
+		builder.append("用餐时间:").append(format.format(order.getTime())).append("\n");
+		if(order.getComboName() != null) {
+			builder.append("套餐:").append(order.getComboName()).append("\n");
+		}
+		if(order.getRem() != null) {
+			builder.append("备注:").append(order.getRem()).append("\n");
+		}
+		builder.append("如有疑问，请联系客服:"+WptServiceCen.load(WptServiceCen.class, order.getAccount()).getSmsTips()).append("\n");
+		SmsTool sms = new SmsTool();
+		sms.doSend(WxAccountDAO.getAccessToken(order.gtAccount()), order.gtWxuser(), builder.toString());
+		if(order.gtContactType() == OContactStatus.MOBILE) {
+			sms.doSent(order.getContactWay(), builder.toString());
+		}
 	}
 	public static void deposit(WptOrder order) {
 		if(order.gtStatus() != OStatus.ACCEPTED) throw LOG.err("statusErr", "状态异常");
@@ -162,7 +185,8 @@ public class WptOrderDAO {
 		if(!order.gtIsPt() || order.gtResidueIsWxpay()) {
 			order.setOutRefundNo(TradeNoFactory.createOutRefundNoUnique());
 			refundOrder(order.gtAccount(), order);
-			WptCommissionJournal.loadUniqueOrderidWxuser(false, order.getWxuser(), order.getOrderid()).del();
+			String sql = Idu.sqlString("delete from {0} where {1}=?", WptCommissionJournal.class, WptCommissionJournal.T.ORDERID);
+			Bean.executeUpdate(sql, order.getOrderid());
 		}
 		order.stStatus(OStatus.CLOSE);
 		order.upd();
