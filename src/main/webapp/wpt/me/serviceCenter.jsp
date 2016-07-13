@@ -32,9 +32,9 @@
 	<div class="cm_flog"></div><!--遮罩层-->
 	
 	<div class="cm_win1">
-		<div class="tip_txt">${serviceCen.mobile }</div>	
+		<div class="tip_txt">${serviceCenter.mobile }</div>	
 		<a href="javascript:;" class="btn close">取消</a>
-		<a href="tel:400-826-6666" class="btn">呼叫</a>
+		<a href="tel:${serviceCenter.mobile }" class="btn">呼叫</a>
 	</div>
 	
 </body>

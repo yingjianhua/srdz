@@ -26,15 +26,18 @@ public class WptRestaurantAction extends ActionWx<WptRestaurant, WptRestaurantAc
 	public WptRestaurant getBean() {
 		return _bean;
 	}
-
 	public void setBean(WptRestaurant bean) {
 		this._bean = bean;
 	}
-
+	public List<WptRestaurantLine> getListLine() {
+		return _listLine;
+	}
+	public void setListLine(List<WptRestaurantLine> _listLine) {
+		this._listLine = _listLine;
+	}
 	public List<WptMenu> getMenuList() {
 		return _menuList;
 	}
-
 	public void setMenuList(List<WptMenu> menuList) {
 		_menuList = menuList;
 	}
@@ -91,5 +94,4 @@ public class WptRestaurantAction extends ActionWx<WptRestaurant, WptRestaurantAc
 		dao.addSpec(pkeys);
 		ServletActionContext.getResponse().getWriter().print(new JSONObject().put("success", true));
 	}
-	
 }

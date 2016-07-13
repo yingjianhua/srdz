@@ -35,7 +35,7 @@ public class WptRestaurant extends BeanInt<WptRestaurant> implements IExtName {
 		IMG_URL(SYS.PHOTO__NULL,"图片"),
 		REM(SYS.REM__200_NULL,"备注"),
 		DISPLAY(SYS.NY,"显示图片"),
-		DES(SYS.DESCRIP__200_NULL,"描述"),
+		DES(SYS.STR__1000_NULL,"描述"),
 		STARTDATE(SYS.STR__40_NULL,"开始营业时间"),
 		STOPDATE(SYS.STR__40_NULL,"结束营业时间"),
 		CONSUMPTION(SYS.AMT,"人均消费"),

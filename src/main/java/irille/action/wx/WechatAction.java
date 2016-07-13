@@ -212,13 +212,20 @@ public class WechatAction extends ActionBase {
 				if (eventType.equals(MessageUtil.EVENT_TYPE_SUBSCRIBE)) {
 					if (requestMap.containsKey("EventKey")
 							&& !requestMap.get("EventKey").equals("")) {
-						// 通过扫描二维码关注
+						//通过扫描二维码关注
 						String eventKey = requestMap.get("EventKey");
+						//未关注的扫描二维码，场景值前面会有前缀 qrscene_ ，需要先去掉
+						if(eventKey.startsWith("qrscene_")) eventKey = eventKey.substring(8);
 						String ticket = requestMap.get("Ticket");
+						System.out.println("-----------------扫描二维码关注-------------------");
+						System.out.println("FromUserName:"+fromUserName);
+						System.out.println("eventKey:"+eventKey);
 						WxUserDAO.subscribe(toUserName, fromUserName, createTime, eventKey);// 将关注用户添加到数据库中
 						respMessage = WxSubscribeDAO.getMessage(account, toUserName, fromUserName);//回复关注欢迎语
 					} else {
 						// 通过普通方式关注
+						System.out.println("-----------------扫描二维码关注-------------------");
+						System.out.println("FromUserName:"+fromUserName);
 						WxUserDAO.subscribe(toUserName, fromUserName, createTime, null);// 将关注用户添加到数据库中
 						respMessage = WxSubscribeDAO.getMessage(account, toUserName, fromUserName);// 回复关注欢迎语
 					}
@@ -226,11 +233,16 @@ public class WechatAction extends ActionBase {
 					// 扫描二维码
 					String eventKey = requestMap.get("EventKey");
 					String ticket = requestMap.get("Ticket");
+					System.out.println("-----------------扫描二维码-------------------");
+					System.out.println("FromUserName:"+fromUserName);
+					System.out.println("eventKey:"+eventKey);
 					WaQRCodeDAO qrDao = new WaQRCodeDAO();
 					qrDao.scan(account, toUserName, fromUserName, createTime, eventKey);
 					respMessage = WxSubscribeDAO.getMessage(account, toUserName, fromUserName);//回复关注欢迎语
 				} else if (eventType.equals(MessageUtil.EVENT_TYPE_UNSUBSCRIBE)) {
 					// 取消关注
+					System.out.println("-----------------取消关注-------------------");
+					System.out.println("FromUserName:"+fromUserName);
 					WxUser user = WxUserDAO.unsubscribe(toUserName, fromUserName, createTime);// 将数据库中关注用户的关注状态设置为取消关注
 				} else if (eventType.equals(MessageUtil.EVENT_TYPE_LOCATION)) {
 					// 上报地理位置

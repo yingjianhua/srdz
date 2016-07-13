@@ -1091,10 +1091,11 @@ div.clear{
 	font-weight:bold;	
 }
 .fddet_item dd{
-	height:28px;
+	height:56px;
 	line-height:28px;
 	font-size:18px;
 	letter-spacing:3px;	
+	overflow: hidden;
 }
 .fddet_item .xq{
 	display:inline-block;

@@ -8,6 +8,9 @@ proxy : {
 fields : [{name : 'bean.pkey',mapping : 'pkey',type : 'int',useNull : true}
 	,{name : 'bean.status',mapping : 'status',type : 'int',useNull : true}
 	,{name : 'bean.openId',mapping : 'openId',type : 'string'}
+	,{name : 'bean.invited1',mapping : 'invited1',type : 'string',outkey : true}
+	,{name : 'bean.invited2',mapping : 'invited2',type : 'string',outkey : true}
+	,{name : 'bean.invited3',mapping : 'invited3',type : 'string',outkey : true}
 	,{name : 'bean.unionId',mapping : 'unionId',type : 'string'}
 	,{name : 'bean.nickname',mapping : 'nickname',type : 'string'}
 	,{name : 'bean.sex',mapping : 'sex',type : 'int',useNull : true}

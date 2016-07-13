@@ -46,10 +46,15 @@
 	
 	<div class="cbdet_item">
 		<s:iterator value="comboLines" var="comboLine">
-			<p><s:property value="#comboLine.gtMenu().name" /><s:if test="#comboLine.price.intValue()!=0"><span><s:property value="#comboLine.price.intValue()"/>元/份</span></s:if></p>
+			<p>
+				<s:if test="#comboLine.gtMenu().name == 'space'"><br></s:if>
+				<s:else><s:property value="#comboLine.gtMenu().name" /></s:else>
+				<s:if test="#comboLine.price.intValue()!=0">
+				<span><s:property value="#comboLine.price.intValue()"/>元/份</span>
+				</s:if>
+			</p>
 		</s:iterator>
 	</div>
-	
 	<div class="cbdet_item cbdet_xz">
 		<h3>-须知-</h3>	
 		<p>适用人数：${combo.numberMin }~${combo.numberMax }人</p>

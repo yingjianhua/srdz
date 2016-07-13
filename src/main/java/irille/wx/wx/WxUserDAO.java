@@ -393,7 +393,6 @@ public class WxUserDAO {
 	public static WxUser unsubscribe(String accountId, String openId, String createTime) {
 		WxAccount account = WxAccount.loadUniqueAccountId(false, accountId);
 		WxUser user = WxUser.chkUniqueOpenIdAccount(false, openId, account.getPkey());
-		System.out.println("----------un subscribe");
 	  if(user!=null) {
 	  	user.stStatus(Wx.OStatus.NOFOLLOW);
 	  	user.upd();
