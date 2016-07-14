@@ -9,7 +9,7 @@ import irille.wx.wpt.WptCombo;
 import irille.wx.wpt.WptRestaurant;
 import irille.wx.wpt.WptRestaurantBanner;
 
-public class ShowRestaurantAction extends AbstractWptAction {
+public class ShowRestaurantAction extends AbstractWptAction implements IMenuShareAppMessage, IMenuShareTimeline{
 	/**
 	 * 
 	 */
@@ -26,7 +26,6 @@ public class ShowRestaurantAction extends AbstractWptAction {
 	 */
 	@Override
 	public String execute() throws Exception {
-		restaurant = WptRestaurant.load(WptRestaurant.class, id);
 		String bannerSql = Idu.sqlString("{0}=? order by {1}", WptRestaurantBanner.T.RESTAURANT, WptRestaurantBanner.T.SORT);
 		banners = WptRestaurantBanner.list(WptRestaurantBanner.class, bannerSql, false, id);
 		cases = BeanBase.list(WptCase.class, WptCase.T.RESTAURANT+"=?", false, id);
@@ -38,6 +37,38 @@ public class ShowRestaurantAction extends AbstractWptAction {
 		setResult("pt/restaurantDetail.jsp");
 		return TRENDS;
 	}
+	@Override
+	public String getShareTimelineTitle() {
+		return getRestaurant().getName();
+	}
+	@Override
+	public String getShareTimelineLink() {
+		return getRequestUrl();
+	}
+	@Override
+	public String getShareTimelineImgUrl() {
+		return getDomain()+"/"+getRestaurant().getImgUrl();
+	}
+	@Override
+	public String getShareAppMessageTitle() {
+		return getRestaurant().getName();
+	}
+	@Override
+	public String getShareAppMessageDesc() {
+		return getRestaurant().getDes();
+	}
+	@Override
+	public String getShareAppMessageLink() {
+		return getRequestUrl();
+	}
+	@Override
+	public String getShareAppMessageImgUrl() {
+		return getDomain()+"/"+getRestaurant().getImgUrl();
+	}
+	@Override
+	public String getShareAppMessageType() {
+		return "link";
+	}
 
 	public Integer getId() {
 		return id;
@@ -46,6 +77,8 @@ public class ShowRestaurantAction extends AbstractWptAction {
 		this.id = id;
 	}
 	public WptRestaurant getRestaurant() {
+		if(restaurant == null) 
+			restaurant = WptRestaurant.load(WptRestaurant.class, id);
 		return restaurant;
 	}
 	public void setRestaurant(WptRestaurant restaurant) {

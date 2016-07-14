@@ -218,7 +218,7 @@ mainActs.push({
 										if (this.roles.indexOf('delHot') != -1)
 											this.down('#'+this.oldId+'delHot').setDisabled(true);
 										if (this.roles.indexOf('addSpec') != -1)
-											this.down('#'+this.oldId+'addSpec').setDisabled(true);
+											this.down('#'+this.oldId+'addSpec').setDisabled(records.length === 0);
 										if (this.roles.indexOf('bannerSet') != -1)
 											this.down('#'+this.oldId+'bannerSet').setDisabled(true);
 				                    }

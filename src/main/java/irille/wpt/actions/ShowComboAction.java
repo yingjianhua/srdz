@@ -8,7 +8,7 @@ import irille.wx.wpt.WptCombo;
 import irille.wx.wpt.WptComboBanner;
 import irille.wx.wpt.WptComboLine;
 
-public class ShowComboAction extends AbstractWptAction {
+public class ShowComboAction extends AbstractWptAction implements IMenuShareAppMessage, IMenuShareTimeline{
 	
 	
 	/**
@@ -26,22 +26,54 @@ public class ShowComboAction extends AbstractWptAction {
 	 */
 	@Override
 	public String execute() throws Exception {
-		combo = WptCombo.load(WptCombo.class, id);
 		String where = Idu.sqlString("{0}=? order by {1}", WptComboLine.T.COMBO, WptComboLine.T.SORT);
-		comboLines = WptComboLine.list(WptComboLine.class, where, false, combo.getPkey());
+		comboLines = WptComboLine.list(WptComboLine.class, where, false, getCombo().getPkey());
 		where = Idu.sqlString("{0}=? order by {1}", WptComboBanner.T.COMBO, WptComboBanner.T.SORT);
 		banners = WptComboBanner.list(WptComboBanner.class, where, false, id);
-		if(combo.getOrigPrice().intValue() == 0) {
+		if(getCombo().getOrigPrice().intValue() == 0) {
 			for(WptComboLine line:comboLines) {
 				origPrice = origPrice.add(line.getPrice());
 			}
 		} else {
-			origPrice = combo.getOrigPrice();
+			origPrice = getCombo().getOrigPrice();
 		}
 		setResult("pt/comboDetail.jsp");
 		return TRENDS;
 	}
 	
+	@Override
+	public String getShareTimelineTitle() {
+		return getCombo().getName();
+	}
+	@Override
+	public String getShareTimelineLink() {
+		return getRequestUrl();
+	}
+	@Override
+	public String getShareTimelineImgUrl() {
+		return getDomain()+"/"+getCombo().getImgUrl();
+	}
+	@Override
+	public String getShareAppMessageTitle() {
+		return getCombo().getName();
+	}
+	@Override
+	public String getShareAppMessageDesc() {
+		return getCombo().getDes();
+	}
+	@Override
+	public String getShareAppMessageLink() {
+		return getRequestUrl();
+	}
+	@Override
+	public String getShareAppMessageImgUrl() {
+		return getDomain()+"/"+getCombo().getImgUrl();
+	}
+	@Override
+	public String getShareAppMessageType() {
+		return "link";
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -49,6 +81,8 @@ public class ShowComboAction extends AbstractWptAction {
 		this.id = id;
 	}
 	public WptCombo getCombo() {
+		if(combo == null)
+			combo = WptCombo.load(WptCombo.class, id);
 		return combo;
 	}
 	public void setCombo(WptCombo combo) {

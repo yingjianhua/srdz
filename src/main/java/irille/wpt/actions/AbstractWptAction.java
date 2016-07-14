@@ -21,6 +21,8 @@ public abstract class AbstractWptAction extends ActionSupport implements Session
 	 * 
 	 */
 	private static final long serialVersionUID = 675006873821315991L;
+	private static String domain = null;
+	private String requestUrl = null;
 	private Map<String, Object> session;
 	private HttpServletRequest request;
 	private HttpServletResponse response;
@@ -82,6 +84,19 @@ public abstract class AbstractWptAction extends ActionSupport implements Session
 	}
 	public void setJsCreater(WxJsCreater jsCreater) {
 		this.jsCreater = jsCreater;
+	}
+	public static String getDomain() {
+		if(domain == null) {
+			domain = ServletActionContext.getServletContext().getInitParameter("webPath");
+		}
+		return domain;
+	}
+	public String getRequestUrl() {
+		if(requestUrl == null) {
+			String query = getRequest().getQueryString();
+			requestUrl = getRequest().getRequestURL() + (query == null ? "" : "?" + query);
+		}
+		return requestUrl;
 	}
 	/**
 	 * 网页授权后，session里保留了用户的基本信息，可以调用该方法，把微信用户对象从数据中提取出来

@@ -15,6 +15,8 @@ import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 import irille.pub.Log;
 import irille.pub.PubInfs.IMsg;
 import irille.wpt.actions.AbstractWptAction;
+import irille.wpt.actions.IMenuShareAppMessage;
+import irille.wpt.actions.IMenuShareTimeline;
 import irille.wpt.tools.WxJsCreater;
 import irille.wx.wx.WxAccount;
 import irille.wx.wx.WxUser;
@@ -61,11 +63,27 @@ public class JsCodeInterceptor extends AbstractInterceptor{
 			WxJsCreater jsCreater = wptAction.getJsCreater();
 			WxUser user = wptAction.chkWxUser();
 			JMOnMenuShareAppMessage msam = getFactory().getBean(JMOnMenuShareAppMessage.class);
-			//分享给朋友 ，带上account.pkey和openid两个参数
-			msam.setLink(msam.getLink().getV().toString()+"?account.pkey="+account.getPkey()+"&invitedId="+user.getPkey());
+			if(action instanceof IMenuShareAppMessage) {
+				IMenuShareAppMessage imsam = (IMenuShareAppMessage)action;
+				msam.setTitle(imsam.getShareAppMessageTitle());
+				msam.setDesc(imsam.getShareAppMessageDesc());
+				msam.setImgUrl(imsam.getShareAppMessageImgUrl());
+				msam.setLink(imsam.getShareAppMessageLink()+"&invitedId="+user.getPkey());
+				msam.setType(imsam.getShareAppMessageType());
+			} else {
+				//分享给朋友 ，带上account.pkey和openid两个参数
+				msam.setLink(msam.getLink().getV().toString()+"?account.pkey="+account.getPkey()+"&invitedId="+user.getPkey());
+			}
 			//分享到朋友圈，
 			JMOnMenuShareTimeline mstl = getFactory().getBean(JMOnMenuShareTimeline.class);
-			mstl.setLink(mstl.getLink().getV().toString()+"?account.pkey="+account.getPkey()+"&invitedId="+user.getPkey());
+			if(action instanceof IMenuShareTimeline) {
+				IMenuShareTimeline imstl = (IMenuShareTimeline)action;
+				mstl.setTitle(imstl.getShareTimelineTitle());
+				mstl.setImgUrl(imstl.getShareTimelineImgUrl());
+				mstl.setLink(imstl.getShareTimelineLink()+"&invitedId="+user.getPkey());
+			} else {
+				mstl.setLink(mstl.getLink().getV().toString()+"?account.pkey="+account.getPkey()+"&invitedId="+user.getPkey());
+			}
 			//隐藏菜单功能 
 			JMHideMenuItems hmi = getFactory().getBean(JMHideMenuItems.class);
 			

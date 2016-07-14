@@ -4,7 +4,8 @@ package irille.wxpub.js;
 public class JsFldStr extends JsFld {
 
 	public JsFldStr(Object v) {
-		setV(v);
+		if(v == null) setV("");
+		else setV(v);
 	}
 	
 	@Override
