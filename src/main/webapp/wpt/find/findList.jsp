@@ -42,7 +42,7 @@
 	<a href="javascript:;" class="find_spe" pkey="${line.pkey}">
 		<div class="txt">${line.title }</div>
 		<div class="findspe_flog"></div>
-		<img src="../${line.baseImgUrl}" />	
+		<img data-original="../${line.baseImgUrl}" />	
 	</a>
 	<div class="find_line"></div>
 	</s:iterator>
@@ -70,6 +70,7 @@
 <div style="width:640px;height:83px"></div>
 </body>
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.lazyload.min.js"></script>
 <script type="text/javascript" src="js/base.js"></script>
 <script>
 ${jsCode}
@@ -118,6 +119,10 @@ function checkJsApiSuccess() {
 </script>
 <script>
 $(function(){
+	$(".find_spe img").lazyload({
+		placeholder : "images/emptySpecial.jpg",
+		effect: "show"
+		});
 	$(".find_spe").click(function(){
 		var pkey = $(this).attr("pkey");
 		window.location.href="showFind?id="+pkey+"&account.pkey=${account.pkey}";

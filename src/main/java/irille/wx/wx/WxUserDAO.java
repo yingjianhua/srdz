@@ -122,9 +122,9 @@ public class WxUserDAO {
 			}
 		} else {
 			//选择了指定的用户，更新所选的用户的基本信息
-			String where = Idu.sqlString("{0}=? and {1}=? and {2} in ("+pkeys+")", WxUser.T.ACCOUNT,WxUser.T.STATUS, WxUser.T.PKEY);
+			String where = Idu.sqlString("{0}=? and {1} in ("+pkeys+")", WxUser.T.ACCOUNT, WxUser.T.PKEY);
 			int index = 0;
-			for(List<WxUser> local_users = WxUser.list(WxUser.class, true, where, index, 100, account.getPkey(),Wx.OStatus.FOLLOW.getLine().getKey()); local_users.size()>0;System.gc()) {
+			for(List<WxUser> local_users = WxUser.list(WxUser.class, true, where, index, 100, account.getPkey()); local_users.size()>0;System.gc()) {
 				batchget(local_users, account.getPkey(), accessToken);
 				Date step1 = new Date();
 				Svr.commit();
@@ -177,11 +177,11 @@ public class WxUserDAO {
 		user.ins();
 		return user;
 	}
-	public static WxUser updByGeneral(String accessToken, String openid, WxAccount account) {
-		return upd(getInfoJsonByGeneral(accessToken, openid), account.getPkey());
+	public static WxUser updByGeneral(String accessToken, WxUser user, WxAccount account) {
+		return upd(getInfoJsonByGeneral(accessToken, user.getOpenId()), user, account.getPkey());
 	}
-	private static WxUser upd(JSONObject json, Integer accountPkey) {
-		WxUser user = buildWxUser(null, json, accountPkey);
+	private static WxUser upd(JSONObject json, WxUser user, Integer accountPkey) {
+		user = buildWxUser(user, json, accountPkey);
 		user.upd();
 		return user;
 	}
@@ -198,10 +198,10 @@ public class WxUserDAO {
 				user.stIsMember(false);
 				user.setHistoryCommission(BigDecimal.ZERO);
 				user.setCashableCommission(BigDecimal.ZERO);
+				user.setOpenId(json.getString("openid"));
 				user.setAccount(accountPkey);
 				user.stSyncStatus(true);
 			}
-			user.setOpenId(json.getString("openid"));
 			user.setNickname(json.getString("nickname"));
 			user.setSex((byte)json.getInt("sex"));
 			user.setProvince(json.getString("province"));
@@ -385,7 +385,7 @@ public class WxUserDAO {
 			user = insByGeneral(accessToken, openId, account, invitedId);
 			WxMessageDAO.notifyInvited(accessToken, user);
 		} else {
-			updByGeneral(accessToken, openId, account);
+			updByGeneral(accessToken, user, account);
 		}
 		return user;
 	}
