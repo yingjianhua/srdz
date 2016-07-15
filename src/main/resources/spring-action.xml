@@ -36,8 +36,9 @@
 	<bean id="listTopAction" class="irille.wpt.actions.ListTopAction" scope="prototype">
 		<property name="service" ref="topService"></property>
 	</bean>
-	<bean id="listFindAction" class="irille.wpt.actions.ListFindAction" scope="prototype"></bean>
-	<bean id="showFindAction" class="irille.wpt.actions.ShowFindAction" scope="prototype"></bean>
+	<bean id="listSpecialAction" class="irille.wpt.actions.ListSpecialAction" scope="prototype"></bean>
+	<bean id="listHotAction" class="irille.wpt.actions.ListHotAction" scope="prototype"></bean>
+	<bean id="showSpecialAction" class="irille.wpt.actions.ShowSpecialAction" scope="prototype"></bean>
 	<bean id="loginSellerAction" class="irille.wpt.actions.LoginSellerAction" scope="prototype"></bean>
 	<bean id="listSellerOrderAction" class="irille.wpt.actions.ListSellerOrderAction" scope="prototype">
 		<property name="service" ref="sellerService"></property>
@@ -66,5 +67,4 @@
 	<bean id="userAction" class="irille.wpt.actions.UserAction" scope="prototype">
 		<property name="service" ref="userService"></property>
 	</bean>
-	
 </beans>        

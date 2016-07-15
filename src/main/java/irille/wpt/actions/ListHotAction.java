@@ -6,20 +6,18 @@ import irille.pub.idu.Idu;
 import irille.wpt.interceptor.CityInterceptor;
 import irille.wx.wpt.WptCity;
 import irille.wx.wpt.WptHot;
-import irille.wx.wpt.WptSpecial;
 import irille.wxpub.js.JMGetLocation;
 import irille.wxpub.js.JMOpenLocation;
 import irille.wxpub.js.JQFunDefine;
 import irille.wxpub.js.JsExp;
 import irille.wxpub.js.JsFunDefine;
 
-public class ListFindAction extends AbstractWptAction {
+public class ListHotAction extends AbstractWptAction {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -6110915177662480823L;
 	private List<WptHot> hots;
-	private List<WptSpecial> specials;
 
 	/**
 	 * 发现和热销
@@ -27,11 +25,9 @@ public class ListFindAction extends AbstractWptAction {
 	@Override
 	public String execute() throws Exception {
 		WptCity city = (WptCity)getSession().get(CityInterceptor.CITY);
-		String where = Idu.sqlString("{0}=? order by {1}", WptSpecial.T.CITY, WptSpecial.T.SORT);
-		specials = WptSpecial.list(WptSpecial.class, where, false, city.getPkey());
-		where = Idu.sqlString("{0}=? order by {1}", WptHot.T.CITY, WptHot.T.SORT);
+		String where = Idu.sqlString("{0}=? order by {1}", WptHot.T.CITY, WptHot.T.SORT);
 		hots = WptHot.list(WptHot.class, where, false, city.getPkey());
-		setResult("find/findList.jsp");
+		setResult("find/hotList.jsp");
 		return TRENDS;
 	}
 	public void addExtraWxJsCode()  {
@@ -55,11 +51,5 @@ public class ListFindAction extends AbstractWptAction {
 	}
 	public void setHots(List<WptHot> hots) {
 		this.hots = hots;
-	}
-	public List<WptSpecial> getSpecials() {
-		return specials;
-	}
-	public void setSpecials(List<WptSpecial> specials) {
-		this.specials = specials;
 	}
 }

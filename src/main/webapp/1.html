@@ -49,13 +49,34 @@
 <script type="text/javascript" src="wpt/js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="wpt/js/base.js"></script>
 <script>
-${jsCode}
-</script>
-<script>
 	$(function(){
 		$(".fddet_item").click(function(){
 			var pkey = $(this).attr("pkey");
-			location.href = "showRestaurant?id="+pkey+"&account.pkey=${account.pkey}";
+			console.log(location.hash)
+			if(location.hash) {
+				console.log("hash has value")
+			}
+			if(location.hash) {
+				var condition = location.hash.substr(1).split("&");
+				var hash = {};
+				for(var i=0;i<condition.length;i++) {
+					hash[condition[i].split("=")[0]] = condition[i].split("=")[1];
+				}
+				console.log(hash)
+				if(hash.areaId) {
+					areaId = hash.areaId;
+					areaName = $(".cityLineList[pkey="+hash.areaId+"]").html();
+				}
+				if(hash.banquetId) {
+					banquetId = hash.banquetId;
+					banquetName = $(".banquetList[pkey="+hash.banquetId+"]").html();
+				}
+			}
+			
+			console.log(condition);
+			console.log(location);
+			console.log(location.href);
+			console.log(location.hash);
 		})
 	})
 </script>

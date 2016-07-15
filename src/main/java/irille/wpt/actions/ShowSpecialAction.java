@@ -10,7 +10,7 @@ import irille.wx.wpt.WptRestaurant;
 import irille.wx.wpt.WptSpecial;
 import irille.wx.wpt.WptSpecialLine;
 
-public class ShowFindAction extends AbstractWptAction implements IMenuShareAppMessage, IMenuShareTimeline {
+public class ShowSpecialAction extends AbstractWptAction implements IMenuShareAppMessage, IMenuShareTimeline {
 
 	/**
 	 * 
@@ -36,7 +36,7 @@ public class ShowFindAction extends AbstractWptAction implements IMenuShareAppMe
 			}
 		}, id);
 		
-		setResult("find/findDetail.jsp");
+		setResult("find/specialDetail.jsp");
 		return TRENDS;
 	}
 	@Override

@@ -28,39 +28,44 @@
 </head>
 
 <body>	
-		
-	<a href="javascript:;" class="find_spe">
-		<div class="txt">${special.title }</div>
-		<div class="findspe_flog"></div>
-		<img src="../${special.topImgUrl }" />	
-	</a>
-	
-	<div class="fddet_intro">
-		<h2>${special.title}</h2>
-		<p>${special.intro}</p>
+	<!--footer 底部导航-->
+		<jsp:include page="../menu.jsp">
+			<jsp:param value="2" name="currMenu"/>
+		</jsp:include>
+	<!--footer 底部导航-->
+	<div class="find_top">
+		<span><a href="javascript:;" class="hover" id="special">专题</a></span>
+		<span><a href="listHot?account.pkey=${account.pkey }" id="hot">热销</a></span>	
 	</div>
-	
-	<s:iterator value="restaurants" var="line" status="x">
-		<a href="javascript:;" class="fddet_item" pkey="${line.pkey}">
-		<dl><dt>${line.name}</dt> <dd>${line.des}</dd></dl>
-		<span class="xq">查看详情</span>
-		<div class="fddet_flog"></div>
-		<img src="../${line.imgUrl}" />
-		</a>
+	<div class="special">
+	<s:iterator value="specials" var="line" >
+	<a href="javascript:;" class="find_spe" pkey="${line.pkey}">
+		<div class="txt">${line.title }</div>
+		<div class="findspe_flog"></div>
+		<img style="height:427px" data-original="../${line.baseImgUrl}" class="lazy"/>	
+	</a>
+	<div class="find_line"></div>
 	</s:iterator>
-			
+	</div>
+<div style="width:640px;height:83px"></div>
 </body>
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.lazyload.min.js"></script>
 <script type="text/javascript" src="js/base.js"></script>
 <script>
 ${jsCode}
 </script>
 <script>
-	$(function(){
-		$(".fddet_item").click(function(){
-			var pkey = $(this).attr("pkey");
-			location.href = "showRestaurant?id="+pkey+"&account.pkey=${account.pkey}";
-		})
+$(function(){
+	$("img.lazy").lazyload({
+		placeholder : "images/emptySpecial.jpg",
+		effect: "show",
+		threshold:200
+		});
+	$(".find_spe").click(function(){
+		var pkey = $(this).attr("pkey");
+		window.location.href="showSpecial?id="+pkey+"&account.pkey=${account.pkey}";
 	})
+})
 </script>
 </html>

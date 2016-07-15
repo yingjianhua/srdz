@@ -2,14 +2,17 @@ package irille.wpt.service;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Map;
 
 import irille.pub.bean.Bean;
 import irille.pub.idu.Idu;
+import irille.pub.svr.Svr;
 import irille.wx.wa.WaQRCodeDAO;
 import irille.wx.wpt.Wpt.OStatus;
 import irille.wx.wpt.WptOrder;
 import irille.wx.wpt.WptQrcodeRule;
+import irille.wx.wx.WxAccount;
 import irille.wx.wx.WxUser;
 
 public class QrcodeRuleService {
@@ -40,13 +43,25 @@ public class QrcodeRuleService {
 			flag = true;
 		}
 		if(flag) {
-			Map<String, Object> map = WaQRCodeDAO.obtain(true, user.getPkey()+"", BigDecimal.valueOf(rule.getValidityPeriod()), user.gtAccount(), user.getPkey()+".jpg");
 			user.stIsMember(true);
-			user.setQrcode((String)map.get("imgUrl"));
-			Calendar time = Calendar.getInstance();
-			time.add(Calendar.SECOND, rule.getValidityPeriod()*24*60*60);
-			user.setQrcodeExpireTime(time.getTime());
-			user.upd();
+			createQrcode(user, rule);
+		}
+	}
+	public void createQrcode(WxUser user, WptQrcodeRule rule){
+		Map<String, Object> map = WaQRCodeDAO.obtain(true, user.getPkey()+"", BigDecimal.valueOf(rule.getValidityPeriod()), user.gtAccount(), user.getPkey()+".jpg");
+		user.setQrcode((String)map.get("imgUrl"));
+		Calendar time = Calendar.getInstance();
+		time.add(Calendar.SECOND, rule.getValidityPeriod()*24*60*60);
+		user.setQrcodeExpireTime(time.getTime());
+		user.upd();
+	}
+	public void createAllQrcode() {
+		WptQrcodeRule rule = Bean.get(WptQrcodeRule.class, 10);
+		List<WxUser> users = Bean.list(WxUser.class, WxUser.T.QRCODE+" is null", false);
+		QrcodeRuleService q = new QrcodeRuleService();
+		for(int i=1;i<users.size();i++) {
+			System.out.println(i);
+			q.createQrcode(users.get(i), rule);
 		}
 	}
 }

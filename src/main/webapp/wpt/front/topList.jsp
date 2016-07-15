@@ -63,20 +63,11 @@
 	</div>
 	<!--主题下拉-->	
 	<div class="front_flog"></div>
-	<div class="front_list">
-		<s:iterator value="tops" var="line" status="st">
-			<a href="javascript:;" ur="${line.url}" pkey="${line.pkey}" class="front_item">
-			<img src="../${line.imgUrl}" class="photo"/>
-			<dl>${line.title}
-				<dd>${line.date}</dd>
-			</dl>
-			<div class="clear"></div>
-			</a>
-	    </s:iterator>
-	</div>
+	<div class="front_list"></div>
 	<div style="width:640px;height:83px"></div>
 </body>
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.lazyload.min.js"></script>
 <script type="text/javascript" src="js/base.js"></script>
 <script>
 ${jsCode}
@@ -105,19 +96,26 @@ function search() {
 			var list = "";
 			$.each(result, function(index, top) {
 				list += '<a href="javascript:;" ur="'+top.url+'" pkey="'+top.pkey+'" class="front_item">';
-				list += '<img src="../'+top.imgUrl+'" class="photo"/>';
+				list += '<img data-original="../'+top.imgUrl+'" class="photo lazy"/>';
 				list += '<dl>'+top.title;
 				list += '	<dd>'+top.date+'</dd>';
 				list += '</dl>';
 				list += '<div class="clear"></div>';
 			})
 			$(".front_list").html(list);
+			$("img.lazy").lazyload({
+				placeholder : "images/emptyTop.jpg",
+				effect: "show",
+				threshold:10,
+				skip_invisible : false
+				});
 			if(areaId == 0) {
 				areaName = default_areaName;
 			}
 			if(banquetId == 0) {
 				banquetName = default_banquetName;
 			}
+			location.hash = "areaId="+areaId+"&banquetId="+banquetId;
 			$(".frbar_btn:eq(0) span a").html(areaName);
 			$(".frbar_btn:eq(1) span a").html(banquetName);
 			$(".front_item").click(function(){
@@ -171,6 +169,22 @@ $(function(){
 		else
 			location.href = "showTop?id=" + pkey+"&account.pkey="+${account.pkey};
 	});
+	if(location.hash) {
+		var condition = location.hash.substr(1).split("&");
+		var hash = {};
+		for(var i=0;i<condition.length;i++) {
+			hash[condition[i].split("=")[0]] = condition[i].split("=")[1];
+		}
+		if(hash.areaId) {
+			areaId = hash.areaId;
+			areaName = $(".cityLineList[pkey="+hash.areaId+"]").html();
+		}
+		if(hash.banquetId) {
+			banquetId = hash.banquetId;
+			banquetName = $(".banquetList[pkey="+hash.banquetId+"]").html();
+		}
+	}
+	search();
 })
 </script>
 </html>

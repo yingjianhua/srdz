@@ -30,7 +30,6 @@ public class ListTopAction extends AbstractWptAction {
 		WptCity city = (WptCity) getSession().get(CityInterceptor.CITY);
 		areas = WptCityLine.list(WptCityLine.class, WptCityLine.T.CITY + " = ?", false, city.getPkey());
 		banquets = WptBanquet.list(WptBanquet.class,  WptBanquet.T.ACCOUNT + " = ?", false, getAccount().getPkey());
-		tops = service.search(city.getPkey(), null, null, getAccount().getPkey());
 		setResult("front/topList.jsp");
 		return TRENDS;
 	}

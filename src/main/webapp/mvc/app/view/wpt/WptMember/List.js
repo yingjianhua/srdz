@@ -46,6 +46,12 @@ initComponent : function(){
 					itemId : this.oldId+'upd',
 					scope : this,
 					handler : this.onBeenMember,
+				},{
+					text : '为所有用户产生推广二维码',
+					iconCls : 'upd-icon',
+					itemId : this.oldId+'createAllQrcode',
+					scope : this,
+					handler : this.onCreateAllQrcode,
 				}]
 			},{
 				xtype : 'form',
@@ -125,6 +131,11 @@ initComponent : function(){
 },
 getStore : function(){
 		return this.mdMainTable.store;
+},
+onCreateAllQrcode : function() {
+	Ext.Ajax.request({
+		url : base_path+'/wx_WxUser_createAllQrcode'
+	});
 },
 onBeenMember : function() {
 	var selections = this.mdMainTable.getView().getSelectionModel().getSelection();

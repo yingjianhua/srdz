@@ -72,9 +72,20 @@
 	<div class="cbdet_zw"></div>
 		
 </body>
+<script src="../wp/fif/assets/js/libs/TouchSlide.1.1.js"></script>
+<script>
+//轮播图
+TouchSlide({ 
+	slideCell:"#banner",
+	titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+	mainCell:".bd ul", 
+	effect:"leftLoop", 
+	autoPlay:true,//自动播放
+	autoPage:true, //自动分页
+});
+</script>
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="js/base.js"></script>
-<script src="../wp/fif/assets/js/libs/TouchSlide.1.1.js"></script>
 <script>
 ${jsCode}
 </script>
@@ -85,14 +96,5 @@ $(function() {
 		location.href = url;
 	})
 })
-//轮播图
-TouchSlide({ 
-	slideCell:"#banner",
-	titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
-	mainCell:".bd ul", 
-	effect:"leftLoop", 
-	autoPlay:true,//自动播放
-	autoPage:true, //自动分页
-});
 </script>
 </html>

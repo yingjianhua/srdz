@@ -34,25 +34,15 @@
 		</jsp:include>
 	<!--footer 底部导航-->
 	<div class="find_top">
-		<span><a href="javascript:;" class="hover" id="special">专题</a></span>
-		<span><a href="javascript:;" id="hot">热销</a></span>	
-	</div>
-	<div class="special">
-	<s:iterator value="specials" var="line" >
-	<a href="javascript:;" class="find_spe" pkey="${line.pkey}">
-		<div class="txt">${line.title }</div>
-		<div class="findspe_flog"></div>
-		<img data-original="../${line.baseImgUrl}" />	
-	</a>
-	<div class="find_line"></div>
-	</s:iterator>
+		<span><a href="listSpecial?account.pkey=${account.pkey }" id="special">专题</a></span>
+		<span><a href="javascript:;" class="hover" id="hot">热销</a></span>	
 	</div>
 	<!-- 热销 -->
 	<div class="hot">
 		<s:iterator value="hots" var="line" status="st">
 			<div class="hall_item">
 					<a href="javascript:;" class="hall_item1" pkey="${line.restaurant}" >
-					<img src="../${line.gtRestaurant().imgUrl}" class="photo" />
+					<img style="height:358px" data-original="../${line.gtRestaurant().imgUrl}" class="photo lazy" />
 					<div class="item_flog"></div>
 					</a> 
 					<i class="addr" latitude="${line.gtRestaurant().coordinate}" longitude="${line.gtRestaurant().longitude}" name="${line.gtRestaurant().name}" address="${line.gtRestaurant().addr}">
@@ -119,40 +109,15 @@ function checkJsApiSuccess() {
 </script>
 <script>
 $(function(){
-	$(".find_spe img").lazyload({
-		placeholder : "images/emptySpecial.jpg",
-		effect: "show"
+	$("img.lazy").lazyload({
+		placeholder : "images/emptyHot.jpg",
+		effect: "show",
+		threshold:200
 		});
-	$(".find_spe").click(function(){
-		var pkey = $(this).attr("pkey");
-		window.location.href="showFind?id="+pkey+"&account.pkey=${account.pkey}";
-	})
-	
-	$("#special").click(function(){
-		window.location.hash = "#special1";
-		$("#special").addClass("hover")
-		$("#hot").removeClass("hover");
-		$(".hot").hide();
-		$(".special").show();
-	})
-	$("#hot").click(function(){
-		window.location.hash = "#hot1";
-		$("#hot").addClass("hover");
-		$("#special").removeClass("hover");
-		$(".special").hide();
-		$(".hot").show();
-	})
 	$(".hall_item1").click(function(){
 		var pkey = $(this).attr("pkey");
 		window.location.href = "showRestaurant?id="+pkey+"&account.pkey=${account.pkey}";
 	})
-	var hash;
-	hash = (!window.location.hash)?"#special1":window.location.hash;
-	if(hash == "#special1") {
-		$("#special").click();
-	} else  if(hash == "#hot1") {
-		$("#hot").click();
-	}
 })
 </script>
 </html>

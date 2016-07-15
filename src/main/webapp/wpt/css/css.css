@@ -488,8 +488,8 @@ div.clear{
 }
 .hall_item .photo{
 	display:block;
-	width:100%;
-	height:auto;	
+	width:640px;
+	height:358px;	
 }
 .hall_item .item_flog{
 	position:absolute;
@@ -1006,7 +1006,7 @@ div.clear{
 .find_spe img{
 	display:block;
 	width:640px;
-	height:auto;	
+	height:427px;	
 }
 .findspe_flog{
 	width:100%;
@@ -1068,12 +1068,12 @@ div.clear{
 	width:580px;
 	height:302px;	
 }
-.fddet_flog{
+.fddet_flog{ 
 	position:absolute;
 	width:100%;
 	height:100%;
 	z-index:2;
-	background:url("../images/bbg50.png");	
+	background:url("../images/bbg25.png");	
 }
 .fddet_item dl{
 	width:100%;	
@@ -2118,9 +2118,6 @@ div.clear{
 }
 .tsel_zw{
 	height:100px;	
-}
-.hot{
-	display:none;
 }
 .hot .hall_item a{
 	display:block;

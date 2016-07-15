@@ -36,10 +36,12 @@ public class WptRestaurantDAO {
 			getB().setAccount(account.getPkey());
 			getB().setCityname(getB().gtCity().getName());
 			if(getB().getCoordinate() != null){
-				getB().setLongitude(getB().getCoordinate().split(",")[1]);
-				getB().setCoordinate(getB().getCoordinate().split(",")[0]);
+				String[] loca = getB().getCoordinate().split(",");
+				if(loca.length > 1) {
+					getB().setLongitude(loca[1]);
+					getB().setCoordinate(loca[0]);
+				}
 			}
-			
 		}
 
 		@Override

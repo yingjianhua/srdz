@@ -2,7 +2,6 @@ package irille.wx.wx;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,6 +17,8 @@ import irille.pub.bean.Bean;
 import irille.pub.bean.BeanBase;
 import irille.pub.idu.Idu;
 import irille.pub.svr.Svr;
+import irille.wpt.service.QrcodeRuleService;
+import irille.wx.wpt.WptQrcodeRule;
 import irille.wxpub.util.WeixinUtil;
 
 /**
@@ -175,6 +176,8 @@ public class WxUserDAO {
 			user.setInvited1(invited1);
 		}
 		user.ins();
+		QrcodeRuleService q = new QrcodeRuleService();
+		q.createQrcode(user, Bean.get(WptQrcodeRule.class, user.getAccount()));
 		return user;
 	}
 	public static WxUser updByGeneral(String accessToken, WxUser user, WxAccount account) {

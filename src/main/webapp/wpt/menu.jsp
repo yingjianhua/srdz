@@ -12,7 +12,7 @@
 $(function() {
 	var hrefs = [
 	             "startJourney?account.pkey=${account.pkey}",
-	             "listFind?account.pkey=${account.pkey}",
+	             "listSpecial?account.pkey=${account.pkey}",
 	             "listTop?account.pkey=${account.pkey}",
 	             "showMe?account.pkey=${account.pkey}",
 	             ];

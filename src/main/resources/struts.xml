@@ -75,8 +75,9 @@
 		<action name="serviceCenter" class="serviceCenterAction"></action>
 		<action name="feedBack" class="feedBackAction"></action>
 		<action name="listTop" class="listTopAction"></action>
-		<action name="listFind" class="listFindAction"></action>
-		<action name="showFind" class="showFindAction"></action>
+		<action name="listSpecial" class="listSpecialAction"></action>
+		<action name="listHot" class="listHotAction"></action>
+		<action name="showSpecial" class="showSpecialAction"></action>
 		<action name="loginSeller" class="loginSellerAction"></action>
 		<action name="loginSeller" class="loginSellerAction"></action>
 		<action name="listSellerOrder" class="listSellerOrderAction"></action>
