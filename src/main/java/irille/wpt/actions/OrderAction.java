@@ -24,7 +24,7 @@ public class OrderAction extends AbstractWptAction {
 	 * 
 	 */
 	private static final long serialVersionUID = -4912468017257111167L;
-	public static final Log LOG = new Log(OrderAction.class);
+	private static final Log LOG = new Log(OrderAction.class);
 	
 	private String contactMan;
 	private String contactSex;
@@ -47,7 +47,7 @@ public class OrderAction extends AbstractWptAction {
 	private OrderService service;
 
 	public void confirmOrder() throws ParseException, JSONException, IOException {
-		System.out.println("---------------OrderAction.confirmOrder()---------------");
+		LOG.info("--------------confirmOrder():start--------------");
 		WptOrder order = service.createOrder(contactMan, contactSex, date, contactWay, contactType, rem, 
 				comboId, banquetId, pnum, perCapitaBudget, areaId, services, chkWxUser().getPkey(), getAccount().getPkey());
 		JSONObject result = new JSONObject();
@@ -56,19 +56,19 @@ public class OrderAction extends AbstractWptAction {
 			result.put("orderId", order.getOrderid());
 			ServletActionContext.getResponse().getWriter().print(result.toString());
 		}
-		System.out.println("---------------OrderAction.confirmOrder()---------------");
+		LOG.info("--------------confirmOrder():end--------------");
 	}
 	/**
 	 * 在快捷支付页面生成预支付参数,快捷支付页面可以调整订单中的套餐数量(只用于套餐订单)
 	 * @throws Exception
 	 */
 	public void preparePay() throws Exception {
-		System.out.println("---------------OrderAction.preparePay()----------------");
+		LOG.info("--------------preparePay():start--------------");
 		account = WxAccount.get(WxAccount.class, account.getPkey());
 		JSONObject result = service.createPreparePay(orderId, comboNumber, chkWxUser(), account, getRequest());
 		result.put(SUCCESS, true);
 		ServletActionContext.getResponse().getWriter().print(result);
-		System.out.println("---------------OrderAction.preparePay()----------------");
+		LOG.info("--------------preparePay():end--------------");
 	}
 	/**
 	 * 取消订单
@@ -76,10 +76,10 @@ public class OrderAction extends AbstractWptAction {
 	 * @throws IOException
 	 */
 	public void cancel() {
+		LOG.info("--------------cancel():start--------------");
+		LOG.info("orderId:{0}", orderId);
 		WptOrder order = WptOrder.loadUniqueOrderid(false, orderId);
 		WxUser wxUser = chkWxUser();
-		System.out.println("order.wxUser:"+order.getWxuser());
-		System.out.println("wxUser:"+wxUser);
 		if(!order.getWxuser().equals(wxUser.getPkey())) { 
 			return ;
 		}
@@ -95,6 +95,7 @@ public class OrderAction extends AbstractWptAction {
 				e1.printStackTrace();
 			}
 		}
+		LOG.info("--------------cancel():end--------------");
 	}
 	/**
 	 * 校验核验码
@@ -133,7 +134,7 @@ public class OrderAction extends AbstractWptAction {
 	 * @throws Exception 
 	 */
 	public void notifyPay() throws Exception {
-		System.out.println("-------------notifyPay-------------");
+		LOG.info("--------------notifyPay():start--------------");
 		PrintWriter writer = getResponse().getWriter();
 		try {
 			// xml请求解析
@@ -152,24 +153,23 @@ public class OrderAction extends AbstractWptAction {
 				builder.append(key+"="+requestMap.get(key)+"&");
 			}
 			builder.append("key="+WxAccount.loadUniqueAccountAppid(false, requestMap.get("appid")).getMchKey());
-			System.out.println("notifyPay():wxSign:"+builder.toString());
+			LOG.info("wxSign:"+builder.toString());
 			String sign = MchUtil.md5(builder.toString());
-			System.out.println("notifyPay().sign:"+sign);
+			LOG.info("sign:"+sign);
 			if(sign.equals(requestMap.get("sign"))) {
-				System.out.println("签名正确");
+				LOG.info("签名正确");
 				service.paidCallback(requestMap.get("out_trade_no"), requestMap.get("total_fee"), requestMap.get("time_end")); 
 				writer.print("<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>");
-				System.out.println("回复完毕");
 				return;
 			} else {
-				System.out.println("签名错误");
+				LOG.info("签名错误");
 				writer.print("<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[签名错误]]></return_msg></xml>");
 				return;
 			}
 		} catch (Exception e) {
 			writer.print("<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[未知错误]]></return_msg></xml>");
 		}
-		System.out.println("-------------notifyPay-------------");
+		LOG.info("--------------notifyPay():end--------------");
 	}
 
 	

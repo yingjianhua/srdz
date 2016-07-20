@@ -11,7 +11,7 @@ import irille.wxpub.util.MessageUtil;
 import irille.wxpub.util.WeixinUtil;
 
 public class SendRedPack extends MchUtil {
-	private static final Log LOG = new Log(RefundOrder.class);
+	private static final Log LOG = new Log(SendRedPack.class);
 	private static final String SEND_RED_PACK_URL = "https://api.mch.weixin.qq.com/mmpaymkttransfers/sendredpack";
 	@Sendable
 	protected String sign,nonce_str;

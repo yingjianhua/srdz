@@ -26,7 +26,7 @@ public class WxMessageDAO {
 		private Msgs(String msg) { _msg=msg; }
 		public String getMsg() {return _msg; }
 	} //@formatter:on
-  public static final Log LOG = new Log(WxMessageDAO.class);
+  private static final Log LOG = new Log(WxMessageDAO.class);
 
   public static void autoAdd(String content, String accountId, String openId, String createTime, long msgId)
       throws Exception {
@@ -82,6 +82,8 @@ public class WxMessageDAO {
     sendTextMessage(accessToken, openId, content);
   }
   public static void sendTextMessage(final String accessToken, final String openId, final String content) {
+	  LOG.info("openId:{0}", openId);
+	  LOG.info("content:{0}", content);
 	  final String template = "{\"touser\":\"{OPENID}\",\"msgtype\":\"text\",\"text\":{\"content\":\"{CONTENT}\"}}";
 	  String url = WeixinUtil.SEND_MESSAGE_URL.replace("ACCESS_TOKEN", accessToken);
 	  JSONObject result = WeixinUtil.httpRequest(url, "POST", template.replace("{OPENID}", openId).replace("{CONTENT}", content));
@@ -130,19 +132,19 @@ public class WxMessageDAO {
 	  sendTextMessage(accessToken, openId, content.toString());
   }
   public static void notifyCommissionJournal(String accessToken, WptCommissionJournal journal3, String openId3, WptCommissionJournal journal2, String openId2, WptCommissionJournal journal1, String openId1){
-	  System.out.println("----------notifyCommissionJournal----------");
+	  LOG.info("--------------notifyCommissionJournal:start--------------");
 	  if(journal3!=null) {
-		  System.out.println("journal3 != null");
+		  LOG.info("journal3:"+journal3);
 		  notifyCommissionJournal(accessToken, openId3, journal3);
 		  if(journal2!=null) {
-			  System.out.println("journal2 != null");
+			  LOG.info("journal2:"+journal2);
 			  notifyCommissionJournal(accessToken, openId2, journal2);
 			  if(journal1!=null) {
-				  System.out.println("journal1 != null");
+				  LOG.info("journal1:"+journal1);
 				  notifyCommissionJournal(accessToken, openId1, journal1);
 			  }
 		  }
 	  }
-	  System.out.println("----------notifyCommissionJournal----------");
+	  LOG.info("--------------notifyCommissionJournal:end--------------");
   }
 }

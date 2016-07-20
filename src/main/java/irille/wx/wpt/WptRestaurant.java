@@ -41,6 +41,7 @@ public class WptRestaurant extends BeanInt<WptRestaurant> implements IExtName {
 		CONSUMPTION(SYS.AMT,"人均消费"),
 		WIFIACCOUNT(SYS.STR__40_NULL,"wifi账号"),
 		WIFIPASSWORD(SYS.STR__40_NULL,"wifi密码"),
+		TEMPLATE(WptRestaurantTemplate.fldOutKey().setName("详情页模板").setNull()),
 		CMB_WX(CmbWx.fldFlds()),
 
 
@@ -117,12 +118,13 @@ public class WptRestaurant extends BeanInt<WptRestaurant> implements IExtName {
   private Byte _display;	// 显示图片 <OYn>  BYTE
 	// YES:1,是
 	// NO:0,否
-  private String _des;	// 描述  STR(200)<null>
+  private String _des;	// 描述  STR(1000)<null>
   private String _startdate;	// 开始营业时间  STR(40)<null>
   private String _stopdate;	// 结束营业时间  STR(40)<null>
   private BigDecimal _consumption;	// 人均消费  DEC(16,2)
   private String _wifiaccount;	// wifi账号  STR(40)<null>
   private String _wifipassword;	// wifi密码  STR(40)<null>
+  private Integer _template;	// 详情页模板 <表主键:WptRestaurantTemplate>  INT<null>
   private Integer _account;	// 公众帐号 <表主键:WxAccount>  INT
   private Short _rowVersion;	// 版本  SHORT
 
@@ -141,12 +143,13 @@ public class WptRestaurant extends BeanInt<WptRestaurant> implements IExtName {
     _imgUrl=null;	// 图片  STR(200)
     _rem=null;	// 备注  STR(200)
     _display=OYn.DEFAULT.getLine().getKey();	// 显示图片 <OYn>  BYTE
-    _des=null;	// 描述  STR(200)
+    _des=null;	// 描述  STR(1000)
     _startdate=null;	// 开始营业时间  STR(40)
     _stopdate=null;	// 结束营业时间  STR(40)
     _consumption=ZERO;	// 人均消费  DEC(16,2)
     _wifiaccount=null;	// wifi账号  STR(40)
     _wifipassword=null;	// wifi密码  STR(40)
+    _template=null;	// 详情页模板 <表主键:WptRestaurantTemplate>  INT
     _account=null;	// 公众帐号 <表主键:WxAccount>  INT
     _rowVersion=0;	// 版本  SHORT
     return this;
@@ -300,6 +303,23 @@ public class WptRestaurant extends BeanInt<WptRestaurant> implements IExtName {
   }
   public void setWifipassword(String wifipassword){
     _wifipassword=wifipassword;
+  }
+  public Integer getTemplate(){
+    return _template;
+  }
+  public void setTemplate(Integer template){
+    _template=template;
+  }
+  public WptRestaurantTemplate gtTemplate(){
+    if(getTemplate()==null)
+      return null;
+    return (WptRestaurantTemplate)get(WptRestaurantTemplate.class,getTemplate());
+  }
+  public void stTemplate(WptRestaurantTemplate template){
+    if(template==null)
+      setTemplate(null);
+    else
+      setTemplate(template.getPkey());
   }
   public Integer getAccount(){
     return _account;

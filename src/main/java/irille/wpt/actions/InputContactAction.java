@@ -1,10 +1,13 @@
 package irille.wpt.actions;
 
+import irille.pub.Log;
+
 public class InputContactAction extends AbstractWptAction {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1636918385373685964L;
+	private static final Log LOG = new Log(InputContactAction.class);
 	private Integer comboId;
 	private Integer banquetId;
 	private Double pnum;
@@ -13,11 +16,11 @@ public class InputContactAction extends AbstractWptAction {
 	private String services;
 	@Override
 	public String execute() throws Exception {
-		System.out.println("------------InputContactAction-------------");
-		System.out.println("comboId:"+comboId);
-		System.out.println("services:"+services);
+		LOG.info("--------------InputContactAction():start--------------");
+		LOG.info("comboId:{0}", comboId);
+		LOG.info("services:{0}", services);
 		setResult("pt/inputContact.jsp");
-		System.out.println("------------InputContactAction-------------");
+		LOG.info("--------------InputContactAction():end--------------");
 		return TRENDS;
 	}
 	

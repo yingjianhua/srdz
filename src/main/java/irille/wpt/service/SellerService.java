@@ -19,24 +19,18 @@ import irille.wx.wx.WxUser;
 import irille.wxpub.util.mch.MchUtil;
 
 public class SellerService {
-	public static final Log LOG = new Log(SellerService.class);
+	private static final Log LOG = new Log(SellerService.class);
 	private SmsTool smsTool;
 	
 	public void sendCheckCode(String manager, Map<String, Object> session){
-		String code = MchUtil.createRandom(4);
-		System.out.println("code:" + code);
+		String code = MchUtil.createRandomNum(4);
+		LOG.info("code:" + code);
 		session.put("msgCode", code);
 		session.put("manager", manager);
     	session.put("date", System.currentTimeMillis());
 		String c = "【享食光】验证码: 1234 (享食光手机登录验证，请完成验证)，如非本人操作，请忽略本条短息。";
 		c = c.replace("1234", code);
 		smsTool.doSent(manager, c);
-	}
-	public static void main(String[] args) {
-		boolean flag = true;
-		Boolean flag2 = (Boolean)flag;
-		System.out.println(flag);
-		System.out.println(flag2);
 	}
 	public boolean checkCode(String identify, Map<String, Object> session) {
 		long i = System.currentTimeMillis()- (Long)session.get("date");
@@ -51,7 +45,7 @@ public class SellerService {
 			return WptRestaurant.get(WptRestaurant.class, (Integer) session.get(LoginSellerAction.RESTAURANT));
 		} else {
 			if(!identify.equals((String) session.get("identify"))){
-				LOG.err("invalidCheckCode", "验证码错误");
+				LOG.err("invalidCheckCode", "错误验证码："+identify+";正确验证码："+session.get("identify"));
 			}
 			String manager;
 			if((manager=(String)session.get("manager")) == null){

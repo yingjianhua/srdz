@@ -23,61 +23,120 @@
 </script>
 <title>享食光-私人定制</title>
 </head>
-<style>
-</style>
-<body>	
-		
-	<a href="javascript:;" class="find_spe">
-		<div class="txt">${special.title }</div>
-		<div class="findspe_flog"></div>
-		<img src="../${special.topImgUrl }" />	
-	</a>
+
+<body class="gray-bg">	
 	
-	<div class="fddet_intro">
-		<h2>完美约会	</h2>
-		<p></p>
+	<div class="hait_top" id="banner">
+		<div class="hd" style="display:none">
+        	<ul></ul>
+    	</div>
+		<div class="bd">
+	     	<ul>
+		     	<s:iterator value="banners" var="b">
+		     	<li>
+		     	<img class="photo" src="../${b.imgUrl}">
+		     	</li>
+		     	</s:iterator>
+	     	</ul>
+    	</div>
+		<div class="txt">
+			<h2>享食光</h2>	
+			<p>${restaurant.des }</p>
+		</div>
+		<div class="clear"></div>	
 	</div>
 	
-		<a href="javascript:;" class="fddet_item" pkey="1">
-		<dl><dt>棉花糖</dt> <dd>棉花糖将文化与餐饮融为一体，是一家致力于推行文艺、朴素、自然的生活美学的休闲体验店。书房定制菜并没有固定的菜单，我们根据您的要求 为您量身制定合适的菜品。将您的口味喜好告诉我们，由我来为您定制美食。我们所有的菜只在两小时内采购，绝不提前囤菜，保证您选的菜品新鲜出炉。所以请您提前两小时以上预定。一个餐点，我们只在二楼听雨轩为</dd></dl>
-		<span class="xq">查看详情</span>
-		<div class="fddet_flog"></div>
-		<img src="../的" />
+	<div class="hait_list">
+		<a href="javascript:;" class="hait_li" pkey="">
+			<img src="../" class="photo" />
+			<dl>
+				<dt>name</dt>
+				<dd>
+					<span class="price">RMB 元</span>
+					<em class="xx">详细</em>
+				</dd>
+			</dl>
 		</a>
+		<a href="javascript:;" class="hait_li" pkey="">
+			<img src="../" class="photo" />
+			<dl>
+				<dt>ame</dt>
+				<dd>
+					<span class="price">RMB 元</span>
+					<em class="xx">详细</em>
+				</dd>
+			</dl>
+		</a>
+		<a href="javascript:;" class="hait_li" pkey="">
+			<img src="../" class="photo" />
+			<dl>
+				<dt>name</dt>
+				<dd>
+					<span class="price">RMB 元</span>
+					<em class="xx">详细</em>
+				</dd>
+			</dl>
+		</a>
+		
+		<div class="clear"></div>	
+	</div>
+	
+	<div class="hait_det">
+		<s:if test="cases.size() > 0">
+			<div class="title">
+				关于${restaurant.name }做过的私人定制案例介绍<br />私人定制的案例介绍	
+			</div>
+		</s:if>
+		<s:iterator value="cases" var="case">
+			<img src="../<s:property value="#case.imgUrl" />" class="photo" />
+			<s:property value="#case.des" />
+		</s:iterator>
+		<div class="hait_info">
+			<h2>餐厅信息2</h2>	
+			<p>营业时间：${restaurant.startdate }-${restaurant.stopdate }</p>
+			<p>人均消费：${restaurant.consumption.intValue() }元/人</p>
+			<p>餐厅地址：${restaurant.addr }</p>
+			<p>餐厅电话：${restaurant.mobile }</p>
+			<s:if test="restaurant.rem!=null&&restaurant.rem.length()>0"><p>贴士：${restaurant.rem }</p></s:if>
+		</div>
+		
+		<div class="clear"></div>	
+	</div>
+	
+	<div class="hait_ask">
+		
+		<div class="hait_info">
+			<h2>购买须知</h2>	
+			<p>如需开具发票，请联系商家；</p>
+			<p>如有疑问，请联系享食光，专属热线：400-826-2257</p>
+		</div>
 			
+	</div>
+	
 </body>
+<script src="wp/fif/assets/js/libs/TouchSlide.1.1.js"></script>
+<script>
+//轮播图
+TouchSlide({ 
+	slideCell:"#banner",
+	titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+	mainCell:".bd ul", 
+	effect:"leftLoop", 
+	autoPlay:true,//自动播放
+	autoPage:true, //自动分页
+});
+</script>
 <script type="text/javascript" src="wpt/js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="wpt/js/base.js"></script>
 <script>
-	$(function(){
-		$(".fddet_item").click(function(){
-			var pkey = $(this).attr("pkey");
-			console.log(location.hash)
-			if(location.hash) {
-				console.log("hash has value")
-			}
-			if(location.hash) {
-				var condition = location.hash.substr(1).split("&");
-				var hash = {};
-				for(var i=0;i<condition.length;i++) {
-					hash[condition[i].split("=")[0]] = condition[i].split("=")[1];
-				}
-				console.log(hash)
-				if(hash.areaId) {
-					areaId = hash.areaId;
-					areaName = $(".cityLineList[pkey="+hash.areaId+"]").html();
-				}
-				if(hash.banquetId) {
-					banquetId = hash.banquetId;
-					banquetName = $(".banquetList[pkey="+hash.banquetId+"]").html();
-				}
-			}
-			
-			console.log(condition);
-			console.log(location);
-			console.log(location.href);
-			console.log(location.hash);
-		})
+${jsCode}
+</script>
+<script>
+$(function() {
+	$(".hait_li").click(function() {
+		var url = "showCombo?id="+$(this).attr("pkey")+"&account.pkey=${account.pkey }";
+		location.href = url;
 	})
+})
 </script>
 </html>

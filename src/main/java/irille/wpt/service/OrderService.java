@@ -37,7 +37,7 @@ import irille.wx.wx.WxUser;
 import irille.wxpub.util.mch.MchUtil;
 
 public class OrderService {
-	public static final Log LOG = new Log(OrderService.class);
+	private static final Log LOG = new Log(OrderService.class);
 	private SmsTool smsTool;
 	private DistributionRuleService distributionRuleService; 
 	private QrcodeRuleService qrcodeRuleService;
@@ -134,7 +134,7 @@ public class OrderService {
 			}
 		}
 		//假如是私人订制的订单,或者有备注的订单发送短信和微信提醒 
-		if(order.gtIsPt() == true || (order.getRem()!= null && !order.getRem().trim().equals("")))
+		//if(order.gtIsPt() == true || (order.getRem()!= null && !order.getRem().trim().equals("")))
 			doSent(order);
 		return order;
 	}
@@ -273,31 +273,31 @@ public class OrderService {
 	 * @return
 	 */
 	public boolean paidCallback(String outTradeNo, String totalFee, String time_end) {
-		System.out.println("--------------paidCallback--------------");
+		LOG.info("--------------paidCallback():start--------------");
 		WptOrder order = WptOrder.chkUniqueDepPayId(false, outTradeNo);
 		if(order == null) {
-			System.out.println("----------支付完成-----------");
 			//假如不是定金的支付回调,说明是普通订单的支付或者是私人订制订单的余款支付，总之订单会进入已付款状态
 			order = WptOrder.chkUniqueOrderid(false, outTradeNo);
 			order.setCheckcode(MchUtil.createRandomNum(6));
 			order.stStatus(OStatus.PAYMENT);
-			System.out.println(order);
+			LOG.info("orderId:"+order.getOrderid());
+			LOG.info("支付完成");
 			//根据分销规则进行处理
 			distributionRuleService.orderBeenPaid(order.gtWxuser(), order);
 			//订单完成
 			if(order.gtIsPt()) {
-				System.out.println("------------是私人订制------------");
 				//若是私人订制的订单，需要设置余款的支付方式为微信支付
 				order.stResidueIsWxpay(true);
 			}
 		} else {
-			System.out.println("-----------支付定金-----------");
+			LOG.info("orderId:"+order.getOrderid());
+			LOG.info("支付定金");
 			//是支付定金的回调
 			order.stDepositIsWxpay(true);
 			order.stStatus(OStatus.DEPOSIT);
 		}
 		order.upd();
-		System.out.println("--------------paidCallback--------------");
+		LOG.info("--------------paidCallback():end--------------");
 		return true;
 	}
 	

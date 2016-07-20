@@ -70,6 +70,14 @@ initComponent : function(){
 	,{xtype : 'numberfield',name : 'bean.consumption',value : 0,afterLabelTextTpl : required,allowBlank : false,fieldLabel : '人均消费',decimalPrecision : 2}
 	,{xtype : 'textfield',name : 'bean.wifiaccount',fieldLabel : 'wifi账号'}
 	,{xtype : 'textfield',name : 'bean.wifipassword',fieldLabel : 'wifi密码'}
+	,{
+		xtype : 'beantrigger',
+		name : 'bean.template',
+		fieldLabel : '模板',
+		bean : 'WptRestaurantTemplate',
+		beanType : 'wpt',
+		emptyText : form_empty_text,
+	}
 	,{xtype : 'numberfield',name : 'bean.rowVersion',value : 0,afterLabelTextTpl : required,allowBlank : false,fieldLabel : '版本',hidden : true,allowDecimals : false}
 	,{
 		xtype : 'hiddenfield',

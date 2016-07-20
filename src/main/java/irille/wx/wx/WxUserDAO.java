@@ -132,7 +132,7 @@ public class WxUserDAO {
 				Date step2 = new Date();
 				index += local_users.size();
 				local_users.clear();
-				local_users = WxUser.list(WxUser.class, true, where, index, 100, account.getPkey(),Wx.OStatus.FOLLOW.getLine().getKey());
+				local_users = WxUser.list(WxUser.class, true, where, index, 100, account.getPkey());
 				Date step3 = new Date();
 				useTime.add("数据库commit用时："+(step2.getTime()-step1.getTime())+"ms");
 				useTime.add("数据库list用时："+(step3.getTime()-step2.getTime())+"ms");

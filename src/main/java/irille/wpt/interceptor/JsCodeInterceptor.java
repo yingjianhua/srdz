@@ -29,7 +29,7 @@ public class JsCodeInterceptor extends AbstractInterceptor{
 	 * 
 	 */
 	private static final long serialVersionUID = -1937669532396607004L;
-	public static final Log LOG = new Log(JsCodeInterceptor.class);
+	private static final Log LOG = new Log(JsCodeInterceptor.class);
 	public enum Msgs implements IMsg {// 信息定义的类名必须为Msgs, 以便系统能检索 @formatter:off
 		AccountNotExist("没有该公众号"),
 		noAccountPkey("缺少订阅号参数"),
@@ -41,7 +41,6 @@ public class JsCodeInterceptor extends AbstractInterceptor{
 	BeanFactory factory;
 	@Override
 	public String intercept(ActionInvocation actionInvocation) throws Exception {
-		System.out.println("-------------JsCodeInterceptor-------------");
 		Object action = actionInvocation.getAction();
 		if(action instanceof AbstractWptAction) {
 			AbstractWptAction wptAction = ((AbstractWptAction)action);
@@ -94,7 +93,6 @@ public class JsCodeInterceptor extends AbstractInterceptor{
 			wptAction.setJsCode(jsCreater.crtJs(account, request));
 		}
 		String rtn = actionInvocation.invoke();
-		System.out.println("-------------JsCodeInterceptor-------------");
 		return rtn;
 	}
 	

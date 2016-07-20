@@ -21,11 +21,11 @@ public class CityInterceptor extends AbstractInterceptor {
 	 * 
 	 */
 	private static final long serialVersionUID = 4027438797941908882L;
-	public static final Log LOG = new Log(CityInterceptor.class);
+	private static final Log LOG = new Log(CityInterceptor.class);
 	public static final String CITY = "city";
 	@Override
 	public String intercept(ActionInvocation actionInvocation) throws Exception {
-		System.out.println("--------------------CityInterceptor.intercept():--------------------");
+		LOG.info("--------------intercept():start--------------");
 		ActionContext actionContext = actionInvocation.getInvocationContext();
 		Map<String, Object> session = actionContext.getSession();
 		if(session.get(CITY) == null) {
@@ -45,8 +45,9 @@ public class CityInterceptor extends AbstractInterceptor {
 				e.printStackTrace();
 			}
 		}
+		LOG.info("city:"+((WptCity)session.get(CITY)).getName());
 		String rtn = actionInvocation.invoke();
-		System.out.println("--------------------CityInterceptor.intercept():--------------------");
+		LOG.info("--------------intercept():end--------------");
 		return rtn;
 	}
 

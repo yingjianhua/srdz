@@ -8,6 +8,7 @@ import irille.wx.wpt.WptCase;
 import irille.wx.wpt.WptCombo;
 import irille.wx.wpt.WptRestaurant;
 import irille.wx.wpt.WptRestaurantBanner;
+import irille.wx.wpt.WptRestaurantTemplate;
 
 public class ShowRestaurantAction extends AbstractWptAction implements IMenuShareAppMessage, IMenuShareTimeline{
 	/**
@@ -34,7 +35,12 @@ public class ShowRestaurantAction extends AbstractWptAction implements IMenuShar
 		}else{
 			combos = BeanBase.list(WptCombo.class, WptCombo.T.PKEY +" in ("+scombos+") order by " +WptCombo.T.SORT, false);
 		}
-		setResult("pt/restaurantDetail.jsp");
+		if(getRestaurant().getTemplate() != null) {
+			WptRestaurantTemplate template = getRestaurant().gtTemplate();
+			setResult(template.getPath());
+		} else {
+			setResult("pt/restaurantDetail.jsp");
+		}
 		return TRENDS;
 	}
 	@Override

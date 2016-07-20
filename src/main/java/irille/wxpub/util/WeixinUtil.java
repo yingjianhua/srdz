@@ -112,6 +112,8 @@ public class WeixinUtil {
 			while (m.find())
 				outputStr = outputStr.replaceAll("\\" + m.group(), "" + (char) Integer.parseInt(m.group(1), 16));
 		}
+		LOG.info("requestUrl:"+requestUrl);
+		LOG.info("request:"+outputStr);
 		CloseableHttpClient httpclient;
 		if(sslFactory==null) {
 			httpclient = HttpClients.createDefault();
@@ -127,9 +129,8 @@ public class WeixinUtil {
 			CloseableHttpResponse response = httpclient.execute(httppost);
 			try {
 				HttpEntity entity = response.getEntity();
-				System.out.println("----------------------------------------");
 				buffer = EntityUtils.toString(entity, "UTF-8");
-				System.out.println("----------------------------------------");
+				LOG.info("response:"+buffer);
 			} finally {
 				response.close();
 			}
@@ -164,10 +165,8 @@ public class WeixinUtil {
 			sslContext.init(null, tm, new java.security.SecureRandom());
 			// 从上述SSLContext对象中得到SSLSocketFactory对象
 			SSLSocketFactory ssf = sslContext.getSocketFactory();
-			System.out.println(
-					"----------==-=-=-=-=-=-=-=WeChat toResponse(" + requestMethod + ")=-=-=-=-=-=-=--=-=----------");
-			System.out.println("----------=-=-=-=-=-==-=-=WeChat url:" + requestUrl);
-			System.out.println("----------=-=-=-=-=-=--=-=WeChat data:" + outputStr);
+			LOG.info("requestUrl:"+requestUrl);
+			LOG.info("requestStr:"+outputStr);
 			URL url = new URL(requestUrl);
 			HttpsURLConnection httpUrlConn = (HttpsURLConnection) url.openConnection();
 			httpUrlConn.setSSLSocketFactory(ssf);
@@ -196,7 +195,7 @@ public class WeixinUtil {
 			while ((str = bufferedReader.readLine()) != null) {
 				buffer.append(str);
 			}
-			System.out.println(buffer);
+			LOG.info("responseStr:"+buffer);
 			bufferedReader.close();
 			inputStreamReader.close();
 			// 释放资源
@@ -234,10 +233,8 @@ public class WeixinUtil {
 			sslContext.init(null, tm, new java.security.SecureRandom());
 			// 从上述SSLContext对象中得到SSLSocketFactory对象
 			SSLSocketFactory ssf = sslContext.getSocketFactory();
-			
-			System.out.println("----------=-=-=-=-httpRequest(" + requestMethod + ")");
-			System.out.println("----------=-=-=-=-requestUrl:" + requestUrl);
-			System.out.println("----------=-=-=-=-reqeustData:" + outputStr);
+			LOG.info("requestUrl:"+requestUrl);
+			LOG.info("requestStr:"+outputStr);
 			URL url = new URL(requestUrl);
 			HttpsURLConnection httpUrlConn = (HttpsURLConnection) url.openConnection();
 			httpUrlConn.setSSLSocketFactory(ssf);
@@ -266,7 +263,7 @@ public class WeixinUtil {
 			while ((str = bufferedReader.readLine()) != null) {
 				buffer.append(str).append(Str.LN);
 			}
-			System.out.println(buffer);
+			LOG.info("responseStr:"+buffer);
 			httpUrlConn.disconnect();
 			return buffer.toString();
 		} catch (ConnectException ce) {

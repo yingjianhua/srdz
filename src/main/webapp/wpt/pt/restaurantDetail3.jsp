@@ -51,8 +51,8 @@
 	
 	<div class="hait_list">
 		<s:iterator value="combos" var="combo">
-		<a href="javascript:;" class="hait_li" pkey="<s:property value="#combo.pkey" />">
-			<img src="../<s:property value="#combo.imgUrl" />" class="photo" />
+		<a href="javascript:;" class="hait_li" pkey="<s:property value="#combo.pkey" style="margin:25px 0 0 13.5px;width:185px"/>">
+			<img src="../<s:property value="#combo.imgUrl" />" class="photo" style="width:185px"/>
 			<dl>
 				<dt><s:property value="#combo.name"/></dt>
 				<dd>
@@ -77,7 +77,7 @@
 			<s:property value="#case.des" />
 		</s:iterator>
 		<div class="hait_info">
-			<h2>餐厅信息</h2>	
+			<h2>餐厅信息2</h2>	
 			<p>营业时间：${restaurant.startdate }-${restaurant.stopdate }</p>
 			<p>人均消费：${restaurant.consumption.intValue() }元/人</p>
 			<p>餐厅地址：${restaurant.addr }</p>

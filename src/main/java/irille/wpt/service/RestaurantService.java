@@ -36,7 +36,6 @@ public class RestaurantService {
 				result = Bean.executeQueryMap(where, city, area, banquetId, pnum, pnum);
 			}
 		} else {
-			System.out.println(3);
 			result = Bean.executeQueryMap(where, city, area, banquetId);
 		}
 		String sqlRestaurant = WptCombo.T.RESTAURANT.getFld().getCodeSqlField();

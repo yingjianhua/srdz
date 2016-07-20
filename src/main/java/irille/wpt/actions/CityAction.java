@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import irille.pub.Exp;
+import irille.pub.Log;
 import irille.wpt.interceptor.CityInterceptor;
 import irille.wpt.service.CityService;
 import irille.wx.wpt.WptCity;
@@ -17,18 +18,20 @@ public class CityAction extends AbstractWptAction {
 	 * 
 	 */
 	private static final long serialVersionUID = -5574652896687120596L;
+	private static final Log LOG = new Log(CityAction.class);
 	private int id;
 	private String petitionCity;
 	
 	private CityService service;
 	
 	public void select() {
-		System.out.println("----------------cityAction.select():id="+id+"----------------------");
+		LOG.info("--------------select():start--------------");
+		LOG.info("id:{0}", id);
 		WptCity city = WptCity.get(WptCity.class, id);
 		if(city != null) {
 			getSession().put(CityInterceptor.CITY, city);
 		}
-		System.out.println("----------------cityAction.select():id="+id+"----------------------");
+		LOG.info("--------------select():end--------------");
 	}
 	public void currCity() {
 		WptCity city = (WptCity)getSession().get(CityInterceptor.CITY);

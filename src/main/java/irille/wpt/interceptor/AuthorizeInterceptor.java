@@ -31,7 +31,7 @@ public class AuthorizeInterceptor extends AbstractInterceptor {
 	 * 
 	 */
 	private static final long serialVersionUID = 1589732558268724276L;
-	public static final Log LOG = new Log(AuthorizeInterceptor.class);
+	private static final Log LOG = new Log(AuthorizeInterceptor.class);
 	
 	public enum Msgs implements IMsg {// 信息定义的类名必须为Msgs, 以便系统能检索 @formatter:off
 		AccountNotExist("没有该公众号"),
@@ -91,12 +91,13 @@ public class AuthorizeInterceptor extends AbstractInterceptor {
 		response = (HttpServletResponse)actionContext.get(ServletActionContext.HTTP_RESPONSE);
 		String query = request.getQueryString();
 		requestUrl = request.getRequestURL() + (query == null ? "" : "?" + query);
-		System.out.println("--------------AuthorizeInterceptor.intercept--------------");
 		if(doAuthorize(account, state, code, invitedOpenid, requestUrl, session, request, response)) {
 			return null;
 		}
+		LOG.info("--------------intercept():start--------------");
+		LOG.info("openid:{0}", session.get("openid"));
 		String result = actionInvocation.invoke();
-		System.out.println("--------------AuthorizeInterceptor.intercept--------------");
+		LOG.info("--------------intercept():end--------------");
 		return result;
 	}
 	/**
@@ -119,7 +120,7 @@ public class AuthorizeInterceptor extends AbstractInterceptor {
 				throw LOG.err(Msgs.oauthErr2);
 			//网页授权重定向回来 
 			try {
-				System.out.println("--------------AuthorizeInterceptor.doAuthorize--------------");
+				LOG.info("--------------doAuthorize():start--------------");
 				requestUrl = OAUTH2_ACCESS_TOKEN_URL.replace("APPID", account.getAccountAppid()).replace("SECRET", account.getAccountAppsecret())
 						.replaceAll("CODE", code);
 				JSONObject result = WeixinUtil.httpRequest(requestUrl, "POST", null);
@@ -136,7 +137,7 @@ public class AuthorizeInterceptor extends AbstractInterceptor {
 					//公众号提醒邀请人 有一个新的粉丝加入了
 					WxMessageDAO.notifyInvited(WxAccountDAO.getAccessToken(account), user);
 				}
-				System.out.println("--------------AuthorizeInterceptor.doAuthorize--------------");
+				LOG.info("--------------doAuthorize():end--------------");
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}

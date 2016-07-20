@@ -45,15 +45,12 @@ public class SellerAction extends AbstractWptAction {
 		service.sendCheckCode(manager, getSession());
 	}
 	public void listOrder() {
-		System.out.println("------------SellerAction.listOrder()------------");
 		JSONArray result;
-		System.out.println("isHistory:"+isHistory);
 		if(isHistory) {
 			result = service.listOrder4Json(restaurantId, orderId, OStatus.FINISH);	
 		} else {
 			result = service.listOrder4Json(restaurantId, orderId, OStatus.PAYMENT);
 		}
-		System.out.println("result.length:"+result.length());
 		PrintWriter writer;
 		try {
 			writer = ServletActionContext.getResponse().getWriter();
@@ -61,7 +58,6 @@ public class SellerAction extends AbstractWptAction {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println("------------SellerAction.listOrder()------------");
 	}
 	/**
 	 * 核对校验码

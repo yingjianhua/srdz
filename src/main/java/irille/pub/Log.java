@@ -201,6 +201,12 @@ public class Log {
 	public void info(IMsg msg, Object... paras) {
 		_log.info(messageToString(msg.getMsg(), paras));
 	}
+	public void info(String message) {
+		_log.info(message);
+	}
+	public void info(String message, Object... paras) {
+		_log.info(messageToString(message, paras));
+	}
 
 //	/**
 //	 * 跟踪信息

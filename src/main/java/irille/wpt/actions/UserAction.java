@@ -10,6 +10,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import irille.pub.Log;
 import irille.wpt.service.UserService;
 import irille.wx.wpt.WptCommissionJournal;
 import irille.wx.wx.WxUser;
@@ -20,6 +21,7 @@ public class UserAction extends AbstractWptAction {
 	 * 
 	 */
 	private static final long serialVersionUID = -3883419323449309464L;
+	private static final Log LOG = new Log(UserAction.class);
 	private int level;
 	private String userid;
 	private int fanid;
@@ -49,7 +51,7 @@ public class UserAction extends AbstractWptAction {
 	 * 佣金提现
 	 */
 	public void cash() {
-		System.out.println("------------user_cash------------");
+		LOG.info("--------------cash():start--------------");
 		try {
 			service.cash(amt, chkWxUser(), getRequest().getRemoteHost());
 			PrintWriter writer;
@@ -58,7 +60,7 @@ public class UserAction extends AbstractWptAction {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("------------user_cash------------");
+		LOG.info("--------------cash():end--------------");
 	}
 	public void fans() {
 		List<WxUser> fans = service.getFansByCondition(userid, getAccount().getPkey(), level, fanid);

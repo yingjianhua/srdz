@@ -28,6 +28,7 @@ public class Wpt_Install extends InstallBase {
 		m.proc(WptRestaurantBsn.TB, 24, wptRes);
 		m.proc(WptCase.TB, 25, wptRes);
 		m.proc(WptRestaurantBanner.TB, 26, wptRes);
+		m.proc(WptRestaurantTemplate.TB, 27, wptRes);
 		
 		m.proc(WptService.TB, 40, null);
 		m.proc(WptSpecial.TB, 50, null);

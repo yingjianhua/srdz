@@ -37,7 +37,6 @@ public abstract class AbstractWptAction extends ActionSupport implements Session
 	public Map<String, Object> getSession() {
 		if(session == null)
 			session = ServletActionContext.getContext().getSession();
-		System.out.println(session);
 		return session;
 	}
 	public void setSession(Map<String, Object> session) {
@@ -72,11 +71,9 @@ public abstract class AbstractWptAction extends ActionSupport implements Session
 		this.result = result;
 	}
 	public String getJsCode() {
-		System.out.println("getJsCode()");
 		return jsCode;
 	}
 	public void setJsCode(String jsCode) {
-		System.out.println("setJsCode()");
 		this.jsCode = jsCode;
 	}
 	public WxJsCreater getJsCreater() {
