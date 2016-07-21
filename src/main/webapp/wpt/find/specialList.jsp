@@ -42,7 +42,7 @@
 	<a href="javascript:;" class="find_spe" pkey="${line.pkey}">
 		<div class="txt">${line.title }</div>
 		<div class="findspe_flog"></div>
-		<img style="height:427px" data-original="../${line.baseImgUrl}" class="lazy"/>	
+		<img data-original="../${line.baseImgUrl}" class="lazy"/>	
 	</a>
 	<div class="find_line"></div>
 	</s:iterator>
