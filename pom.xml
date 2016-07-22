@@ -7,7 +7,23 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>srdz Maven Webapp</name>
   <url>http://maven.apache.org</url>
+  <properties>
+  	<jersey.version>2.17</jersey.version>
+  </properties>
   <dependencies>
+ 	<!-- jersey -->
+	<dependency>
+		<groupId>org.glassfish.jersey.containers</groupId>
+		<artifactId>jersey-container-servlet</artifactId>
+		<version>${jersey.version}</version>
+	</dependency>
+	
+	<!-- media type -->
+	<dependency>
+		<groupId>org.glassfish.jersey.media</groupId>
+		<artifactId>jersey-media-moxy</artifactId>
+		<version>${jersey.version}</version>
+	</dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>

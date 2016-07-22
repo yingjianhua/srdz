@@ -3,6 +3,9 @@ package irille.wx.wx;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import irille.core.sys.Sys.OSex;
 import irille.core.sys.Sys.OYn;
 import irille.pub.Log;
@@ -13,7 +16,7 @@ import irille.pub.tb.IEnumFld;
 import irille.pub.tb.Tb;
 import irille.pub.tb.Tb.Index;
 import irille.wx.wx.Wx.OStatus;
-
+@XmlRootElement(name = "user")
 public class WxUser extends BeanInt<WxUser> implements IExtName{
   private static final Log LOG = new Log(WxUser.class);
   public static final Tb TB = new Tb(WxUser.class, "关注用户").setAutoIncrement().addActList()
@@ -81,7 +84,13 @@ public class WxUser extends BeanInt<WxUser> implements IExtName{
       return _fld;
     }
   }
+  private String extName = "extName";
+  private String extName2 = "extName2";
+  public String getExtName2() {
+	  return extName2;
+  }
   @Override
+  @XmlAttribute(name = "extName")
   public String getExtName() {
 	  return _nickname;
   }
@@ -217,6 +226,7 @@ public class WxUser extends BeanInt<WxUser> implements IExtName{
   public void setUnionId(String unionId){
     _unionId=unionId;
   }
+  @XmlAttribute
   public String getNickname(){
     return _nickname;
   }
@@ -235,6 +245,7 @@ public class WxUser extends BeanInt<WxUser> implements IExtName{
   public void stSex(OSex sex){
     _sex=sex.getLine().getKey();
   }
+  @XmlAttribute(name = "city")
   public String getCity(){
     return _city;
   }

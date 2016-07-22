@@ -30,7 +30,15 @@
     margin: -30px;
     z-index: -1;
     -webkit-filter: blur(20px);
-    filter: blur(20px);
+    filter: url(blur.svg#blur); /* FireFox, Chrome, Opera */  
+    -webkit-filter: blur(10px); /* Chrome, Opera */  
+       -moz-filter: blur(10px);   
+        -ms-filter: blur(10px);       
+            filter: blur(10px);   
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false);
+}
+.special{
+	margin-top:66px;
 }
 </style>
 </head>
@@ -68,9 +76,6 @@
 <script type="text/javascript" src="wpt/js/jquery.lazyload.min.js"></script>
 <script type="text/javascript" src="wpt/js/base.js"></script>
 <script>
-${jsCode}
-</script>
-<script>
 $(function(){
 	$("img.lazy").lazyload({
 		placeholder : "images/emptySpecial.jpg",
@@ -79,7 +84,6 @@ $(function(){
 		});
 	$(".find_spe").click(function(){
 		var pkey = $(this).attr("pkey");
-		window.location.href="showSpecial?id="+pkey+"&account.pkey=${account.pkey}";
 	})
 })
 </script>
