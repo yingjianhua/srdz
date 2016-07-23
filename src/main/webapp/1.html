@@ -23,23 +23,59 @@
 </script>
 <title>享食光-私人定制</title>
 <style type="text/css">
-.find_top:before{
-	content: '';
-    position: absolute;
-    top: 0; right: 0; bottom: 0; left: 0;
-    margin: -30px;
-    z-index: -1;
-    -webkit-filter: blur(20px);
-    filter: blur(20px);
+a.select_city{
+	height:30px;	
+	line-height:30px;
+	color:#fff;
+	font-size:26px;
+	padding-left:35px;
+	margin: 20px;
+	background:url("wpt/images/hm_citybtn.png") no-repeat left center;
 }
 </style>
 </head>
-
 <body>	
 	<div class="find_top">
 		<span><a href="javascript:;" class="hover" id="special">专题</a></span>
 		<span><a href="listHot?account.pkey=${account.pkey }" id="hot">热销</a></span>	
+		<a href="javascript:;" class="select_city" >温州</a>
 	</div>
+	
+	<div class="hmcity_flog"></div>
+	<!--hmcity_list 城市列表-->
+		<div class="hmcity_list">
+			<ul class="hmcity_items">
+				<li><a pkey="1" href="javascript:;" >温州</a></li>
+				<li><a pkey="1" href="javascript:;" >上海</a></li>
+				<li><a pkey="1" href="javascript:;" >杭州</a></li>
+			</ul>	
+			<div class="hmcity_nobtn">
+				<span>没有您的城市？来告诉我们<i></i></span>
+			</div>	
+		</div>
+	<!--hmcity_list 城市列表-->
+	
+	<!--hmcity_add 添加城市-->
+		<div class="hmcity_add">
+			
+			<a href="javascript:;" class="back_btn">&lt; 返回</a>
+			<dl>
+				<dt>输入您所在的城市   享食光马上就来</dt>
+				<dd>
+					<input type="text" class="new_city" placeHolder="例: 温州" />	
+				</dd>	
+			</dl>
+			
+			<dl>
+				<dt>PS.城市合作请联系客服</dt>
+				<dd>
+					<a href="javascript:;" class="btn ok lt">确 认</a>
+					<a href="javascript:;" class="btn esc rt">取 消</a>
+				</dd>	
+			</dl>
+				
+		</div>
+	<!--hmcity_add 添加城市-->
 	<div class="special">
 		<a href="javascript:;" class="find_spe" pkey="${line.pkey}">
 			<div class="txt">完美约会</div>
@@ -68,9 +104,6 @@
 <script type="text/javascript" src="wpt/js/jquery.lazyload.min.js"></script>
 <script type="text/javascript" src="wpt/js/base.js"></script>
 <script>
-${jsCode}
-</script>
-<script>
 $(function(){
 	$("img.lazy").lazyload({
 		placeholder : "images/emptySpecial.jpg",
@@ -79,8 +112,42 @@ $(function(){
 		});
 	$(".find_spe").click(function(){
 		var pkey = $(this).attr("pkey");
-		window.location.href="showSpecial?id="+pkey+"&account.pkey=${account.pkey}";
 	})
+	//城市选择的JS
+	$(".select_city").on("click",function(){
+		
+		if($(".hmcity_flog").hasClass("hmcity_flogshow")){	//隐藏
+			
+			$(".hmcity_list").hide();
+			$(".hmcity_add").hide();
+			$(".hmcity_flog").removeClass("hmcity_flogshow");	
+			
+		}else{	//显示
+			$(".hmcity_list").show();
+			$(".hmcity_flog").addClass("hmcity_flogshow");		
+		}
+			
+	});
+	$(".hmcity_flog").on("click",function(){
+		$(".hmcity_list").hide();
+		$(".hmcity_flog").removeClass("hmcity_flogshow");			
+	});
+	$(".hmcity_items li a").on("click",function(){	//选择城市
+		
+		$(".hmcity_items li a").removeClass("hover");
+		$(this).addClass("hover");
+		$(".hm_citybtn").html($(this).html());
+		$(".hm_citybtn").attr("pkey", $(this).attr("pkey"));
+		$(".hmcity_list").hide();
+		$(".hmcity_add").hide();
+		$(".hmcity_flog").removeClass("hmcity_flogshow");	
+		$.ajax({
+			dataType : "json",
+			url : "resource/city_select?account.pkey=${account.pkey}",
+			type : "POST",
+			data : {"id" : $(this).attr("pkey")}
+		})
+	});
 })
 </script>
 </html>

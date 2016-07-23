@@ -152,7 +152,7 @@ public class OrderService {
 		if(order.gtStatus() != OStatus.UNPAYMENT && order.gtStatus() != OStatus.DEPOSIT && order.gtStatus() != OStatus.ACCEPTED) {
 			throw LOG.err("numberErr", "套餐数量异常");
 		}
-		if(!order.getWxuser().equals(user.getPkey())) return null;
+		if(!order.getWxuser().equals(user.getPkey())) {return null;}
 		if(comboNumber != null) {
 			if(comboNumber < 1) {
 				throw LOG.err("statusErr", "状态异常");
@@ -208,7 +208,8 @@ public class OrderService {
 		order.upd();
 		throw LOG.err("showMsg", msg);
 	}
-	public WptOrder complete(WptOrder order, String checkCode) {
+
+public WptOrder complete(WptOrder order, String checkCode) {
 		if(order.gtStatus() != OStatus.PAYMENT){
 			throw LOG.err("statusErr", "订单未付款");
 		} else if(!order.getCheckcode().equals(checkCode)) {
@@ -229,14 +230,15 @@ public class OrderService {
 	@SuppressWarnings("unchecked")
 	public void doSent(WptOrder order){
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-		WptServiceCen serviceCen = WptServiceCen.load(WptServiceCen.class, order.getAccount());
-		StringBuilder c = new StringBuilder("【享食光】私人订制有新订单生成,内容如下:\n");
+		final WptServiceCen serviceCen = WptServiceCen.load(WptServiceCen.class, order.getAccount());
+		StringBuilder c = new StringBuilder("【享食光】私人订制 单生成,内容如下:\n");
 		c.append("订单号:").append(order.getOrderid()).append("\n");
 		c.append(" 餐厅 :").append(order.getRestaurant()!=null?order.gtRestaurant().getName():"无").append("\n");
 		c.append(" 用餐时间:").append(format.format(order.getTime())).append("\n");
 		c.append(" 联系人:").append(order.getContactMan()).append("\n");
 		c.append(" ").append(order.gtContactType().getLine().getName()).append(":").append(order.getContactWay()).append("\n");
 		c.append(" 宴会类型:").append(order.gtBanquet() != null?order.gtBanquet().getExtName():"无").append("\n");
+		c.append("人均预算").append(order.getConsumption() != null?order.getConsumption():"无").append("\n");
 		c.append(" 服务 :[");
 		for( WptOrderService service : (List<WptOrderService>)Idu.getLines(WptOrderService.T.WPTORDER, order.getPkey())) {
 			c.append(service.getName()).append(" ");

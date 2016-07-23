@@ -1006,7 +1006,7 @@ div.clear{
 .find_spe img{
 	display:block;
 	width:640px;
-	height:427px;	
+	height:327px;	
 }
 .findspe_flog{
 	width:100%;
@@ -1032,6 +1032,7 @@ div.clear{
 	text-align:center;
 	background:url("../images/find_txt.png") no-repeat top center;
 	letter-spacing:3px;
+	font-weight:bold;
 }
 .find_line{
 	height:7px;	
