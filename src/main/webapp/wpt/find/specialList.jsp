@@ -25,6 +25,34 @@
     }
 </script>
 <title>享食光-私人定制</title>
+<style type="text/css">
+a.select_city_btn{
+	height:30px;	
+	line-height:30px;
+	color:#fff;
+	font-size:26px;
+	padding:35px;
+	margin:0 0 0 35px;
+	background:url("images/hm_citybtn.png") no-repeat left center;
+}
+.bg{
+	position: relative;
+	margin-top: 300px;
+	text-align: center;
+	width: 100%;
+}
+.bg img{
+	width: 220px;
+}
+.bg p{
+	font-size: 27px;
+	margin-top: 20px;
+	color: #9a9a9a;
+}
+.gray{
+	background: #f0f0f0;
+}
+</style>
 </head>
 
 <body>	
@@ -36,7 +64,7 @@
 	<div class="find_top">
 		<span><a href="javascript:;" class="hover" id="special">专题</a></span>
 		<span><a href="listHot?account.pkey=${account.pkey }" id="hot">热销</a></span>
-		<a href="javascript:;" class="select_city" >温州</a>	
+		<a href="javascript:;" class="select_city_btn select_city" >${sessionScope.city.name }</a>	
 	</div>
 	<div class="special">
 	<s:iterator value="specials" var="line" >
@@ -45,16 +73,13 @@
 		<div class="findspe_flog"></div>
 		<img data-original="../${line.baseImgUrl}" class="lazy"/>	
 	</a>
-	<div class="find_line"></div>
+	<div class="find_line" style="background-color:#fff"></div>
 	</s:iterator>
 	</div>
 	<div class="hmcity_flog"></div>
 	<!--hmcity_list 城市列表-->
-		<div class="hmcity_list">
+		<div class="hmcity_list" style="position:fixed;">
 			<ul class="hmcity_items">
-			<s:iterator value="citys" var="city">
-				<li><a pkey="<s:property value="#city.pkey" />" href="javascript:;" ><s:property value="#city.name" /></a></li>
-			</s:iterator>
 			</ul>	
 			<div class="hmcity_nobtn">
 				<span>没有您的城市？来告诉我们<i></i></span>
@@ -83,6 +108,12 @@
 				
 		</div>
 	<!--hmcity_add 添加城市-->
+	<div class="bg" style="display: none;">
+		<img alt="" src="images/emptyJ.png">
+		<p>享食光尚未登陆该城市</p>
+		<p>点击<a href="javascript:;" class="select_city" style="color:black;">选择城市</a><p>
+	</div>
+	<jsp:include page="../messagebox.jsp"/>
 <div style="width:640px;height:83px"></div>
 </body>
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
@@ -102,8 +133,47 @@ $(function(){
 		var pkey = $(this).attr("pkey");
 		window.location.href="showSpecial?id="+pkey+"&account.pkey=${account.pkey}";
 	});
+	if($(".special a").size() == 0) {
+		$(".bg").show();
+		$("body").addClass("gray");
+	}
+	var currCity = $(".select_city_btn").text();
+	$.ajax({
+		url:"resource/city_listCity?account.pkey=${account.pkey}",
+		type:"POST",
+		dataType:"json",
+		success:function(result) {
+			var citys = "";
+			$.each(result, function(index, line){
+				if(line.name == currCity) {
+					citys += '<li><a pkey="'+line.id+'" href="javascript:;" class="hover">'+line.name+'</a></li>';	
+				} else {
+					citys += '<li><a pkey="'+line.id+'" href="javascript:;" >'+line.name+'</a></li>';
+				}
+			});
+			$(".hmcity_items").html(citys);
+			$(".hmcity_items li a").on("click",function(){	//选择城市
+				if($(this).hasClass("hover")) {return;}
+				$(".hmcity_items li a").removeClass("hover");
+				$(this).addClass("hover");
+				$(".select_city_btn").html($(this).html());
+				$(".select_city_btn").attr("pkey", $(this).attr("pkey"));
+				$(".hmcity_list").hide();
+				$(".hmcity_add").hide();
+				$(".hmcity_flog").removeClass("hmcity_flogshow");	
+				$.ajax({
+					url : "resource/city_select?account.pkey=${account.pkey}",
+					type : "POST",
+					data : {"id" : $(this).attr("pkey")},
+					success:function(data) {
+						location.reload();
+					}
+				})
+			});
+		}
+	})	
 	//城市选择的JS
-	$(".hm_citybtn").on("click",function(){
+	$(".select_city").on("click",function(){
 		
 		if($(".hmcity_flog").hasClass("hmcity_flogshow")){	//隐藏
 			
@@ -121,22 +191,40 @@ $(function(){
 		$(".hmcity_list").hide();
 		$(".hmcity_flog").removeClass("hmcity_flogshow");			
 	});
-	$(".hmcity_items li a").on("click",function(){	//选择城市
-		
-		$(".hmcity_items li a").removeClass("hover");
-		$(this).addClass("hover");
-		$(".hm_citybtn").html($(this).html());
-		$(".hm_citybtn").attr("pkey", $(this).attr("pkey"));
-		$(".hmcity_list").hide();
+	$(".hmcity_nobtn").on("click",function(){	//其它城市
+		$(".hmcity_add").show();
+		$(".hmcity_list").hide();	
+		$(".hmcity_flog").addClass("hmcity_flogshow");	
+	});
+	
+	$(".hmcity_add .back_btn,.hmcity_add .esc").on("click",function(){	//其它城市
 		$(".hmcity_add").hide();
-		$(".hmcity_flog").removeClass("hmcity_flogshow");	
-		$.ajax({
-			dataType : "json",
-			url : "resource/city_select?account.pkey=${account.pkey}",
-			type : "POST",
-			data : {"id" : $(this).attr("pkey")}
-		})
-	});	
+		$(".hmcity_list").show();	
+		$(".hmcity_flog").addClass("hmcity_flogshow");	
+	});
+	
+	$(".hmcity_add .ok").on("click",function(){
+		if($(".hmcity_add .new_city").val() == ""){
+			tipbox("请输入城市");	
+			return;
+		}else{
+			$(".hmcity_list").hide();
+			$(".hmcity_add").hide();
+			$(".hmcity_flog").removeClass("hmcity_flogshow");
+			$.ajax({
+				url : "resource/city_petition?account.pkey=${account.pkey}",
+				type : "POST",
+				data : {
+					"petitionCity" : $(".hmcity_add .new_city").val()
+				},
+				success: function(data){
+					tipbox(data);
+				}	
+			})
+			
+		}
+			
+	});
 })
 </script>
 </html>
