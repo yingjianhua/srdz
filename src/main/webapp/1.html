@@ -23,7 +23,6 @@
 </script>
 <title>享食光-私人定制</title>
 <style type="text/css">
-<<<<<<< HEAD
 a.select_city{
 	height:30px;	
 	line-height:30px;
@@ -32,24 +31,6 @@ a.select_city{
 	padding-left:35px;
 	margin: 20px;
 	background:url("wpt/images/hm_citybtn.png") no-repeat left center;
-=======
-.find_top:before{
-	content: '';
-    position: absolute;
-    top: 0; right: 0; bottom: 0; left: 0;
-    margin: -30px;
-    z-index: -1;
-    -webkit-filter: blur(20px);
-    filter: url(blur.svg#blur); /* FireFox, Chrome, Opera */  
-    -webkit-filter: blur(10px); /* Chrome, Opera */  
-       -moz-filter: blur(10px);   
-        -ms-filter: blur(10px);       
-            filter: blur(10px);   
-    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false);
-}
-.special{
-	margin-top:66px;
->>>>>>> branch 'master' of https://github.com/yingjianhua/srdz.git
 }
 </style>
 </head>
@@ -132,6 +113,14 @@ $(function(){
 	$(".find_spe").click(function(){
 		var pkey = $(this).attr("pkey");
 	})
+	
+	var currCity = $(".hm_citybtn").text();
+	console.log($(".hm_citybtn"))
+	$(".hmcity_items li a").each(function(index){
+		var city = $(this).text();
+		if(city == currCity)
+			$(this).addClass("hover");
+	})
 	//城市选择的JS
 	$(".select_city").on("click",function(){
 		
@@ -166,6 +155,40 @@ $(function(){
 			type : "POST",
 			data : {"id" : $(this).attr("pkey")}
 		})
+	});
+	$(".hmcity_nobtn").on("click",function(){	//其它城市
+		$(".hmcity_add").show();
+		$(".hmcity_list").hide();	
+		$(".hmcity_flog").addClass("hmcity_flogshow");	
+	});
+	
+	$(".hmcity_add .back_btn,.hmcity_add .esc").on("click",function(){	//其它城市
+		$(".hmcity_add").hide();
+		$(".hmcity_list").show();	
+		$(".hmcity_flog").addClass("hmcity_flogshow");	
+	});
+	
+	$(".hmcity_add .ok").on("click",function(){
+		if($(".hmcity_add .new_city").val() == ""){
+			tipbox("请输入城市");	
+			return;
+		}else{
+			$(".hmcity_list").hide();
+			$(".hmcity_add").hide();
+			$(".hmcity_flog").removeClass("hmcity_flogshow");
+			$.ajax({
+				url : "resource/city_petition?account.pkey=${account.pkey}",
+				type : "POST",
+				data : {
+					"petitionCity" : $(".hmcity_add .new_city").val()
+				},
+				success: function(data){
+					tipbox(data);
+				}	
+			})
+			
+		}
+			
 	});
 })
 </script>

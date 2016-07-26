@@ -2,13 +2,16 @@ package irille.wpt.actions;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import org.apache.struts2.ServletActionContext;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import irille.pub.Exp;
 import irille.pub.Log;
+import irille.pub.bean.Bean;
 import irille.wpt.interceptor.CityInterceptor;
 import irille.wpt.service.CityService;
 import irille.wx.wpt.WptCity;
@@ -31,6 +34,13 @@ public class CityAction extends AbstractWptAction {
 		if(city != null) {
 			getSession().put(CityInterceptor.CITY, city);
 		}
+		PrintWriter writer;
+		try {
+			writer = ServletActionContext.getResponse().getWriter();
+			writer.print("success");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		LOG.info("--------------select():end--------------");
 	}
 	public void currCity() {
@@ -44,6 +54,24 @@ public class CityAction extends AbstractWptAction {
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
+		}
+	}
+	public void listCity() {
+		List<WptCity> citys = Bean.list(WptCity.class, WptCity.T.ACCOUNT+"=?", false, getAccount().getPkey());
+		JSONArray result = new JSONArray();
+		for(WptCity city:citys) {
+			try {
+				result.put(new JSONObject().put("id", city.getPkey()).put("name", city.getName()));
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+		}
+		PrintWriter writer;
+		try {
+			writer = ServletActionContext.getResponse().getWriter();
+			writer.print(result.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 	/**

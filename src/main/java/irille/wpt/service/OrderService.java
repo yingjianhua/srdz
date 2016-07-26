@@ -238,7 +238,8 @@ public WptOrder complete(WptOrder order, String checkCode) {
 		c.append(" 联系人:").append(order.getContactMan()).append("\n");
 		c.append(" ").append(order.gtContactType().getLine().getName()).append(":").append(order.getContactWay()).append("\n");
 		c.append(" 宴会类型:").append(order.gtBanquet() != null?order.gtBanquet().getExtName():"无").append("\n");
-		c.append("人均预算").append(order.getConsumption() != null?order.getConsumption():"无").append("\n");
+		c.append("人均预算:").append(order.getConsumption() != null?order.getConsumption():"无").append("\n");
+		c.append("人数:").append(order.getNumber() != null?order.getNumber():"无").append("\n");
 		c.append(" 服务 :[");
 		for( WptOrderService service : (List<WptOrderService>)Idu.getLines(WptOrderService.T.WPTORDER, order.getPkey())) {
 			c.append(service.getName()).append(" ");
