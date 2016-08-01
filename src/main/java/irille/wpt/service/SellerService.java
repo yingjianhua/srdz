@@ -45,15 +45,15 @@ public class SellerService {
 			return WptRestaurant.get(WptRestaurant.class, (Integer) session.get(LoginSellerAction.RESTAURANT));
 		} else {
 			if(!identify.equals((String) session.get("identify"))){
-				LOG.err("invalidCheckCode", "错误验证码："+identify+";正确验证码："+session.get("identify"));
+				throw LOG.err("invalidCheckCode", "错误验证码："+identify+";正确验证码："+session.get("identify"));
 			}
 			String manager;
 			if((manager=(String)session.get("manager")) == null){
-				LOG.err("timeout", "会话超时，请重新登陆");
+				throw LOG.err("timeout", "会话超时，请重新登陆");
 			}
 			List<WptRestaurant> list = WptRestaurant.list(WptRestaurant.class, WptRestaurant.T.MANAGER + "=? AND " + WptRestaurant.T.ACCOUNT + "=?", false, manager, accountId);
 	    	if(list.size() == 0) {
-	    		LOG.err("restaurantErr", "餐厅异常");
+	    		throw LOG.err("restaurantErr", "餐厅异常");
 	    	}
 			if(user != null && WptRestaurantBsn.chkUniqueWxUserAccount(false, user.getPkey(), accountId) == null){
 				WptRestaurantBsn restaurantBsn = new WptRestaurantBsn();

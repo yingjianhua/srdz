@@ -7,29 +7,30 @@ roles : '',
 selModel : {selType : 'checkboxmodel'},
 viewConfig : {enableTextSelection : true},
 initComponent : function(){
-this.columns =[{text : '标题',width : 100,dataIndex : 'bean.title',sortable : true}
-	,{text : '城市',width : 100,dataIndex : 'bean.city',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wpt',mn : 'view.wpt.WptCity.List'}
-,{text : '顶图',width : 100,dataIndex : 'bean.topImgUrl',sortable : true,renderer:function(v) {return "<img src='../"+v+"'width='90px' height='70px'>"}}
-,{text : '底图',width : 100,dataIndex : 'bean.baseImgUrl',sortable : true,renderer:function(v) {return "<img src='../"+v+"'width='90px' height='70px'>"}}
-	,{text : '介绍',width : 100,dataIndex : 'bean.intro',sortable : true}
-	,{text : '排序',width : 100,dataIndex : 'bean.sort',sortable : true}
-	];
+		this.columns =[
+		       {text : '标题',width : 100,dataIndex : 'bean.title',sortable : true},
+               {text : '城市',width : 100,dataIndex : 'bean.city',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wpt',mn : 'view.wpt.WptCity.List'},
+               {text : '忽略城市',width : 100,dataIndex : 'bean.ignoreCity',sortable : true,renderer : mvc.Tools.optRenderer('sys','Sys','OYn')},
+               {text : '顶图',width : 100,dataIndex : 'bean.topImgUrl',sortable : true,renderer:function(v) {return "<img src='../"+v+"'width='90px' height='70px'>"}},
+               {text : '底图',width : 100,dataIndex : 'bean.baseImgUrl',sortable : true,renderer:function(v) {return "<img src='../"+v+"'width='90px' height='70px'>"}},
+               {text : '介绍',width : 100,dataIndex : 'bean.intro',sortable : true},
+               {text : '排序',width : 100,dataIndex : 'bean.sort',sortable : true}
+        ];
 		this.store=Ext.create('mvc.store.wpt.WptSpecial');
 		this.store.remoteFilter = true;
 		this.store.proxy.filterParam = 'filter';
 		this.on({cellclick:mvc.Tools.onCellclick});
 		this.dockedItems=[{
-		xtype : 'pagingtoolbar',
-		store : this.store,
-		dock : 'bottom',
-		displayInfo : true,
-		displayMsg : '显示 {0} - {1} 条，共计 {2} 条',
-		emptyMsg : '没有数据',
-		items : [{
-				xtype : Ext.create('mvc.tools.ComboxPaging',{myList : this})
-			}]
-	}];
-		this.callParent(arguments);},
+			xtype : 'pagingtoolbar',
+			store : this.store,
+			dock : 'bottom',
+			displayInfo : true,
+			displayMsg : '显示 {0} - {1} 条，共计 {2} 条',
+			emptyMsg : '没有数据',
+			items : [{xtype : Ext.create('mvc.tools.ComboxPaging',{myList : this})}]
+		}];
+		this.callParent(arguments);
+},
 onUpdateRecord : function(form, data){
 		var selection = this.getView().getSelectionModel().getSelection()[0];
 		var bean = Ext.create('mvc.model.wpt.WptSpecial', data);

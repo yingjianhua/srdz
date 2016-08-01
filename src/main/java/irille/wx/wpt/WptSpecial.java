@@ -2,6 +2,7 @@ package irille.wx.wpt;
 
 
 
+import irille.core.sys.Sys.OYn;
 import irille.pub.Log;
 import irille.pub.bean.BeanInt;
 import irille.pub.inf.IExtName;
@@ -20,6 +21,7 @@ public class WptSpecial extends BeanInt<WptSpecial> implements IExtName {
 		PKEY(TB.crtIntPkey()), // 主键
 		TITLE(SYS.STR__20,"标题"),
 		CITY(WptCity.fldOutKey()),
+		IGNORE_CITY(SYS.NY, "忽略城市"),
 		TOP_IMG_URL(SYS.PHOTO__NULL,"顶图"),
 		BASE_IMG_URL(SYS.PHOTO__NULL,"底图"),
 		INTRO(SYS.STR__200_NULL,"介绍"),
@@ -88,6 +90,9 @@ public class WptSpecial extends BeanInt<WptSpecial> implements IExtName {
   private Integer _pkey;	// 编号  INT
   private String _title;	// 标题  STR(20)
   private Integer _city;	// 城市 <表主键:WptCity>  INT
+  private Byte _ignoreCity;	// 忽略城市 <OYn>  BYTE
+	// YES:1,是
+	// NO:0,否
   private String _topImgUrl;	// 顶图  STR(200)<null>
   private String _baseImgUrl;	// 底图  STR(200)<null>
   private String _intro;	// 介绍  STR(200)<null>
@@ -100,6 +105,7 @@ public class WptSpecial extends BeanInt<WptSpecial> implements IExtName {
 		super.init();
     _title=null;	// 标题  STR(20)
     _city=null;	// 城市 <表主键:WptCity>  INT
+    _ignoreCity=OYn.DEFAULT.getLine().getKey();	// 忽略城市 <OYn>  BYTE
     _topImgUrl=null;	// 顶图  STR(200)
     _baseImgUrl=null;	// 底图  STR(200)
     _intro=null;	// 介绍  STR(200)
@@ -144,6 +150,18 @@ public class WptSpecial extends BeanInt<WptSpecial> implements IExtName {
       setCity(null);
     else
       setCity(city.getPkey());
+  }
+  public Byte getIgnoreCity(){
+    return _ignoreCity;
+  }
+  public void setIgnoreCity(Byte ignoreCity){
+    _ignoreCity=ignoreCity;
+  }
+  public Boolean gtIgnoreCity(){
+    return byteToBoolean(_ignoreCity);
+  }
+  public void stIgnoreCity(Boolean ignoreCity){
+    _ignoreCity=booleanToByte(ignoreCity);
   }
   public String getTopImgUrl(){
     return _topImgUrl;

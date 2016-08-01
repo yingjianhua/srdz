@@ -180,12 +180,12 @@ $(function(){
 		placeholder : "images/emptyHot.jpg",
 		effect: "show",
 		threshold:200
-		});
+	});
 	$(".hall_item1").click(function(){
 		var pkey = $(this).attr("pkey");
 		window.location.href = "showRestaurant?id="+pkey+"&account.pkey=${account.pkey}";
 	})
-	if($(".special a").size() == 0) {
+	if($(".hall_item").size() == 0) {
 		$(".bg").show();
 		$("body").addClass("gray");
 	}

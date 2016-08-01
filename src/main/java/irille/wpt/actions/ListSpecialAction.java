@@ -2,6 +2,7 @@ package irille.wpt.actions;
 
 import java.util.List;
 
+import irille.core.sys.Sys.OYn;
 import irille.pub.idu.Idu;
 import irille.wpt.interceptor.CityInterceptor;
 import irille.wx.wpt.WptCity;
@@ -20,8 +21,8 @@ public class ListSpecialAction extends AbstractWptAction {
 	@Override
 	public String execute() throws Exception {
 		WptCity city = (WptCity)getSession().get(CityInterceptor.CITY);
-		String where = Idu.sqlString("{0}=? order by {1}", WptSpecial.T.CITY, WptSpecial.T.SORT);
-		specials = WptSpecial.list(WptSpecial.class, where, false, city.getPkey());
+		String where = Idu.sqlString("{0}=? or {1}=? order by {2}", WptSpecial.T.CITY, WptSpecial.T.IGNORE_CITY, WptSpecial.T.SORT);
+		specials = WptSpecial.list(WptSpecial.class, where, false, city.getPkey(), OYn.YES.getLine().getKey());
 		setResult("find/specialList.jsp");
 		return TRENDS;
 	}
