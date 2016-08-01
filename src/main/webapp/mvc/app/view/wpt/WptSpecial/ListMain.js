@@ -11,8 +11,8 @@ initComponent : function(){
 		       {text : '标题',width : 100,dataIndex : 'bean.title',sortable : true},
                {text : '城市',width : 100,dataIndex : 'bean.city',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wpt',mn : 'view.wpt.WptCity.List'},
                {text : '忽略城市',width : 100,dataIndex : 'bean.ignoreCity',sortable : true,renderer : mvc.Tools.optRenderer('sys','Sys','OYn')},
-               {text : '顶图',width : 100,dataIndex : 'bean.topImgUrl',sortable : true,renderer:function(v) {return "<img src='../"+v+"'width='90px' height='70px'>"}},
-               {text : '底图',width : 100,dataIndex : 'bean.baseImgUrl',sortable : true,renderer:function(v) {return "<img src='../"+v+"'width='90px' height='70px'>"}},
+               {text : '顶图',width : 150,dataIndex : 'bean.topImgUrl',sortable : true,renderer:function(v) {return "<img src='../"+v+"'width='125px' height='70px'>"}},
+               {text : '底图',width : 130,dataIndex : 'bean.baseImgUrl',sortable : true,renderer:function(v) {return "<img src='../"+v+"'width='105px' height='70px'>"}},
                {text : '介绍',width : 100,dataIndex : 'bean.intro',sortable : true},
                {text : '排序',width : 100,dataIndex : 'bean.sort',sortable : true}
         ];
