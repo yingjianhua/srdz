@@ -62,8 +62,8 @@ a.select_city_btn{
 		</jsp:include>
 	<!--footer 底部导航-->
 	<div class="find_top">
-		<span><a href="listSpecial?account.pkey=${account.pkey }" id="special">专题</a></span>
-		<span><a href="javascript:;" class="hover" id="hot">热销</a></span>
+		<span><a href="listSpecial?account.pkey=${account.pkey }" id="special">场景专题</a></span>
+		<span><a href="javascript:;" class="hover" id="hot">热销餐厅</a></span>
 		<a href="javascript:;" class="select_city_btn select_city" >${sessionScope.city.name }</a>
 	</div>
 	<!-- 热销 -->

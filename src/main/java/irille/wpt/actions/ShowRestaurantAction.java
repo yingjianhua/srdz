@@ -21,6 +21,7 @@ public class ShowRestaurantAction extends AbstractWptAction implements IMenuShar
 	private List<WptRestaurantBanner> banners;
 	private List<WptCombo> combos;
 	private List<WptCase> cases;
+	private static final String TITLE_PRE = "【享食光】特别推出 • ";
 	
 	/**
 	 * 显示餐厅信息
@@ -45,7 +46,7 @@ public class ShowRestaurantAction extends AbstractWptAction implements IMenuShar
 	}
 	@Override
 	public String getShareTimelineTitle() {
-		return getRestaurant().getName();
+		return TITLE_PRE + getRestaurant().getName();
 	}
 	@Override
 	public String getShareTimelineLink() {
@@ -57,7 +58,7 @@ public class ShowRestaurantAction extends AbstractWptAction implements IMenuShar
 	}
 	@Override
 	public String getShareAppMessageTitle() {
-		return getRestaurant().getName();
+		return TITLE_PRE + getRestaurant().getName();
 	}
 	@Override
 	public String getShareAppMessageDesc() {

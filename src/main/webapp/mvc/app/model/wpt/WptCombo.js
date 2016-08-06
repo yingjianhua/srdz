@@ -18,6 +18,7 @@ fields : [{name : 'bean.pkey',mapping : 'pkey',type : 'int',useNull : true}
 	,{name : 'bean.serviceTime',mapping : 'serviceTime',type : 'string'}
 	,{name : 'bean.rem',mapping : 'rem',type : 'string'}
 	,{name : 'bean.sort',mapping : 'sort',type : 'int', defaultValue : 0, useNull : true}
+	,{name : 'bean.enabled',mapping : 'enabled',type : 'int',useNull : true}	
 	,{name : 'bean.rowVersion',mapping : 'rowVersion',type : 'int',useNull : true}
 	]
 });

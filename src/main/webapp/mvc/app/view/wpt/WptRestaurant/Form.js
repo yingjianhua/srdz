@@ -54,7 +54,7 @@ initComponent : function(){
 					store : Ext.create('mvc.combo.sys.SysOYn'),
 					value : 0
 				})
-				,{
+	,{
 			xtype : 'imagefield',
 			name : 'bean.imgUrl',
 			blankText : "推荐尺寸 640*358",
@@ -63,7 +63,6 @@ initComponent : function(){
 			labelWidth : this.fieldDefaults.labelWidth,
 			fieldLabel : '图片'}
 	,{xtype : 'textarea',name : 'bean.rem',fieldLabel : '备注'}
-				
 	,{xtype : 'textfield',name : 'bean.des',fieldLabel : '描述'}
 	,{xtype : 'textfield',name : 'bean.startdate',fieldLabel : '开始营业时间'}
 	,{xtype : 'textfield',name : 'bean.stopdate',fieldLabel : '结束营业时间'}
@@ -77,12 +76,16 @@ initComponent : function(){
 		bean : 'WptRestaurantTemplate',
 		beanType : 'wpt',
 		emptyText : form_empty_text,
-	}
+	},
+	mvc.Tools.crtComboForm(false,{
+				name : 'bean.enabled',
+				fieldLabel : '启用',
+				store : Ext.create('mvc.combo.sys.SysOEnabled'),
+				value : 1,
+			})
 	,{xtype : 'numberfield',name : 'bean.rowVersion',value : 0,afterLabelTextTpl : required,allowBlank : false,fieldLabel : '版本',hidden : true,allowDecimals : false}
-	,{
-		xtype : 'hiddenfield',
-		name : 'bean.pkey'
-	});
+	,{xtype : 'hiddenfield',name : 'bean.pkey'}
+	);
 	this.items = [{
 		layout : {
 			type : 'table',

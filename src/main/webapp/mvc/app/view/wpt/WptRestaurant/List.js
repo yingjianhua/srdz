@@ -83,6 +83,15 @@ mainActs.push({
 		handler : this.onBannerSet,
 		disabled : this.lock
    });
+		if (this.roles.indexOf('enableDisable') != -1)
+mainActs.push({
+		text : '启用',
+		iconCls : 'doEnabled-icon',
+		itemId : this.oldId + 'enableDisable',
+		scope : this,
+		handler : this.onEnableDisable,
+		disabled : this.lock
+   });
 		this.items =[{
 		region : 'north',
 		xtype : 'panel',
@@ -179,6 +188,8 @@ mainActs.push({
 							listeners : 							 {
 								scope : this,
 				                selectionchange: function(model, records) {
+				                	var ENABLE = 1;
+				                	var DISABLE = 0;
 				                    if (records.length === 1){
 				                        this.mdMain.getForm().loadRecord(records[0]);
         								this.mdLineTable.store.filter([{'id':'filter', 'property':'restaurant','value':records[0].get('bean.pkey')}]);
@@ -200,6 +211,17 @@ mainActs.push({
 											this.down('#'+this.oldId+'addSpec').setDisabled(false);
 										if (this.roles.indexOf('bannerSet') != -1)
 											this.down('#'+this.oldId+'bannerSet').setDisabled(false);
+										if (this.roles.indexOf('enableDisable') != -1) {
+											var bEnableDisable = this.down('#'+this.oldId+'enableDisable');
+											bEnableDisable.setDisabled(false);
+											if(records[0].get('bean.enabled') == ENABLE) {
+												bEnableDisable.setText("停用");
+												bEnableDisable.setIconCls("unEnabled-icon");
+											} else {
+												bEnableDisable.setText("启用");
+												bEnableDisable.setIconCls("doEnabled-icon");
+											}
+										}
 				                    }else{
 				                    	this.mdMain.getForm().reset();
 				                    	this.mdLineTable.store.removeAll();
@@ -221,6 +243,9 @@ mainActs.push({
 											this.down('#'+this.oldId+'addSpec').setDisabled(records.length === 0);
 										if (this.roles.indexOf('bannerSet') != -1)
 											this.down('#'+this.oldId+'bannerSet').setDisabled(true);
+										if (this.roles.indexOf('enableDisable') != -1) {
+											this.down('#'+this.oldId+'enableDisable').setDisabled(true);
+										}
 				                    }
 				                }
 			                }
@@ -479,5 +504,35 @@ onBannerSetWin : function(selection) {
 		win.setActiveRecord(selection);
 		win.on('create',this.mdMainTable.onMenuRecord,this.mdMainTable);
 	}
-}
+},
+onEnableDisable:function() {
+	var selection = this.mdMainTable.getView().getSelectionModel().getSelection()[0];
+	if (selection) {
+		var me = this;
+		Ext.Ajax.request({
+			url : base_path + '/wpt_WptRestaurant_enableDisable?pkey='+selection.get('bean.pkey')+'&rowVersions='+selection.get('bean.rowVersion'),
+			success : function(response, options) {
+				var result = Ext.decode(response.responseText);
+				if (result.success) {
+					me.onUpdateRecord(null, result);
+				} else {
+					Ext.MessageBox.show({
+						title : msg_title,
+						msg : result.msg,
+						buttons : Ext.MessageBox.OK,
+						icon : Ext.MessageBox.ERROR
+					});
+				}
+			}
+		});
+	}
+},
+onUpdateRecord : function(form, data){
+	var selection = this.mdMainTable.getView().getSelectionModel().getSelection()[0];
+	var bean = Ext.create('mvc.model.wpt.WptRestaurant', data);
+	Ext.apply(selection.data,bean.data);
+	selection.commit();
+	this.mdMainTable.getView().select(selection);
+	Ext.example.msg(msg_title, msg_text);			
+},
 });

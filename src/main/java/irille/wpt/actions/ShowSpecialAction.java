@@ -3,6 +3,7 @@ package irille.wpt.actions;
 import java.sql.ResultSet;
 import java.util.List;
 
+import irille.core.sys.Sys.OEnabled;
 import irille.pub.bean.Bean;
 import irille.pub.bean.BeanBase;
 import irille.pub.idu.Idu;
@@ -19,14 +20,15 @@ public class ShowSpecialAction extends AbstractWptAction implements IMenuShareAp
 	private Integer id;
 	private WptSpecial special;
 	private List<WptRestaurant> restaurants;
+	private static final String TITLE_PRE = "【享食光】• ";
 	/**
 	 * 发现详情页
 	 */
 	@Override
 	public String execute() throws Exception {
-		String where = Idu.sqlString("select r.*,s.{0} from {1} r right join {2} s on (r.{3}=s.{4}) where s.{5}=? order by s.{0} asc", 
+		String where = Idu.sqlString("select r.*,s.{0} from {1} r right join {2} s on (r.{3}=s.{4}) where s.{5}=? and r.{6}=? order by s.{0} asc", 
 				WptSpecialLine.T.SORT, WptRestaurant.class, WptSpecialLine.class, WptRestaurant.T.PKEY, WptSpecialLine.T.RESTAURANT,
-				WptSpecialLine.T.SPECIAL );
+				WptSpecialLine.T.SPECIAL, WptRestaurant.T.ENABLED );
 		restaurants = BeanBase.list(where, new BeanBase.ResultSetBean<WptRestaurant>() {
 			@Override
 			public WptRestaurant tran(ResultSet set) {
@@ -34,14 +36,14 @@ public class ShowSpecialAction extends AbstractWptAction implements IMenuShareAp
 				bean.fromResultSet(set);
 				return bean;
 			}
-		}, id);
+		}, id, OEnabled.TRUE.getLine().getKey());
 		
 		setResult("find/specialDetail.jsp");
 		return TRENDS;
 	}
 	@Override
 	public String getShareTimelineTitle() {
-		return getSpecial().getExtName();
+		return TITLE_PRE + getSpecial().getExtName();
 	}
 	@Override
 	public String getShareTimelineLink() {
@@ -53,11 +55,11 @@ public class ShowSpecialAction extends AbstractWptAction implements IMenuShareAp
 	}
 	@Override
 	public String getShareAppMessageTitle() {
-		return getSpecial().getExtName();
+		return TITLE_PRE + getSpecial().getExtName();
 	}
 	@Override
 	public String getShareAppMessageDesc() {
-		return getSpecial().getTitle();
+		return getSpecial().getIntro();
 	}
 	@Override
 	public String getShareAppMessageLink() {

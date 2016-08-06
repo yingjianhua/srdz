@@ -1,4 +1,4 @@
-Ext.define('mvc.view.wpt.WptCombo.ListForm',{
+Ext.define('mvc.view.wpt.WptCombo.ListFormWptRestaurantMenu',{
 extend : 'Ext.grid.Panel',
 disableSelection : false,
 loadMask : true,

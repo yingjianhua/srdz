@@ -16,9 +16,8 @@ initComponent : function(){
 				this.url = this.url + 'ins';
 			else
 				this.url = this.url + 'upd';
-			var formFlds = [];
-			formFlds.push
-({
+	var formFlds = [];
+	formFlds.push({
 		xtype : 'beantrigger',
 		name : 'bean.restaurant',
 		fieldLabel : '餐厅',
@@ -29,7 +28,7 @@ initComponent : function(){
 		allowBlank : false
 	},{xtype : 'textfield',name : 'bean.name',afterLabelTextTpl : required,allowBlank : false,fieldLabel : '名称'}
 	,{xtype : 'imagefield',name : 'bean.imgUrl',blankText : "推荐尺寸 640*425",afterLabelTextTpl : required,allowBlank : false, labelWidth : this.fieldDefaults.labelWidth,fieldLabel : '图片'}
-	,{xtype : 'textfield',name : 'bean.des',fieldLabel : '描述'}
+	,{xtype : 'textareafield',name : 'bean.des',fieldLabel : '描述'}
 	,{xtype : 'numberfield',name : 'bean.origPrice',value : 0,afterLabelTextTpl : required,allowBlank : false,fieldLabel : '原价',decimalPrecision : 2}
 	,{xtype : 'numberfield',name : 'bean.price',value : 0,afterLabelTextTpl : required,allowBlank : false,fieldLabel : '价格',decimalPrecision : 2}
 	,{xtype : 'numberfield',name : 'bean.numberMin',value : 0,afterLabelTextTpl : required,allowBlank : false,fieldLabel : '最少人数',allowDecimals : false}
@@ -38,6 +37,12 @@ initComponent : function(){
 	,{xtype : 'textfield',name : 'bean.serviceTime',fieldLabel : '使用时段'}
 	,{xtype : 'textfield',name : 'bean.rem',fieldLabel : '备注'}
 	,{xtype : 'numberfield',name : 'bean.sort',value : 0,afterLabelTextTpl : required,allowBlank : false,fieldLabel : '排序',allowDecimals : false}
+	,mvc.Tools.crtComboForm(false,{
+				name : 'bean.enabled',
+				fieldLabel : '启用',
+				store : Ext.create('mvc.combo.sys.SysOEnabled'),
+				value : 1,
+			})
 	,{xtype : 'numberfield',name : 'bean.rowVersion',value : 0,afterLabelTextTpl : required,allowBlank : false,fieldLabel : '版本',hidden : true,allowDecimals : false}
 	,{
 		xtype : 'hiddenfield',
@@ -45,8 +50,9 @@ initComponent : function(){
 	});
 	this.items = [{
 		layout : {
-			type : 'vbox',
-			align : 'stretch'
+			type : 'table',
+			columns : 2,
+			itemCls : 'x-layout-table-items-form'
 		},
 		border : false,
 		items : formFlds

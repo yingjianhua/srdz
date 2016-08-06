@@ -1,195 +1,51 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta name="format-detection" content="telephone=no" />
-<link type="text/css" rel="stylesheet" href="wpt/css/css.css" />
-<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-<!--这段JS不能删除，且前面最好别再放其它JS-->
-<script type="text/javascript">
-    var phoneWidth =  parseInt(window.screen.width);
-    var phoneScale = phoneWidth/640;
-    var ua = navigator.userAgent;
-    if (/Android (\d+\.\d+)/.test(ua)){
-        var version = parseFloat(RegExp.$1);
-        if(version>2.3){
-            document.write('<meta name="viewport" content="width=640, minimum-scale = '+phoneScale+', maximum-scale = '+phoneScale+', target-densitydpi=device-dpi">');
-        }else{
-            document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
-        }
-    } else {
-        document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
-    }
-</script>
-<title>享食光-私人定制</title>
-<style type="text/css">
-a.select_city{
-	height:30px;	
-	line-height:30px;
-	color:#fff;
-	font-size:26px;
-	padding-left:35px;
-	margin: 20px;
-	background:url("wpt/images/hm_citybtn.png") no-repeat left center;
-}
-</style>
-</head>
-<body>	
-	<div class="find_top">
-		<span><a href="javascript:;" class="hover" id="special">专题</a></span>
-		<span><a href="listHot?account.pkey=${account.pkey }" id="hot">热销</a></span>	
-		<a href="javascript:;" class="select_city" >温州</a>
-	</div>
-	
-	<div class="hmcity_flog"></div>
-	<!--hmcity_list 城市列表-->
-		<div class="hmcity_list">
-			<ul class="hmcity_items">
-				<li><a pkey="1" href="javascript:;" >温州</a></li>
-				<li><a pkey="1" href="javascript:;" >上海</a></li>
-				<li><a pkey="1" href="javascript:;" >杭州</a></li>
-			</ul>	
-			<div class="hmcity_nobtn">
-				<span>没有您的城市？来告诉我们<i></i></span>
-			</div>	
-		</div>
-	<!--hmcity_list 城市列表-->
-	
-	<!--hmcity_add 添加城市-->
-		<div class="hmcity_add">
-			
-			<a href="javascript:;" class="back_btn">&lt; 返回</a>
-			<dl>
-				<dt>输入您所在的城市   享食光马上就来</dt>
-				<dd>
-					<input type="text" class="new_city" placeHolder="例: 温州" />	
-				</dd>	
-			</dl>
-			
-			<dl>
-				<dt>PS.城市合作请联系客服</dt>
-				<dd>
-					<a href="javascript:;" class="btn ok lt">确 认</a>
-					<a href="javascript:;" class="btn esc rt">取 消</a>
-				</dd>	
-			</dl>
-				
-		</div>
-	<!--hmcity_add 添加城市-->
-	<div class="special">
-		<a href="javascript:;" class="find_spe" pkey="${line.pkey}">
-			<div class="txt">完美约会</div>
-			<div class="findspe_flog"></div>
-			<img data-original="wpt/images/test/find_spe1.jpg" class="lazy"/>	
-		</a>
-		<div class="find_line"></div>
-		
-		<a href="javascript:;" class="find_spe" pkey="${line.pkey}">
-			<div class="txt">品质生活</div>
-			<div class="findspe_flog"></div>
-			<img data-original="wpt/images/test/find_spe2.jpg" class="lazy"/>	
-		</a>
-		<div class="find_line"></div>
-		
-		<a href="javascript:;" class="find_spe" pkey="${line.pkey}">
-			<div class="txt">龙虾季</div>
-			<div class="findspe_flog"></div>
-			<img data-original="wpt/images/test/find_spe3.jpg" class="lazy"/>	
-		</a>
-		<div class="find_line"></div>
-	</div>
-<div style="width:640px;height:83px"></div>
-</body>
-<script type="text/javascript" src="wpt/js/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="wpt/js/jquery.lazyload.min.js"></script>
-<script type="text/javascript" src="wpt/js/base.js"></script>
-<script>
-$(function(){
-	$("img.lazy").lazyload({
-		placeholder : "images/emptySpecial.jpg",
-		effect: "show",
-		threshold:200
-		});
-	$(".find_spe").click(function(){
-		var pkey = $(this).attr("pkey");
-	})
-	
-	var currCity = $(".hm_citybtn").text();
-	console.log($(".hm_citybtn"))
-	$(".hmcity_items li a").each(function(index){
-		var city = $(this).text();
-		if(city == currCity)
-			$(this).addClass("hover");
-	})
-	//城市选择的JS
-	$(".select_city").on("click",function(){
-		
-		if($(".hmcity_flog").hasClass("hmcity_flogshow")){	//隐藏
-			
-			$(".hmcity_list").hide();
-			$(".hmcity_add").hide();
-			$(".hmcity_flog").removeClass("hmcity_flogshow");	
-			
-		}else{	//显示
-			$(".hmcity_list").show();
-			$(".hmcity_flog").addClass("hmcity_flogshow");		
-		}
-			
-	});
-	$(".hmcity_flog").on("click",function(){
-		$(".hmcity_list").hide();
-		$(".hmcity_flog").removeClass("hmcity_flogshow");			
-	});
-	$(".hmcity_items li a").on("click",function(){	//选择城市
-		
-		$(".hmcity_items li a").removeClass("hover");
-		$(this).addClass("hover");
-		$(".hm_citybtn").html($(this).html());
-		$(".hm_citybtn").attr("pkey", $(this).attr("pkey"));
-		$(".hmcity_list").hide();
-		$(".hmcity_add").hide();
-		$(".hmcity_flog").removeClass("hmcity_flogshow");	
-		$.ajax({
-			dataType : "json",
-			url : "resource/city_select?account.pkey=${account.pkey}",
-			type : "POST",
-			data : {"id" : $(this).attr("pkey")}
-		})
-	});
-	$(".hmcity_nobtn").on("click",function(){	//其它城市
-		$(".hmcity_add").show();
-		$(".hmcity_list").hide();	
-		$(".hmcity_flog").addClass("hmcity_flogshow");	
-	});
-	
-	$(".hmcity_add .back_btn,.hmcity_add .esc").on("click",function(){	//其它城市
-		$(".hmcity_add").hide();
-		$(".hmcity_list").show();	
-		$(".hmcity_flog").addClass("hmcity_flogshow");	
-	});
-	
-	$(".hmcity_add .ok").on("click",function(){
-		if($(".hmcity_add .new_city").val() == ""){
-			tipbox("请输入城市");	
-			return;
-		}else{
-			$(".hmcity_list").hide();
-			$(".hmcity_add").hide();
-			$(".hmcity_flog").removeClass("hmcity_flogshow");
-			$.ajax({
-				url : "resource/city_petition?account.pkey=${account.pkey}",
-				type : "POST",
-				data : {
-					"petitionCity" : $(".hmcity_add .new_city").val()
-				},
-				success: function(data){
-					tipbox(data);
-				}	
-			})
-			
-		}
-			
-	});
-})
-</script>
-</html>
+<p class="MsoNormal">
+	<img src="http://p.yhres.com/meal/2016/08/05/1470366139594482.jpg" alt=\ "" />
+</p>
+
+<p class="MsoNormal">
+	看得到风景的天台，年轻人创业咖啡及酒吧的集散地，露天<span lang="EN-US">700</span>平米大平台俯视整个静安寺，及南京路商圈，静安美景一览无遗。
+</p>
+
+<p class="MsoNormal">
+	<img src="http://p.yhres.com/meal/2016/08/05/1470366152702000.jpg" alt=\ "" />
+</p>
+
+<p class="MsoNormal">
+	餐厅<span lang="EN-US">700</span>平米屋顶露台<span lang="EN-US">270</span>°绝佳视野，可以欣赏到上海核心地段的无遮挡风景。可容纳<span
+		lang="EN-US">300</span>人，是举办酒会、论坛、发布会的最佳场地。\r \n
+</p>
+
+<p class="MsoNormal">
+	<img src="http://p.yhres.com/meal/2016/08/05/1470366184437661.jpg" alt=\ "" />
+</p>
+
+<p class="MsoNormal">
+	本次套餐带来红酒和火腿小食拼盘，培根、烟熏鸡肉、火腿片、起司、芝麻菜、算黄瓜、青橄
+	榄，让你在品酒之余也能有丰富的小酒小菜。美酒美食浦西最好的天台风景<span lang="EN-US">Cafe&amp;bar</span>期待您的光临。
+</p>
+
+<p class="MsoNormal">
+	<img src="http://p.yhres.com/meal/2016/08/05/1470366202210067.jpg" alt="" />
+</p>
+","highs":["屋顶露台夏日乘凉好去处","夜晚浦西最佳的观景平台","可容纳百人是举办酒会的最佳场地"],"hostDetailUrl":"https://m.yhouse
+.com/host-app/23998","hostDisplay":0,"hostId":23998,"hostName":"看得到风景的天台","hostSharePicUrl":"","hostShareUrl"
+:"http://m.yhouse.com/host/23998?pk_campaign=share&pk_kwd=host","htmlUrl":null,"id":6453,"interestedNum"
+:0,"isInterested":0,"isOnlineTimeNew":null,"latitude":"31.223131","leadingDate":"1小时","longitude":"121
+.44428","maxNum":99,"menu":"
+<p style="text-align:center;">
+	<strong>饮品</strong> 
+</p>
+
+<p style="text-align:center;">红酒一瓶</p>
+
+<p style="text-align:center;">
+	<strong>冷切 盘</strong> 
+</p>
+
+<p style="text-align:center;">（培根、烟熏鸡肉、火腿片、起司、芝麻菜、算黄瓜、青橄榄）</p>
+
+<div style="text-align:center;">
+	<strong>果盘一份</strong> 
+</div>
+
+<div style="text-align:center;"></div>

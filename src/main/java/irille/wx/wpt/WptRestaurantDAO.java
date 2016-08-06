@@ -1,16 +1,18 @@
 package irille.wx.wpt;
 
+import java.io.Serializable;
+import java.util.List;
+
 import irille.pub.Log;
 import irille.pub.PropertyUtils;
 import irille.pub.PubInfs.IMsg;
+import irille.pub.bean.Bean;
 import irille.pub.idu.Idu;
 import irille.pub.idu.IduDel;
 import irille.pub.idu.IduInsLines;
 import irille.pub.idu.IduUpdLines;
 import irille.wx.wx.WxAccount;
 import irille.wx.wx.WxAccountDAO;
-
-import java.util.List;
 
 public class WptRestaurantDAO {
 	public enum Msgs implements IMsg {// 信息定义的类名必须为Msgs, 以便系统能检索 @formatter:off
@@ -134,6 +136,17 @@ public class WptRestaurantDAO {
 				}
 			}
 		}
+	}
+	public WptRestaurant enableDisable(Serializable pkey) {
+		WptRestaurant restaurant = WptRestaurant.load(WptRestaurant.class, pkey);
+		if(restaurant.gtEnabled()) {
+			restaurant.stEnabled(false);
+			Bean.executeUpdate(Idu.sqlString("delete from {0} where {1}=?", WptHot.class, WptHot.T.RESTAURANT), pkey);
+		} else {
+			restaurant.stEnabled(true);
+		}
+		restaurant.upd();
+		return restaurant;
 	}
 	/*public static class MenuSet  extends IduOther<MenuSet, WptRestaurant> {
 		public static Cn CN = new Cn("menuSet", "菜品设置");

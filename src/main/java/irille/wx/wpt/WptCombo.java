@@ -4,6 +4,7 @@ package irille.wx.wpt;
 
 import java.math.BigDecimal;
 
+import irille.core.sys.Sys.OEnabled;
 import irille.pub.Log;
 import irille.pub.bean.BeanInt;
 import irille.pub.inf.IExtName;
@@ -16,7 +17,8 @@ import irille.wx.wx.WxAccount;
 
 public class WptCombo extends BeanInt<WptCombo> implements IExtName {
 	private static final Log LOG = new Log(WptCombo.class);
-	public static final Tb TB = new Tb(WptCombo.class, "套餐").setAutoIncrement().addActIUDL().addActOpt("bannerSet", "轮播图设置", "edit-icon");
+	public static final Tb TB = new Tb(WptCombo.class, "套餐").setAutoIncrement().addActIUDL()
+			.addActOpt("bannerSet", "轮播图设置", "edit-icon").addActOpt("enableDisable", "启停用");
 
 	public enum T implements IEnumFld {// @formatter:off
 		PKEY(TB.crtIntPkey()), // 主键
@@ -32,6 +34,7 @@ public class WptCombo extends BeanInt<WptCombo> implements IExtName {
 	    SERVICE_TIME(SYS.STR__40_NULL, "使用时段"),
 	    REM(SYS.REM__200_NULL),
 	    SORT(SYS.SORT__SHORT),
+	    ENABLED(SYS.ENABLED, "启停用"),
 		CMB_WX(CmbWx.fldFlds()),
 
 
@@ -105,6 +108,9 @@ public class WptCombo extends BeanInt<WptCombo> implements IExtName {
   private String _serviceTime;	// 使用时段  STR(40)<null>
   private String _rem;	// 备注  STR(200)<null>
   private Short _sort;	// 排序号  SHORT
+  private Byte _enabled;	// 启停用 <OEnabled>  BYTE
+	// TRUE:1,启用
+	// FALSE:0,停用
   private Integer _account;	// 公众帐号 <表主键:WxAccount>  INT
   private Short _rowVersion;	// 版本  SHORT
 
@@ -123,6 +129,7 @@ public class WptCombo extends BeanInt<WptCombo> implements IExtName {
     _serviceTime=null;	// 使用时段  STR(40)
     _rem=null;	// 备注  STR(200)
     _sort=0;	// 排序号  SHORT
+    _enabled=OEnabled.DEFAULT.getLine().getKey();	// 启停用 <OEnabled>  BYTE
     _account=null;	// 公众帐号 <表主键:WxAccount>  INT
     _rowVersion=0;	// 版本  SHORT
     return this;
@@ -223,6 +230,18 @@ public class WptCombo extends BeanInt<WptCombo> implements IExtName {
   }
   public void setSort(Short sort){
     _sort=sort;
+  }
+  public Byte getEnabled(){
+    return _enabled;
+  }
+  public void setEnabled(Byte enabled){
+    _enabled=enabled;
+  }
+  public Boolean gtEnabled(){
+    return byteToBoolean(_enabled);
+  }
+  public void stEnabled(Boolean enabled){
+    _enabled=booleanToByte(enabled);
   }
   public Integer getAccount(){
     return _account;

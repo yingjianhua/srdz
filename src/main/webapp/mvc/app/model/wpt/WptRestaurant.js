@@ -23,6 +23,7 @@ fields : [{name : 'bean.pkey',mapping : 'pkey',type : 'int',useNull : true}
 	,{name : 'bean.wifiaccount',mapping : 'wifiaccount',type : 'string'}
 	,{name : 'bean.wifipassword',mapping : 'wifipassword',type : 'string'}
 	,{name : 'bean.template',mapping : 'template',type : 'string',outkey : true}
+	,{name : 'bean.enabled',mapping : 'enabled',type : 'int',useNull : true}
 	,{name : 'bean.rowVersion',mapping : 'rowVersion',type : 'int',useNull : true}
 	]
 });

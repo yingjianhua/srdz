@@ -2,6 +2,9 @@ package irille.action.wpt;
 
 import java.util.List;
 
+import org.apache.struts2.ServletActionContext;
+import org.json.JSONObject;
+
 import irille.action.ActionWx;
 import irille.wx.wpt.WptCombo;
 import irille.wx.wpt.WptComboDAO;
@@ -50,6 +53,11 @@ public class WptComboAction extends ActionWx<WptCombo,WptComboAction> {
 		ins.commit();
 		insAfter();
 		return ins.getB();
+	}
+	public void enableDisable() throws Exception {
+		WptComboDAO dao = new WptComboDAO();
+		JSONObject jbean = crtJsonByBean(dao.enableDisable(getPkey()), "bean.");
+		ServletActionContext.getResponse().getWriter().print(jbean.put("success", true));
 	}
 	
 }

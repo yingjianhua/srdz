@@ -31,6 +31,7 @@ this.columns =[{text : '餐厅名称',width : 100,dataIndex : 'bean.name',sortab
 	,{text : '人均消费',width : 100,dataIndex : 'bean.consumption',sortable : true,renderer : mvc.Tools.numberRenderer(),align : 'right'}
 	,{text : 'wifi账号',width : 100,dataIndex : 'bean.wifiaccount',sortable : true}
 	,{text : 'wifi密码',width : 100,dataIndex : 'bean.wifipassword',sortable : true}
+	,{text : '启用',width : 75,dataIndex : 'bean.enabled',sortable : true,renderer : mvc.Tools.optRenderer('sys','Sys','OEnabled')}
 	,{text : '模板',width : 100,dataIndex : 'bean.template',sortable : true,renderer : mvc.Tools.beanRenderer()}
 	];
 		this.store=Ext.create('mvc.store.wpt.WptRestaurant');

@@ -1,5 +1,6 @@
 package irille.wx.wpt;
 
+import java.io.Serializable;
 import java.util.List;
 
 import irille.pub.Log;
@@ -101,6 +102,16 @@ public class WptComboDAO {
 			super.after();
 			delLine(getLines(WptComboLine.T.COMBO.getFld(), getB().getPkey()));
 		}
+	}
+	public WptCombo enableDisable(Serializable pkey) {
+		WptCombo combo = WptCombo.load(WptCombo.class, pkey);
+		if(combo.gtEnabled()) {
+			combo.stEnabled(false);
+		} else {
+			combo.stEnabled(true);
+		}
+		combo.upd();
+		return combo;
 	}
 	public static void main(String[] args) {
 		List<WptCombo> combos = Bean.list(WptCombo.class, "1=1", false);

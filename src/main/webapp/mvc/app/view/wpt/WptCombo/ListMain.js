@@ -17,6 +17,7 @@ this.columns =[{text : '餐厅',width : 100,dataIndex : 'bean.restaurant',sortab
 	,{text : '使用日期',width : 100,dataIndex : 'bean.serviceDate',sortable : true}
 	,{text : '使用时段',width : 100,dataIndex : 'bean.serviceTime',sortable : true}
 	,{text : '排序',width : 100,dataIndex : 'bean.sort',sortable : true}
+	,{text : '启用',width : 75,dataIndex : 'bean.enabled',sortable : true,renderer : mvc.Tools.optRenderer('sys','Sys','OEnabled')}
 	];
 		this.store=Ext.create('mvc.store.wpt.WptCombo');
 		this.store.remoteFilter = true;

@@ -94,4 +94,9 @@ public class WptRestaurantAction extends ActionWx<WptRestaurant, WptRestaurantAc
 		dao.addSpec(pkeys);
 		ServletActionContext.getResponse().getWriter().print(new JSONObject().put("success", true));
 	}
+	public void enableDisable() throws Exception {
+		WptRestaurantDAO dao = new WptRestaurantDAO();
+		JSONObject jbean = crtJsonByBean(dao.enableDisable(getPkey()), "bean.");
+		ServletActionContext.getResponse().getWriter().print(jbean.put("success", true));
+	}
 }

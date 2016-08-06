@@ -4,6 +4,7 @@ package irille.wx.wpt;
 
 import java.math.BigDecimal;
 
+import irille.core.sys.Sys.OEnabled;
 import irille.core.sys.Sys.OYn;
 import irille.pub.Log;
 import irille.pub.bean.BeanInt;
@@ -19,7 +20,8 @@ public class WptRestaurant extends BeanInt<WptRestaurant> implements IExtName {
 	private static final Log LOG = new Log(WptRestaurant.class);
 	public static final Tb TB = new Tb(WptRestaurant.class, "餐厅").setAutoIncrement().addActIUDL().addActOpt("menuSet", "菜品设置", "edit-icon")
 			.addActOpt("addHot", "添加热销", "edit-icon").addActOpt("delHot", "删除热销", "edit-icon")
-			.addActOpt("addSpec", "同步到专题", "win-refresh-icon").addActOpt("bannerSet", "轮播图设置", "edit-icon");
+			.addActOpt("addSpec", "同步到专题", "win-refresh-icon").addActOpt("bannerSet", "轮播图设置", "edit-icon")
+			.addActOpt("enableDisable", "启停用");
 
 	public enum T implements IEnumFld {// @formatter:off
 		PKEY(TB.crtIntPkey()), // 主键
@@ -42,6 +44,7 @@ public class WptRestaurant extends BeanInt<WptRestaurant> implements IExtName {
 		WIFIACCOUNT(SYS.STR__40_NULL,"wifi账号"),
 		WIFIPASSWORD(SYS.STR__40_NULL,"wifi密码"),
 		TEMPLATE(WptRestaurantTemplate.fldOutKey().setName("详情页模板").setNull()),
+		ENABLED(SYS.ENABLED, "启用"),
 		CMB_WX(CmbWx.fldFlds()),
 
 
@@ -125,6 +128,9 @@ public class WptRestaurant extends BeanInt<WptRestaurant> implements IExtName {
   private String _wifiaccount;	// wifi账号  STR(40)<null>
   private String _wifipassword;	// wifi密码  STR(40)<null>
   private Integer _template;	// 详情页模板 <表主键:WptRestaurantTemplate>  INT<null>
+  private Byte _enabled;	// 启用 <OEnabled>  BYTE
+	// TRUE:1,启用
+	// FALSE:0,停用
   private Integer _account;	// 公众帐号 <表主键:WxAccount>  INT
   private Short _rowVersion;	// 版本  SHORT
 
@@ -150,6 +156,7 @@ public class WptRestaurant extends BeanInt<WptRestaurant> implements IExtName {
     _wifiaccount=null;	// wifi账号  STR(40)
     _wifipassword=null;	// wifi密码  STR(40)
     _template=null;	// 详情页模板 <表主键:WptRestaurantTemplate>  INT
+    _enabled=OEnabled.DEFAULT.getLine().getKey();	// 启用 <OEnabled>  BYTE
     _account=null;	// 公众帐号 <表主键:WxAccount>  INT
     _rowVersion=0;	// 版本  SHORT
     return this;
@@ -320,6 +327,18 @@ public class WptRestaurant extends BeanInt<WptRestaurant> implements IExtName {
       setTemplate(null);
     else
       setTemplate(template.getPkey());
+  }
+  public Byte getEnabled(){
+    return _enabled;
+  }
+  public void setEnabled(Byte enabled){
+    _enabled=enabled;
+  }
+  public Boolean gtEnabled(){
+    return byteToBoolean(_enabled);
+  }
+  public void stEnabled(Boolean enabled){
+    _enabled=booleanToByte(enabled);
   }
   public Integer getAccount(){
     return _account;
