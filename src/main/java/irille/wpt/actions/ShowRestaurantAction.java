@@ -2,6 +2,7 @@ package irille.wpt.actions;
 
 import java.util.List;
 
+import irille.core.sys.Sys.OEnabled;
 import irille.pub.bean.BeanBase;
 import irille.pub.idu.Idu;
 import irille.wx.wpt.WptCase;
@@ -32,9 +33,9 @@ public class ShowRestaurantAction extends AbstractWptAction implements IMenuShar
 		banners = WptRestaurantBanner.list(WptRestaurantBanner.class, bannerSql, false, id);
 		cases = BeanBase.list(WptCase.class, WptCase.T.RESTAURANT+"=?", false, id);
 		if(scombos == null || scombos.equals("")){
-			combos = BeanBase.list(WptCombo.class, WptCombo.T.RESTAURANT+"=? order by "+WptCombo.T.SORT, false, id);
+			combos = BeanBase.list(WptCombo.class, WptCombo.T.RESTAURANT+"=? and "+WptCombo.T.ENABLED+"=? order by "+WptCombo.T.SORT, false, id, OEnabled.TRUE.getLine().getKey());
 		}else{
-			combos = BeanBase.list(WptCombo.class, WptCombo.T.PKEY +" in ("+scombos+") order by " +WptCombo.T.SORT, false);
+			combos = BeanBase.list(WptCombo.class, WptCombo.T.ENABLED+"=? and "+WptCombo.T.PKEY +" in ("+scombos+") order by " +WptCombo.T.SORT, false, OEnabled.TRUE.getLine().getKey());
 		}
 		if(getRestaurant().getTemplate() != null) {
 			WptRestaurantTemplate template = getRestaurant().gtTemplate();

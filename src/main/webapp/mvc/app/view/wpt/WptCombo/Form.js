@@ -25,8 +25,32 @@ initComponent : function(){
 		beanType : 'wpt',
 		emptyText : form_empty_text,
 		afterLabelTextTpl : required,
-		allowBlank : false
-	},{xtype : 'textfield',name : 'bean.name',afterLabelTextTpl : required,allowBlank : false,fieldLabel : '名称'}
+		allowBlank : false,
+		listeners : {
+			change : function(field, newv, oldv) {
+				var win = this.up("window")
+				if(oldv != undefined) {
+					var comboLine = win.comboLine;
+					comboLine.getStore().removeAll();
+				} 
+				var resLine = win.resLine;
+				if(newv) {
+					var array = [{
+						id:'flds',
+						property: 'param',
+						value: '1=1'
+					}, {
+						id:'diy',
+						property: 'diy',
+						value: "restaurant="+newv.split(bean_split)[0]
+					}];
+					resLine.getStore().filter(array);
+				} else {
+					resLine.getStore().removeAll();
+				}
+			}
+		}}
+	,{xtype : 'textfield',name : 'bean.name',afterLabelTextTpl : required,allowBlank : false,fieldLabel : '名称'}
 	,{xtype : 'imagefield',name : 'bean.imgUrl',blankText : "推荐尺寸 640*425",afterLabelTextTpl : required,allowBlank : false, labelWidth : this.fieldDefaults.labelWidth,fieldLabel : '图片'}
 	,{xtype : 'textareafield',name : 'bean.des',fieldLabel : '描述'}
 	,{xtype : 'numberfield',name : 'bean.origPrice',value : 0,afterLabelTextTpl : required,allowBlank : false,fieldLabel : '原价',decimalPrecision : 2}

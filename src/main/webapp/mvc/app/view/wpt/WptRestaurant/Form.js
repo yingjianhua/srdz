@@ -63,7 +63,7 @@ initComponent : function(){
 			labelWidth : this.fieldDefaults.labelWidth,
 			fieldLabel : '图片'}
 	,{xtype : 'textarea',name : 'bean.rem',fieldLabel : '备注'}
-	,{xtype : 'textfield',name : 'bean.des',fieldLabel : '描述'}
+	,{xtype : 'textarea',name : 'bean.des',fieldLabel : '描述'}
 	,{xtype : 'textfield',name : 'bean.startdate',fieldLabel : '开始营业时间'}
 	,{xtype : 'textfield',name : 'bean.stopdate',fieldLabel : '结束营业时间'}
 	,{xtype : 'numberfield',name : 'bean.consumption',value : 0,afterLabelTextTpl : required,allowBlank : false,fieldLabel : '人均消费',decimalPrecision : 2}
