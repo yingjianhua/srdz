@@ -6,9 +6,12 @@ import java.text.ParseException;
 import java.util.Map;
 import java.util.TreeMap;
 
+import javax.annotation.Resource;
+
 import org.apache.struts2.ServletActionContext;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.stereotype.Controller;
 
 import irille.pub.Exp;
 import irille.pub.Log;
@@ -18,7 +21,7 @@ import irille.wx.wx.WxAccount;
 import irille.wx.wx.WxUser;
 import irille.wxpub.util.MessageUtil;
 import irille.wxpub.util.mch.MchUtil;
-
+@Controller
 public class OrderAction extends AbstractWptAction {
 	/**
 	 * 
@@ -44,11 +47,12 @@ public class OrderAction extends AbstractWptAction {
 	private Integer comboNumber;
 
 	private String checkCode;
-	private OrderService service;
+	@Resource
+	private OrderService orderService;
 
 	public void confirmOrder() throws ParseException, JSONException, IOException {
 		LOG.info("--------------confirmOrder():start--------------");
-		WptOrder order = service.createOrder(contactMan, contactSex, date, contactWay, contactType, rem, 
+		WptOrder order = orderService.createOrder(contactMan, contactSex, date, contactWay, contactType, rem, 
 				comboId, banquetId, pnum, perCapitaBudget, areaId, services, chkWxUser().getPkey(), getAccount().getPkey());
 		JSONObject result = new JSONObject();
 		if(order != null) {
@@ -65,7 +69,7 @@ public class OrderAction extends AbstractWptAction {
 	public void preparePay() throws Exception {
 		LOG.info("--------------preparePay():start--------------");
 		account = WxAccount.get(WxAccount.class, account.getPkey());
-		JSONObject result = service.createPreparePay(orderId, comboNumber, chkWxUser(), account, getRequest());
+		JSONObject result = orderService.createPreparePay(orderId, comboNumber, chkWxUser(), account, getRequest());
 		result.put(SUCCESS, true);
 		ServletActionContext.getResponse().getWriter().print(result);
 		LOG.info("--------------preparePay():end--------------");
@@ -84,7 +88,7 @@ public class OrderAction extends AbstractWptAction {
 			return ;
 		}
 		try {
-			service.cancelOrder(order);
+			orderService.cancelOrder(order);
 		} catch (Exp e) {
 			try {
 				PrintWriter writer = ServletActionContext.getResponse().getWriter();
@@ -102,7 +106,7 @@ public class OrderAction extends AbstractWptAction {
 	 */
 	public void checkCode() throws IOException{
 		try {
-			service.complete(WptOrder.loadUniqueOrderid(false, orderId), checkCode);
+			orderService.complete(WptOrder.loadUniqueOrderid(false, orderId), checkCode);
 			ServletActionContext.getResponse().getWriter().print("ok");
 		} catch (Exp e) {
 			ServletActionContext.getResponse().getWriter().print(e.getLastMessage());
@@ -158,7 +162,7 @@ public class OrderAction extends AbstractWptAction {
 			LOG.info("sign:"+sign);
 			if(sign.equals(requestMap.get("sign"))) {
 				LOG.info("签名正确");
-				service.paidCallback(requestMap.get("out_trade_no"), requestMap.get("total_fee"), requestMap.get("time_end")); 
+				orderService.paidCallback(requestMap.get("out_trade_no"), requestMap.get("total_fee"), requestMap.get("time_end")); 
 				writer.print("<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>");
 				return;
 			} else {
@@ -262,11 +266,5 @@ public class OrderAction extends AbstractWptAction {
 	}
 	public void setCheckCode(String checkCode) {
 		this.checkCode = checkCode;
-	}
-	public OrderService getService() {
-		return service;
-	}
-	public void setService(OrderService service) {
-		this.service = service;
 	}
 }

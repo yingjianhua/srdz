@@ -2,12 +2,16 @@ package irille.wpt.actions;
 
 import java.math.BigDecimal;
 
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Controller;
+
 import irille.wpt.service.UserService;
 import irille.wx.wpt.Wpt;
 import irille.wx.wpt.WptCollect;
 import irille.wx.wpt.WptOrder;
 import irille.wx.wx.WxUser;
-
+@Controller
 public class ShowMeAction extends AbstractWptAction {
 
 	/**
@@ -19,8 +23,8 @@ public class ShowMeAction extends AbstractWptAction {
 	private int collectNum;
 	private int fansNum;
 	private BigDecimal fansSaleAmount;
-	
-	private UserService service;
+	@Resource
+	private UserService userService;
 	/**
 	 * 显示我的页面
 	 */
@@ -29,8 +33,8 @@ public class ShowMeAction extends AbstractWptAction {
 		user = chkWxUser();
 		orderNum = WptOrder.list(WptOrder.class, WptOrder.T.WXUSER + " = ?" + " AND " + WptOrder.T.STATUS + "<>"+ Wpt.OStatus.FINISH.getLine().getKey() + " AND " + WptOrder.T.STATUS + " <>" + Wpt.OStatus.CLOSE.getLine().getKey(), false, user.getPkey()).size();
 		collectNum = WptCollect.list(WptCollect.class, WptCollect.T.WXUSER + " = ?", false, user.getPkey()).size();
-		fansNum = service.getFansNum(user.getPkey());
-		fansSaleAmount = service.getFansSaleAmount(user.getPkey());
+		fansNum = userService.getFansNum(user.getPkey());
+		fansSaleAmount = userService.getFansSaleAmount(user.getPkey());
 		setResult("me/index.jsp");
 		return TRENDS;
 	}
@@ -64,11 +68,5 @@ public class ShowMeAction extends AbstractWptAction {
 	}
 	public void setFansSaleAmount(BigDecimal fansSaleAmount) {
 		this.fansSaleAmount = fansSaleAmount;
-	}
-	public UserService getService() {
-		return service;
-	}
-	public void setService(UserService service) {
-		this.service = service;
 	}
 }

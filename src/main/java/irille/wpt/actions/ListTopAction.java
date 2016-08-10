@@ -2,13 +2,17 @@ package irille.wpt.actions;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Controller;
+
 import irille.wpt.interceptor.CityInterceptor;
 import irille.wpt.service.TopService;
 import irille.wx.wpt.WptBanquet;
 import irille.wx.wpt.WptCity;
 import irille.wx.wpt.WptCityLine;
 import irille.wx.wpt.WptTop;
-
+@Controller
 public class ListTopAction extends AbstractWptAction {
 
 	/**
@@ -19,8 +23,8 @@ public class ListTopAction extends AbstractWptAction {
 	private List<WptCityLine> areas;
 	private List<WptBanquet> banquets;
 	private List<WptTop> tops;
-	
-	private TopService service;
+	@Resource
+	private TopService topService;
 	/**
 	 * 头条列表
 	 */
@@ -51,11 +55,5 @@ public class ListTopAction extends AbstractWptAction {
 	}
 	public void setTops(List<WptTop> tops) {
 		this.tops = tops;
-	}
-	public TopService getService() {
-		return service;
-	}
-	public void setService(TopService service) {
-		this.service = service;
 	}
 }

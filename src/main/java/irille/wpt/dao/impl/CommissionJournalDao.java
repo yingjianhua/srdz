@@ -4,11 +4,13 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import irille.pub.bean.Bean;
 import irille.pub.idu.Idu;
 import irille.wx.wpt.Wpt.OStatus;
 import irille.wx.wpt.WptCommissionJournal;
-
+@Repository
 public class CommissionJournalDao {
 	
 	public WptCommissionJournal ins(String orderid, BigDecimal price, BigDecimal commission, Integer fans, String imageUrl, String nickname, Integer wxuser, Byte status, Integer account) {

@@ -1,0 +1,73 @@
+<!-- yhosue客户端下载 -->
+<div class="body_bg" ng-click="showFilter()" ng-show="page.showFilterWindow"></div>
+<div class="header" ng-class="{'heightfullscreen': page.showFilterWindow}">
+	<section ng-class="{true:'header_show',false:'header_hide'}[page.showLogoOut]" >
+		<nav ng-if="page.showHomeMenu">
+		    <!-- YHOUSE APP 头部样式 -->
+		    <div class="logo_bar" ng-if="page.showLogo">
+				<div class="left arrow_down" ng-show="page.showFilterCity" ng-click="showFilter('city')" 
+					ng-bind="home.filter.city||'城市'"  ng-class="{'active': (page.showFilterWindow && home.filter.filterType == 'city')}"></div>
+				<div class="search">
+					<div class="search_content">
+						<form>
+							<input type="search" placeholder="请输入商家、商圈、菜系、活动…" ng-focus="goSearch()"/>
+						</form>
+					</div>
+				</div>
+				<!--<div class="right" ng-show="page.showFilterCategory && !page.showFilterWindow" ng-click="showFilter('category')"></div>-->
+				<a class="right" ng-click="goFilter()"></a>
+			</div>
+	        <!--活动&&美食&&课程tab-->
+        	<ul class="home_tab home_tab_{{homeTabs.length}}" ng-if="homeTabs.length > 1">
+                <li ng-repeat="tab in homeTabs">
+                    <a ng-click="switchTab(tab.id)" ng-class="{'active': (home.currentTabId===tab.id)}"
+                       analytics-on="click" analytics-event="{{tab.event}}" analytics-category="{{tab.category}}" ng-bind="tab.title">
+                    </a>
+                </li>
+	        </ul>
+		</nav>
+	</section>
+
+	<!-- 筛选列表 -->
+	<div class="filter_list" ng-show="page.showFilterWindow" >
+		<div class="filter_back">
+			<i class="btn_back" ng-click="closeFilterWindow()"></i>
+		</div>
+		<div class="filter_list_wrap">
+			<!-- 城市列表 -->
+			<ul ng-show="home.filter.filterType == 'city'" id="cityList">
+				<li class="filters" ng-click="filterCity(city.id)" 
+					ng-class='{active:(city.id == home.filter.cityId)}' ng-repeat="city in cityList">
+					<p ng-bind="city.name"></p>
+				</li>
+			</ul>
+			
+
+	        <!-- 分类列表 -->
+	        <ul ng-show="home.filter.filterType == 'category'" ng-if="(home.filter.listType=='event') && eventCategoryList && (eventCategoryList.length>0)">
+				<li class="filters" ng-class='{active:(category.id == home.filter.eventCategoryId)}' 
+					ng-click="filterCategory(category.id)" ng-repeat="category in eventCategoryList">
+					<p ng-bind="category.name"></p>
+				</li>
+			</ul>
+
+	        <ul ng-show="home.filter.filterType == 'category'" ng-if="(home.filter.listType=='meal') && mealCategoryList && (mealCategoryList.length>0)">
+	            <li class="filters" ng-class='{active:(category.id == home.filter.mealCategoryId)}' 
+	            	ng-click="filterCategory(category.id)" ng-repeat="category in mealCategoryList">
+	            	<p ng-bind="category.name"></p>
+	            </li>
+	        </ul>
+		</div>
+	</div>
+</div>
+<div id="placehold1" class="height_80" ng-if="page.showHomeMenu && homeTabs.length > 1" ng-class="{true: 'height_80', false:'height_35'}[page.showLogoOut]"></div>
+<div id="placehold1" class="height_45" ng-if="page.showHomeMenu && homeTabs.length === 1" ng-if="page.showLogoOut"></div>
+<section ng-if="!page.showHomeMenu" class="header" ng-class="{top50:(page.showApp && page.skuYhouseBanner)}">
+    <nav class="nav_back">
+        <!-- 返回按钮 -->
+        <a class="nav_back_btn" ng-click="backBtn()" ng-show="page.showBackBtn"></a>
+        <h1 ng-bind="headTitle"></h1>
+        <a class="nav_home_page" ng-click="homeBtn()" ng-show="page.showBackBtn"></a>
+    </nav>
+</section>
+<div id="placehold2" class="height_45" ng-if="!page.showHomeMenu"></div>

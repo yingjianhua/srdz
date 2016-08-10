@@ -1,0 +1,32 @@
+<div class="container-fluid">
+    <div class="row">
+        <nav>
+        	<p class="clearfix">
+        		<a href="/">首页</a>
+        		<span>|</span>
+        		<a href="/my-order-list">订单</a>
+        		<span>|</span>
+
+                <a href="/my-order-list" class="user_name" ng-if="currentUser" ng-bind="currentUser.name"></a>
+                <span ng-if="currentUser">|</span>
+                <a href="/logout" ng-if="currentUser">退出</a>
+
+                <a href="/register" ng-if="!currentUser">登录</a>
+
+                <!-- <a href="/login" ng-if="!currentUser">登录</a>
+                <span ng-if="!currentUser">|</span>
+                <a href="/register" ng-if="!currentUser">手机登录</a> -->
+                <!-- 注册 -->
+        	</p>
+        </nav>
+        <div class="download" ng-if="page.showApp2">
+            <a class="apple" ng-href="{{univseralLinksURL}}/{{univseralLinksParams}}" target="_self"></a>
+            <a class="android" ng-href="{{univseralLinksURL}}/{{univseralLinksParams}}" target="_self"></a>
+        </div>
+        <p class="clearfix">
+            <a class="about" href="/about">关于我们</a>
+            <br/>
+            <span class='copyright'>Copyright YHOUSE mobile</span>
+        </p>
+	</div>
+</div>

@@ -2,9 +2,13 @@ package irille.wpt.actions;
 
 import java.math.BigDecimal;
 
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Controller;
+
 import irille.wpt.service.UserService;
 import irille.wx.wx.WxUser;
-
+@Controller
 public class ListFansSaleAction extends AbstractWptAction {
 
 	/**
@@ -13,13 +17,14 @@ public class ListFansSaleAction extends AbstractWptAction {
 	private static final long serialVersionUID = -6909649638056942663L;
 	private BigDecimal historyCommission;
 	private BigDecimal saleAmount;
-	private UserService service;
+	@Resource
+	private UserService userService;
 	
 	@Override
 	public String execute() throws Exception {
 		WxUser user = chkWxUser();
 		historyCommission = user.getHistoryCommission();
-		saleAmount = service.getFansSaleAmount(user.getPkey());
+		saleAmount = userService.getFansSaleAmount(user.getPkey());
 		setResult("me/fansSaleList.jsp");
 		return TRENDS;
 	}
@@ -35,11 +40,5 @@ public class ListFansSaleAction extends AbstractWptAction {
 	}
 	public void setSaleAmount(BigDecimal saleAmount) {
 		this.saleAmount = saleAmount;
-	}
-	public UserService getService() {
-		return service;
-	}
-	public void setService(UserService service) {
-		this.service = service;
 	}
 }

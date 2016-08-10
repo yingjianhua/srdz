@@ -1,0 +1,11 @@
+<!-- 栏目 -->
+<article class="grids grids_{{carouselSlide.layout}} clearfix">
+    <div class="column clearfix" ng-repeat="item in carouselSlide.content">
+        <a class="grid_con" ng-href="{{inAPP ? item.schemeUrl : item.linkUrl}}"
+           analytics-on="click" analytics-event="{{item.linkName}} Click"
+           analytics-category="{{item.linkName}}" analytics-label="{{item.id}}" target="{{item.linkName&&item.linkName=='HTML5'?'_self':''}}">
+            <img y-lazy-src="{{item.picUrl}}" class="lu_act_img"/>
+        </a>
+        <div class="clearfix" ng-if="($index%2)==1"></div>
+    </div>
+</article>

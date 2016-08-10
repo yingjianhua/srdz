@@ -3,13 +3,18 @@ package irille.wpt.service;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
 import irille.wpt.dao.impl.CommissionJournalDao;
 import irille.wx.wpt.Wpt.OStatus;
 import irille.wx.wpt.WptCommissionJournal;
 import irille.wx.wpt.WptOrder;
 import irille.wx.wx.WxUser;
-
+@Service
 public class CommissionJournalService {
+	@Resource
 	private CommissionJournalDao commissionJournalDao;
 	/**
 	 * 用户订单付款后，新增邀请人的佣金流水
@@ -37,11 +42,5 @@ public class CommissionJournalService {
 			user.setCashableCommission(user.getCashableCommission().add(journal.getCommission()));
 			user.upd();
 		}
-	}
-	public CommissionJournalDao getCommissionJournalDao() {
-		return commissionJournalDao;
-	}
-	public void setCommissionJournalDao(CommissionJournalDao commissionJournalDao) {
-		this.commissionJournalDao = commissionJournalDao;
 	}
 }

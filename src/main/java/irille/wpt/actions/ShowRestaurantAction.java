@@ -2,6 +2,8 @@ package irille.wpt.actions;
 
 import java.util.List;
 
+import org.springframework.stereotype.Controller;
+
 import irille.core.sys.Sys.OEnabled;
 import irille.pub.bean.BeanBase;
 import irille.pub.idu.Idu;
@@ -10,7 +12,7 @@ import irille.wx.wpt.WptCombo;
 import irille.wx.wpt.WptRestaurant;
 import irille.wx.wpt.WptRestaurantBanner;
 import irille.wx.wpt.WptRestaurantTemplate;
-
+@Controller
 public class ShowRestaurantAction extends AbstractWptAction implements IMenuShareAppMessage, IMenuShareTimeline{
 	/**
 	 * 

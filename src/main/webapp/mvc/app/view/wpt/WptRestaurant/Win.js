@@ -1,21 +1,22 @@
 Ext.define('mvc.view.wpt.WptRestaurant.Win',{
 extend : 'Ext.window.Window',
-width : 600,
+width : 860,
 resizable : false,
 modal : true,
 iconCls : 'app-icon',
 pkeyFlag : true,
 insFlag : true,
+layout: {
+	type: "column"
+},
 initComponent : function(){
-		this.items =[{
-		anchor : '100%',
-		plain : true,
-		xtype : Ext.create('mvc.view.wpt.WptRestaurant.Form',{	insFlag : this.insFlag})
-	},{
-		xtype : Ext.create('mvc.view.wpt.WptRestaurant.ListForm',{height : 300,border : false })
-	}];
-		this.buttonAlign = 'right',
-this.buttons =[{
+	this.items=[
+	            Ext.create("mvc.view.wpt.WptRestaurant.Form", {insFlag:this.insFlag, width:540}),
+	            Ext.create("mvc.view.wpt.WptRestaurant.ListForm", {height:481, columnWidth:0.6, scroll:"vertical"}),
+	            Ext.create("mvc.view.wpt.WptRestaurant.ListFormWptBanquet", {height:481, columnWidth:0.4, scroll:"vertical"})
+	            ]
+	this.buttonAlign = 'right',
+	this.buttons =[{
 		text : '重置',
 		iconCls : 'win-refresh-icon',
 		scope : this,
@@ -34,23 +35,24 @@ this.buttons =[{
 		this.callParent(arguments);
 		this.addEvents('create');
 		this.form = this.items.items[0];
-		this.lineTable = this.items.items[1];
+		this.resLine = this.items.items[1];
+		this.banquetLine = this.items.items[2];
 },
 setActiveRecord : function(record){
 		this.form.activeRecord = record;
 		if (record || this.form.activeRecord) {
 			this.form.getForm().loadRecord(record);
-			this.lineTable.store.filter([{'id':'filter','property':'restaurant','value':record.get('bean.pkey')}]);
+			this.resLine.store.filter([{'id':'filter','property':'restaurant','value':record.get('bean.pkey')}]);
 		} else {
 			this.form.getForm().reset();
-			this.lineTable.store.removeAll();
+			this.resLine.store.removeAll();
 		}
 },
 onReset : function(){
 		this.setActiveRecord(this.form.activeRecord);
 },
 onClose : function(){
-		this.lineTable.cellEditing.cancelEdit();
+		this.resLine.cellEditing.cancelEdit();
 		this.close();
 },
 onSave : function(){
@@ -60,7 +62,7 @@ onSave : function(){
 				url : this.form.url,
 				submitEmptyText: false,
 				type : 'ajax',
-				params : mvc.Tools.storeValues(this.lineTable.store,{insFlag : this.insFlag}),
+				params : mvc.Tools.storeValues(this.resLine.store,{insFlag : this.insFlag}),
 				success : function(form, action) {
 					this.fireEvent('create', this, action.result);
 					this.onClose();

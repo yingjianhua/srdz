@@ -1,7 +1,9 @@
 package irille.wpt.actions;
 
-import irille.wx.wx.WxUser;
+import org.springframework.stereotype.Controller;
 
+import irille.wx.wx.WxUser;
+@Controller
 public class ShowQrcodeAction extends AbstractWptAction {
 	
 	/**

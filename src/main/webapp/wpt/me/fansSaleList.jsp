@@ -11,7 +11,7 @@
 <link type="text/css" rel="stylesheet" href="css/base.css" />
 <link type="text/css" rel="stylesheet" href="css/me_fansSaleList.css" />
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-<title>享食光-私人定制</title>
+<title>享食光</title>
 </head>
 <body>
 	<div class="main">

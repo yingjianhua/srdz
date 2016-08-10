@@ -1,7 +1,9 @@
 package irille.wpt.actions;
 
-import irille.wx.wpt.WptServiceCen;
+import org.springframework.stereotype.Controller;
 
+import irille.wx.wpt.WptServiceCen;
+@Controller
 public class ServiceCenterAction extends AbstractWptAction {
 
 	/**

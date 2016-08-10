@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html ng-app="mainApp">
+<head>
+<title ng-bind="page.pageTitle||'YHOUSE悦会-精选轻奢美食及玩乐预订'">YHOUSE悦会</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="format-detection" content="telephone=no"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="description" content="「YHOUSE」，我们是一款城市精英首选的精品休闲娱乐与创意美食预订APP。在这里，从周一到周五的创意美食，周六周日的炫酷活动体验，我们提供一站式的本地与目的地出行城市“吃喝玩乐精致生活”预订服务。还不快来下载我们，与10,000,000与你一样喜爱高品质生活的城市精英，共同开启属于少数人的轻奢生活方式。" />
+<meta http-equiv="x-dns-prefetch-control" content="on" />
+<link rel="dns-prefetch" href="http://p.yhres.com" />
+<link rel="dns-prefetch" href="http://r.yhres.com" />
+<link rel="dns-prefetch" href="http://h5mon.yhouse.com" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png" />
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/videogular.css">
+<base href="http://localhost:8080/srdz3/yhouse/">
+</head>
+<body ng-class="{'bg_white': page.showBg}">
+<header ng-if="page.showHeader" ng-include='"templates/header.html"' ng-class="{mt50:(page.showApp && page.skuYhouseBanner)}">
+</header>
+<section ng-view autoscroll="true" id="mainApp"></section>
+<footer ng-if="page.showFooter" ng-include='"templates/footer.html"'></footer>
+<div ng-if="page.showPaddingBottom" class="height50"></div>
+<div ng-if="page.showApp" ng-class="{height50:(!page.skuYhouseBanner)}" ng-cloak></div>
+<div ng-if="page.showApp" class="yhouse_banner" ng-class="{top:(page.skuYhouseBanner),'third_bg':page.shareUi}" ng-cloak>
+    <a ng-click="closeBtn()" class="close"></a>
+    <a ng-if="!page.shareUi" ng-href="{{univseralLinksURL}}/{{univseralLinksParams}}" target="_self" class="open_url" ng-bind="page.banner"></a>
+    <a ng-if="page.shareUi" ng-href="/promo/SHAREUI" class="open_url">领取</a>
+</div>
+<div class="dialog_body dialog_fade_in" ng-show="page.showDialog" ng-bind="page.dialogText" ng-cloak></div>
+<!-- 弹窗 -->
+<y-sns-dialog></y-sns-dialog>
+<!-- 用户提示框 -->
+<y-tip-dialog></y-tip-dialog>
+<script src="vendor/angular.min.js"></script>
+<script src="vendor/angular-modules.min.js"></script>
+<script src="js/all.min.js"></script>
+<script src="js/track.js"></script>
+</body>
+</html>

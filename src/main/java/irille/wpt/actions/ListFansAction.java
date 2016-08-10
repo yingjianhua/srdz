@@ -1,7 +1,11 @@
 package irille.wpt.actions;
 
-import irille.wpt.service.UserService;
+import javax.annotation.Resource;
 
+import org.springframework.stereotype.Controller;
+
+import irille.wpt.service.UserService;
+@Controller
 public class ListFansAction extends AbstractWptAction {
 
 	/**
@@ -11,13 +15,14 @@ public class ListFansAction extends AbstractWptAction {
 	private int fans1Num;
 	private int fans2Num;
 	private int fans3Num;
-	private UserService service;
+	@Resource
+	private UserService userService;
 	@Override
 	public String execute() throws Exception {
 		Integer userid = chkWxUser().getPkey();
-		fans1Num = service.getFans1Num(userid);
-		fans2Num = service.getFans2Num(userid);
-		fans3Num = service.getFans3Num(userid);
+		fans1Num = userService.getFans1Num(userid);
+		fans2Num = userService.getFans2Num(userid);
+		fans3Num = userService.getFans3Num(userid);
 		setResult("me/fansList.jsp");
 		return TRENDS;
 	}
@@ -39,11 +44,5 @@ public class ListFansAction extends AbstractWptAction {
 	}
 	public void setFans3Num(int fans3Num) {
 		this.fans3Num = fans3Num;
-	}
-	public UserService getService() {
-		return service;
-	}
-	public void setService(UserService service) {
-		this.service = service;
 	}
 }

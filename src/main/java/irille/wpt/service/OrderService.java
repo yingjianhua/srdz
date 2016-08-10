@@ -8,9 +8,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.json.JSONObject;
+import org.springframework.stereotype.Service;
 
 import irille.pub.Log;
 import irille.pub.bean.Bean;
@@ -32,14 +34,16 @@ import irille.wx.wpt.WptServiceCen;
 import irille.wx.wpt.WptWxTips;
 import irille.wx.wx.WxAccount;
 import irille.wx.wx.WxAccountDAO;
-import irille.wx.wx.WxMessageDAO;
 import irille.wx.wx.WxUser;
 import irille.wxpub.util.mch.MchUtil;
-
+@Service
 public class OrderService {
 	private static final Log LOG = new Log(OrderService.class);
+	@Resource
 	private SmsTool smsTool;
-	private DistributionRuleService distributionRuleService; 
+	@Resource
+	private DistributionRuleService distributionRuleService;
+	@Resource
 	private QrcodeRuleService qrcodeRuleService;
 	
 	private static final SimpleDateFormat INPUT_DATE_FORMAT = new SimpleDateFormat("yyyy/MM/dd HH:mm");
@@ -302,24 +306,5 @@ public WptOrder complete(WptOrder order, String checkCode) {
 		order.upd();
 		LOG.info("--------------paidCallback():end--------------");
 		return true;
-	}
-	
-	public SmsTool getSmsTool() {
-		return smsTool;
-	}
-	public void setSmsTool(SmsTool smsTool) {
-		this.smsTool = smsTool;
-	}
-	public DistributionRuleService getDistributionRuleService() {
-		return distributionRuleService;
-	}
-	public void setDistributionRuleService(DistributionRuleService distributionRuleService) {
-		this.distributionRuleService = distributionRuleService;
-	}
-	public QrcodeRuleService getQrcodeRuleService() {
-		return qrcodeRuleService;
-	}
-	public void setQrcodeRuleService(QrcodeRuleService qrcodeRuleService) {
-		this.qrcodeRuleService = qrcodeRuleService;
 	}
 }

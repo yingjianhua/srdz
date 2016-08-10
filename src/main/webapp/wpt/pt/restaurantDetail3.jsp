@@ -24,7 +24,7 @@
         document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
     }
 </script>
-<title>享食光-私人定制</title>
+<title>享食光</title>
 </head>
 
 <body class="gray-bg">	

@@ -4,6 +4,10 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
 import irille.pub.Log;
 import irille.pub.bean.Bean;
 import irille.pub.idu.Idu;
@@ -12,9 +16,10 @@ import irille.wx.wpt.WptCommissionJournal;
 import irille.wx.wpt.WptRedPackRule;
 import irille.wx.wx.WxUser;
 import irille.wxpub.util.mch.SendRedPack;
-
+@Service
 public class UserService {
 	public static final Log LOG = new Log(UserService.class);
+	@Resource
 	private CashJournalService cashJournalService;
 	
 	public int getFans1Num(Integer userid){
@@ -100,12 +105,5 @@ public class UserService {
 		}
 		SendRedPack.sendRedPack(user.gtAccount(), user.getOpenId(), rule.getSendName(), amt.multiply(BigDecimal.valueOf(100)).intValue(), rule.getWishing(), client_ip, rule.getActName(), rule.getRemark());
 		return cashJournalService.add(user, amt);
-	}
-	
-	public CashJournalService getCashJournalService() {
-		return cashJournalService;
-	}
-	public void setCashJournalService(CashJournalService cashJournalService) {
-		this.cashJournalService = cashJournalService;
 	}
 }

@@ -1,8 +1,10 @@
 package irille.wpt.actions;
 
+import org.springframework.stereotype.Controller;
+
 import irille.wx.wpt.WptCollect;
 import irille.wx.wpt.WptTop;
-
+@Controller
 public class ShowTopAction extends AbstractWptAction {
 
 	/**

@@ -3,6 +3,8 @@ package irille.wpt.actions;
 import java.sql.ResultSet;
 import java.util.List;
 
+import org.springframework.stereotype.Controller;
+
 import irille.core.sys.Sys.OEnabled;
 import irille.pub.bean.Bean;
 import irille.pub.bean.BeanBase;
@@ -10,7 +12,7 @@ import irille.pub.idu.Idu;
 import irille.wx.wpt.WptRestaurant;
 import irille.wx.wpt.WptSpecial;
 import irille.wx.wpt.WptSpecialLine;
-
+@Controller
 public class ShowSpecialAction extends AbstractWptAction implements IMenuShareAppMessage, IMenuShareTimeline {
 
 	/**

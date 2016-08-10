@@ -2,10 +2,12 @@ package irille.wpt.actions;
 
 import java.util.List;
 
+import org.springframework.stereotype.Controller;
+
 import irille.wpt.interceptor.CityInterceptor;
 import irille.wx.wpt.WptCity;
 import irille.wx.wpt.WptCityDAO;;
-
+@Controller
 public class StartJourneyAction extends AbstractWptAction {
 
 	/**

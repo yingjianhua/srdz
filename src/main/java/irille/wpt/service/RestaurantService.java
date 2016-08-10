@@ -5,15 +5,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
 import irille.core.sys.Sys.OEnabled;
 import irille.pub.bean.Bean;
 import irille.pub.idu.Idu;
+import irille.wpt.dao.impl.RestaurantDao;
 import irille.wx.wpt.WptCityLine;
 import irille.wx.wpt.WptCombo;
 import irille.wx.wpt.WptRestaurant;
 import irille.wx.wpt.WptRestaurantLine;
-
+@Service
 public class RestaurantService {
+	
+	@Resource
+	private RestaurantDao restaurantDao;
 	/**
 	 * 
 	 * @param areaId 区域id

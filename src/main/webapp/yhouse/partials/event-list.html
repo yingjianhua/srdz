@@ -1,0 +1,43 @@
+<!-- 玩乐&&生活学院&&亲子 -->
+<li ng-repeat="event in data.list">
+    <!-- 预订列表页广告 -->
+    <div ng-include="'/templates/reserve-list.html'" onload="carouselSlide = data.carouselSlides.reserveList[$index+1]" ng-if="data.carouselSlides.reserveList[$index+1]"></div>
+    <!-- /预订列表页广告 -->
+    <!-- 栏目 -->
+    <div ng-include="'/templates/bundle.html'" onload="carouselSlide = data.carouselSlides.bundle[$index+1]" ng-if="page.showBundle && data.carouselSlides.bundle[$index+1]"></div>
+    <!-- /栏目 -->
+    
+    <!-- 活动列表 -->
+    <a ng-href="/{{data.type}}/{{event.id}}" analytics-on="click"
+       analytics-event="{{data.type}} Click" analytics-category="{{data.type}}" analytics-label="{{event.id}}"
+        class="type_list">
+        <div class="grids_one grids_list">
+            <img y-lazy-src="{{event.picUrl | yImgSuffix:2}}" class="lu_act_img lazy_img">
+        </div>
+        <div class="lu_act_info clearfix" ng-class="{'no_line': ($index+1) == data.list.length}">
+            <p class="lu_actTitle" ng-bind="event.title"></p><!--  ng-class="{'index_top': (event.recommand > 0)}" -->
+            <div class="lu_infolist">
+                <p class="left">
+                    <span ng-bind="event.district"></span>
+                    <span ng-if="event.hostName" class="split">|</span>
+                    <span ng-bind="event.hostName"></span>
+                </p>
+                <p class="right">
+                    <span class="event_price" ng-bind-html="event.neededCredits|yPrice"></span>
+                </p>
+            </div>
+            <p class="lu_info_tag" ng-if="event.categorys.length > 0">
+                <span ng-repeat="tag in event.categorys track by $index" ng-bind="event.categorys[$index]" ng-class="{'hide':($index > 3)}"></span><span ng-if="event.ageScope" ng-bind="event.ageScope"></span>
+            </p>
+        </div>
+    </a>
+    <!-- /eventList -->
+</li>
+
+<div ng-if="data.list.length == 0 && !data.isBusy" class="meal_none">没有符合条件的结果</div>
+
+<div ng-if="data.list.length !== 0" class="home_last_item">
+    <p class="load_more unload" ng-click="loadPage()" ng-show="data.isBusy === false && !data.isEnd">查看更多</p>
+    <p class="load_more loading" ng-show="data.isBusy === true && !data.isEnd && data.list.length > 0">加载中</p>
+    <!--加载-->
+</div>

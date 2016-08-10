@@ -2,13 +2,15 @@ package irille.wpt.actions;
 
 import java.util.List;
 
+import org.springframework.stereotype.Controller;
+
 import irille.pub.bean.BeanBase;
 import irille.wx.wpt.WptBanquet;
 import irille.wx.wpt.WptOrder;
 import irille.wx.wpt.WptOrderService;
 import irille.wxpub.js.JMChooseWXPay;
 import irille.wxpub.js.JsFunDefine;
-
+@Controller
 public class ConfirmOrderAction extends AbstractWptAction {
 	/**
 	 * 

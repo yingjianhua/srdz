@@ -5,10 +5,11 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.stereotype.Service;
 
 import irille.wx.wpt.WptCollect;
 import irille.wx.wpt.WptTop;
-
+@Service
 public class TopService {
 
 	/**

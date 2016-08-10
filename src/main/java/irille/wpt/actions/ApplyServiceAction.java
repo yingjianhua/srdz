@@ -2,12 +2,14 @@ package irille.wpt.actions;
 
 import java.util.List;
 
+import org.springframework.stereotype.Controller;
+
 import irille.pub.bean.BeanBase;
 import irille.wpt.interceptor.CityInterceptor;
 import irille.wx.wpt.WptBanquet;
 import irille.wx.wpt.WptCity;
 import irille.wx.wpt.WptCityLine;
-
+@Controller
 public class ApplyServiceAction extends AbstractWptAction {
 	/**
 	 * 

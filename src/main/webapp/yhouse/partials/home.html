@@ -1,0 +1,28 @@
+<section ng-class="{'fixed': (page.showFilterWindow)}">
+    <div class="home_container">
+        <div class="clearfix" ng-repeat="tab in homeTabs" ng-class="{'list_show': (home.currentTabId == tab.id)}">
+            <!-- <ul ng-if="tab.key === 'meal'" ng-include="'/partials/meal-list.html'"
+                 onload="data = home.tabs[tab.id];data.type=tab.key;data.catalogId=tab.catalogId;" ng-show='home.currentTabId == tab.id'
+                 ng-swipe-left="switchTab(home.currentTabId+1)"
+                 ng-swipe-right="switchTab(home.currentTabId-1)"
+                    >
+            </ul> -->
+
+
+            <ul ng-if="tab.key === 'meal'" ng-include="'/partials/meal-list.html'"
+                 onload="data = home.tabs[tab.id];data.type=tab.key;data.catalogId=tab.catalogId;" ng-show='home.currentTabId == tab.id' ng-swipe-left="switchTab(home.currentTabId+1)"
+                 ng-swipe-right="switchTab(home.currentTabId-1)">
+            </ul>
+
+
+
+            <ul ng-if="tab.key !== 'meal'" ng-include="'/partials/event-list.html'"
+	  	   			onload="data = home.tabs[tab.id];data.type=tab.key;data.catalogId=tab.catalogId;" ng-show='home.currentTabId == tab.id'
+	  	   			ng-swipe-left="switchTab(home.currentTabId+1)"
+	  	   			ng-swipe-right="switchTab(home.currentTabId-1)"
+	  	   			>
+           </ul>
+
+		</div>
+    </div>
+</section>

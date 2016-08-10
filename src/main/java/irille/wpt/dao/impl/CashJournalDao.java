@@ -3,10 +3,14 @@ package irille.wpt.dao.impl;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import irille.wx.wpt.WptCashJournal;
+import org.hibernate.Session;
+import org.springframework.stereotype.Repository;
 
-public class CashJournalDao {
+import irille.wx.wpt.WptCashJournal;
+@Repository
+public class CashJournalDao extends BaseDao{
 	public WptCashJournal ins(Integer wxuser, Integer account, BigDecimal amt) {
+		Session session = sessionFactory.getCurrentSession();
 		WptCashJournal journal = new WptCashJournal();
 		journal.setWxuser(wxuser);
 		journal.setPrice(amt);

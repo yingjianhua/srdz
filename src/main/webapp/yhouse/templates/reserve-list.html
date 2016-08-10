@@ -1,0 +1,35 @@
+<!-- 预订列表页广告 -->
+<article class="grids_one carousel">
+
+  <div ng-if="carouselSlide.content.length === 1" ng-repeat="item in carouselSlide.content">
+      <a ng-href="{{inAPP ? item.schemeUrl : item.linkUrl}}"
+         analytics-on="click" analytics-event="{{item.linkName}} Click"
+         analytics-category="{{item.linkName}}" analytics-label="{{item.id}}" target="{{item.linkName&&item.linkName=='HTML5'?'_self':''}}">
+          <img ng-src="{{item.picUrl}}" class="block" />
+      </a>
+  </div>
+
+    <!-- <uib-carousel active="active" interval="5000" no-wrap="noWrapSlides" class="grids_one" ng-if="carouselSlide.content.length > 1">
+        <uib-slide index="$index" ng-repeat="item in carouselSlide.content">
+            <a ng-href="{{inAPP ? item.schemeUrl : item.linkUrl}}"
+               analytics-on="click" analytics-event="{{item.linkName}} Click"
+               analytics-category="{{item.linkName}}" analytics-label="{{item.id}}" target="{{item.linkName&&item.linkName=='HTML5'?'_self':''}}">
+                <img ng-src="{{item.picUrl}}"/>
+            </a>
+        </uib-slide>
+    </uib-carousel> -->
+  <div ng-if="carouselSlide.content.length > 1"><!--  class='carousel grids_one' -->
+    <ul rn-carousel rn-carousel-index="carouselIndex22" rn-carousel-auto-slide rn-carousel-loop>
+      <li index="$index" ng-repeat="item in carouselSlide.content">
+        <a ng-href="{{inAPP ? item.schemeUrl : item.linkUrl}}"
+           analytics-on="click" analytics-event="{{item.linkName}} Click"
+           analytics-category="{{item.linkName}}" analytics-label="{{item.id}}" target="{{item.linkName&&item.linkName=='HTML5'?'_self':''}}">
+            <img ng-src="{{item.picUrl}}" index='$index'/>
+        </a>
+      </li>
+    </ul>
+    <ul class="carousel-indicators rn-carousel-indicator custom-indicator">
+       <li ng-repeat="item in carouselSlide.content" ng-class="{active: $index==$parent.carouselIndex22}" ng-click="$parent.carouselIndex22 = $index"></li>
+    </ul>
+  </div>
+</article>

@@ -6,15 +6,18 @@ import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.stereotype.Controller;
 
 import irille.pub.Log;
 import irille.wpt.service.UserService;
 import irille.wx.wpt.WptCommissionJournal;
 import irille.wx.wx.WxUser;
-
+@Controller
 public class UserAction extends AbstractWptAction {
 
 	/**
@@ -27,8 +30,8 @@ public class UserAction extends AbstractWptAction {
 	private int fanid;
 	private String orderOrFan;
 	private BigDecimal amt;
-	
-	private UserService service;
+	@Resource
+	private UserService userService;
 
 	public void cashDetail() {
 		WxUser user = chkWxUser();
@@ -53,7 +56,7 @@ public class UserAction extends AbstractWptAction {
 	public void cash() {
 		LOG.info("--------------cash():start--------------");
 		try {
-			service.cash(amt, chkWxUser(), getRequest().getRemoteHost());
+			userService.cash(amt, chkWxUser(), getRequest().getRemoteHost());
 			PrintWriter writer;
 			writer = getResponse().getWriter();
 			writer.print(new JSONObject().put("success", true).toString());
@@ -63,7 +66,7 @@ public class UserAction extends AbstractWptAction {
 		LOG.info("--------------cash():end--------------");
 	}
 	public void fans() {
-		List<WxUser> fans = service.getFansByCondition(userid, getAccount().getPkey(), level, fanid);
+		List<WxUser> fans = userService.getFansByCondition(userid, getAccount().getPkey(), level, fanid);
 		JSONArray result = new JSONArray();
 		try {
 			for(WxUser fan:fans) {
@@ -87,7 +90,7 @@ public class UserAction extends AbstractWptAction {
 	 * 获取佣金流水记录
 	 */
 	public void fanOrders() {
-		List<WptCommissionJournal> journals = service.getCommissionJournal(userid, getAccount().getPkey(), orderOrFan);
+		List<WptCommissionJournal> journals = userService.getCommissionJournal(userid, getAccount().getPkey(), orderOrFan);
 		JSONArray result = new JSONArray();
 		try {
 			for(WptCommissionJournal journal:journals) {
@@ -135,12 +138,6 @@ public class UserAction extends AbstractWptAction {
 	}
 	public void setOrderOrFan(String orderOrFan) {
 		this.orderOrFan = orderOrFan;
-	}
-	public UserService getService() {
-		return service;
-	}
-	public void setService(UserService service) {
-		this.service = service;
 	}
 	public BigDecimal getAmt() {
 		return amt;

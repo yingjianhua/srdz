@@ -1,5 +1,8 @@
 package irille.wpt.actions;
 
+import org.springframework.stereotype.Controller;
+
+@Controller
 public class ShowCashAction extends AbstractWptAction {
 
 	/**

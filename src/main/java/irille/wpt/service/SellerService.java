@@ -4,9 +4,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.stereotype.Service;
 
 import irille.pub.Log;
 import irille.wpt.actions.LoginSellerAction;
@@ -17,9 +20,10 @@ import irille.wx.wpt.WptRestaurant;
 import irille.wx.wpt.WptRestaurantBsn;
 import irille.wx.wx.WxUser;
 import irille.wxpub.util.mch.MchUtil;
-
+@Service
 public class SellerService {
 	private static final Log LOG = new Log(SellerService.class);
+	@Resource
 	private SmsTool smsTool;
 	
 	public void sendCheckCode(String manager, Map<String, Object> session){
@@ -94,12 +98,5 @@ public class SellerService {
 			e.printStackTrace();
 		}
 		return result;
-	}
-
-	public SmsTool getSmsTool() {
-		return smsTool;
-	}
-	public void setSmsTool(SmsTool smsTool) {
-		this.smsTool = smsTool;
 	}
 }

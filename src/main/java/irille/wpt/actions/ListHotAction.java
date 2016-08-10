@@ -2,6 +2,8 @@ package irille.wpt.actions;
 
 import java.util.List;
 
+import org.springframework.stereotype.Controller;
+
 import irille.pub.idu.Idu;
 import irille.wpt.interceptor.CityInterceptor;
 import irille.wx.wpt.WptCity;
@@ -11,7 +13,7 @@ import irille.wxpub.js.JMOpenLocation;
 import irille.wxpub.js.JQFunDefine;
 import irille.wxpub.js.JsExp;
 import irille.wxpub.js.JsFunDefine;
-
+@Controller
 public class ListHotAction extends AbstractWptAction {
 	/**
 	 * 

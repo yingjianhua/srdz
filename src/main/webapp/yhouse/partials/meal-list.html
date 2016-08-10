@@ -1,0 +1,47 @@
+<li ng-repeat="meal in data.list">
+    <!-- 预订列表页广告 -->
+    <div ng-include="'/templates/reserve-list.html'" onload="carouselSlide = data.carouselSlides.reserveList[$index+1]" ng-if="data.carouselSlides.reserveList[$index+1]"></div>
+    <!-- /预订列表页广告 -->
+    <!-- 栏目 -->
+    <div ng-include="'/templates/bundle.html'" onload="carouselSlide = data.carouselSlides.bundle[$index+1]" ng-if="page.showBundle && data.carouselSlides.bundle[$index+1]"></div>
+    <!-- /栏目 -->
+
+    <!-- 一栏 -->
+    <a ng-href="/meal/{{meal.id}}"
+        analytics-on="click" analytics-event="Meal Click" analytics-category="Meal" analytics-label="{{meal.id}}" 
+        class="type_list" >
+        <div class="grids_one grids_list">
+            <img y-lazy-src="{{meal.picUrl | yImgSuffix:2}}" class="lu_act_img lazy_img" />
+        </div>
+        <div class="lu_act_info clearfix" ng-class="{'no_line': ($index+1) == data.list.length}">
+            <p class="lu_actTitle" ng-bind="meal.viceTitle" ng-if="meal.viceTitle"></p>
+            <p class="lu_actTitle" ng-bind="meal.title" ng-if="meal.title&&!meal.viceTitle"></p>
+            <div class="lu_infolist">
+                <p class="left">
+                    <span ng-if="meal.businessesDistrict" ng-bind="meal.businessesDistrict"></span>
+                    <span ng-if="meal.hostName" class="split">|</span>
+                    <span ng-bind="meal.hostName"></span>
+                </p>
+                <p class="right">
+                    <span class="event_price" ng-if="meal.price == 0">免费</span>
+                    <span class="event_price" ng-if="meal.price != 0">
+                        <span ng-bind-html="meal.priceStr|yPrice"></span>
+                        <span class="original_price" ng-bind="meal.originalPrice + '元'"  ng-if="meal.originalPrice"></span>
+                    </span>
+                </p>
+            </div>
+            <p class="lu_info_tag" ng-if="meal.categorys.length > 0">
+                <span ng-repeat="tag in meal.categorys track by $index" ng-bind="meal.categorys[$index]" ng-class="{'hide':($index > 3)}"></span><span ng-if="meal.style" ng-bind="meal.style"></span>
+            </p>
+        </div>
+    </a>
+    <!-- /mealList -->
+
+</li>
+<div ng-if="data.list.length == 0 && !data.isBusy" class="meal_none">没有符合条件的结果</div>
+
+
+<div ng-if="data.list.length !== 0" class="home_last_item">
+<p class="load_more unload" ng-click="loadPage()" ng-show="data.isBusy === false && !data.isEnd">查看更多</p>
+<p class="load_more loading" ng-show="data.isBusy === true && !data.isEnd && data.list.length > 0">加载中</p>
+</div>

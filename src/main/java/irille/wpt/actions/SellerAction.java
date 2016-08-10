@@ -4,15 +4,18 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.apache.struts2.ServletActionContext;
 import org.json.JSONArray;
+import org.springframework.stereotype.Controller;
 
 import irille.pub.Log;
 import irille.pub.idu.Idu;
 import irille.wpt.service.SellerService;
 import irille.wx.wpt.Wpt.OStatus;
 import irille.wx.wpt.WptRestaurant;
-
+@Controller
 public class SellerAction extends AbstractWptAction {
 	/**
 	 * 
@@ -25,8 +28,8 @@ public class SellerAction extends AbstractWptAction {
 	private String orderId;
 	private Integer restaurantId;
 	private boolean isHistory;
-	
-	private SellerService service;
+	@Resource
+	private SellerService sellerService;
 	
 	/**
 	 * 短信校验登录
@@ -42,14 +45,14 @@ public class SellerAction extends AbstractWptAction {
 			}
 			return ;
 		}
-		service.sendCheckCode(manager, getSession());
+		sellerService.sendCheckCode(manager, getSession());
 	}
 	public void listOrder() {
 		JSONArray result;
 		if(isHistory) {
-			result = service.listOrder4Json(restaurantId, orderId, OStatus.FINISH);	
+			result = sellerService.listOrder4Json(restaurantId, orderId, OStatus.FINISH);	
 		} else {
-			result = service.listOrder4Json(restaurantId, orderId, OStatus.PAYMENT);
+			result = sellerService.listOrder4Json(restaurantId, orderId, OStatus.PAYMENT);
 		}
 		PrintWriter writer;
 		try {
@@ -63,7 +66,7 @@ public class SellerAction extends AbstractWptAction {
 	 * 核对校验码
 	 */
 	public void checkCode() {
-		if(service.checkCode(identify, getSession())) {
+		if(sellerService.checkCode(identify, getSession())) {
 			try {
 				ServletActionContext.getResponse().getWriter().print("ok");//成功返回一个字符串
 			} catch (IOException e) {
@@ -102,11 +105,5 @@ public class SellerAction extends AbstractWptAction {
 	}
 	public void setIsHistory(boolean isHistory) {
 		this.isHistory = isHistory;
-	}
-	public SellerService getService() {
-		return service;
-	}
-	public void setService(SellerService service) {
-		this.service = service;
 	}
 }

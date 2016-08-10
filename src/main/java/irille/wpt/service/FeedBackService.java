@@ -1,7 +1,9 @@
 package irille.wpt.service;
 
-import irille.wx.wpt.WptFeedBack;
+import org.springframework.stereotype.Service;
 
+import irille.wx.wpt.WptFeedBack;
+@Service
 public class FeedBackService {
 
 	/**

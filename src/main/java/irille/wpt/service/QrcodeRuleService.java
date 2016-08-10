@@ -5,16 +5,16 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Service;
+
 import irille.pub.bean.Bean;
 import irille.pub.idu.Idu;
-import irille.pub.svr.Svr;
 import irille.wx.wa.WaQRCodeDAO;
 import irille.wx.wpt.Wpt.OStatus;
 import irille.wx.wpt.WptOrder;
 import irille.wx.wpt.WptQrcodeRule;
-import irille.wx.wx.WxAccount;
 import irille.wx.wx.WxUser;
-
+@Service
 public class QrcodeRuleService {
 	/**
 	 * 判断微信用户是否满足产生推广二维码的要求，并进行相应的操作

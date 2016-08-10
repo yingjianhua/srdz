@@ -3,12 +3,15 @@ package irille.wpt.actions;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.annotation.Resource;
+
 import org.apache.struts2.ServletActionContext;
 import org.json.JSONArray;
+import org.springframework.stereotype.Controller;
 
 import irille.wpt.service.TopService;
 import irille.wx.wx.WxUser;
-
+@Controller
 public class TopAction extends AbstractWptAction {
 
 	/**
@@ -21,20 +24,20 @@ public class TopAction extends AbstractWptAction {
 	private Integer areaId;
 	private Integer banquetId;
 	private Integer accountId;
-	
-	private TopService service;
+	@Resource
+	private TopService topService;
 	/**
 	 * 收藏或取消收藏
 	 */
 	public void collect() {
 		WxUser user = chkWxUser();
-		service.collectOrCancel(id, user.getPkey());
+		topService.collectOrCancel(id, user.getPkey());
 	}
 	/**
 	 * 筛选
 	 */
 	public void list() {
-		JSONArray tops = service.search4Json(cityId, areaId, banquetId, accountId);
+		JSONArray tops = topService.search4Json(cityId, areaId, banquetId, accountId);
 		try {
 			PrintWriter writer = ServletActionContext.getResponse().getWriter();
 			writer.print(tops.toString());
@@ -71,11 +74,5 @@ public class TopAction extends AbstractWptAction {
 	}
 	public void setAccountId(Integer accountId) {
 		this.accountId = accountId;
-	}
-	public TopService getService() {
-		return service;
-	}
-	public void setService(TopService service) {
-		this.service = service;
 	}
 }

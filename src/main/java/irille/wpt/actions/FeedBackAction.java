@@ -2,12 +2,15 @@ package irille.wpt.actions;
 
 import java.io.IOException;
 
+import javax.annotation.Resource;
+
 import org.apache.struts2.ServletActionContext;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.stereotype.Controller;
 
 import irille.wpt.service.FeedBackService;
-
+@Controller
 public class FeedBackAction extends AbstractWptAction {
 
 	/**
@@ -17,8 +20,8 @@ public class FeedBackAction extends AbstractWptAction {
 	private String content;
 	private String contactWay;
 	private Byte contactType;
-	
-	private FeedBackService service;
+	@Resource
+	private FeedBackService feedBackService;
 	/**
 	 * 意见反馈
 	 */
@@ -31,7 +34,7 @@ public class FeedBackAction extends AbstractWptAction {
 	 * 把反馈插入到数据库
 	 */
 	public void suggest(){
-		service.suggest(content, contactType, contactWay, getAccount().getPkey());
+		feedBackService.suggest(content, contactType, contactWay, getAccount().getPkey());
 		try {
 			ServletActionContext.getResponse().getWriter().print(new JSONObject().put(SUCCESS, true));
 		} catch (IOException e) {
@@ -57,11 +60,5 @@ public class FeedBackAction extends AbstractWptAction {
 	}
 	public void setContactType(Byte contactType) {
 		this.contactType = contactType;
-	}
-	public FeedBackService getService() {
-		return service;
-	}
-	public void setService(FeedBackService service) {
-		this.service = service;
 	}
 }

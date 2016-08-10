@@ -6,7 +6,7 @@
 <meta name="format-detection" content="telephone=no" />
 <link type="text/css" rel="stylesheet" href="css/cssm.css" />
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-<title>享食光-私人定制</title>
+<title>享食光</title>
 </head>
 
 <body>	

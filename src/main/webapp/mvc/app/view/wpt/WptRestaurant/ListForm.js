@@ -4,20 +4,30 @@ disableSelection : false,
 loadMask : true,
 cellEditing : Ext.create('Ext.grid.plugin.CellEditing', { clicksToEdit: 1 }),
 mainPkey : null,
+viewConfig: {
+    plugins: {
+        ptype: 'gridviewdragdrop',
+        dropGroup: 'firstGridDDGroup',
+        enableDrag: false
+    },
+    listeners: {
+    	beforedrop: function(node, data, overModel, dropPosition, dropHandlers) {
+    		this.panel.onIns(data.records[0]);
+    		dropHandlers.cancelDrop();
+        }
+    }
+},
 initComponent : function(){
-		var mainActs = [{
-		text : '新增',
-		iconCls : 'ins-icon',
-		scope : this,
-		handler : this.onIns
-	},{
-		text : '删除',
-		iconCls : 'del-icon',
-		scope : this,
-		handler : this.onDel
-	}];
-		this.tbar = mainActs;
-		this.columns =[{text : '宴会类型',width : 100,dataIndex : 'bean.banquet',sortable : true,renderer : mvc.Tools.beanRenderer(),editor : {xtype : 'beantriggercell',bean : 'WptBanquet',beanType : 'wpt',beanName : 'bean.banquet',grid : this,emptyText : form_empty_text}
+		this.columns =[{text : '宴会类型',width : 100,dataIndex : 'bean.banquet',sortable : true,renderer : mvc.Tools.beanRenderer()},
+		{text: '操作',width: 50,xtype: 'actioncolumn',  
+            items: [{  
+                icon: '../images/mvc/del.gif',  
+                tooltip: '删除',  
+                handler: function(grid, rowIndex, colIndex) {
+                	var store = grid.getStore();
+                	store.removeAt(rowIndex)
+                }
+            }]
 		}
 	];
 		this.store=Ext.create('mvc.store.wpt.WptRestaurantLine');
@@ -27,20 +37,15 @@ initComponent : function(){
 		this.plugins = [this.cellEditing];
 		this.callParent(arguments);	
 },
-onIns : function(){
-		var win = Ext.create("mvc.tools.BeanSelectorMulti",{
-			title : "选择器-宴会类型",
-			oBeanType : "wpt",
-			oBean : "WptBanquet",
-			tBeanType : "wpt",
-			tBean : "WptRestaurantLine",
-			grid : this,
-			mapping : [{
-				orig : "bean.pkey"+bean_split+"bean.name",
-				targ : "bean.banquet"
-			}],
-		});
-		win.show();
+onIns : function(origModel){
+	console.log(this)
+	var store = this.getStore();
+	var origData = origModel.data;
+	var targData = {
+			"bean.banquet":origData["bean.pkey"]+bean_split+origData["bean.name"],
+			"bean.price":origData["bean.price"]
+	};
+	store.insert(0, Ext.create("mvc.model.wpt.WptRestaurantLine", targData));
 },
 onDel : function(){
 		var selection = this.getView().getSelectionModel().getSelection();

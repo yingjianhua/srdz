@@ -3,12 +3,16 @@ package irille.wpt.actions;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Controller;
+
 import irille.wpt.service.RestaurantService;
 import irille.wx.wpt.WptRestaurant;
 import irille.wxpub.js.JMOpenLocation;
 import irille.wxpub.js.JQFunDefine;
 import irille.wxpub.js.JsExp;
-
+@Controller
 public class ListRestaurantAction extends AbstractWptAction {
 	/**
 	 * 
@@ -19,7 +23,8 @@ public class ListRestaurantAction extends AbstractWptAction {
 	private Double perCapitaBudget;
 	private Integer areaId;
 	private Map<WptRestaurant, List<Object>> mapCombo;
-	private RestaurantService service;
+	@Resource
+	private RestaurantService restaurantService;
 	
 	/**
 	 * 餐厅列表 跳转到餐厅列表页面 列出满足条件的餐厅列表
@@ -28,7 +33,7 @@ public class ListRestaurantAction extends AbstractWptAction {
 	@Override
 	public String execute() throws Exception {
 		//获取需要显示的餐厅和套餐数据
-		mapCombo = service.listRestaurant(areaId, banquetId, pnum.intValue(), perCapitaBudget.intValue());
+		mapCombo = restaurantService.listRestaurant(areaId, banquetId, pnum.intValue(), perCapitaBudget.intValue());
 		setResult("pt/restaurantList.jsp");
 		return TRENDS;
 	}
@@ -76,11 +81,5 @@ public class ListRestaurantAction extends AbstractWptAction {
 	}
 	public void setMapCombo(Map<WptRestaurant, List<Object>> mapCombo) {
 		this.mapCombo = mapCombo;
-	}
-	public RestaurantService getService() {
-		return service;
-	}
-	public void setService(RestaurantService service) {
-		this.service = service;
 	}
 }

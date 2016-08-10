@@ -1,8 +1,10 @@
 package irille.wpt.actions;
 
+import org.springframework.stereotype.Controller;
+
 import irille.wx.wpt.WptRestaurantBsn;
 import irille.wx.wx.WxUser;
-
+@Controller
 public class LoginSellerAction extends AbstractWptAction {
 	/**
 	 * 

@@ -27,7 +27,7 @@
 <script>
 ${jsCode}
 </script>
-<title>享食光-私人定制</title>
+<title>享食光</title>
 </head>
 
 <body>	

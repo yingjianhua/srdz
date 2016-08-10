@@ -24,7 +24,7 @@
         document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
     }
 </script>
-<title>享食光-私人定制</title>
+<title>享食光</title>
 <style type="text/css">
 a.select_city_btn{
 	height:30px;	
@@ -58,7 +58,7 @@ a.select_city_btn{
 <body>	
 	<!--footer 底部导航-->
 		<jsp:include page="../menu.jsp">
-			<jsp:param value="2" name="currMenu"/>
+			<jsp:param value="1" name="currMenu"/>
 		</jsp:include>
 	<!--footer 底部导航-->
 	<div class="find_top">

@@ -2,6 +2,10 @@ package irille.wpt.service;
 
 import java.math.BigDecimal;
 
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
 import irille.pub.Log;
 import irille.pub.bean.Bean;
 import irille.wx.wpt.Wpt.OStatus;
@@ -11,10 +15,11 @@ import irille.wx.wpt.WptOrder;
 import irille.wx.wx.WxAccountDAO;
 import irille.wx.wx.WxMessageDAO;
 import irille.wx.wx.WxUser;
-
+@Service
 public class DistributionRuleService {
-	private CommissionJournalService commissionJournalService;
 	private static final Log LOG = new Log(DistributionRuleService.class);
+	@Resource
+	private CommissionJournalService commissionJournalService;
 	/**
 	 * 用户订单进入已付款状态，根据分销规则，产生佣金流水以及微信通知邀请人
 	 */
@@ -63,13 +68,5 @@ public class DistributionRuleService {
 	
 	public void orderBeenComplete(WptOrder order) {
 		commissionJournalService.upd(order);
-	}
-
-	public CommissionJournalService getCommissionJournalService() {
-		return commissionJournalService;
-	}
-
-	public void setCommissionJournalService(CommissionJournalService commissionJournalService) {
-		this.commissionJournalService = commissionJournalService;
 	}
 }

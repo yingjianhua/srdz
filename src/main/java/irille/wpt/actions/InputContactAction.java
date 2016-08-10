@@ -1,7 +1,9 @@
 package irille.wpt.actions;
 
-import irille.pub.Log;
+import org.springframework.stereotype.Controller;
 
+import irille.pub.Log;
+@Controller
 public class InputContactAction extends AbstractWptAction {
 	/**
 	 * 

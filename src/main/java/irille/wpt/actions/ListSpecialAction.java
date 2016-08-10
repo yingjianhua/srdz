@@ -2,12 +2,14 @@ package irille.wpt.actions;
 
 import java.util.List;
 
+import org.springframework.stereotype.Controller;
+
 import irille.core.sys.Sys.OYn;
 import irille.pub.idu.Idu;
 import irille.wpt.interceptor.CityInterceptor;
 import irille.wx.wpt.WptCity;
 import irille.wx.wpt.WptSpecial;
-
+@Controller
 public class ListSpecialAction extends AbstractWptAction {
 	/**
 	 * 

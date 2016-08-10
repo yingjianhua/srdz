@@ -1,10 +1,12 @@
 package irille.wpt.service;
 
 
+import org.springframework.stereotype.Service;
+
 import irille.pub.Log;
 import irille.wx.wpt.WptCity;
 import irille.wx.wpt.WptPetitionCity;
-
+@Service
 public class CityService {
 	public static final Log LOG = new Log(CityService.class);
 	/**

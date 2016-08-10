@@ -2,9 +2,11 @@ package irille.wpt.actions;
 
 import java.util.List;
 
+import org.springframework.stereotype.Controller;
+
 import irille.pub.bean.BeanBase;
 import irille.wx.wpt.WptService;
-
+@Controller
 public class SelectServiceAction extends AbstractWptAction {
 	/**
 	 * 

@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.springframework.stereotype.Component;
 import org.xml.sax.SAXException;
 
 import irille.pub.Log;
@@ -16,6 +17,7 @@ import irille.wx.wx.WxUser;
 import irille.wxpub.util.HttpRequestUtil;
 import irille.wxpub.util.ReadXmlUtil;
 
+@Component
 public class SmsTool {
 	public static final Log LOG = new Log(SmsTool.class);
 	public enum Msgs implements IMsg {// 信息定义的类名必须为Msgs, 以便系统能检索 @formatter:off

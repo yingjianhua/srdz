@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css" href="http://res.wx.qq.com/mmbizwap/zh_CN/htmledition/style/page/appmsg/page_mp_article_improve2d1390.css">
 <link rel="stylesheet" type="text/css" href="css/cssm.css">
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-<title>享食光-私人定制</title>
+<title>享食光</title>
 </head>
 <body id="activity-detail" class="zh_CN mm_appmsg">
 	<div class="cm_flog"></div><!--遮罩层-->

@@ -2,13 +2,19 @@ package irille.wpt.service;
 
 import java.math.BigDecimal;
 
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
 import irille.pub.Log;
 import irille.wpt.dao.impl.CashJournalDao;
 import irille.wx.wpt.WptCashJournal;
 import irille.wx.wx.WxUser;
 
+@Service
 public class CashJournalService {
 	private static final Log LOG = new Log(CashJournalService.class);
+	@Resource
 	private CashJournalDao cashJournalDao;
 	public WptCashJournal add(WxUser user, BigDecimal amt) {
 		user.setCashableCommission(user.getCashableCommission().subtract(amt));
@@ -17,11 +23,5 @@ public class CashJournalService {
 		}
 		user.upd();
 		return cashJournalDao.ins(user.getPkey(), user.getAccount(), amt);
-	}
-	public CashJournalDao getCashJournalDao() {
-		return cashJournalDao;
-	}
-	public void setCashJournalDao(CashJournalDao cashJournalDao) {
-		this.cashJournalDao = cashJournalDao;
 	}
 }

@@ -4,10 +4,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.apache.struts2.ServletActionContext;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.stereotype.Controller;
 
 import irille.pub.Exp;
 import irille.pub.Log;
@@ -15,7 +18,7 @@ import irille.pub.bean.Bean;
 import irille.wpt.interceptor.CityInterceptor;
 import irille.wpt.service.CityService;
 import irille.wx.wpt.WptCity;
-
+@Controller
 public class CityAction extends AbstractWptAction {
 	/**
 	 * 
@@ -24,8 +27,8 @@ public class CityAction extends AbstractWptAction {
 	private static final Log LOG = new Log(CityAction.class);
 	private int id;
 	private String petitionCity;
-	
-	private CityService service;
+	@Resource
+	private CityService cityService;
 	
 	public void select() {
 		LOG.info("--------------select():start--------------");
@@ -82,7 +85,7 @@ public class CityAction extends AbstractWptAction {
 		try {
 			writer = ServletActionContext.getResponse().getWriter();
 			if(getPetitionCity() != null)
-				service.insOrUpd(getPetitionCity(), getAccount().getPkey());
+				cityService.insOrUpd(getPetitionCity(), getAccount().getPkey());
 			writer.print("享食光马上就来");
 		} catch (Exp e) {
 			writer.print(e.getLastMessage());
@@ -104,11 +107,5 @@ public class CityAction extends AbstractWptAction {
 	}
 	public void setPetitionCity(String petitionCity) {
 		this.petitionCity = petitionCity;
-	}
-	public CityService getService() {
-		return service;
-	}
-	public void setService(CityService service) {
-		this.service = service;
 	}
 }
