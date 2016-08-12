@@ -1,0 +1,173 @@
+.main .search-bar{
+	background: #f0f0f0;
+	padding: 0.75rem 0.64rem 0.53rem 0.64rem;
+}
+.main .search{
+	height: 0.85rem;
+	border: 2px solid #000;
+	position: relative;
+}
+.main .search_icon{
+	position: absolute;
+	width: 0.61rem;
+	margin: 0.12rem 0 0.12rem 0.31rem;
+}
+.main .search-input{
+	padding-left: 0.92rem;
+	height: 0.85rem;
+	width: 85%;
+	border: none;
+	font-size: 0.33rem;
+}
+.main .search-submit{
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 0.85rem;
+	line-height: 0.85rem;
+	width: 2.23rem;
+	color: #fff;
+	background: black;
+	text-align: center;
+	font-size: 0.4rem;
+}
+.main .nav{
+	background: #fff;
+	height: 1.48rem;
+	margin-bottom: 4px;
+}
+.main .nav li{
+	text-align: center;
+	font-size: 0.4rem;
+	float: left;
+	width: 3.33rem;
+	height: 1.48rem;
+	line-height: 1.48rem;
+	border-bottom: 4px solid #f0f0f0;
+}
+.main .nav li.select{
+	border-bottom: 4px solid;
+}
+.main .list{
+	position: relative;
+	background: #fff;
+}
+.main .list .fan{
+	margin: 0 auto;
+	width: 8.67rem;
+	height: 1.48rem;
+	border-bottom: 2px solid #f0f0f0;
+	position: relative;
+}
+.main .list .fan ul{
+	padding: 0.21rem 0;
+	height: 1.07rem;
+}
+.main .list .fan li{
+	position: absolute;
+	line-height: 1.07rem;
+	color: #6d6d6d;
+}
+.main .list .fan .fan-detail-head{
+}
+.main .list .fan .fan-detail-nick {
+	left: 1.5rem;
+	font-size: 0.33rem;
+	font-weight: bold;
+	color: black;
+}
+.main .list .fan .fan-detail-id {
+	left: 3.5rem;
+	font-size: 0.27rem;
+}
+.main .list .fan .fan-detail-subtime {
+	right: 0;
+	font-size: 0.27rem;
+}
+.main .list .fan .fan-detail-head img{
+	border-radius: 100%;
+	width: 1.07rem;
+}
+
+/*hall 餐厅选择*/
+.hall_top{
+	height:64px;
+	line-height:64px;
+	background:#1a1a1f;	
+	font-size:24px;
+	color:#8f9398;
+	text-align:center;
+}
+.hall_item{
+	display:block;
+	width:640px;
+	margin-bottom:8px;
+	position:relative;
+	overflow:hidden;	
+}
+.hall_item .photo{
+	display:block;
+	width:640px;
+	height:358px;	
+}
+.hall_item .item_flog{
+	position:absolute;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;	
+	z-index:10;
+	background:#000;
+	opacity:0.1;
+}
+.hall_item dl{
+	color:#fff;
+	position:absolute;
+	left:28px;
+	bottom:28px;
+	z-index:12;
+	padding-right:28px;
+}
+.hall_item dt{
+	height:44px;
+	line-height:44px;
+	font-size:28px;	
+}
+.hall_item dd{
+	height:28px;
+	line-height:28px;
+	padding-left:30px;
+	background:url("../images/hall_item.png") no-repeat left center;	
+}
+.hall_item .dist_dl{
+	right:0px;
+	left:auto;
+}
+.hall_item .dist_dd{
+	background:none;
+}
+.hall_bar{
+	position:fixed;
+	bottom:0;
+	z-index:20;
+	width:640px;
+	text-align:center;
+	margin:0 auto;
+	padding:12px 0;	
+}
+.hall_bar .go{
+	display:block;
+	width:590px;
+	height:68px;
+	line-height:68px;
+	font-size:22px;
+	color:#fff;
+	margin:0 auto;
+	background:#ffc83b;
+	border-radius:8px;	
+}
+.hall_zw{
+	height:92px;	
+}
+
+/*hall 餐厅选择*/

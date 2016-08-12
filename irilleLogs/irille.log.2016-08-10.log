@@ -1,0 +1,474 @@
+[2016-08-10 10:56:05][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-10 10:56:05][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-10 10:56:05][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-10 10:56:05][WARN ] org.hibernate.orm.deprecation
+HHH90000012: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/hibernate-configuration. Use namespace http://www.hibernate.org/dtd/hibernate-configuration instead.  Support for obsolete DTD/XSD namespaces may be removed at any time.
+[2016-08-10 10:56:05][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-10 10:58:36][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-10 10:58:36][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-10 10:58:36][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-10 10:58:36][WARN ] org.hibernate.orm.deprecation
+HHH90000012: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/hibernate-configuration. Use namespace http://www.hibernate.org/dtd/hibernate-configuration instead.  Support for obsolete DTD/XSD namespaces may be removed at any time.
+[2016-08-10 10:58:37][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-10 10:58:37][WARN ] org.hibernate.orm.connections
+HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[2016-08-10 10:58:37][INFO ] org.hibernate.orm.connections
+HHH10001005: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/srdz]
+[2016-08-10 10:58:37][INFO ] org.hibernate.orm.connections
+HHH10001001: Connection properties: {user=root, password=****}
+[2016-08-10 10:58:37][INFO ] org.hibernate.orm.connections
+HHH10001003: Autocommit mode: false
+[2016-08-10 10:58:37][INFO ] org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl
+HHH000115: Hibernate connection pool size: 5 (min=1)
+[2016-08-10 10:58:37][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-10 10:58:37][INFO ] org.hibernate.tool.schema.internal.SchemaCreatorImpl
+HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@313461dd'
+[2016-08-10 11:00:44][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-10 11:00:44][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-10 11:00:44][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-10 11:00:44][WARN ] org.hibernate.orm.deprecation
+HHH90000012: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/hibernate-configuration. Use namespace http://www.hibernate.org/dtd/hibernate-configuration instead.  Support for obsolete DTD/XSD namespaces may be removed at any time.
+[2016-08-10 11:00:45][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-10 11:00:45][WARN ] org.hibernate.orm.connections
+HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[2016-08-10 11:00:45][INFO ] org.hibernate.orm.connections
+HHH10001005: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/srdz]
+[2016-08-10 11:00:45][INFO ] org.hibernate.orm.connections
+HHH10001001: Connection properties: {user=root, password=****}
+[2016-08-10 11:00:45][INFO ] org.hibernate.orm.connections
+HHH10001003: Autocommit mode: false
+[2016-08-10 11:00:45][INFO ] org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl
+HHH000115: Hibernate connection pool size: 5 (min=1)
+[2016-08-10 11:00:45][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-10 11:00:45][INFO ] org.hibernate.tool.schema.internal.SchemaCreatorImpl
+HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@442e1ae'
+[2016-08-10 11:01:49][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-10 11:01:49][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-10 11:01:49][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-10 11:01:49][WARN ] org.hibernate.orm.deprecation
+HHH90000012: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/hibernate-configuration. Use namespace http://www.hibernate.org/dtd/hibernate-configuration instead.  Support for obsolete DTD/XSD namespaces may be removed at any time.
+[2016-08-10 11:01:49][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-10 11:01:49][WARN ] org.hibernate.orm.connections
+HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[2016-08-10 11:01:49][INFO ] org.hibernate.orm.connections
+HHH10001005: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/srdz]
+[2016-08-10 11:01:49][INFO ] org.hibernate.orm.connections
+HHH10001001: Connection properties: {user=root, password=****}
+[2016-08-10 11:01:49][INFO ] org.hibernate.orm.connections
+HHH10001003: Autocommit mode: false
+[2016-08-10 11:01:49][INFO ] org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl
+HHH000115: Hibernate connection pool size: 5 (min=1)
+[2016-08-10 11:01:50][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-10 11:01:50][INFO ] org.hibernate.tool.schema.internal.SchemaCreatorImpl
+HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@762af936'
+[2016-08-10 11:02:34][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-10 11:02:34][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-10 11:02:34][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-10 11:02:34][WARN ] org.hibernate.orm.deprecation
+HHH90000012: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/hibernate-configuration. Use namespace http://www.hibernate.org/dtd/hibernate-configuration instead.  Support for obsolete DTD/XSD namespaces may be removed at any time.
+[2016-08-10 11:02:34][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-10 11:02:34][WARN ] org.hibernate.orm.connections
+HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[2016-08-10 11:02:34][INFO ] org.hibernate.orm.connections
+HHH10001005: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/srdz]
+[2016-08-10 11:02:34][INFO ] org.hibernate.orm.connections
+HHH10001001: Connection properties: {user=root, password=****}
+[2016-08-10 11:02:34][INFO ] org.hibernate.orm.connections
+HHH10001003: Autocommit mode: false
+[2016-08-10 11:02:34][INFO ] org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl
+HHH000115: Hibernate connection pool size: 5 (min=1)
+[2016-08-10 11:02:34][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-10 11:02:34][INFO ] org.hibernate.tool.schema.internal.SchemaCreatorImpl
+HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@510289ee'
+[2016-08-10 11:11:41][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-10 11:11:41][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-10 11:11:41][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-10 11:11:41][WARN ] org.hibernate.orm.deprecation
+HHH90000012: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/hibernate-configuration. Use namespace http://www.hibernate.org/dtd/hibernate-configuration instead.  Support for obsolete DTD/XSD namespaces may be removed at any time.
+[2016-08-10 11:11:41][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-10 11:11:41][WARN ] org.hibernate.orm.connections
+HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[2016-08-10 11:11:41][INFO ] org.hibernate.orm.connections
+HHH10001005: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/srdz]
+[2016-08-10 11:11:41][INFO ] org.hibernate.orm.connections
+HHH10001001: Connection properties: {user=root, password=****}
+[2016-08-10 11:11:41][INFO ] org.hibernate.orm.connections
+HHH10001003: Autocommit mode: false
+[2016-08-10 11:11:41][INFO ] org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl
+HHH000115: Hibernate connection pool size: 5 (min=1)
+[2016-08-10 11:11:41][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-10 11:11:42][INFO ] org.hibernate.tool.schema.internal.SchemaCreatorImpl
+HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@7b2fcb3'
+[2016-08-10 11:46:15][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-10 11:46:15][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-10 11:46:15][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-10 11:46:15][WARN ] org.hibernate.orm.deprecation
+HHH90000012: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/hibernate-configuration. Use namespace http://www.hibernate.org/dtd/hibernate-configuration instead.  Support for obsolete DTD/XSD namespaces may be removed at any time.
+[2016-08-10 11:46:15][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-10 11:46:16][WARN ] org.hibernate.orm.connections
+HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[2016-08-10 11:46:16][INFO ] org.hibernate.orm.connections
+HHH10001005: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/srdz]
+[2016-08-10 11:46:16][INFO ] org.hibernate.orm.connections
+HHH10001001: Connection properties: {user=root, password=****}
+[2016-08-10 11:46:16][INFO ] org.hibernate.orm.connections
+HHH10001003: Autocommit mode: false
+[2016-08-10 11:46:16][INFO ] org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl
+HHH000115: Hibernate connection pool size: 5 (min=1)
+[2016-08-10 11:46:16][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-10 11:46:16][INFO ] org.hibernate.tool.schema.internal.SchemaCreatorImpl
+HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@24442e4a'
+[2016-08-10 11:46:16][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-10 11:46:43][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-10 11:46:43][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-10 11:46:43][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-10 11:46:43][WARN ] org.hibernate.orm.deprecation
+HHH90000012: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/hibernate-configuration. Use namespace http://www.hibernate.org/dtd/hibernate-configuration instead.  Support for obsolete DTD/XSD namespaces may be removed at any time.
+[2016-08-10 11:46:44][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-10 11:46:44][WARN ] org.hibernate.orm.connections
+HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[2016-08-10 11:46:44][INFO ] org.hibernate.orm.connections
+HHH10001005: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/srdz]
+[2016-08-10 11:46:44][INFO ] org.hibernate.orm.connections
+HHH10001001: Connection properties: {user=root, password=****}
+[2016-08-10 11:46:44][INFO ] org.hibernate.orm.connections
+HHH10001003: Autocommit mode: false
+[2016-08-10 11:46:44][INFO ] org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl
+HHH000115: Hibernate connection pool size: 5 (min=1)
+[2016-08-10 11:46:44][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-10 11:46:44][INFO ] org.hibernate.tool.schema.internal.SchemaCreatorImpl
+HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@344f40f9'
+[2016-08-10 11:46:44][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-10 11:49:10][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-10 11:49:10][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-10 11:49:10][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-10 11:49:10][WARN ] org.hibernate.orm.deprecation
+HHH90000012: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/hibernate-configuration. Use namespace http://www.hibernate.org/dtd/hibernate-configuration instead.  Support for obsolete DTD/XSD namespaces may be removed at any time.
+[2016-08-10 11:49:10][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-10 11:49:10][WARN ] org.hibernate.orm.connections
+HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[2016-08-10 11:49:10][INFO ] org.hibernate.orm.connections
+HHH10001005: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/srdz]
+[2016-08-10 11:49:10][INFO ] org.hibernate.orm.connections
+HHH10001001: Connection properties: {user=root, password=****}
+[2016-08-10 11:49:10][INFO ] org.hibernate.orm.connections
+HHH10001003: Autocommit mode: false
+[2016-08-10 11:49:10][INFO ] org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl
+HHH000115: Hibernate connection pool size: 5 (min=1)
+[2016-08-10 11:49:10][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-10 11:49:11][INFO ] org.hibernate.tool.schema.internal.SchemaCreatorImpl
+HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@24442e4a'
+[2016-08-10 11:49:11][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-10 11:50:59][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-10 11:50:59][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-10 11:50:59][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-10 11:50:59][WARN ] org.hibernate.orm.deprecation
+HHH90000012: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/hibernate-configuration. Use namespace http://www.hibernate.org/dtd/hibernate-configuration instead.  Support for obsolete DTD/XSD namespaces may be removed at any time.
+[2016-08-10 11:51:00][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-10 11:51:00][WARN ] org.hibernate.orm.connections
+HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[2016-08-10 11:51:00][INFO ] org.hibernate.orm.connections
+HHH10001005: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/srdz]
+[2016-08-10 11:51:00][INFO ] org.hibernate.orm.connections
+HHH10001001: Connection properties: {user=root, password=****}
+[2016-08-10 11:51:00][INFO ] org.hibernate.orm.connections
+HHH10001003: Autocommit mode: false
+[2016-08-10 11:51:00][INFO ] org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl
+HHH000115: Hibernate connection pool size: 5 (min=1)
+[2016-08-10 11:51:00][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-10 11:51:01][INFO ] org.hibernate.tool.schema.internal.SchemaCreatorImpl
+HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@783b0edf'
+[2016-08-10 11:51:01][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-10 11:51:52][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-10 11:51:52][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-10 11:51:52][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-10 11:51:52][WARN ] org.hibernate.orm.deprecation
+HHH90000012: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/hibernate-configuration. Use namespace http://www.hibernate.org/dtd/hibernate-configuration instead.  Support for obsolete DTD/XSD namespaces may be removed at any time.
+[2016-08-10 11:51:53][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-10 11:51:53][WARN ] org.hibernate.orm.connections
+HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[2016-08-10 11:51:53][INFO ] org.hibernate.orm.connections
+HHH10001005: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/srdz]
+[2016-08-10 11:51:53][INFO ] org.hibernate.orm.connections
+HHH10001001: Connection properties: {user=root, password=****}
+[2016-08-10 11:51:53][INFO ] org.hibernate.orm.connections
+HHH10001003: Autocommit mode: false
+[2016-08-10 11:51:53][INFO ] org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl
+HHH000115: Hibernate connection pool size: 5 (min=1)
+[2016-08-10 11:51:53][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-10 11:51:54][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-10 11:54:08][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-10 11:54:08][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-10 11:54:08][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-10 11:54:08][WARN ] org.hibernate.orm.deprecation
+HHH90000012: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/hibernate-configuration. Use namespace http://www.hibernate.org/dtd/hibernate-configuration instead.  Support for obsolete DTD/XSD namespaces may be removed at any time.
+[2016-08-10 11:54:09][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-10 11:54:09][WARN ] org.hibernate.orm.connections
+HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[2016-08-10 11:54:09][INFO ] org.hibernate.orm.connections
+HHH10001005: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/srdz]
+[2016-08-10 11:54:09][INFO ] org.hibernate.orm.connections
+HHH10001001: Connection properties: {user=root, password=****}
+[2016-08-10 11:54:09][INFO ] org.hibernate.orm.connections
+HHH10001003: Autocommit mode: false
+[2016-08-10 11:54:09][INFO ] org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl
+HHH000115: Hibernate connection pool size: 5 (min=1)
+[2016-08-10 11:54:09][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-10 11:54:10][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-10 15:15:53][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-10 15:15:53][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-10 15:15:53][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-10 15:15:53][WARN ] org.hibernate.orm.deprecation
+HHH90000012: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/hibernate-configuration. Use namespace http://www.hibernate.org/dtd/hibernate-configuration instead.  Support for obsolete DTD/XSD namespaces may be removed at any time.
+[2016-08-10 15:15:53][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-10 15:15:53][WARN ] org.hibernate.orm.connections
+HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[2016-08-10 15:15:53][INFO ] org.hibernate.orm.connections
+HHH10001005: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/srdz]
+[2016-08-10 15:15:53][INFO ] org.hibernate.orm.connections
+HHH10001001: Connection properties: {user=root, password=****}
+[2016-08-10 15:15:53][INFO ] org.hibernate.orm.connections
+HHH10001003: Autocommit mode: false
+[2016-08-10 15:15:53][INFO ] org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl
+HHH000115: Hibernate connection pool size: 5 (min=1)
+[2016-08-10 15:15:53][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-10 15:15:54][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-10 16:18:43][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-10 16:18:43][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-10 16:18:43][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-10 16:35:28][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4e69b84c: startup date [Wed Aug 10 16:35:28 CST 2016]; root of context hierarchy
+[2016-08-10 16:35:28][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-10 16:35:50][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@7ec2adcb: startup date [Wed Aug 10 16:35:50 CST 2016]; root of context hierarchy
+[2016-08-10 16:35:51][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-10 16:36:22][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4e69b84c: startup date [Wed Aug 10 16:36:22 CST 2016]; root of context hierarchy
+[2016-08-10 16:36:22][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-10 16:36:23][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-10 16:36:23][WARN ] org.springframework.context.support.ClassPathXmlApplicationContext
+Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'applyServiceAction': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'wxJsCreater' is defined
+[2016-08-10 16:39:28][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4e69b84c: startup date [Wed Aug 10 16:39:28 CST 2016]; root of context hierarchy
+[2016-08-10 16:39:28][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml,spring-bean.xml]
+[2016-08-10 16:39:37][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4e69b84c: startup date [Wed Aug 10 16:39:37 CST 2016]; root of context hierarchy
+[2016-08-10 16:39:37][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml;spring-bean.xml]
+[2016-08-10 16:39:44][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@7ec2adcb: startup date [Wed Aug 10 16:39:44 CST 2016]; root of context hierarchy
+[2016-08-10 16:39:44][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml spring-bean.xml]
+[2016-08-10 16:39:57][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@7ec2adcb: startup date [Wed Aug 10 16:39:57 CST 2016]; root of context hierarchy
+[2016-08-10 16:39:57][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml:spring-bean.xml]
+[2016-08-10 16:42:11][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@790417ad: startup date [Wed Aug 10 16:42:11 CST 2016]; root of context hierarchy
+[2016-08-10 16:42:11][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-10 16:42:11][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [spring-bean.xml]
+[2016-08-10 16:42:11][INFO ] org.springframework.beans.factory.support.DefaultListableBeanFactory
+Overriding bean definition for bean 'smsTool' with a different definition: replacing [Generic bean: class [irille.wpt.tools.SmsTool]; scope=singleton; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in file [D:\workspace\srdz3\target\classes\irille\wpt\tools\SmsTool.class]] with [Generic bean: class [irille.wpt.tools.SmsTool]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in class path resource [spring-bean.xml]]
+[2016-08-10 16:42:11][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-10 16:42:12][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-10 16:42:12][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-10 16:42:12][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-10 16:42:12][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-10 16:42:12][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-10 16:42:12][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-10 16:42:12][INFO ] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl
+HHH000422: Disabling contextual LOB creation as connection was null
+[2016-08-10 16:42:13][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-10 16:42:37][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1f202b71: startup date [Wed Aug 10 16:42:37 CST 2016]; root of context hierarchy
+[2016-08-10 16:42:37][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-10 16:42:37][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [spring-bean.xml]
+[2016-08-10 16:42:37][INFO ] org.springframework.beans.factory.support.DefaultListableBeanFactory
+Overriding bean definition for bean 'smsTool' with a different definition: replacing [Generic bean: class [irille.wpt.tools.SmsTool]; scope=singleton; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in file [D:\workspace\srdz3\target\classes\irille\wpt\tools\SmsTool.class]] with [Generic bean: class [irille.wpt.tools.SmsTool]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in class path resource [spring-bean.xml]]
+[2016-08-10 16:42:37][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-10 16:42:38][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-10 16:42:38][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-10 16:42:38][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-10 16:42:38][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-10 16:42:38][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-10 16:42:38][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-10 16:42:38][INFO ] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl
+HHH000422: Disabling contextual LOB creation as connection was null
+[2016-08-10 16:42:39][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-10 16:43:00][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1f202b71: startup date [Wed Aug 10 16:43:00 CST 2016]; root of context hierarchy
+[2016-08-10 16:43:00][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-10 16:43:00][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [spring-bean.xml]
+[2016-08-10 16:43:00][INFO ] org.springframework.beans.factory.support.DefaultListableBeanFactory
+Overriding bean definition for bean 'smsTool' with a different definition: replacing [Generic bean: class [irille.wpt.tools.SmsTool]; scope=singleton; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in file [D:\workspace\srdz3\target\classes\irille\wpt\tools\SmsTool.class]] with [Generic bean: class [irille.wpt.tools.SmsTool]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in class path resource [spring-bean.xml]]
+[2016-08-10 16:43:00][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-10 16:43:01][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-10 16:43:01][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-10 16:43:01][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-10 16:43:01][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-10 16:43:01][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-10 16:43:01][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-10 16:43:01][INFO ] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl
+HHH000422: Disabling contextual LOB creation as connection was null
+[2016-08-10 16:43:02][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-10 16:46:12][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@790417ad: startup date [Wed Aug 10 16:46:12 CST 2016]; root of context hierarchy
+[2016-08-10 16:46:12][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-10 16:46:12][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [spring-bean.xml]
+[2016-08-10 16:46:12][INFO ] org.springframework.beans.factory.support.DefaultListableBeanFactory
+Overriding bean definition for bean 'smsTool' with a different definition: replacing [Generic bean: class [irille.wpt.tools.SmsTool]; scope=singleton; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in file [D:\workspace\srdz3\target\classes\irille\wpt\tools\SmsTool.class]] with [Generic bean: class [irille.wpt.tools.SmsTool]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in class path resource [spring-bean.xml]]
+[2016-08-10 16:46:12][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-10 16:46:13][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-10 16:46:13][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-10 16:46:13][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-10 16:46:13][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-10 16:46:13][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-10 16:46:13][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-10 16:46:13][INFO ] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl
+HHH000422: Disabling contextual LOB creation as connection was null
+[2016-08-10 16:46:14][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-10 16:47:16][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@7ec2adcb: startup date [Wed Aug 10 16:47:16 CST 2016]; root of context hierarchy
+[2016-08-10 16:47:16][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-10 16:47:17][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [spring-bean.xml]
+[2016-08-10 16:47:17][INFO ] org.springframework.beans.factory.support.DefaultListableBeanFactory
+Overriding bean definition for bean 'smsTool' with a different definition: replacing [Generic bean: class [irille.wpt.tools.SmsTool]; scope=singleton; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in file [D:\workspace\srdz3\target\classes\irille\wpt\tools\SmsTool.class]] with [Generic bean: class [irille.wpt.tools.SmsTool]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in class path resource [spring-bean.xml]]
+[2016-08-10 16:47:17][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-10 16:47:17][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-10 16:47:17][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-10 16:47:17][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-10 16:47:17][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-10 16:47:17][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-10 16:47:18][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-10 16:47:18][INFO ] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl
+HHH000422: Disabling contextual LOB creation as connection was null
+[2016-08-10 16:47:19][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory

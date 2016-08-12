@@ -21,7 +21,8 @@ initComponent : function(){
 	this.columns = [
 	                {text : '单笔消费金额',width : 100,dataIndex : 'bean.single',sortable : true,renderer : mvc.Tools.numberRenderer(),align : 'right'},
 	                {text : '累计消费金额',width : 100,dataIndex : 'bean.amount',sortable : true,renderer : mvc.Tools.numberRenderer(),align : 'right'},
-	                {text : '有效天数',width : 100,dataIndex : 'bean.validityPeriod',sortable : true}
+	                {text : '有效天数',width : 100,dataIndex : 'bean.validityPeriod',sortable : true},
+	                {text : '提前更新天数',width : 100,dataIndex : 'bean.aheadUpdate',sortable : true}
 	                ];
 	this.store=Ext.create('mvc.store.wpt.WptQrcodeRule'); 
 	this.store.remoteFilter = true;

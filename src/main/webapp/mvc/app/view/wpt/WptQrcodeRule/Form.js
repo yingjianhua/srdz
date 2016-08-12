@@ -28,6 +28,11 @@ Ext.define('mvc.view.wpt.WptQrcodeRule.Form', {
 		},
 		{
 			xtype : 'numberfield',
+			name : 'bean.aheadUpdate',
+			fieldLabel : '提前更新天数',
+		},
+		{
+			xtype : 'numberfield',
 			name : 'bean.rowVersion',
 			value : 0,
 			afterLabelTextTpl : required,

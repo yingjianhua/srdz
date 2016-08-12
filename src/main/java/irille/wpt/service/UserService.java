@@ -1,6 +1,8 @@
 package irille.wpt.service;
 
 import java.math.BigDecimal;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +15,7 @@ import irille.pub.bean.Bean;
 import irille.pub.idu.Idu;
 import irille.wx.wpt.WptCashJournal;
 import irille.wx.wpt.WptCommissionJournal;
+import irille.wx.wpt.WptQrcodeRule;
 import irille.wx.wpt.WptRedPackRule;
 import irille.wx.wx.WxUser;
 import irille.wxpub.util.mch.SendRedPack;
@@ -21,6 +24,8 @@ public class UserService {
 	public static final Log LOG = new Log(UserService.class);
 	@Resource
 	private CashJournalService cashJournalService;
+	@Resource
+	private QrcodeRuleService qrcodeRuleService;
 	
 	public int getFans1Num(Integer userid){
 		String sql = Idu.sqlString("select count(*) fansNum from {0} where {1}=?", WxUser.class, WxUser.T.INVITED3);
@@ -105,5 +110,23 @@ public class UserService {
 		}
 		SendRedPack.sendRedPack(user.gtAccount(), user.getOpenId(), rule.getSendName(), amt.multiply(BigDecimal.valueOf(100)).intValue(), rule.getWishing(), client_ip, rule.getActName(), rule.getRemark());
 		return cashJournalService.add(user, amt);
+	}
+	/**
+	 * 检查推广二维码是否达到需要更新的时间，是则更新
+	 * @param user
+	 */
+	public void checkQrcode(WxUser user) {
+		WptQrcodeRule rule = Bean.get(WptQrcodeRule.class, user.getAccount());
+		Calendar calendar = Calendar.getInstance();
+		calendar.add(Calendar.DAY_OF_MONTH, rule.getAheadUpdate());
+		if(calendar.getTime().after(user.getQrcodeExpireTime())) {
+			qrcodeRuleService.createQrcode(user, rule);
+		}
+	}
+	public static void main(String[] args) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.add(Calendar.DAY_OF_MONTH, -15);
+		System.out.println(calendar.getTime());
+		System.out.println(calendar.getTime().before(new Date()));
 	}
 }

@@ -1,0 +1,260 @@
+[2016-08-11 15:27:57][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@31fdc6f6: startup date [Thu Aug 11 15:27:57 CST 2016]; root of context hierarchy
+[2016-08-11 15:27:57][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-11 15:27:58][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [spring-bean.xml]
+[2016-08-11 15:27:58][INFO ] org.springframework.beans.factory.support.DefaultListableBeanFactory
+Overriding bean definition for bean 'smsTool' with a different definition: replacing [Generic bean: class [irille.wpt.tools.SmsTool]; scope=singleton; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in file [D:\workspace\srdz3\target\classes\irille\wpt\tools\SmsTool.class]] with [Generic bean: class [irille.wpt.tools.SmsTool]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in class path resource [spring-bean.xml]]
+[2016-08-11 15:27:58][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-11 15:27:58][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-11 15:27:58][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-11 15:27:58][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-11 15:27:58][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-11 15:27:58][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-11 15:27:59][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-11 15:27:59][INFO ] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl
+HHH000422: Disabling contextual LOB creation as connection was null
+[2016-08-11 15:28:00][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-11 15:29:10][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@c115a1e: startup date [Thu Aug 11 15:29:10 CST 2016]; root of context hierarchy
+[2016-08-11 15:29:10][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-11 15:29:11][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [spring-bean.xml]
+[2016-08-11 15:29:11][INFO ] org.springframework.beans.factory.support.DefaultListableBeanFactory
+Overriding bean definition for bean 'smsTool' with a different definition: replacing [Generic bean: class [irille.wpt.tools.SmsTool]; scope=singleton; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in file [D:\workspace\srdz3\target\classes\irille\wpt\tools\SmsTool.class]] with [Generic bean: class [irille.wpt.tools.SmsTool]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in class path resource [spring-bean.xml]]
+[2016-08-11 15:29:11][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-11 15:29:11][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-11 15:29:11][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-11 15:29:11][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-11 15:29:11][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-11 15:29:11][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-11 15:29:11][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-11 15:29:11][INFO ] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl
+HHH000422: Disabling contextual LOB creation as connection was null
+[2016-08-11 15:29:13][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-11 15:31:25][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@c115a1e: startup date [Thu Aug 11 15:31:25 CST 2016]; root of context hierarchy
+[2016-08-11 15:31:25][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-11 15:31:25][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [spring-bean.xml]
+[2016-08-11 15:31:25][INFO ] org.springframework.beans.factory.support.DefaultListableBeanFactory
+Overriding bean definition for bean 'smsTool' with a different definition: replacing [Generic bean: class [irille.wpt.tools.SmsTool]; scope=singleton; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in file [D:\workspace\srdz3\target\classes\irille\wpt\tools\SmsTool.class]] with [Generic bean: class [irille.wpt.tools.SmsTool]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in class path resource [spring-bean.xml]]
+[2016-08-11 15:31:25][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-11 15:31:26][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-11 15:31:26][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-11 15:31:26][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-11 15:31:26][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-11 15:31:26][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-11 15:31:26][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-11 15:31:26][INFO ] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl
+HHH000422: Disabling contextual LOB creation as connection was null
+[2016-08-11 15:31:27][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-11 15:34:03][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@31fdc6f6: startup date [Thu Aug 11 15:34:03 CST 2016]; root of context hierarchy
+[2016-08-11 15:34:03][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-11 15:34:03][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [spring-bean.xml]
+[2016-08-11 15:34:03][INFO ] org.springframework.beans.factory.support.DefaultListableBeanFactory
+Overriding bean definition for bean 'smsTool' with a different definition: replacing [Generic bean: class [irille.wpt.tools.SmsTool]; scope=singleton; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in file [D:\workspace\srdz3\target\classes\irille\wpt\tools\SmsTool.class]] with [Generic bean: class [irille.wpt.tools.SmsTool]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in class path resource [spring-bean.xml]]
+[2016-08-11 15:34:03][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-11 15:34:03][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-11 15:34:03][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-11 15:34:03][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-11 15:34:03][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-11 15:34:04][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-11 15:34:04][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-11 15:34:04][INFO ] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl
+HHH000422: Disabling contextual LOB creation as connection was null
+[2016-08-11 15:34:05][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-11 15:36:20][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@31fdc6f6: startup date [Thu Aug 11 15:36:20 CST 2016]; root of context hierarchy
+[2016-08-11 15:36:20][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-11 15:36:21][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [spring-bean.xml]
+[2016-08-11 15:36:21][INFO ] org.springframework.beans.factory.support.DefaultListableBeanFactory
+Overriding bean definition for bean 'smsTool' with a different definition: replacing [Generic bean: class [irille.wpt.tools.SmsTool]; scope=singleton; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in file [D:\workspace\srdz3\target\classes\irille\wpt\tools\SmsTool.class]] with [Generic bean: class [irille.wpt.tools.SmsTool]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in class path resource [spring-bean.xml]]
+[2016-08-11 15:36:21][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-11 15:36:21][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-11 15:36:21][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-11 15:36:21][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-11 15:36:21][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-11 15:36:21][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-11 15:36:21][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-11 15:36:21][INFO ] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl
+HHH000422: Disabling contextual LOB creation as connection was null
+[2016-08-11 15:36:23][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-11 17:25:41][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@7cb874d2: startup date [Thu Aug 11 17:25:41 CST 2016]; root of context hierarchy
+[2016-08-11 17:25:41][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-11 17:25:42][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [spring-bean.xml]
+[2016-08-11 17:25:42][INFO ] org.springframework.beans.factory.support.DefaultListableBeanFactory
+Overriding bean definition for bean 'smsTool' with a different definition: replacing [Generic bean: class [irille.wpt.tools.SmsTool]; scope=singleton; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in file [D:\workspace\srdz3\target\classes\irille\wpt\tools\SmsTool.class]] with [Generic bean: class [irille.wpt.tools.SmsTool]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in class path resource [spring-bean.xml]]
+[2016-08-11 17:25:42][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-11 17:25:42][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-11 17:25:42][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-11 17:25:42][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-11 17:25:42][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-11 17:25:42][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-11 17:25:42][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-11 17:25:42][INFO ] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl
+HHH000422: Disabling contextual LOB creation as connection was null
+[2016-08-11 17:25:44][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-11 17:26:01][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@47336dc2: startup date [Thu Aug 11 17:26:01 CST 2016]; root of context hierarchy
+[2016-08-11 17:26:01][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-11 17:26:02][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [spring-bean.xml]
+[2016-08-11 17:26:02][INFO ] org.springframework.beans.factory.support.DefaultListableBeanFactory
+Overriding bean definition for bean 'smsTool' with a different definition: replacing [Generic bean: class [irille.wpt.tools.SmsTool]; scope=singleton; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in file [D:\workspace\srdz3\target\classes\irille\wpt\tools\SmsTool.class]] with [Generic bean: class [irille.wpt.tools.SmsTool]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in class path resource [spring-bean.xml]]
+[2016-08-11 17:26:02][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-11 17:26:02][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-11 17:26:02][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-11 17:26:02][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-11 17:26:02][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-11 17:26:02][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-11 17:26:02][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-11 17:26:02][INFO ] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl
+HHH000422: Disabling contextual LOB creation as connection was null
+[2016-08-11 17:26:04][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-11 17:26:34][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@47336dc2: startup date [Thu Aug 11 17:26:34 CST 2016]; root of context hierarchy
+[2016-08-11 17:26:34][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-11 17:26:35][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [spring-bean.xml]
+[2016-08-11 17:26:35][INFO ] org.springframework.beans.factory.support.DefaultListableBeanFactory
+Overriding bean definition for bean 'smsTool' with a different definition: replacing [Generic bean: class [irille.wpt.tools.SmsTool]; scope=singleton; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in file [D:\workspace\srdz3\target\classes\irille\wpt\tools\SmsTool.class]] with [Generic bean: class [irille.wpt.tools.SmsTool]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in class path resource [spring-bean.xml]]
+[2016-08-11 17:26:35][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-11 17:26:35][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-11 17:26:35][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-11 17:26:35][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-11 17:26:35][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-11 17:26:35][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-11 17:26:35][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-11 17:26:35][INFO ] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl
+HHH000422: Disabling contextual LOB creation as connection was null
+[2016-08-11 17:26:37][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-11 17:27:35][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@31fdc6f6: startup date [Thu Aug 11 17:27:35 CST 2016]; root of context hierarchy
+[2016-08-11 17:27:35][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-11 17:27:35][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [spring-bean.xml]
+[2016-08-11 17:27:35][INFO ] org.springframework.beans.factory.support.DefaultListableBeanFactory
+Overriding bean definition for bean 'smsTool' with a different definition: replacing [Generic bean: class [irille.wpt.tools.SmsTool]; scope=singleton; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in file [D:\workspace\srdz3\target\classes\irille\wpt\tools\SmsTool.class]] with [Generic bean: class [irille.wpt.tools.SmsTool]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in class path resource [spring-bean.xml]]
+[2016-08-11 17:27:36][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-11 17:27:36][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-11 17:27:36][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-11 17:27:36][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-11 17:27:36][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-11 17:27:36][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-11 17:27:36][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-11 17:27:36][INFO ] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl
+HHH000422: Disabling contextual LOB creation as connection was null
+[2016-08-11 17:27:37][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-11 17:28:52][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@47336dc2: startup date [Thu Aug 11 17:28:52 CST 2016]; root of context hierarchy
+[2016-08-11 17:28:52][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-11 17:28:53][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [spring-bean.xml]
+[2016-08-11 17:28:53][INFO ] org.springframework.beans.factory.support.DefaultListableBeanFactory
+Overriding bean definition for bean 'smsTool' with a different definition: replacing [Generic bean: class [irille.wpt.tools.SmsTool]; scope=singleton; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in file [D:\workspace\srdz3\target\classes\irille\wpt\tools\SmsTool.class]] with [Generic bean: class [irille.wpt.tools.SmsTool]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in class path resource [spring-bean.xml]]
+[2016-08-11 17:28:53][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-11 17:28:53][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-11 17:28:53][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-11 17:28:53][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-11 17:28:53][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-11 17:28:53][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-11 17:28:53][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-11 17:28:53][INFO ] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl
+HHH000422: Disabling contextual LOB creation as connection was null
+[2016-08-11 17:28:55][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory

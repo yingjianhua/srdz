@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="format-detection" content="telephone=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<script type="text/javascript" src="js/flexible.js"></script>
+<link type="text/css" rel="stylesheet" href="../css/base.css" />
+<link type="text/css" rel="stylesheet" href="../css/pt_comboList.css" />
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<style type="text/css">
+.item {
+	height : 33rem;
+}
+</style>
+<title>享食光</title>
+</head>
+<body>	
+	<div class="hall_top">超值私人定制套餐任选！选择套餐更划算哦！</div>
+	<ul>
+	<li class="item">
+	<dl>
+	<dt><img src="../../uploads/20160812/2.jpg"></dt>
+	<dd>沉浸于北美乡村分为酒馆细品加拿大家庭式</dd>
+	<dd>大南门</dd>
+	<dd>100km</dd>
+	<dd>45元/1人</dd>
+	</dl>
+	</li>
+	</ul>
+	</div>
+	
+	<div class="hall_bar">
+		<a href="#" class="go">不选套餐，直接私人定制</a>	
+	</div>
+	<div class="hall_zw"></div>
+	
+</body>
+<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../js/base.js"></script>
+<script>
+$(function() {
+	$(".hall_item1").click(function() {
+		var url = "showRestaurant?id="+$(this).attr("pkey")+"&scombos="+$(this).attr("combos")+"&account.pkey=${account.pkey}";
+		location.href = url;
+	})
+	$(".go").click(function() {
+		location.href = "selectService?account.pkey=${account.pkey }&banquetId=${banquetId}&pnum=${pnum}&perCapitaBudget=${perCapitaBudget}&areaId=${areaId}";
+	})
+})
+</script>
+</html>

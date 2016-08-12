@@ -10,6 +10,7 @@ public class WptQrcodeRuleDAO {
 		b.setAmount(BigDecimal.valueOf(1000));
 		b.setSingle(BigDecimal.valueOf(299));
 		b.setValidityPeriod(30);
+		b.setAheadUpdate(10);
 		b.setRowVersion((short)1);
 		b.ins();
 	}

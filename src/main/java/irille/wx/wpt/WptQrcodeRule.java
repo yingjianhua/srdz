@@ -18,6 +18,7 @@ public class WptQrcodeRule extends BeanInt<WptQrcodeRule> {
 	SINGLE(SYS.AMT, "单笔消费金额"),
 	AMOUNT(SYS.AMT, "累计消费金额"),
 	VALIDITY_PERIOD(SYS.INT_PLUS_OR_ZERO, "有效天数"),
+	AHEAD_UPDATE(SYS.INT_PLUS_OR_ZERO, "提前更新天数"),
     ROW_VERSION(SYS.ROW_VERSION),
     //>>>以下是自动产生的源代码行--内嵌字段定义--请保留此行用于识别>>>
 		PKEY(TB.get("pkey")),	//编号
@@ -76,6 +77,7 @@ public class WptQrcodeRule extends BeanInt<WptQrcodeRule> {
   private BigDecimal _single;	// 单笔消费金额  DEC(16,2)
   private BigDecimal _amount;	// 累计消费金额  DEC(16,2)
   private Integer _validityPeriod;	// 有效天数  INT
+  private Integer _aheadUpdate;	// 提前更新天数  INT
   private Short _rowVersion;	// 版本  SHORT
 
 	@Override
@@ -84,6 +86,7 @@ public class WptQrcodeRule extends BeanInt<WptQrcodeRule> {
     _single=ZERO;	// 单笔消费金额  DEC(16,2)
     _amount=ZERO;	// 累计消费金额  DEC(16,2)
     _validityPeriod=0;	// 有效天数  INT
+    _aheadUpdate=0;	// 提前更新天数  INT
     _rowVersion=0;	// 版本  SHORT
     return this;
   }
@@ -119,6 +122,12 @@ public class WptQrcodeRule extends BeanInt<WptQrcodeRule> {
   }
   public void setValidityPeriod(Integer validityPeriod){
     _validityPeriod=validityPeriod;
+  }
+  public Integer getAheadUpdate(){
+    return _aheadUpdate;
+  }
+  public void setAheadUpdate(Integer aheadUpdate){
+    _aheadUpdate=aheadUpdate;
   }
   public Short getRowVersion(){
     return _rowVersion;
