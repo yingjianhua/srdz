@@ -7,7 +7,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 
-import irille.wpt.service.RestaurantService;
+import irille.wpt.service.ComboService;
 import irille.wx.wpt.WptRestaurant;
 import irille.wxpub.js.JMOpenLocation;
 import irille.wxpub.js.JQFunDefine;
@@ -18,13 +18,13 @@ public class ListComboAction extends AbstractWptAction {
 	 * 
 	 */
 	private static final long serialVersionUID = -5359961711384861232L;
-	private Integer banquetId;
-	private Double pnum;
-	private Double perCapitaBudget;
-	private Integer areaId;
+	private String banquetId;
+	private String pnum;
+	private String perCapitaBudget;
+	private String areaId;
 	private Map<WptRestaurant, List<Object>> mapCombo;
 	@Resource
-	private RestaurantService restaurantService;
+	private ComboService comboService;
 	
 	/**
 	 * 填选了私人订制的基本需求后 显示符合条件的套餐页面
@@ -32,8 +32,12 @@ public class ListComboAction extends AbstractWptAction {
 	 */
 	@Override
 	public String execute() throws Exception {
+		comboService.findByCondition(banquetId, pnum, perCapitaBudget, areaId);
+		System.out.println(banquetId);
+		System.out.println(banquetId==null);
+		System.out.println(pnum);
 		//获取需要显示的餐厅和套餐数据
-		mapCombo = restaurantService.listRestaurant(areaId, banquetId, pnum.intValue(), perCapitaBudget.intValue());
+		//mapCombo = comboService.listCombo(areaId, banquetId, pnum.intValue(), perCapitaBudget.intValue());
 		setResult("pt/restaurantList.jsp");
 		return TRENDS;
 	}
@@ -52,28 +56,28 @@ public class ListComboAction extends AbstractWptAction {
 		getJsCreater().add(fun.add(ol));
 	}
 	
-	public int getBanquetId() {
+	public String getBanquetId() {
 		return banquetId;
 	}
-	public void setBanquetId(int banquetId) {
+	public void setBanquetId(String banquetId) {
 		this.banquetId = banquetId;
 	}
-	public double getPnum() {
+	public String getPnum() {
 		return pnum;
 	}
-	public void setPnum(double pnum) {
+	public void setPnum(String pnum) {
 		this.pnum = pnum;
 	}
-	public double getPerCapitaBudget() {
+	public String getPerCapitaBudget() {
 		return perCapitaBudget;
 	}
-	public void setPerCapitaBudget(double perCapitaBudget) {
+	public void setPerCapitaBudget(String perCapitaBudget) {
 		this.perCapitaBudget = perCapitaBudget;
 	}
-	public int getAreaId() {
+	public String getAreaId() {
 		return areaId;
 	}
-	public void setAreaId(int areaId) {
+	public void setAreaId(String areaId) {
 		this.areaId = areaId;
 	}
 	public Map<WptRestaurant, List<Object>> getMapCombo() {

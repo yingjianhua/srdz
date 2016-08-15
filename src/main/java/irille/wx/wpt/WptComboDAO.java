@@ -71,7 +71,7 @@ public class WptComboDAO {
 			WptCombo dbBean = WptCombo.chkUniqueRestaurantName(false, getB().getRestaurant(), getB().getName());
 			WptCombo model = null;
 			if (dbBean != null)
-				if (dbBean.getPkey() != getB().getPkey())
+				if (dbBean.getPkey().compareTo(getB().getPkey()) != 0)
 					throw LOG.err(Msgs.uniqueErr, getB().getName());
 				else
 					model = dbBean;

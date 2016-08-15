@@ -428,12 +428,11 @@ div.clear{
 	height:68px;
 	position:absolute;
 	left:0;
-	top:0;		
+	top:0;
 	line-height:68px;
 	font-size:26px;	
 	color:#999;	
 	text-align:center;
-	opacity:0;
 }
 .sap_in .dateType{
 	width:100%;

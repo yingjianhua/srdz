@@ -69,7 +69,7 @@
 	<div class="hait_det">
 		<s:if test="cases.size() > 0">
 			<div class="title">
-				关于${restaurant.name }做过的私人定制案例介绍<br />私人定制的案例介绍	
+				私人定制的案例介绍	
 			</div>
 		</s:if>
 		<s:iterator value="cases" var="case">

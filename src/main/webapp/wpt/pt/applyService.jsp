@@ -24,6 +24,17 @@
         document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
     }
 </script>
+<style type="text/css">
+.xxx {
+	display:block;
+	width:100%;
+	height:68px;
+	line-height:68px;	
+	text-align:center;	
+	font-size:26px;
+	color:#999;
+}
+</style>
 <title>享食光</title>
 </head>
 
@@ -32,21 +43,33 @@
 	<h2 class="cm_head1">开启你的私人定制之旅</h2>
 	
 	<div class="service_apply">
-		<form action="listRestaurant?account.pkey=${account.pkey }" method="post" onsubmit="return onValid()">
+		<form action="listCombo?account.pkey=${account.pkey }" method="post">
 			<div class="sap_in">
-				<span class="select_txt">宴会类型</span>
 				<select name="banquetId">
-					<option value="" selected="true" disabled="true" style="display:none">选择宴会类型</option>
-				<s:iterator value="banquets" var="banquet">
+					<option value="">宴会类型不限</option>
+					<s:iterator value="banquets" var="banquet">
 					<option value="<s:property value="#banquet.pkey" />"><s:property value="#banquet.name" /></option>
-				</s:iterator>
+					</s:iterator>
 				</select>
 			</div>
 			<div class="sap_in">
-				<input type="text" class="text" placeHolder="参会人数" name="pnum" />	
+				<select name="pnum">
+					<option value="">人数不限</option>
+					<option value="1">1人</option>
+					<option value="2">2人</option>
+					<option value="3,4">3-4人</option>
+					<option value="4,">4人以上</option>
+				</select>
 			</div>
 			<div class="sap_in">
-				<input type="text" class="text" placeHolder="人均预算" name="perCapitaBudget" />	
+				<select name="perCapitaBudget">
+					<option value="">预算不限</option>
+					<option value=",100">100以下</option>
+					<option value="100,200">100-200</option>
+					<option value="200,300">200-300</option>
+					<option value="300,500">300-500</option>
+					<option value="500,">500以上</option>
+				</select>
 			</div>
 			<div class="sap_in sap_nb">
 				
@@ -57,7 +80,7 @@
 				<div class="sap_city rt">
 					<span class="select_txt">区域</span>
 					<select name="areaId">
-						<option value="" selected="true" disabled="true" style="display:none">选择区域</option>
+						<option value="">区域不限</option>
 						<s:iterator value="areas" var="area">
 							<option value="<s:property value="#area.pkey" />"><s:property value="#area.name" /></option>
 						</s:iterator>
@@ -98,32 +121,9 @@ ${jsCode}
 	
 </script>
 <script>
-function onValid() {
-	if(!$("form select[name=banquetId]").val()) {
-		tipbox("请选择宴会类型")
-		return false;		
-	} 
-	var pnum = $("form input[name=pnum]").val(); 
-	if(isNaN(pnum)) {
-		tipbox("请输入正确的宴会人数")
-		return false;
-	}
-	var perCapitaBudget = $("form input[name=perCapitaBudget]").val();
-	if(isNaN(perCapitaBudget)) {
-		tipbox("请输入正确的人均预算");
-		return false;		
-	}
-	if(!$(".sap_city.rt select").val()) {
-		tipbox("请选择区域");
-		return false;
-	}
-	return true;
-}
 </script>
 <script>
 $(function() {
-	$("form select[name=banquetId]").val(null)
-	$(".sap_city.rt select").val(null)
 	$(".cm_btn1").click(function() {
 		$(".service_apply form").submit();
 	})

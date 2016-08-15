@@ -62,6 +62,7 @@
 		<action name="startJourney" class="startJourneyAction"></action>
 		<action name="applyService" class="applyServiceAction"></action>
 		<action name="listRestaurant" class="listRestaurantAction"></action>
+		<action name="listCombo" class="listComboAction"></action>
 		<action name="selectService" class="selectServiceAction"></action>
 		<action name="inputContact" class="inputContactAction"></action>
 		<action name="confirmOrder" class="confirmOrderAction"></action>
