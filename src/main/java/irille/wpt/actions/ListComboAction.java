@@ -70,11 +70,11 @@ public class ListComboAction extends AbstractWptAction {
 	public void setPnum(String pnum) {
 		this.pnum = pnum;
 	}
-	public String getPerCapitaBudget() {
-		return perCapitaBudget;
+	public String getBudget() {
+		return budget;
 	}
-	public void setPerCapitaBudget(String perCapitaBudget) {
-		this.perCapitaBudget = perCapitaBudget;
+	public void setBudget(String budget) {
+		this.budget = budget;
 	}
 	public String getAreaId() {
 		return areaId;

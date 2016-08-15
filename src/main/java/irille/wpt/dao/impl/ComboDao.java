@@ -75,7 +75,9 @@ public class ComboDao extends BaseDao<Combo, Integer>{
 			}
 		}
 		where.append(" and ").append(WptCombo.T.RESTAURANT).append(" in (select ").append(WptRestaurant.T.PKEY).append("from ").append(WptCombo.TB.getCodeSqlTb()).append(" where 1=1");
-		if(area)
+		if(city != null && !city.equals("")) {
+			
+		}
 		where.append(")");
 		//Session session = sessionFactory.openSession();
 		List list = session.getNamedQuery("Combo.findAll").list();
