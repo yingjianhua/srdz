@@ -62,7 +62,7 @@
 				</select>
 			</div>
 			<div class="sap_in">
-				<select name="perCapitaBudget">
+				<select name="budget">
 					<option value="">预算不限</option>
 					<option value=",100">100以下</option>
 					<option value="100,200">100-200</option>

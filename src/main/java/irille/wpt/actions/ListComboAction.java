@@ -7,7 +7,9 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 
+import irille.wpt.interceptor.CityInterceptor;
 import irille.wpt.service.ComboService;
+import irille.wx.wpt.WptCity;
 import irille.wx.wpt.WptRestaurant;
 import irille.wxpub.js.JMOpenLocation;
 import irille.wxpub.js.JQFunDefine;
@@ -20,7 +22,7 @@ public class ListComboAction extends AbstractWptAction {
 	private static final long serialVersionUID = -5359961711384861232L;
 	private String banquetId;
 	private String pnum;
-	private String perCapitaBudget;
+	private String budget;
 	private String areaId;
 	private Map<WptRestaurant, List<Object>> mapCombo;
 	@Resource
@@ -32,7 +34,7 @@ public class ListComboAction extends AbstractWptAction {
 	 */
 	@Override
 	public String execute() throws Exception {
-		comboService.findByCondition(banquetId, pnum, perCapitaBudget, areaId);
+		comboService.findByCondition(banquetId, pnum, budget,((WptCity)getSession().get(CityInterceptor.CITY)).getPkey().toString(), areaId);
 		System.out.println(banquetId);
 		System.out.println(banquetId==null);
 		System.out.println(pnum);

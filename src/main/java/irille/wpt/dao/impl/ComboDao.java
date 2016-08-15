@@ -40,7 +40,7 @@ public class ComboDao extends BaseDao<Combo, Integer>{
 		System.out.println(a.matches(pattern4));
 	}
 
-	public List<WptCombo> findByCondition(String banquet, String pnum, String perCapitaBudget, String area) {
+	public List<WptCombo> findByCondition(String banquet, String pnum, String budget, String city, String area) {
 		StringBuilder where = new StringBuilder();
 		where.append(WptCombo.T.ENABLED).append("=").append(OEnabled.TRUE.getLine().getKey());
 		if(pnum != null && !pnum.equals("")) {
@@ -58,10 +58,25 @@ public class ComboDao extends BaseDao<Combo, Integer>{
 				where.append(" and ").append(WptCombo.T.NUMBER_MIN).append(" <= ").append(pnum);
 				where.append(" and ").append(WptCombo.T.NUMBER_MAX).append(" >= ").append(pnum);
 			}
-		} else {
-			result = Bean.executeQueryMap(where, OEnabled.TRUE.getLine().getKey(), city, area, banquetId, OEnabled.TRUE.getLine().getKey());
 		}
-		
+		if(budget != null && !budget.equals("")) {
+			if(budget.matches(pattern1)) {
+				where.append(" and ").append(WptCombo.T.PRICE).append(" <= ").append(pnum.split(",")[0]);
+			} else
+			if(budget.matches(pattern2)) {
+				where.append(" and ").append(WptCombo.T.PRICE).append(" >= ").append(pnum.split(",")[0]);
+			} else
+			if(budget.matches(pattern3)) {
+				where.append(" and ").append(WptCombo.T.PRICE).append(" <= ").append(pnum.split(",")[1]);
+				where.append(" and ").append(WptCombo.T.PRICE).append(" >= ").append(pnum.split(",")[0]);
+			} else
+			if(budget.matches(pattern4)) {
+				where.append(" and ").append(WptCombo.T.PRICE).append(" = ").append(pnum);
+			}
+		}
+		where.append(" and ").append(WptCombo.T.RESTAURANT).append(" in (select ").append(WptRestaurant.T.PKEY).append("from ").append(WptCombo.TB.getCodeSqlTb()).append(" where 1=1");
+		if(area)
+		where.append(")");
 		//Session session = sessionFactory.openSession();
 		List list = session.getNamedQuery("Combo.findAll").list();
 		

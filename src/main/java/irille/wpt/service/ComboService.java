@@ -38,8 +38,8 @@ public class ComboService {
 	 * @param areaId 区域id
 	 * @return Map<餐厅对象,List<套餐pkey>>
 	 */
-	public List<WptCombo> findByCondition(String banquet, String pnum, String perCapitaBudget, String area) {
-		return comboDao.findByCondition(banquet, pnum, perCapitaBudget, area);
+	public List<WptCombo> findByCondition(String banquet, String pnum, String budget, String city, String area) {
+		return comboDao.findByCondition(banquet, pnum, budget, city, area);
 	}
 	public Map<WptRestaurant, List<Object>> findByCondition(Integer a, Integer areaId, Integer banquetId, Integer pnum, Integer perCapitaBudget) {
 		Integer area = areaId;
