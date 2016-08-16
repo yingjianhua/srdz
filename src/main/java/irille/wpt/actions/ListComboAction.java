@@ -1,7 +1,6 @@
 package irille.wpt.actions;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -10,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import irille.wpt.interceptor.CityInterceptor;
 import irille.wpt.service.ComboService;
 import irille.wx.wpt.WptCity;
-import irille.wx.wpt.WptRestaurant;
+import irille.wx.wpt.WptCombo;
 import irille.wxpub.js.JMOpenLocation;
 import irille.wxpub.js.JQFunDefine;
 import irille.wxpub.js.JsExp;
@@ -24,7 +23,7 @@ public class ListComboAction extends AbstractWptAction {
 	private String pnum;
 	private String budget;
 	private String areaId;
-	private Map<WptRestaurant, List<Object>> mapCombo;
+	private List<WptCombo> combos;
 	@Resource
 	private ComboService comboService;
 	
@@ -34,13 +33,10 @@ public class ListComboAction extends AbstractWptAction {
 	 */
 	@Override
 	public String execute() throws Exception {
-		comboService.findByCondition(banquetId, pnum, budget,((WptCity)getSession().get(CityInterceptor.CITY)).getPkey().toString(), areaId);
-		System.out.println(banquetId);
-		System.out.println(banquetId==null);
-		System.out.println(pnum);
+		//combos = comboService.findByCondition(banquetId, pnum, budget,((WptCity)getSession().get(CityInterceptor.CITY)).getPkey().toString(), areaId, "", "");
 		//获取需要显示的餐厅和套餐数据
 		//mapCombo = comboService.listCombo(areaId, banquetId, pnum.intValue(), perCapitaBudget.intValue());
-		setResult("pt/restaurantList.jsp");
+		setResult("pt/comboList.jsp");
 		return TRENDS;
 	}
 	/**
@@ -82,10 +78,10 @@ public class ListComboAction extends AbstractWptAction {
 	public void setAreaId(String areaId) {
 		this.areaId = areaId;
 	}
-	public Map<WptRestaurant, List<Object>> getMapCombo() {
-		return mapCombo;
+	public List<WptCombo> getCombos() {
+		return combos;
 	}
-	public void setMapCombo(Map<WptRestaurant, List<Object>> mapCombo) {
-		this.mapCombo = mapCombo;
+	public void setCombos(List<WptCombo> combos) {
+		this.combos = combos;
 	}
 }

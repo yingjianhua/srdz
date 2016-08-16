@@ -1,51 +1,103 @@
 package irille.wpt.dao.impl;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import irille.core.sys.Sys.OEnabled;
 import irille.pub.bean.Bean;
-import irille.pub.idu.Idu;
 import irille.wpt.bean.Combo;
 import irille.wpt.dao.BaseDao;
-import irille.wx.wpt.WptCityLine;
 import irille.wx.wpt.WptCombo;
 import irille.wx.wpt.WptRestaurant;
 import irille.wx.wpt.WptRestaurantLine;
 @Repository
 public class ComboDao extends BaseDao<Combo, Integer>{
-	private static final String pattern1 = ",(\\d)";
-	private static final String pattern2 = "(\\d,)";
-	private static final String pattern3 = "(\\d),(\\d)";
-	private static final String pattern4 = "(\\d)";
+	private static final String pattern1 = ",(\\d+)";
+	private static final String pattern2 = "(\\d+,)";
+	private static final String pattern3 = "(\\d+),(\\d+)";
+	private static final String pattern4 = "(\\d+)";
 	
-	public static void main(String[] args) {
-		String a = "1,4";
-		Pattern pattern = Pattern.compile(pattern3);
-		Matcher m = pattern.matcher(a);
-		if(m.find()) {
-			System.out.println(m.group(1));
-			System.out.println(m.group(2));
+	public List<Combo> pageByCondition(String banquet, String pnum, String budget, String city, String area, String longitude, String latitude, Integer start, Integer limit) {
+		SQLQuery query = createQueryByConditionOrderByDistance(banquet, pnum, budget, city, area, longitude, latitude);
+		if(start != null) {
+			query.setFirstResult(start);
 		}
-		System.out.println(a.matches(pattern1));
-		System.out.println(a.matches(pattern2));
-		System.out.println(a.matches(pattern3));
-		System.out.println(a.matches(pattern4));
+		if(limit != null) {
+			query.setMaxResults(limit);
+		}
+		return query.list();
 	}
-
+	private StringBuilder createQueryString(String banquet, String pnum, String budget, String city, String area) {
+		Session session = sessionFactory.getCurrentSession();
+		StringBuilder where = new StringBuilder();
+		where.append("select c.* from ").append(WptCombo.TB.getCodeSqlTb()).append(" c left join ").append(WptRestaurant.TB.getCodeSqlTb()).append(" r ");
+		where.append("on c.").append(WptCombo.T.RESTAURANT).append("=r.").append(WptCombo.T.PKEY).append(" where ");
+		where.append("c.").append(WptCombo.T.ENABLED).append("=").append(OEnabled.TRUE.getLine().getKey());
+		if(pnum != null && !pnum.equals("")) {
+			if(pnum.matches(pattern1)) {
+				where.append(" and c.").append(WptCombo.T.NUMBER_MIN).append(" <= ").append(pnum.split(",")[1]);
+			} else
+			if(pnum.matches(pattern2)) {
+				where.append(" and c.").append(WptCombo.T.NUMBER_MAX).append(" >= ").append(pnum.split(",")[0]);
+			} else
+			if(pnum.matches(pattern3)) {
+				where.append(" and (c.").append(WptCombo.T.NUMBER_MIN).append(" <= ").append(pnum.split(",")[1]);
+				where.append(" or c.").append(WptCombo.T.NUMBER_MAX).append(" >= ").append(pnum.split(",")[0]).append(")");
+			} else
+			if(pnum.matches(pattern4)) {
+				where.append(" and c.").append(WptCombo.T.NUMBER_MIN).append(" <= ").append(pnum);
+				where.append(" and c.").append(WptCombo.T.NUMBER_MAX).append(" >= ").append(pnum);
+			}
+		}
+		if(budget != null && !budget.equals("")) {
+			if(budget.matches(pattern1)) {
+				where.append(" and c.").append(WptCombo.T.PRICE).append(" <= ").append(budget.split(",")[1]);
+			} else
+			if(budget.matches(pattern2)) {
+				where.append(" and c.").append(WptCombo.T.PRICE).append(" >= ").append(budget.split(",")[0]);
+			} else
+			if(budget.matches(pattern3)) {
+				where.append(" and c.").append(WptCombo.T.PRICE).append(" <= ").append(budget.split(",")[1]);
+				where.append(" and c.").append(WptCombo.T.PRICE).append(" >= ").append(budget.split(",")[0]);
+			} else
+			if(budget.matches(pattern4)) {
+				where.append(" and c.").append(WptCombo.T.PRICE).append(" = ").append(budget);
+			}
+		}
+		if(city != null && !city.equals("")) {
+			where.append(" and r.").append(WptRestaurant.T.CITY).append("=").append(city);
+		}
+		if(area != null && !area.equals("")) {
+			where.append(" and r.").append(WptRestaurant.T.CITYLINE).append("=").append(area);
+		}
+		if(banquet != null && !banquet.equals("")) {
+			where.append(" and c.").append(WptCombo.T.RESTAURANT).append(" in (");
+			where.append("select ").append(WptRestaurantLine.T.RESTAURANT).append(" from ").append(WptRestaurantLine.TB.getCodeSqlTb()).append(" where ").append(WptRestaurantLine.T.BANQUET).append("=").append(banquet);
+			where.append(")");
+		}
+		return where;
+	}
+	private SQLQuery createQueryByConditionOrderByDistance(String banquet, String pnum, String budget, String city, String area, String longitude, String latitude) {
+		Session session = sessionFactory.getCurrentSession();
+		StringBuilder where = createQueryString(banquet, pnum, budget, city, area);
+		if(longitude != null && !longitude.equals("") && latitude != null && !latitude.equals("")) {
+			where.append(" order by getDistance(").append(latitude).append(",").append(longitude).append(",r.").append(WptRestaurant.T.LATITUDE).append(",").append(WptRestaurant.T.LONGITUDE).append(")");
+		}
+		System.out.println(where.toString());
+		return session.createSQLQuery(where.toString()).addEntity(Combo.class);
+	}
 	public List<WptCombo> findByCondition(String banquet, String pnum, String budget, String city, String area) {
 		StringBuilder where = new StringBuilder();
 		where.append(WptCombo.T.ENABLED).append("=").append(OEnabled.TRUE.getLine().getKey());
 		if(pnum != null && !pnum.equals("")) {
 			if(pnum.matches(pattern1)) {
-				where.append(" and ").append(WptCombo.T.NUMBER_MIN).append(" <= ").append(pnum.split(",")[0]);
+				where.append(" and ").append(WptCombo.T.NUMBER_MIN).append(" <= ").append(pnum.split(",")[1]);
 			} else
 			if(pnum.matches(pattern2)) {
 				where.append(" and ").append(WptCombo.T.NUMBER_MAX).append(" >= ").append(pnum.split(",")[0]);
@@ -61,59 +113,34 @@ public class ComboDao extends BaseDao<Combo, Integer>{
 		}
 		if(budget != null && !budget.equals("")) {
 			if(budget.matches(pattern1)) {
-				where.append(" and ").append(WptCombo.T.PRICE).append(" <= ").append(pnum.split(",")[0]);
+				where.append(" and ").append(WptCombo.T.PRICE).append(" <= ").append(budget.split(",")[1]);
 			} else
 			if(budget.matches(pattern2)) {
-				where.append(" and ").append(WptCombo.T.PRICE).append(" >= ").append(pnum.split(",")[0]);
+				where.append(" and ").append(WptCombo.T.PRICE).append(" >= ").append(budget.split(",")[0]);
 			} else
 			if(budget.matches(pattern3)) {
-				where.append(" and ").append(WptCombo.T.PRICE).append(" <= ").append(pnum.split(",")[1]);
-				where.append(" and ").append(WptCombo.T.PRICE).append(" >= ").append(pnum.split(",")[0]);
+				where.append(" and ").append(WptCombo.T.PRICE).append(" <= ").append(budget.split(",")[1]);
+				where.append(" and ").append(WptCombo.T.PRICE).append(" >= ").append(budget.split(",")[0]);
 			} else
 			if(budget.matches(pattern4)) {
-				where.append(" and ").append(WptCombo.T.PRICE).append(" = ").append(pnum);
+				where.append(" and ").append(WptCombo.T.PRICE).append(" = ").append(budget);
 			}
 		}
-		where.append(" and ").append(WptCombo.T.RESTAURANT).append(" in (select ").append(WptRestaurant.T.PKEY).append("from ").append(WptCombo.TB.getCodeSqlTb()).append(" where 1=1");
+		where.append(" and ").append(WptCombo.T.RESTAURANT).append(" in (select ").append(WptRestaurant.T.PKEY).append(" from ").append(WptRestaurant.TB.getCodeSqlTb()).append(" where 1=1");
 		if(city != null && !city.equals("")) {
-			
+			where.append(" and ").append(WptRestaurant.T.CITY).append("=").append(city);
+		}
+		if(area != null && !area.equals("")) {
+			where.append(" and ").append(WptRestaurant.T.CITYLINE).append("=").append(area);
+		}
+		if(banquet != null && !banquet.equals("")) {
+			where.append(" and ").append(WptRestaurant.T.PKEY).append(" in (");
+			where.append("select ").append(WptRestaurantLine.T.RESTAURANT).append(" from ").append(WptRestaurantLine.TB.getCodeSqlTb()).append(" where ").append(WptRestaurantLine.T.BANQUET).append("=").append(banquet);
+			where.append(")");
 		}
 		where.append(")");
-		//Session session = sessionFactory.openSession();
-		List list = session.getNamedQuery("Combo.findAll").list();
-		
-		String where = Idu.sqlString("{0} in (select {1} from {2} where {3}=? and {4}=? and {5}=? and {1} in (select {6} from {7} where {8}=?)) and {9}=?"
-				, WptCombo.T.RESTAURANT, WptRestaurant.T.PKEY, WptRestaurant.class
-				, WptRestaurant.T.ENABLED, WptRestaurant.T.CITY, WptRestaurant.T.CITYLINE, WptRestaurantLine.T.RESTAURANT
-				, WptRestaurantLine.class, WptRestaurantLine.T.BANQUET, WptCombo.T.ENABLED);
-		List<WptCombo> combos = Bean.list(WptCombo.class, where, false);
-		Integer area = areaId;
-		Integer city = WptCityLine.load(WptCityLine.class, areaId).getCity();
-		Map<String, Object>[] result = null;
-		if(!pnum.equals(0)) {
-			where += Idu.sqlString(" and ?<={0} and ?>={1}", WptCombo.T.NUMBER_MAX, WptCombo.T.NUMBER_MIN);
-			if(!perCapitaBudget.equals(0)) {
-				where += Idu.sqlString(" and ?<=({0}+50) and ?>=({0}-50)", WptCombo.T.PRICE);
-				result = Bean.executeQueryMap(where, OEnabled.TRUE.getLine().getKey(), city, area, banquetId, OEnabled.TRUE.getLine().getKey(), pnum, pnum, perCapitaBudget*pnum, perCapitaBudget*pnum);
-			} else {
-				result = Bean.executeQueryMap(where, OEnabled.TRUE.getLine().getKey(), city, area, banquetId, OEnabled.TRUE.getLine().getKey(), pnum, pnum);
-			}
-		} else {
-			result = Bean.executeQueryMap(where, OEnabled.TRUE.getLine().getKey(), city, area, banquetId, OEnabled.TRUE.getLine().getKey());
-		}
-		String sqlRestaurant = WptCombo.T.RESTAURANT.getFld().getCodeSqlField();
-		String sqlPkey = WptCombo.T.PKEY.getFld().getCodeSqlField();
-		Map<Integer, WptRestaurant> mapRestaurant = new HashMap<Integer, WptRestaurant>();
-		Map<WptRestaurant, List<Object>> mapCombo = new HashMap<WptRestaurant, List<Object>>();
-		for(Map<String, Object> line:result) {
-			if(!mapRestaurant.containsKey((Integer)line.get(sqlRestaurant))) {
-				mapRestaurant.put((Integer)line.get(sqlRestaurant), WptRestaurant.load(WptRestaurant.class, (Integer)line.get(sqlRestaurant)));
-				mapCombo.put(mapRestaurant.get((Integer)line.get(sqlRestaurant)), new ArrayList<Object>());
-			}
-			mapCombo.get(mapRestaurant.get((Integer)line.get(sqlRestaurant))).add((Integer)line.get(sqlPkey));
-		}
-		
-		
-		return (List<Combo>)list;
+		System.out.println(where.toString());
+		List<WptCombo> list = Bean.list(WptCombo.class, where.toString(), false);
+		return list;
 	}
 }

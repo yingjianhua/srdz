@@ -13,7 +13,7 @@ public class InputContactAction extends AbstractWptAction {
 	private Integer comboId;
 	private Integer banquetId;
 	private Double pnum;
-	private Double perCapitaBudget;
+	private Double budget;
 	private Integer areaId;
 	private String services;
 	@Override
@@ -45,10 +45,10 @@ public class InputContactAction extends AbstractWptAction {
 		this.pnum = pnum;
 	}
 	public Double getPerCapitaBudget() {
-		return perCapitaBudget;
+		return budget;
 	}
-	public void setPerCapitaBudget(Double perCapitaBudget) {
-		this.perCapitaBudget = perCapitaBudget;
+	public void setPerCapitaBudget(Double budget) {
+		this.budget = budget;
 	}
 	public Integer getAreaId() {
 		return areaId;

@@ -157,7 +157,7 @@ $(function() {
 				"comboId" : "${comboId}",
 				"banquetId" : "${banquetId}",
 				"pnum" : "${pnum}",
-				"perCapitaBudget" : "${perCapitaBudget}",
+				"budget" : "${budget}",
 				"areaId" : "${areaId}",
 				"services" : "${services}",
 				"struts.token.name" : "struts.token", 

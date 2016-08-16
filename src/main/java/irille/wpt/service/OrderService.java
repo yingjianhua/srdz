@@ -66,7 +66,7 @@ public class OrderService {
 	 * @return 生成的订单
 	 */
 	public WptOrder createOrder(String contactMan, String contactSex, String date, String contactWay, String contactType, String rem,
-			Integer comboId, Integer banquetId, Double pnum, Double perCapitaBudget, Integer areaId, String services, Integer user, Integer account) {
+			Integer comboId, Integer banquetId, Double pnum, Double budget, Integer areaId, String services, Integer user, Integer account) {
 		WptOrder order = new WptOrder();
 		try {
 			order.setTime(INPUT_DATE_FORMAT.parse(date));
@@ -91,8 +91,8 @@ public class OrderService {
 		} else {
 			order.setCity(WptCityLine.get(WptCityLine.class, areaId).getCity());
 		}
-		if(perCapitaBudget != null) {
-			order.setConsumption(BigDecimal.valueOf(perCapitaBudget));
+		if(budget != null) {
+			order.setConsumption(BigDecimal.valueOf(budget));
 		}
 		if(pnum != null) {
 			order.setNumber(pnum.intValue());

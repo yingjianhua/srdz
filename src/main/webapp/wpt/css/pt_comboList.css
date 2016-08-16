@@ -18,7 +18,7 @@
 	width:10rem;
 	text-align:center;
 	margin:0 auto;
-	padding:12px 0;	
+	padding:0.2rem 0;	
 }
 .hall_bar .go{
 	display:block;
@@ -31,14 +31,17 @@
 	background:#ffc83b;
 	border-radius:0.2rem;	
 }
+.hall_body{
+	margin-top: 0.8rem;
+    margin-bottom: 1.3rem;
+	position: absolute;
+}
 .hall_zw{
-	height:92px;	
+	height:1.5rem;	
 }
 
 ul {
-    margin-top: 0.8rem;
     padding: 0 0.3rem;
-    position: absolute;
 }
 .item {
 	position:relative;

@@ -29,7 +29,6 @@ public class RestaurantDao extends BaseDao {
 	 */
 	public List<Restaurant> findByCondition(Integer cityId, Integer areaId, Integer pnum, Integer perCapitaBudget) {
 		Session session = sessionFactory.getCurrentSession();
-		session.
 		String where = Idu.sqlString("select {0},{1} from {2} where {1} in (select {3} from {4} where {5}=? and {6}=? and {7}=? and {3} in (select {8} from {9} where {10}=?)) and {11}=?",
 				WptCombo.T.PKEY, WptCombo.T.RESTAURANT, WptCombo.class, WptRestaurant.T.PKEY, WptRestaurant.class
 				, WptRestaurant.T.ENABLED, WptRestaurant.T.CITY, WptRestaurant.T.CITYLINE, WptRestaurantLine.T.RESTAURANT

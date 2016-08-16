@@ -69,7 +69,7 @@ $(function() {
 			if(index == 0) services = services + $(this).attr("pkey");
 			else services = services +","+ $(this).attr("pkey");
 		})	
-		location.href = "inputContact?services="+services+"&account.pkey=${account.pkey}&comboId=${comboId}&banquetId=${banquetId}&pnum=${pnum}&perCapitaBudget=${perCapitaBudget}&areaId=${areaId}";
+		location.href = "inputContact?services="+services+"&account.pkey=${account.pkey}&comboId=${comboId}&banquetId=${banquetId}&pnum=${pnum}&budget=${budget}&areaId=${areaId}";
 	})
 })	
 	

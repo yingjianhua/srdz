@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
@@ -40,7 +41,7 @@ public class Restaurant implements Serializable {
 
 	private BigDecimal consumption;
 
-	private String coordinate;
+	private String latitude;
 
 	private String des;
 
@@ -66,7 +67,8 @@ public class Restaurant implements Serializable {
 
 	private String stopdate;
 
-	private int template;
+	@Column(name="template")
+	private Integer template;
 
 	private String wifiaccount;
 
@@ -131,12 +133,12 @@ public class Restaurant implements Serializable {
 		this.consumption = consumption;
 	}
 
-	public String getCoordinate() {
-		return this.coordinate;
+	public String getLatitude() {
+		return this.latitude;
 	}
 
-	public void setCoordinate(String coordinate) {
-		this.coordinate = coordinate;
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
 	}
 
 	public String getDes() {
@@ -235,11 +237,11 @@ public class Restaurant implements Serializable {
 		this.stopdate = stopdate;
 	}
 
-	public int getTemplate() {
+	public Integer getTemplate() {
 		return this.template;
 	}
 
-	public void setTemplate(int template) {
+	public void setTemplate(Integer template) {
 		this.template = template;
 	}
 
@@ -262,7 +264,7 @@ public class Restaurant implements Serializable {
 	@Override
 	public String toString() {
 		return "Restaurant [pkey=" + pkey + ", account=" + account + ", addr=" + addr + ", city=" + city + ", cityline="
-				+ cityline + ", cityname=" + cityname + ", consumption=" + consumption + ", coordinate=" + coordinate
+				+ cityline + ", cityname=" + cityname + ", consumption=" + consumption + ", latitude=" + latitude
 				+ ", des=" + des + ", display=" + display + ", enabled=" + enabled + ", imgUrl=" + imgUrl
 				+ ", longitude=" + longitude + ", manager=" + manager + ", mobile=" + mobile + ", name=" + name
 				+ ", rem=" + rem + ", rowVersion=" + rowVersion + ", startdate=" + startdate + ", stopdate=" + stopdate

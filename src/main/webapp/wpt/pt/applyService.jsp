@@ -45,6 +45,7 @@
 	<div class="service_apply">
 		<form action="listCombo?account.pkey=${account.pkey }" method="post">
 			<div class="sap_in">
+				<span class="select_txt"></span>
 				<select name="banquetId">
 					<option value="">宴会类型不限</option>
 					<s:iterator value="banquets" var="banquet">
@@ -53,6 +54,7 @@
 				</select>
 			</div>
 			<div class="sap_in">
+				<span class="select_txt"></span>
 				<select name="pnum">
 					<option value="">人数不限</option>
 					<option value="1">1人</option>
@@ -62,6 +64,7 @@
 				</select>
 			</div>
 			<div class="sap_in">
+				<span class="select_txt"></span>
 				<select name="budget">
 					<option value="">预算不限</option>
 					<option value=",100">100以下</option>
@@ -78,7 +81,7 @@
 				</div>
 				
 				<div class="sap_city rt">
-					<span class="select_txt">区域</span>
+					<span class="select_txt"></span>
 					<select name="areaId">
 						<option value="">区域不限</option>
 						<s:iterator value="areas" var="area">
@@ -124,6 +127,12 @@ ${jsCode}
 </script>
 <script>
 $(function() {
+	$(".sap_in select").each(function(){
+		var _par = $(this).parents(".sap_in");
+		$(".select_txt",_par).html($(this).find("option:selected").text()).addClass("select_txth");
+	});
+	$("form select[name=banquetId]").val(null)
+	$(".sap_city.rt select").val(null)
 	$(".cm_btn1").click(function() {
 		$(".service_apply form").submit();
 	})

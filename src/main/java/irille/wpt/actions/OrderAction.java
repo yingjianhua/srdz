@@ -39,7 +39,7 @@ public class OrderAction extends AbstractWptAction {
 	private Integer comboId;
 	private Integer banquetId;
 	private Double pnum;
-	private Double perCapitaBudget;
+	private Double budget;
 	private Integer areaId;
 	private String services;
 
@@ -53,7 +53,7 @@ public class OrderAction extends AbstractWptAction {
 	public void confirmOrder() throws ParseException, JSONException, IOException {
 		LOG.info("--------------confirmOrder():start--------------");
 		WptOrder order = orderService.createOrder(contactMan, contactSex, date, contactWay, contactType, rem, 
-				comboId, banquetId, pnum, perCapitaBudget, areaId, services, chkWxUser().getPkey(), getAccount().getPkey());
+				comboId, banquetId, pnum, budget, areaId, services, chkWxUser().getPkey(), getAccount().getPkey());
 		JSONObject result = new JSONObject();
 		if(order != null) {
 			result.put(SUCCESS, true);
@@ -232,10 +232,10 @@ public class OrderAction extends AbstractWptAction {
 		this.pnum = pnum;
 	}
 	public Double getPerCapitaBudget() {
-		return perCapitaBudget;
+		return budget;
 	}
-	public void setPerCapitaBudget(Double perCapitaBudget) {
-		this.perCapitaBudget = perCapitaBudget;
+	public void setPerCapitaBudget(Double budget) {
+		this.budget = budget;
 	}
 	public Integer getAreaId() {
 		return areaId;

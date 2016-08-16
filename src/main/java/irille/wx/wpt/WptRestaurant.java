@@ -32,8 +32,8 @@ public class WptRestaurant extends BeanInt<WptRestaurant> implements IExtName {
 		CITY(WptCity.fldOutKey()),
 		CITYLINE(WptCityLine.fldOutKey().setName("区")),
 		ADDR(SYS.ADDR__200_NULL),
-		COORDINATE(SYS.STR__40_NULL,"经纬度"),
-		LONGITUDE(SYS.STR__20_NULL),//冗余字段
+		LONGITUDE(SYS.STR__20_NULL,"经度"),
+		LATITUDE(SYS.STR__20_NULL,"纬度"),
 		IMG_URL(SYS.PHOTO__NULL,"图片"),
 		REM(SYS.REM__200_NULL,"备注"),
 		DISPLAY(SYS.NY,"显示图片"),
@@ -114,8 +114,8 @@ public class WptRestaurant extends BeanInt<WptRestaurant> implements IExtName {
   private Integer _city;	// 城市 <表主键:WptCity>  INT
   private Integer _cityline;	// 区 <表主键:WptCityLine>  INT
   private String _addr;	// 地址  STR(200)<null>
-  private String _coordinate;	// 经纬度  STR(40)<null>
-  private String _longitude;	// 字符20  STR(20)<null>
+  private String _longitude;	// 经度  STR(20)<null>
+  private String _latitude;	// 纬度  STR(20)<null>
   private String _imgUrl;	// 图片  STR(200)<null>
   private String _rem;	// 备注  STR(200)<null>
   private Byte _display;	// 显示图片 <OYn>  BYTE
@@ -144,8 +144,8 @@ public class WptRestaurant extends BeanInt<WptRestaurant> implements IExtName {
     _city=null;	// 城市 <表主键:WptCity>  INT
     _cityline=null;	// 区 <表主键:WptCityLine>  INT
     _addr=null;	// 地址  STR(200)
-    _coordinate=null;	// 经纬度  STR(40)
-    _longitude=null;	// 字符20  STR(20)
+    _longitude=null;	// 经度  STR(20)
+    _latitude=null;	// 纬度  STR(20)
     _imgUrl=null;	// 图片  STR(200)
     _rem=null;	// 备注  STR(200)
     _display=OYn.DEFAULT.getLine().getKey();	// 显示图片 <OYn>  BYTE
@@ -239,17 +239,17 @@ public class WptRestaurant extends BeanInt<WptRestaurant> implements IExtName {
   public void setAddr(String addr){
     _addr=addr;
   }
-  public String getCoordinate(){
-    return _coordinate;
-  }
-  public void setCoordinate(String coordinate){
-    _coordinate=coordinate;
-  }
   public String getLongitude(){
     return _longitude;
   }
   public void setLongitude(String longitude){
     _longitude=longitude;
+  }
+  public String getLatitude(){
+    return _latitude;
+  }
+  public void setLatitude(String latitude){
+    _latitude=latitude;
   }
   public String getImgUrl(){
     return _imgUrl;

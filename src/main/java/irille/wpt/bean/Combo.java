@@ -17,22 +17,44 @@ public class Combo implements Serializable {
 
 	@Id
 	private int pkey;
+
 	private int account;
+
 	private String des;
+
 	private byte enabled;
+
+	@Column(name="img_url")
 	private String imgUrl;
+
 	private String name;
+
+	@Column(name="number_max")
 	private int numberMax;
+
+	@Column(name="number_min")
 	private int numberMin;
+
+	@Column(name="orig_price")
 	private BigDecimal origPrice;
+
 	private BigDecimal price;
+
 	private String rem;
+
 	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn
+	@JoinColumn(name="restaurant")
 	private Restaurant restaurant;
+
+	@Column(name="row_version")
 	private short rowVersion;
+
+	@Column(name="service_date")
 	private String serviceDate;
+
+	@Column(name="service_time")
 	private String serviceTime;
+
 	private int sort;
 
 	public Combo() {
@@ -166,11 +188,4 @@ public class Combo implements Serializable {
 		this.sort = sort;
 	}
 
-	@Override
-	public String toString() {
-		return "Combo [pkey=" + pkey + ", account=" + account + ", des=" + des + ", enabled=" + enabled + ", imgUrl="
-				+ imgUrl + ", name=" + name + ", numberMax=" + numberMax + ", numberMin=" + numberMin + ", origPrice="
-				+ origPrice + ", price=" + price + ", rem=" + rem + ", restaurant=" + restaurant + ", rowVersion="
-				+ rowVersion + ", serviceDate=" + serviceDate + ", serviceTime=" + serviceTime + ", sort=" + sort + "]";
-	}
 }
