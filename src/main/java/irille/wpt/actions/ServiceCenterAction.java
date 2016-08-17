@@ -1,9 +1,11 @@
 package irille.wpt.actions;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.wx.wpt.WptServiceCen;
 @Controller
+@Scope("prototype")
 public class ServiceCenterAction extends AbstractWptAction {
 
 	/**

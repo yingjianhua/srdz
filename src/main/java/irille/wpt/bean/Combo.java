@@ -188,4 +188,12 @@ public class Combo implements Serializable {
 		this.sort = sort;
 	}
 
+	@Override
+	public String toString() {
+		return "Combo [pkey=" + pkey + ", account=" + account + ", des=" + des + ", enabled=" + enabled + ", imgUrl="
+				+ imgUrl + ", name=" + name + ", numberMax=" + numberMax + ", numberMin=" + numberMin + ", origPrice="
+				+ origPrice + ", price=" + price + ", rem=" + rem + ", restaurant=" + restaurant + ", rowVersion="
+				+ rowVersion + ", serviceDate=" + serviceDate + ", serviceTime=" + serviceTime + ", sort=" + sort + "]";
+	}
+
 }

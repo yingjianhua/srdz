@@ -2,6 +2,7 @@ package irille.wpt.actions;
 
 import java.util.List;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.pub.bean.BeanBase;
@@ -10,6 +11,7 @@ import irille.wx.wpt.WptBanquet;
 import irille.wx.wpt.WptCity;
 import irille.wx.wpt.WptCityLine;
 @Controller
+@Scope("prototype")
 public class ApplyServiceAction extends AbstractWptAction {
 	/**
 	 * 

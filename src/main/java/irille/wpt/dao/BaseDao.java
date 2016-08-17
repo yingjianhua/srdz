@@ -16,11 +16,6 @@ public class BaseDao<T,ID extends Serializable> {
 	
 	public T get(ID id) {
 		Session session = sessionFactory.getCurrentSession();
-		System.out.println("T--------------");
-		System.out.println(session);
-		System.out.println(entityClass);
-		System.out.println(id);
-		System.out.println("T--------------");
 		return session.get(entityClass, id);
 	}
 	

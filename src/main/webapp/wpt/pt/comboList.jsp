@@ -17,18 +17,6 @@
 	<div class="hall_top">超值私人定制套餐任选！选择套餐更划算哦！</div>
 	<div class="hall_body">
 		<ul>
-		<s:iterator value="combos" var="line" status="st">
-		<li>
-		<a class="item" pkey="${line.pkey }">
-			<div class="headImage"><img class="headImage lazy" data-original="../${line.imgUrl }"></div>
-			<div class="desc">
-				<h4 class="title">${line.name }</h4>
-				<div class="addr"><p>${line.gtRestaurant().gtCityline().name }</p></div>
-				<p class="price">${line.price }<em>元/套</em></p>
-			</div>
-		</a>
-		</li>
-		</s:iterator>
 		</ul>
 		<div class="hall_zw"></div>
 	</div>
@@ -37,35 +25,17 @@
 	</div>
 	
 </body>
+<script type="text/javascript">
+${jsCode}
+</script>
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="js/jquery.lazyload.min.js"></script>
 <script type="text/javascript" src="js/base.js"></script>
+<script type="text/javascript" src="js/location.js"></script>
 <script>
 //微信获取地理位置接口成功回调函数
 function jsDistance(res) {
-	$.ajax({
-		url:"resource/combo_list?account.pkey=${account.pkey}",
-		type : "POST",
-		data:{
-			banquetId:${banquetId},
-			pnum:${pnum},
-			budget:${budget},
-			areaId:${areaId},
-			longitude:${longitude},
-			latitude:${banquetId},
-		},
-		
-	})
-	var i = new Location(res.longitude, res.latitude);
-	
-	$(".hot i").each(function() {
-		var lon = $(this).attr("longitude");
-		var lat = $(this).attr("latitude");
-		if(lon && lat) {
-			var dest = i.getDistance(new Location(lon, lat));
-			$(this).find(".dist_dd").html(dest.toFixed(2)+" km");
-		}
-	})
+	findCombo(res.longitude, res.latitude)
 }
 </script>
 <script>
@@ -78,19 +48,64 @@ function checkJsApiSuccess() {
 }
 </script>
 <script>
-var longitude,latitude;
+function findCombo(longitude,latitude) {
+	$.ajax({
+		url:"resource/combo_list?account.pkey=${account.pkey}",
+		type : "POST",
+		data:{
+			banquetId:"${banquetId}",
+			pnum:"${pnum}",
+			budget:"${budget}",
+			areaId:"${areaId}",
+			longitude:longitude,
+			latitude:latitude,
+		},
+		dataType:"json",
+		success:function(result) {
+			var i = new Location(longitude, latitude);
+			var items = "";
+			$.each(result, function(index, record) {
+				items += '<li>';
+				items += '<a class="item" pkey="'+record.id+'">';
+				items += '	<div class="headImage"><img class="headImage lazy" data-original="../'+record.imgUrl+'"></div>';
+				items += '	<div class="desc">';
+				items += '		<h4 class="title">'+record.name+'</h4>';
+				if(record.desc) {
+					items += '		<p class="desc">'+record.desc+'</p>';
+				}
+				items += '		<div class="addr"><p>'+record.area;
+				if(record.longitude && record.latitude) {
+					var dest = i.getDistance(new Location(record.longitude, record.latitude));
+					items += '		| '+dest.toFixed(2)+' km';
+				}
+				items += '</p></div>';
+				items += '		<p class="price">'+record.price+'<em>元/套</em></p>';
+				items += '	</div>';
+				items += '	</a>';
+				items += '</li>';
+			})
+			$("ul").html(items);
+			$(".item").click(function() {
+				location.href = "showCombo?account.pkey=${account.pkey}&id="+$(this).attr("pkey");
+			})
+			$("img.lazy").lazyload({
+				placeholder : "images/emptyCombo.jpg",
+				effect: "show",
+				threshold:200
+			});
+ 		}
+	})
+}
 $(function() {
 	$("img.lazy").lazyload({
 		placeholder : "images/emptyCombo.jpg",
 		effect: "show",
 		threshold:200
 	});
-	$(".item").click(function() {
-		location.href = "showCombo?account.pkey=${account.pkey}&id="+$(this).attr("pkey");
-	})
 	$(".go").click(function() {
 		location.href = "selectService?account.pkey=${account.pkey }&banquetId=${banquetId}&pnum=${pnum}&budget=${budget}&areaId=${areaId}";
 	})
+	findCombo(120.732107,27.973482);
 })
 </script>
 </html>

@@ -1,9 +1,11 @@
 package irille.wpt.actions;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.pub.Log;
 @Controller
+@Scope("prototype")
 public class InputContactAction extends AbstractWptAction {
 	/**
 	 * 
@@ -12,8 +14,8 @@ public class InputContactAction extends AbstractWptAction {
 	private static final Log LOG = new Log(InputContactAction.class);
 	private Integer comboId;
 	private Integer banquetId;
-	private Double pnum;
-	private Double budget;
+	private String pnum;
+	private String budget;
 	private Integer areaId;
 	private String services;
 	@Override
@@ -38,16 +40,16 @@ public class InputContactAction extends AbstractWptAction {
 	public void setBanquetId(Integer banquetId) {
 		this.banquetId = banquetId;
 	}
-	public Double getPnum() {
+	public String getPnum() {
 		return pnum;
 	}
-	public void setPnum(Double pnum) {
+	public void setPnum(String pnum) {
 		this.pnum = pnum;
 	}
-	public Double getPerCapitaBudget() {
+	public String getBudget() {
 		return budget;
 	}
-	public void setPerCapitaBudget(Double budget) {
+	public void setBudget(String budget) {
 		this.budget = budget;
 	}
 	public Integer getAreaId() {

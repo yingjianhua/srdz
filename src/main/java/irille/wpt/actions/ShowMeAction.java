@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import javax.annotation.Resource;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.wpt.service.UserService;
@@ -12,6 +13,7 @@ import irille.wx.wpt.WptCollect;
 import irille.wx.wpt.WptOrder;
 import irille.wx.wx.WxUser;
 @Controller
+@Scope("prototype")
 public class ShowMeAction extends AbstractWptAction {
 
 	/**

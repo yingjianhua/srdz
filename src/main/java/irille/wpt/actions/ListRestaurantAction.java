@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.wpt.service.RestaurantService;
@@ -13,6 +14,7 @@ import irille.wxpub.js.JMOpenLocation;
 import irille.wxpub.js.JQFunDefine;
 import irille.wxpub.js.JsExp;
 @Controller
+@Scope("prototype")
 public class ListRestaurantAction extends AbstractWptAction {
 	/**
 	 * 

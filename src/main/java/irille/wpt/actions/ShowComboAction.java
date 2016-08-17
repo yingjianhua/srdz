@@ -3,6 +3,7 @@ package irille.wpt.actions;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.pub.idu.Idu;
@@ -10,6 +11,7 @@ import irille.wx.wpt.WptCombo;
 import irille.wx.wpt.WptComboBanner;
 import irille.wx.wpt.WptComboLine;
 @Controller
+@Scope("prototype")
 public class ShowComboAction extends AbstractWptAction implements IMenuShareAppMessage, IMenuShareTimeline{
 	
 	

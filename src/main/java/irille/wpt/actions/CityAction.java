@@ -10,6 +10,7 @@ import org.apache.struts2.ServletActionContext;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.pub.Exp;
@@ -19,6 +20,7 @@ import irille.wpt.interceptor.CityInterceptor;
 import irille.wpt.service.CityService;
 import irille.wx.wpt.WptCity;
 @Controller
+@Scope("prototype")
 public class CityAction extends AbstractWptAction {
 	/**
 	 * 

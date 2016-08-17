@@ -4,11 +4,13 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.wpt.service.OrderService;
 import irille.wx.wpt.WptOrder;
 @Controller
+@Scope("prototype")
 public class ListOrderAction extends AbstractWptAction {
 	
 	/**

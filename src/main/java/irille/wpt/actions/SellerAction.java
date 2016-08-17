@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 
 import org.apache.struts2.ServletActionContext;
 import org.json.JSONArray;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.pub.Log;
@@ -16,6 +17,7 @@ import irille.wpt.service.SellerService;
 import irille.wx.wpt.Wpt.OStatus;
 import irille.wx.wpt.WptRestaurant;
 @Controller
+@Scope("prototype")
 public class SellerAction extends AbstractWptAction {
 	/**
 	 * 

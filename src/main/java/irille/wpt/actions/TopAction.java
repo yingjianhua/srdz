@@ -7,11 +7,13 @@ import javax.annotation.Resource;
 
 import org.apache.struts2.ServletActionContext;
 import org.json.JSONArray;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.wpt.service.TopService;
 import irille.wx.wx.WxUser;
 @Controller
+@Scope("prototype")
 public class TopAction extends AbstractWptAction {
 
 	/**

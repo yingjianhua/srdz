@@ -3,6 +3,7 @@ package irille.wpt.actions;
 import java.sql.ResultSet;
 import java.util.List;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.core.sys.Sys.OEnabled;
@@ -13,6 +14,7 @@ import irille.wx.wpt.WptRestaurant;
 import irille.wx.wpt.WptSpecial;
 import irille.wx.wpt.WptSpecialLine;
 @Controller
+@Scope("prototype")
 public class ShowSpecialAction extends AbstractWptAction implements IMenuShareAppMessage, IMenuShareTimeline {
 
 	/**
@@ -39,7 +41,8 @@ public class ShowSpecialAction extends AbstractWptAction implements IMenuShareAp
 				return bean;
 			}
 		}, id, OEnabled.TRUE.getLine().getKey());
-		
+		System.out.println(where);
+		System.out.println(restaurants.size());
 		setResult("find/specialDetail.jsp");
 		return TRENDS;
 	}

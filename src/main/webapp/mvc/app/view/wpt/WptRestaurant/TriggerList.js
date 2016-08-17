@@ -13,7 +13,8 @@ this.columns = [{text : '餐厅名称',width : 100,dataIndex : 'bean.name',sorta
 	,{text : '城市',width : 100,dataIndex : 'bean.city',sortable : true,renderer : mvc.Tools.beanRenderer()}
 	,{text : '区',width : 100,dataIndex : 'bean.cityline',sortable : true,renderer : mvc.Tools.beanRenderer()}
 	,{text : '地址',width : 100,dataIndex : 'bean.addr',sortable : true}
-	,{text : '经纬度',width : 100,dataIndex : 'bean.coordinate',sortable : true}
+	,{text : '经度',width : 100,dataIndex : 'bean.longitude',sortable : true}
+	,{text : '纬度',width : 100,dataIndex : 'bean.latitude',sortable : true}
 	,{text : '图片',width : 100,dataIndex : 'bean.imgUrl',sortable : true,renderer:function(v) {return "<img src='../"+v+"'width='90px' height='70px'>"}}
 	,{text : '备注',width : 100,dataIndex : 'bean.rem',sortable : true}
 	,{text : '显示图片',width : 100,dataIndex : 'bean.display',sortable : true,renderer : mvc.Tools.optRenderer('sys','Sys','OYn')}

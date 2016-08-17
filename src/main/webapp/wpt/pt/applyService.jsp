@@ -112,6 +112,7 @@ ${jsCode}
 	
 	//select和date两个特殊情况为了IOS下做的数据同步
 	$(".sap_in select").change(function(){
+		console.log("change")
 		var _par = $(this).parents(".sap_in");
 		$(".select_txt",_par).html($(this).find("option:selected").text()).addClass("select_txth");
 	});
@@ -131,8 +132,6 @@ $(function() {
 		var _par = $(this).parents(".sap_in");
 		$(".select_txt",_par).html($(this).find("option:selected").text()).addClass("select_txth");
 	});
-	$("form select[name=banquetId]").val(null)
-	$(".sap_city.rt select").val(null)
 	$(".cm_btn1").click(function() {
 		$(".service_apply form").submit();
 	})

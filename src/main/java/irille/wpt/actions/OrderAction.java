@@ -11,17 +11,21 @@ import javax.annotation.Resource;
 import org.apache.struts2.ServletActionContext;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.pub.Exp;
 import irille.pub.Log;
+import irille.wpt.interceptor.CityInterceptor;
 import irille.wpt.service.OrderService;
+import irille.wx.wpt.WptCity;
 import irille.wx.wpt.WptOrder;
 import irille.wx.wx.WxAccount;
 import irille.wx.wx.WxUser;
 import irille.wxpub.util.MessageUtil;
 import irille.wxpub.util.mch.MchUtil;
 @Controller
+@Scope("prototype")
 public class OrderAction extends AbstractWptAction {
 	/**
 	 * 
@@ -38,8 +42,8 @@ public class OrderAction extends AbstractWptAction {
 	//若没有 : comboId == null
 	private Integer comboId;
 	private Integer banquetId;
-	private Double pnum;
-	private Double budget;
+	private String pnum;
+	private String budget;
 	private Integer areaId;
 	private String services;
 
@@ -53,7 +57,7 @@ public class OrderAction extends AbstractWptAction {
 	public void confirmOrder() throws ParseException, JSONException, IOException {
 		LOG.info("--------------confirmOrder():start--------------");
 		WptOrder order = orderService.createOrder(contactMan, contactSex, date, contactWay, contactType, rem, 
-				comboId, banquetId, pnum, budget, areaId, services, chkWxUser().getPkey(), getAccount().getPkey());
+				comboId, banquetId, pnum, budget, ((WptCity)getSession().get(CityInterceptor.CITY)).getPkey(), areaId, services, chkWxUser().getPkey(), getAccount().getPkey());
 		JSONObject result = new JSONObject();
 		if(order != null) {
 			result.put(SUCCESS, true);
@@ -225,16 +229,16 @@ public class OrderAction extends AbstractWptAction {
 	public void setBanquetId(Integer banquetId) {
 		this.banquetId = banquetId;
 	}
-	public Double getPnum() {
+	public String getPnum() {
 		return pnum;
 	}
-	public void setPnum(Double pnum) {
+	public void setPnum(String pnum) {
 		this.pnum = pnum;
 	}
-	public Double getPerCapitaBudget() {
+	public String getBudget() {
 		return budget;
 	}
-	public void setPerCapitaBudget(Double budget) {
+	public void setBudget(String budget) {
 		this.budget = budget;
 	}
 	public Integer getAreaId() {

@@ -1,19 +1,8 @@
 package irille.wpt.bean;
 
 import java.io.Serializable;
+import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Iterator;
-import java.util.List;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 
 
 /**
@@ -22,7 +11,7 @@ import org.hibernate.cfg.Configuration;
  */
 @Entity
 @Table(name="wpt_restaurant")
-@NamedQuery(name="Restaurant.findAll", query="SELECT w FROM Restaurant w")
+@NamedQuery(name="Restaurant.findAll", query="SELECT r FROM Restaurant r")
 public class Restaurant implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -32,16 +21,18 @@ public class Restaurant implements Serializable {
 	private int account;
 
 	private String addr;
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="city")
+	private City city;
 
-	private int city;
-
-	private int cityline;
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="cityline")
+	private CityLine cityline;
 
 	private String cityname;
 
 	private BigDecimal consumption;
-
-	private String latitude;
 
 	private String des;
 
@@ -49,7 +40,10 @@ public class Restaurant implements Serializable {
 
 	private byte enabled;
 
+	@Column(name="img_url")
 	private String imgUrl;
+
+	private String latitude;
 
 	private String longitude;
 
@@ -61,13 +55,13 @@ public class Restaurant implements Serializable {
 
 	private String rem;
 
+	@Column(name="row_version")
 	private short rowVersion;
 
 	private String startdate;
 
 	private String stopdate;
 
-	@Column(name="template")
 	private Integer template;
 
 	private String wifiaccount;
@@ -101,19 +95,19 @@ public class Restaurant implements Serializable {
 		this.addr = addr;
 	}
 
-	public int getCity() {
+	public City getCity() {
 		return this.city;
 	}
 
-	public void setCity(int city) {
+	public void setCity(City city) {
 		this.city = city;
 	}
 
-	public int getCityline() {
+	public CityLine getCityline() {
 		return this.cityline;
 	}
 
-	public void setCityline(int cityline) {
+	public void setCityline(CityLine cityline) {
 		this.cityline = cityline;
 	}
 
@@ -131,14 +125,6 @@ public class Restaurant implements Serializable {
 
 	public void setConsumption(BigDecimal consumption) {
 		this.consumption = consumption;
-	}
-
-	public String getLatitude() {
-		return this.latitude;
-	}
-
-	public void setLatitude(String latitude) {
-		this.latitude = latitude;
 	}
 
 	public String getDes() {
@@ -171,6 +157,14 @@ public class Restaurant implements Serializable {
 
 	public void setImgUrl(String imgUrl) {
 		this.imgUrl = imgUrl;
+	}
+
+	public String getLatitude() {
+		return this.latitude;
+	}
+
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
 	}
 
 	public String getLongitude() {
@@ -261,13 +255,4 @@ public class Restaurant implements Serializable {
 		this.wifipassword = wifipassword;
 	}
 
-	@Override
-	public String toString() {
-		return "Restaurant [pkey=" + pkey + ", account=" + account + ", addr=" + addr + ", city=" + city + ", cityline="
-				+ cityline + ", cityname=" + cityname + ", consumption=" + consumption + ", latitude=" + latitude
-				+ ", des=" + des + ", display=" + display + ", enabled=" + enabled + ", imgUrl=" + imgUrl
-				+ ", longitude=" + longitude + ", manager=" + manager + ", mobile=" + mobile + ", name=" + name
-				+ ", rem=" + rem + ", rowVersion=" + rowVersion + ", startdate=" + startdate + ", stopdate=" + stopdate
-				+ ", template=" + template + ", wifiaccount=" + wifiaccount + ", wifipassword=" + wifipassword + "]";
-	}
 }

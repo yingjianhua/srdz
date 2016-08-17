@@ -4,11 +4,13 @@ import java.math.BigDecimal;
 
 import javax.annotation.Resource;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.wpt.service.UserService;
 import irille.wx.wx.WxUser;
 @Controller
+@Scope("prototype")
 public class ListFansSaleAction extends AbstractWptAction {
 
 	/**

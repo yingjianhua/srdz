@@ -9,7 +9,10 @@ import irille.core.sys.Sys.OYn;
 import irille.pub.Log;
 import irille.pub.bean.BeanInt;
 import irille.pub.inf.IExtName;
+import irille.pub.svr.Env;
+import irille.pub.svr.Env.SysConf;
 import irille.pub.tb.Fld;
+import irille.pub.tb.FldDec;
 import irille.pub.tb.IEnumFld;
 import irille.pub.tb.Tb;
 import irille.pub.tb.Tb.Index;
@@ -32,8 +35,8 @@ public class WptRestaurant extends BeanInt<WptRestaurant> implements IExtName {
 		CITY(WptCity.fldOutKey()),
 		CITYLINE(WptCityLine.fldOutKey().setName("区")),
 		ADDR(SYS.ADDR__200_NULL),
-		LONGITUDE(SYS.STR__20_NULL,"经度"),
-		LATITUDE(SYS.STR__20_NULL,"纬度"),
+		LONGITUDE(new FldDec("longitude", "经度", 10,7)),
+		LATITUDE(new FldDec("latitude", "纬度", 10,7)),
 		IMG_URL(SYS.PHOTO__NULL,"图片"),
 		REM(SYS.REM__200_NULL,"备注"),
 		DISPLAY(SYS.NY,"显示图片"),
@@ -114,8 +117,8 @@ public class WptRestaurant extends BeanInt<WptRestaurant> implements IExtName {
   private Integer _city;	// 城市 <表主键:WptCity>  INT
   private Integer _cityline;	// 区 <表主键:WptCityLine>  INT
   private String _addr;	// 地址  STR(200)<null>
-  private String _longitude;	// 经度  STR(20)<null>
-  private String _latitude;	// 纬度  STR(20)<null>
+  private BigDecimal _longitude;	// 经度  DEC(10,7)
+  private BigDecimal _latitude;	// 纬度  DEC(10,7)
   private String _imgUrl;	// 图片  STR(200)<null>
   private String _rem;	// 备注  STR(200)<null>
   private Byte _display;	// 显示图片 <OYn>  BYTE
@@ -144,8 +147,8 @@ public class WptRestaurant extends BeanInt<WptRestaurant> implements IExtName {
     _city=null;	// 城市 <表主键:WptCity>  INT
     _cityline=null;	// 区 <表主键:WptCityLine>  INT
     _addr=null;	// 地址  STR(200)
-    _longitude=null;	// 经度  STR(20)
-    _latitude=null;	// 纬度  STR(20)
+    _longitude=ZERO;	// 经度  DEC(10,7)
+    _latitude=ZERO;	// 纬度  DEC(10,7)
     _imgUrl=null;	// 图片  STR(200)
     _rem=null;	// 备注  STR(200)
     _display=OYn.DEFAULT.getLine().getKey();	// 显示图片 <OYn>  BYTE
@@ -239,16 +242,16 @@ public class WptRestaurant extends BeanInt<WptRestaurant> implements IExtName {
   public void setAddr(String addr){
     _addr=addr;
   }
-  public String getLongitude(){
+  public BigDecimal getLongitude(){
     return _longitude;
   }
-  public void setLongitude(String longitude){
+  public void setLongitude(BigDecimal longitude){
     _longitude=longitude;
   }
-  public String getLatitude(){
+  public BigDecimal getLatitude(){
     return _latitude;
   }
-  public void setLatitude(String latitude){
+  public void setLatitude(BigDecimal latitude){
     _latitude=latitude;
   }
   public String getImgUrl(){

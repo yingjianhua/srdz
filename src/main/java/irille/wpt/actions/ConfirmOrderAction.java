@@ -2,6 +2,7 @@ package irille.wpt.actions;
 
 import java.util.List;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.pub.bean.BeanBase;
@@ -11,6 +12,7 @@ import irille.wx.wpt.WptOrderService;
 import irille.wxpub.js.JMChooseWXPay;
 import irille.wxpub.js.JsFunDefine;
 @Controller
+@Scope("prototype")
 public class ConfirmOrderAction extends AbstractWptAction {
 	/**
 	 * 

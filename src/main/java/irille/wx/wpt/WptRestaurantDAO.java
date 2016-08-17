@@ -37,13 +37,6 @@ public class WptRestaurantDAO {
 			account = WxAccountDAO.getByUser(getUser());
 			getB().setAccount(account.getPkey());
 			getB().setCityname(getB().gtCity().getName());
-			if(getB().getCoordinate() != null){
-				String[] loca = getB().getCoordinate().split(",");
-				if(loca.length > 1) {
-					getB().setLongitude(loca[1]);
-					getB().setCoordinate(loca[0]);
-				}
-			}
 		}
 
 		@Override
@@ -79,6 +72,8 @@ public class WptRestaurantDAO {
 		public void before() {
 			super.before();
 			WptRestaurant dbBean = WptRestaurant.chkUniqueName(false, getB().getName());
+			System.out.println(getB().getLongitude());
+			System.out.println(getB().getLongitude() == null);
 			WptRestaurant model = null;
 			if (dbBean != null)
 				if (dbBean.getPkey() != getB().getPkey())
@@ -87,15 +82,7 @@ public class WptRestaurantDAO {
 					model = dbBean;
 			else 
 				model = load(getB().getPkey());
-			if( getB().getCoordinate() != null && !(getB().getCoordinate().equals(model.getCoordinate())) ){
-				model.setLongitude(getB().getCoordinate().split(",")[1]);
-				model.setCoordinate(getB().getCoordinate().split(",")[0]);
-			}
-			if(getB().getCoordinate() == null){
-				model.setLongitude(null);
-				model.setCoordinate(null);
-			}
-			PropertyUtils.copyPropertiesWithout(model, getB(), WptRestaurant.T.ACCOUNT, WptRestaurant.T.COORDINATE, WptRestaurant.T.LONGITUDE);
+			PropertyUtils.copyPropertiesWithout(model, getB(), WptRestaurant.T.ACCOUNT);
 			account = WxAccountDAO.getByUser(getUser());
 			model.setCityname(getB().gtCity().getName());
 			setB(model);

@@ -2,11 +2,13 @@ package irille.wpt.actions;
 
 import java.util.List;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.pub.bean.Bean;
 import irille.wx.wpt.WptCashJournal;
 @Controller
+@Scope("prototype")
 public class ListCashHistoryAction extends AbstractWptAction {
 
 	/**

@@ -13,7 +13,8 @@ this.columns =[{text : '餐厅名称',width : 100,dataIndex : 'bean.name',sortab
 	,{text : '城市',width : 100,dataIndex : 'bean.city',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wpt',mn : 'view.wpt.WptCity.List'}
 	,{text : '区',width : 100,dataIndex : 'bean.cityline',sortable : true,renderer : mvc.Tools.beanRenderer()}
 	,{text : '地址',width : 100,dataIndex : 'bean.addr',sortable : true}
-	,{text : '经纬度',width : 100,dataIndex : 'bean.coordinate',sortable : true}
+	,{text : '经度',width : 100,dataIndex : 'bean.longitude',sortable : true}
+	,{text : '纬度',width : 100,dataIndex : 'bean.latitude',sortable : true}
 	, {
 			text : '图片',
 			width : 100,

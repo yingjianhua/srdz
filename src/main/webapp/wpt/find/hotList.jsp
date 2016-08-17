@@ -74,7 +74,7 @@ a.select_city_btn{
 					<img style="height:358px" data-original="../${line.gtRestaurant().imgUrl}" class="photo lazy" />
 					<div class="item_flog"></div>
 					</a> 
-					<i class="addr" latitude="${line.gtRestaurant().coordinate}" longitude="${line.gtRestaurant().longitude}" name="${line.gtRestaurant().name}" address="${line.gtRestaurant().addr}">
+					<i class="addr" latitude="${line.gtRestaurant().latitude}" longitude="${line.gtRestaurant().longitude}" name="${line.gtRestaurant().name}" address="${line.gtRestaurant().addr}">
 						<dl style="float:left">
 							<dt>${line.gtRestaurant().name}</dt>
 							<dd>${line.gtRestaurant().addr}</dd>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.wpt.service.SellerService;
@@ -11,6 +12,7 @@ import irille.wx.wpt.Wpt.OStatus;
 import irille.wx.wpt.WptOrder;
 import irille.wx.wpt.WptRestaurant;
 @Controller
+@Scope("prototype")
 public class ListSellerOrderAction extends AbstractWptAction {
 
 	/**

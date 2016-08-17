@@ -40,6 +40,7 @@
 			<interceptor-ref name="wpt_resource" />
 		</action>
 		<action name="user_*" class="userAction" method="{1}"></action>
+		<action name="combo_*" class="comboAction" method="{1}"></action>
 	</package>
 	
 	<package name="wpt" namespace="/wpt" extends="wpt_resource">

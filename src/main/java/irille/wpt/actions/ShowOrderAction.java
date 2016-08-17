@@ -2,6 +2,7 @@ package irille.wpt.actions;
 
 import java.util.List;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.pub.bean.BeanBase;
@@ -14,6 +15,7 @@ import irille.wxpub.js.JQFunDefine;
 import irille.wxpub.js.JsExp;
 import irille.wxpub.js.JsFunDefine;
 @Controller
+@Scope("prototype")
 public class ShowOrderAction extends AbstractWptAction {
 
 	/**

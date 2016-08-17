@@ -12,7 +12,8 @@ fields : [{name : 'bean.pkey',mapping : 'pkey',type : 'int',useNull : true}
 	,{name : 'bean.city',mapping : 'city',type : 'string',outkey : true}
 	,{name : 'bean.cityline',mapping : 'cityline',type : 'string',outkey : true}
 	,{name : 'bean.addr',mapping : 'addr',type : 'string'}
-	,{name : 'bean.coordinate',mapping : 'coordinate',type : 'string'}
+	,{name : 'bean.longitude',mapping : 'longitude',type : 'float'}
+	,{name : 'bean.latitude',mapping : 'latitude',type : 'float'}
 	,{name : 'bean.imgUrl',mapping : 'imgUrl',type : 'string'}
 	,{name : 'bean.rem',mapping : 'rem',type : 'string'}
 	,{name : 'bean.display',mapping : 'display',type : 'int',useNull : true}

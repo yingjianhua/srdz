@@ -2,11 +2,13 @@ package irille.wpt.actions;
 
 import java.util.List;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.pub.bean.BeanBase;
 import irille.wx.wpt.WptService;
 @Controller
+@Scope("prototype")
 public class SelectServiceAction extends AbstractWptAction {
 	/**
 	 * 
@@ -15,8 +17,8 @@ public class SelectServiceAction extends AbstractWptAction {
 	private List<WptService> services;
 	private Integer comboId;
 	private Integer banquetId;
-	private Double pnum;
-	private Double perCapitaBudget;
+	private String pnum;
+	private String budget;
 	private Integer areaId;
 	
 	@Override
@@ -44,17 +46,17 @@ public class SelectServiceAction extends AbstractWptAction {
 	public void setBanquetId(Integer banquetId) {
 		this.banquetId = banquetId;
 	}
-	public Double getPnum() {
+	public String getPnum() {
 		return pnum;
 	}
-	public void setPnum(Double pnum) {
+	public void setPnum(String pnum) {
 		this.pnum = pnum;
 	}
-	public Double getPerCapitaBudget() {
-		return perCapitaBudget;
+	public String getBudget() {
+		return budget;
 	}
-	public void setPerCapitaBudget(Double perCapitaBudget) {
-		this.perCapitaBudget = perCapitaBudget;
+	public void setBudget(String budget) {
+		this.budget = budget;
 	}
 	public Integer getAreaId() {
 		return areaId;

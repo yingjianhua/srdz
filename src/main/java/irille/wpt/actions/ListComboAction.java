@@ -4,16 +4,16 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import irille.wpt.interceptor.CityInterceptor;
 import irille.wpt.service.ComboService;
-import irille.wx.wpt.WptCity;
 import irille.wx.wpt.WptCombo;
 import irille.wxpub.js.JMOpenLocation;
 import irille.wxpub.js.JQFunDefine;
 import irille.wxpub.js.JsExp;
 @Controller
+@Scope("prototype")
 public class ListComboAction extends AbstractWptAction {
 	/**
 	 * 
@@ -33,9 +33,6 @@ public class ListComboAction extends AbstractWptAction {
 	 */
 	@Override
 	public String execute() throws Exception {
-		//combos = comboService.findByCondition(banquetId, pnum, budget,((WptCity)getSession().get(CityInterceptor.CITY)).getPkey().toString(), areaId, "", "");
-		//获取需要显示的餐厅和套餐数据
-		//mapCombo = comboService.listCombo(areaId, banquetId, pnum.intValue(), perCapitaBudget.intValue());
 		setResult("pt/comboList.jsp");
 		return TRENDS;
 	}

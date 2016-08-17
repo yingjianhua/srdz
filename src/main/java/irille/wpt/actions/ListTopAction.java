@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.wpt.interceptor.CityInterceptor;
@@ -13,6 +14,7 @@ import irille.wx.wpt.WptCity;
 import irille.wx.wpt.WptCityLine;
 import irille.wx.wpt.WptTop;
 @Controller
+@Scope("prototype")
 public class ListTopAction extends AbstractWptAction {
 
 	/**

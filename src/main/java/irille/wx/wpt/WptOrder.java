@@ -6,7 +6,6 @@ import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import irille.core.sys.Sys.OSex;
 import irille.core.sys.Sys.OYn;
@@ -44,8 +43,8 @@ public class WptOrder extends BeanInt<WptOrder> implements IOrder {
 		RESTAURANT(WptRestaurant.fldOutKey().setNull()),
 		BANQUET(WptBanquet.fldOutKey().setNull()),//宴会类型
 		TIME(SYS.DATE_TIME,"用餐时间"),
-		NUMBER(SYS.INT,"宴会人数",true),
-		CONSUMPTION(SYS.AMT,"人均预算",true),
+		NUMBER(SYS.STR__100,"宴会人数",true),
+		CONSUMPTION(SYS.STR__100,"预算",true),
 		CITY(WptCity.fldOutKey()),//城市
 		CREATE_TIME(SYS.CREATED_DATE_TIME,"创建时间"),
 		STATUS(TB.crt(Wpt.OStatus.DEFAULT)),
@@ -199,8 +198,8 @@ public class WptOrder extends BeanInt<WptOrder> implements IOrder {
   private Integer _restaurant;	// 餐厅 <表主键:WptRestaurant>  INT<null>
   private Integer _banquet;	// 宴会类型 <表主键:WptBanquet>  INT<null>
   private Date _time;	// 用餐时间  TIME
-  private Integer _number;	// 宴会人数  INT<null>
-  private BigDecimal _consumption;	// 人均预算  DEC(16,2)<null>
+  private String _number;	// 宴会人数  STR(100)<null>
+  private String _consumption;	// 预算  STR(100)<null>
   private Integer _city;	// 城市 <表主键:WptCity>  INT
   private Date _createTime;	// 创建时间  TIME
   private Byte _status;	// 订单状态 <OStatus>  BYTE
@@ -258,8 +257,8 @@ public class WptOrder extends BeanInt<WptOrder> implements IOrder {
     _restaurant=null;	// 餐厅 <表主键:WptRestaurant>  INT
     _banquet=null;	// 宴会类型 <表主键:WptBanquet>  INT
     _time=Env.getTranBeginTime();	// 用餐时间  TIME
-    _number=null;	// 宴会人数  INT
-    _consumption=null;	// 人均预算  DEC(16,2)
+    _number=null;	// 宴会人数  STR(100)
+    _consumption=null;	// 预算  STR(100)
     _city=null;	// 城市 <表主键:WptCity>  INT
     _createTime=Env.getTranBeginTime();	// 创建时间  TIME
     _status=OStatus.DEFAULT.getLine().getKey();	// 订单状态 <OStatus>  BYTE
@@ -407,16 +406,16 @@ public class WptOrder extends BeanInt<WptOrder> implements IOrder {
   public void setTime(Date time){
     _time=time;
   }
-  public Integer getNumber(){
+  public String getNumber(){
     return _number;
   }
-  public void setNumber(Integer number){
+  public void setNumber(String number){
     _number=number;
   }
-  public BigDecimal getConsumption(){
+  public String getConsumption(){
     return _consumption;
   }
-  public void setConsumption(BigDecimal consumption){
+  public void setConsumption(String consumption){
     _consumption=consumption;
   }
   public Integer getCity(){

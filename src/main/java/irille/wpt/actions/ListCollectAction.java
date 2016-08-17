@@ -2,12 +2,14 @@ package irille.wpt.actions;
 
 import java.util.List;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.wx.wpt.WptCollect;
 import irille.wx.wpt.WptTop;
 import irille.wx.wx.WxUser;
 @Controller
+@Scope("prototype")
 public class ListCollectAction extends AbstractWptAction {
 
 	/**

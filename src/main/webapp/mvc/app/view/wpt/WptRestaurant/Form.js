@@ -46,7 +46,8 @@ initComponent : function(){
 					fieldLabel : '区'
 				})
 	,{xtype : 'textfield',name : 'bean.addr',fieldLabel : '地址'}
-	,{xtype : 'textfield',name : 'bean.coordinate',fieldLabel : '经纬度'}
+	,{xtype : 'textfield',name : 'bean.longitude',fieldLabel : '经度'}
+	,{xtype : 'textfield',name : 'bean.latitude',fieldLabel : '纬度'}
 	,
 		mvc.Tools.crtComboForm(false,{
 					name : 'bean.display',
