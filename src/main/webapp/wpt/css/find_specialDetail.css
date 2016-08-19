@@ -1,0 +1,121 @@
+/*find 发现*/
+
+
+.find_spe{
+	display:block;
+	position:relative;
+	width:100%;
+	overflow:hidden;
+	margin:0 auto;
+}
+.find_spe img{
+	display:block;
+	width:100%;
+	height:5.6rem;
+}
+.findspe_flog{
+	width:100%;
+	height:100%;
+	position:absolute;
+	left:0;
+	top:0;
+	z-index:2;
+	background:url("../images/bbg20.png");
+}
+.find_spe .txt{
+	width:100%;
+	height:1.4rem;
+	line-height:1.19rem;
+	text-align:center;
+	position:absolute;
+	left:0;
+	top:50%;
+	z-index:4;
+	margin-top:-0.67rem;
+	color:#fff;
+	font-size:38px;
+	text-align:center;
+	background:url("../images/find_txt.png") no-repeat top center;
+	letter-spacing:3px;
+	font-weight:bold;
+}
+
+.fddet_intro{
+	padding:0.36rem 0.47rem;
+}
+.fddet_intro h2{
+	height:1.09rem;
+	line-height:1.09rem;
+	text-align:center;
+	font-size:26px;
+	font-weight:bold;
+	color:#000;
+}
+.fddet_intro p{
+	font-size:21px;
+	line-height:0.53rem;
+	color:#565656;
+}
+
+.fddet_item{
+	display:block;
+	width:9.06rem;
+	height:4.72rem;
+	margin:0 auto 0.39rem auto;
+	position:relative;
+	overflow:hidden;
+	border-radius:8px;
+}
+.fddet_item img{
+	display:block;
+	width:9.06rem;
+	height:4.72rem;
+}
+.fddet_flog{ 
+	position:absolute;
+	width:100%;
+	height:100%;
+	z-index:2;
+	background:url("../images/bbg25.png");
+}
+.fddet_item dl{
+	width:100%;
+	position:absolute;
+	left:0;
+	top:1.34rem;
+	text-align:center;
+	color:#fff;
+	z-index:3;
+}
+.fddet_item dt{
+	height:0.81rem;
+	line-height:0.81rem;
+	font-size:36px;
+	font-weight:bold;
+}
+.fddet_item dd{
+	height:0.88rem;
+	line-height:0.44rem;
+	font-size:18px;
+	letter-spacing:3px;
+	overflow: hidden;
+}
+.fddet_item .xq{
+	display:inline-block;
+	width:1.28rem;
+	height:0.38rem;
+	line-height:0.38rem;
+	border:1px solid #fff;
+	border-radius:3px;
+	text-align:center;
+	font-size:13px;
+	letter-spacing:3px;
+	color:#fff;
+	position:absolute;
+	left:50%;
+	bottom:0.7rem;
+	z-index:5;
+	margin-left:-0.66rem;
+}
+
+/*find 发现*/

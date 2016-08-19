@@ -41,6 +41,7 @@
 		</action>
 		<action name="user_*" class="userAction" method="{1}"></action>
 		<action name="combo_*" class="comboAction" method="{1}"></action>
+		<action name="serviceCenter_*" class="serviceCenterAction" method="{1}"></action>
 	</package>
 	
 	<package name="wpt" namespace="/wpt" extends="wpt_resource">
@@ -74,7 +75,7 @@
 		<action name="showMe" class="showMeAction"></action>
 		<action name="listCollect" class="listCollectAction"></action>
 		<action name="showTop" class="showTopAction"></action>
-		<action name="serviceCenter" class="serviceCenterAction"></action>
+		<action name="showServiceCenter" class="showServiceCenterAction"></action>
 		<action name="feedBack" class="feedBackAction"></action>
 		<action name="listTop" class="listTopAction"></action>
 		<action name="listSpecial" class="listSpecialAction"></action>

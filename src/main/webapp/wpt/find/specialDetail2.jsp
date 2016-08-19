@@ -1,23 +1,38 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%> 
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <meta name="format-detection" content="telephone=no" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<script type="text/javascript" src="js/flexible.js"></script>
-<link type="text/css" rel="stylesheet" href="css/base.css" />
-<link type="text/css" rel="stylesheet" href="css/find_specialDetail.css"/>
+<link type="text/css" rel="stylesheet" href="css/css.css" />
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<!--这段JS不能删除，且前面最好别再放其它JS-->
+<script type="text/javascript">
+    var phoneWidth =  parseInt(window.screen.width);
+    var phoneScale = phoneWidth/640;
+    var ua = navigator.userAgent;
+    if (/Android (\d+\.\d+)/.test(ua)){
+        var version = parseFloat(RegExp.$1);
+        if(version>2.3){
+            document.write('<meta name="viewport" content="width=640, minimum-scale = '+phoneScale+', maximum-scale = '+phoneScale+', target-densitydpi=device-dpi">');
+        }else{
+            document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+        }
+    } else {
+        document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+    }
+</script>
 <title>享食光</title>
 </head>
-<body>
+
+<body>	
+		
 	<a href="javascript:;" class="find_spe">
 		<div class="txt">${special.title }</div>
 		<div class="findspe_flog"></div>
-		<img src="../${special.topImgUrl }"/>	
+		<img src="../${special.topImgUrl }" style="height:359px"/>	
 	</a>
 	
 	<div class="fddet_intro">
@@ -33,7 +48,7 @@
 		<img data-original="../${line.imgUrl}" class="lazy"/>
 		</a>
 	</s:iterator>
-	<jsp:include page="../tip.jsp"/>
+			
 </body>
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="js/jquery.lazyload.min.js"></script>

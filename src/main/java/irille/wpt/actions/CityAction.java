@@ -19,7 +19,7 @@ import irille.pub.bean.Bean;
 import irille.wpt.interceptor.CityInterceptor;
 import irille.wpt.service.CityService;
 import irille.wx.wpt.WptCity;
-@Controller
+@Controller("customer_cityAction")
 @Scope("prototype")
 public class CityAction extends AbstractWptAction {
 	/**

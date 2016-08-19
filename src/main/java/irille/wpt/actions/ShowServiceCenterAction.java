@@ -1,35 +1,27 @@
 package irille.wpt.actions;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
-import org.apache.struts2.ServletActionContext;
-import org.json.JSONObject;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.wx.wpt.WptServiceCen;
 @Controller
 @Scope("prototype")
-public class ServiceCenterAction extends AbstractWptAction {
+public class ShowServiceCenterAction extends AbstractWptAction {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 4671621940447787133L;
 	private WptServiceCen serviceCenter;
 	
 	/**
 	 * 客服中心
 	 */
-	public void info() throws Exception {
+	@Override
+	public String execute() throws Exception {
 		serviceCenter = WptServiceCen.load(WptServiceCen.class, getAccount().getPkey());
-		try {
-			PrintWriter writer = ServletActionContext.getResponse().getWriter();
-			writer.print(new JSONObject().put("qrcode", serviceCenter.getQrcode()).put("mobile", serviceCenter.getMobile()));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		setResult("me/serviceCenter.jsp");
+		return TRENDS;
 	}
 
 	public WptServiceCen getServiceCenter() {

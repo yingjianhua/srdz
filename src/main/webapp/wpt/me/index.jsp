@@ -60,7 +60,7 @@
 		<a href="listFans?account.pkey=${account.pkey}"><div>我的粉丝<em class="icon text">${fansNum }人</em></div></a>
 		<a href="listFansSale?account.pkey=${account.pkey}"><div>粉丝销量<p class="icon text">${fansSaleAmount }元</p></div></a>	
 		<div class="double_line"></div>
-		<a href="serviceCenter?account.pkey=${account.pkey}"><div>客服中心</div></a>	
+		<a href="showServiceCenter?account.pkey=${account.pkey}"><div>客服中心</div></a>	
 		<a href="feedBack?account.pkey=${account.pkey}"><div>意见反馈</div></a>	
 	</div>
 	<div class="user_invited">您是由 【<s:if test="user.invited3!=null">${user.gtInvited3().nickname }</s:if><s:else>${user.gtAccount().accountName }</s:else>】 推荐</div>

@@ -4,10 +4,7 @@ import java.util.List;
 
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import irille.core.sys.Sys.OEnabled;
 import irille.pub.bean.Bean;
@@ -36,9 +33,9 @@ public class ComboDao extends BaseDao<Combo, Integer>{
 	private StringBuilder createQueryString(String banquet, String pnum, String budget, String city, String area) {
 		Session session = sessionFactory.getCurrentSession();
 		StringBuilder where = new StringBuilder();
-		where.append("select c.* from ").append(WptCombo.TB.getCodeSqlTb()).append(" c left join ").append(WptRestaurant.TB.getCodeSqlTb()).append(" r ");
+		where.append("select c.*,p.* from product_combo c left join product").append(" p on (c.comboId=p.pkey) left join ").append(WptRestaurant.TB.getCodeSqlTb()).append(" r ");
 		where.append("on c.").append(WptCombo.T.RESTAURANT).append("=r.").append(WptCombo.T.PKEY).append(" where ");
-		where.append("c.").append(WptCombo.T.ENABLED).append("=").append(OEnabled.TRUE.getLine().getKey());
+		where.append("p.").append(WptCombo.T.ENABLED).append("=").append(OEnabled.TRUE.getLine().getKey());
 		if(pnum != null && !pnum.equals("")) {
 			if(pnum.matches(pattern1)) {
 				where.append(" and c.").append(WptCombo.T.NUMBER_MIN).append(" <= ").append(pnum.split(",")[1]);
@@ -57,17 +54,17 @@ public class ComboDao extends BaseDao<Combo, Integer>{
 		}
 		if(budget != null && !budget.equals("")) {
 			if(budget.matches(pattern1)) {
-				where.append(" and c.").append(WptCombo.T.PRICE).append(" <= ").append(budget.split(",")[1]);
+				where.append(" and p.").append(WptCombo.T.PRICE).append(" <= ").append(budget.split(",")[1]);
 			} else
 			if(budget.matches(pattern2)) {
-				where.append(" and c.").append(WptCombo.T.PRICE).append(" >= ").append(budget.split(",")[0]);
+				where.append(" and p.").append(WptCombo.T.PRICE).append(" >= ").append(budget.split(",")[0]);
 			} else
 			if(budget.matches(pattern3)) {
-				where.append(" and c.").append(WptCombo.T.PRICE).append(" <= ").append(budget.split(",")[1]);
-				where.append(" and c.").append(WptCombo.T.PRICE).append(" >= ").append(budget.split(",")[0]);
+				where.append(" and p.").append(WptCombo.T.PRICE).append(" <= ").append(budget.split(",")[1]);
+				where.append(" and p.").append(WptCombo.T.PRICE).append(" >= ").append(budget.split(",")[0]);
 			} else
 			if(budget.matches(pattern4)) {
-				where.append(" and c.").append(WptCombo.T.PRICE).append(" = ").append(budget);
+				where.append(" and p.").append(WptCombo.T.PRICE).append(" = ").append(budget);
 			}
 		}
 		if(city != null && !city.equals("")) {

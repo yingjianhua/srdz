@@ -1,8 +1,15 @@
 package irille.wpt.bean;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.math.BigDecimal;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 
 /**
@@ -10,24 +17,11 @@ import java.math.BigDecimal;
  * 
  */
 @Entity
-@Table(name="wpt_combo")
+@Table(name="product_combo")
+@PrimaryKeyJoinColumn(name="comboId")
 @NamedQuery(name="Combo.findAll", query="SELECT c FROM Combo c")
-public class Combo implements Serializable {
+public class Combo extends Product implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	private int pkey;
-
-	private int account;
-
-	private String des;
-
-	private byte enabled;
-
-	@Column(name="img_url")
-	private String imgUrl;
-
-	private String name;
 
 	@Column(name="number_max")
 	private int numberMax;
@@ -35,19 +29,9 @@ public class Combo implements Serializable {
 	@Column(name="number_min")
 	private int numberMin;
 
-	@Column(name="orig_price")
-	private BigDecimal origPrice;
-
-	private BigDecimal price;
-
-	private String rem;
-
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="restaurant")
 	private Restaurant restaurant;
-
-	@Column(name="row_version")
-	private short rowVersion;
 
 	@Column(name="service_date")
 	private String serviceDate;
@@ -58,54 +42,6 @@ public class Combo implements Serializable {
 	private int sort;
 
 	public Combo() {
-	}
-
-	public int getPkey() {
-		return this.pkey;
-	}
-
-	public void setPkey(int pkey) {
-		this.pkey = pkey;
-	}
-
-	public int getAccount() {
-		return this.account;
-	}
-
-	public void setAccount(int account) {
-		this.account = account;
-	}
-
-	public String getDes() {
-		return this.des;
-	}
-
-	public void setDes(String des) {
-		this.des = des;
-	}
-
-	public byte getEnabled() {
-		return this.enabled;
-	}
-
-	public void setEnabled(byte enabled) {
-		this.enabled = enabled;
-	}
-
-	public String getImgUrl() {
-		return this.imgUrl;
-	}
-
-	public void setImgUrl(String imgUrl) {
-		this.imgUrl = imgUrl;
-	}
-
-	public String getName() {
-		return this.name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public int getNumberMax() {
@@ -124,44 +60,12 @@ public class Combo implements Serializable {
 		this.numberMin = numberMin;
 	}
 
-	public BigDecimal getOrigPrice() {
-		return this.origPrice;
-	}
-
-	public void setOrigPrice(BigDecimal origPrice) {
-		this.origPrice = origPrice;
-	}
-
-	public BigDecimal getPrice() {
-		return this.price;
-	}
-
-	public void setPrice(BigDecimal price) {
-		this.price = price;
-	}
-
-	public String getRem() {
-		return this.rem;
-	}
-
-	public void setRem(String rem) {
-		this.rem = rem;
-	}
-
 	public Restaurant getRestaurant() {
 		return this.restaurant;
 	}
 
 	public void setRestaurant(Restaurant restaurant) {
 		this.restaurant = restaurant;
-	}
-
-	public short getRowVersion() {
-		return this.rowVersion;
-	}
-
-	public void setRowVersion(short rowVersion) {
-		this.rowVersion = rowVersion;
 	}
 
 	public String getServiceDate() {
@@ -190,10 +94,7 @@ public class Combo implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Combo [pkey=" + pkey + ", account=" + account + ", des=" + des + ", enabled=" + enabled + ", imgUrl="
-				+ imgUrl + ", name=" + name + ", numberMax=" + numberMax + ", numberMin=" + numberMin + ", origPrice="
-				+ origPrice + ", price=" + price + ", rem=" + rem + ", restaurant=" + restaurant + ", rowVersion="
-				+ rowVersion + ", serviceDate=" + serviceDate + ", serviceTime=" + serviceTime + ", sort=" + sort + "]";
+		return "Combo [numberMax=" + numberMax + ", numberMin=" + numberMin + ", restaurant=" + restaurant
+				+ ", serviceDate=" + serviceDate + ", serviceTime=" + serviceTime + ", sort=" + sort + "]";
 	}
-
 }

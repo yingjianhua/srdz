@@ -16,7 +16,7 @@ import irille.wpt.interceptor.CityInterceptor;
 import irille.wpt.service.ComboService;
 import irille.wx.wpt.WptCity;
 
-@Controller
+@Controller("customer_comboAction")
 @Scope("prototype")
 public class ComboAction extends AbstractWptAction  {
 
