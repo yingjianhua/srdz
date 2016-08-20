@@ -11,14 +11,14 @@
 	<package name="wpt_resource" namespace="/wpt/resource" extends="struts-default">
 		<interceptors>
 			<!-- 拦截器配置 -->
-			<interceptor name="ItpExpandRecord" class="irille.pub.svr.ItpExpandRecord"/>
 			<interceptor name="ItpDb" class="irille.pub.svr.ItpDb" />
+			<interceptor name="role22" class="irille.wpt.interceptor.RoleInterceptor" />
 
 			<!-- 拦截器栈配置,拦截栈可以包含拦截器栈 -->
 			<interceptor-stack name="wpt_resource">
-			    <interceptor-ref name="ItpExpandRecord" />
-				<interceptor-ref name="ItpDb" />
 				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="ItpDb" />
+				<interceptor-ref name="role22" />
 			</interceptor-stack>
 		</interceptors>
 		
@@ -33,7 +33,7 @@
 		<action name="city_*" class="cityAction" method="{1}"></action>
 		<action name="order_*" class="orderAction" method="{1}"></action>
 		<action name="top_*" class="topAction" method="{1}"></action>
-		<action name="feedBack_*" class="feedBackAction" method="{1}"></action>
+		<action name="feedback_*" class="feedbackAction" method="{1}"></action>
 		<action name="seller_*" class="sellerAction" method="{1}"></action>
 		<action name="order_confirmOrder" class="orderAction" method="confirmOrder">
 			<interceptor-ref name="tokenSession" />
@@ -46,16 +46,18 @@
 	
 	<package name="wpt" namespace="/wpt" extends="wpt_resource">
 	    <interceptors>
+			<!-- 拦截器配置 -->
+			<interceptor name="ItpDb" class="irille.pub.svr.ItpDb" />
 			<interceptor name="authorizeInterceptor" class="irille.wpt.interceptor.AuthorizeInterceptor" />
 			<interceptor name="cityInterceptor" class="irille.wpt.interceptor.CityInterceptor" />
 			<interceptor name="jsCodeInterceptor" class="irille.wpt.interceptor.JsCodeInterceptor" />
 			
 			<interceptor-stack name="wpt">
-				<interceptor-ref name="wpt_resource" />
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="ItpDb" />
 				<interceptor-ref name="authorizeInterceptor" />
 				<interceptor-ref name="cityInterceptor" />
 				<interceptor-ref name="jsCodeInterceptor" />
-				
 			</interceptor-stack>
 	    </interceptors>
 		<!-- 将自定义拦截器设置为默认拦截器-->
@@ -89,6 +91,7 @@
 		<action name="listCashHistory" class="listCashHistoryAction"></action>
 		<action name="listFans" class="listFansAction"></action>
 		<action name="listFansSale" class="listFansSaleAction"></action>
+		<action name="showFeedback" class="showFeedbackAction"></action>
 		
 	</package>
 	

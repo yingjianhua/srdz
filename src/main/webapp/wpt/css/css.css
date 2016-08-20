@@ -3,6 +3,10 @@
 	margin:0;
 	padding:0;	
 }
+dl,dt,dd,p,h2{
+	margin:0;
+	padding:0;	
+}
 body{		
 	-webkit-overflow-scrolling: touch;
 	width:640px;	

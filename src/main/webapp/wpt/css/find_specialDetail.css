@@ -1,6 +1,5 @@
 /*find 发现*/
 
-
 .find_spe{
 	display:block;
 	position:relative;
@@ -33,9 +32,9 @@
 	z-index:4;
 	margin-top:-0.67rem;
 	color:#fff;
-	font-size:38px;
+	font-size:0.59rem;
 	text-align:center;
-	background:url("../images/find_txt.png") no-repeat top center;
+	background:url("../images/find_txt.png") no-repeat 1.93rem center / auto 1.34rem;
 	letter-spacing:3px;
 	font-weight:bold;
 }
@@ -44,7 +43,7 @@
 	padding:0.36rem 0.47rem;
 }
 .fddet_intro h2{
-	height:1.09rem;
+	height:1.6rem;
 	line-height:1.09rem;
 	text-align:center;
 	font-size:26px;
@@ -52,7 +51,7 @@
 	color:#000;
 }
 .fddet_intro p{
-	font-size:21px;
+	font-size:0.33rem;
 	line-height:0.53rem;
 	color:#565656;
 }
@@ -90,13 +89,13 @@
 .fddet_item dt{
 	height:0.81rem;
 	line-height:0.81rem;
-	font-size:36px;
+	font-size:0.55rem;
 	font-weight:bold;
 }
 .fddet_item dd{
 	height:0.88rem;
 	line-height:0.44rem;
-	font-size:18px;
+	font-size:0.28rem;
 	letter-spacing:3px;
 	overflow: hidden;
 }
@@ -108,7 +107,7 @@
 	border:1px solid #fff;
 	border-radius:3px;
 	text-align:center;
-	font-size:13px;
+	font-size:0.2rem;
 	letter-spacing:3px;
 	color:#fff;
 	position:absolute;

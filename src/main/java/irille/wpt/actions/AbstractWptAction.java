@@ -2,7 +2,6 @@ package irille.wpt.actions;
 
 import java.util.Map;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,7 +10,6 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import irille.wpt.tools.WxJsCreater;
 import irille.wx.wx.WxAccount;
 import irille.wx.wx.WxUser;
 
@@ -28,9 +26,6 @@ public abstract class AbstractWptAction extends ActionSupport implements Session
 	private HttpServletResponse response;
 	protected WxAccount account;
 	private String result;
-	private String jsCode;
-	@Resource(name="wxJsCreater")
-	private WxJsCreater jsCreater;
 	public static final String TRENDS = "trends";
 	public static final String RTRENDS = "rtrends";
 	
@@ -70,18 +65,6 @@ public abstract class AbstractWptAction extends ActionSupport implements Session
 	public void setResult(String result) {
 		this.result = result;
 	}
-	public String getJsCode() {
-		return jsCode;
-	}
-	public void setJsCode(String jsCode) {
-		this.jsCode = jsCode;
-	}
-	public WxJsCreater getJsCreater() {
-		return jsCreater;
-	}
-	public void setJsCreater(WxJsCreater jsCreater) {
-		this.jsCreater = jsCreater;
-	}
 	public static String getDomain() {
 		if(domain == null) {
 			domain = ServletActionContext.getServletContext().getInitParameter("webPath");
@@ -107,7 +90,5 @@ public abstract class AbstractWptAction extends ActionSupport implements Session
 		} else {
 			return null;
 		}
-	}
-	public void addExtraWxJsCode()  {
 	}
 }

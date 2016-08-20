@@ -12,7 +12,7 @@ import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import irille.pub.Log;
-import irille.wpt.actions.LoginSellerAction;
+import irille.wpt.actions.impl.LoginSellerAction;
 import irille.wpt.tools.SmsTool;
 import irille.wx.wpt.Wpt.OStatus;
 import irille.wx.wpt.WptOrder;

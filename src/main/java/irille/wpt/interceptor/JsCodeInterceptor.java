@@ -14,6 +14,7 @@ import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 
 import irille.pub.Log;
 import irille.pub.PubInfs.IMsg;
+import irille.wpt.actions.AbstractControllAction;
 import irille.wpt.actions.AbstractWptAction;
 import irille.wpt.actions.IMenuShareAppMessage;
 import irille.wpt.actions.IMenuShareTimeline;
@@ -42,8 +43,8 @@ public class JsCodeInterceptor extends AbstractInterceptor{
 	@Override
 	public String intercept(ActionInvocation actionInvocation) throws Exception {
 		Object action = actionInvocation.getAction();
-		if(action instanceof AbstractWptAction) {
-			AbstractWptAction wptAction = ((AbstractWptAction)action);
+		if(action instanceof AbstractControllAction) {
+			AbstractControllAction wptAction = ((AbstractControllAction)action);
 			WxAccount account = null;
 			HttpServletRequest request = null;
 			ActionContext actionContext = actionInvocation.getInvocationContext();
