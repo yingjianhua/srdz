@@ -70,9 +70,6 @@ function findCombo(longitude,latitude) {
 				items += '	<div class="headImage"><img class="headImage lazy" data-original="../'+record.imgUrl+'"></div>';
 				items += '	<div class="desc">';
 				items += '		<h4 class="title">'+record.name+'</h4>';
-				if(record.desc) {
-					items += '		<p class="desc">'+record.desc+'</p>';
-				}
 				items += '		<div class="addr"><p>'+record.area;
 				if(record.longitude && record.latitude) {
 					var dest = i.getDistance(new Location(record.longitude, record.latitude));
@@ -105,7 +102,7 @@ $(function() {
 	$(".go").click(function() {
 		location.href = "selectService?account.pkey=${account.pkey }&banquetId=${banquetId}&pnum=${pnum}&budget=${budget}&areaId=${areaId}";
 	})
-	findCombo(120.732107,27.973482);
+	//findCombo(120.732107,27.973482);
 })
 </script>
 </html>

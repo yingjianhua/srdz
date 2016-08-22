@@ -18,7 +18,6 @@ this.columns =[
                {text : '关注时间',width : 140,dataIndex : 'bean.subscribeTime',sortable : true,renderer : Ext.util.Format.dateRenderer('Y-m-d H:i:s')},
                {text : '一级邀请人',width : 100,dataIndex : 'bean.invited1',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wxex',mn : 'view.wx.WxUser.List'},
                {text : '二级邀请人',width : 100,dataIndex : 'bean.invited2',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wxex',mn : 'view.wx.WxUser.List'},
-               {text : '三级邀请人',width : 100,dataIndex : 'bean.invited3',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wxex',mn : 'view.wx.WxUser.List'},
                {text : '推广二维码',width : 100,dataIndex : 'bean.qrcode',sortable : true, renderer: function(v) {return "<img src='.."+v+"' height='50px'/ >"}},
                {text : '二维码到期时间',width : 140,dataIndex : 'bean.qrcodeExpireTime',sortable : true,renderer : Ext.util.Format.dateRenderer('Y-m-d H:i:s')},
 	];

@@ -28,44 +28,36 @@ public class UserService {
 	private QrcodeRuleService qrcodeRuleService;
 	
 	public int getFans1Num(Integer userid){
-		String sql = Idu.sqlString("select count(*) fansNum from {0} where {1}=?", WxUser.class, WxUser.T.INVITED3);
-		Map<String, Object> resultMap = Bean.executeQueryMap(sql, userid)[0];
-		long fansNum = (long)resultMap.get("fansNum");
-		return (int)fansNum;
-	}
-	public int getFans2Num(Integer userid){
 		String sql = Idu.sqlString("select count(*) fansNum from {0} where {1}=?", WxUser.class, WxUser.T.INVITED2);
 		Map<String, Object> resultMap = Bean.executeQueryMap(sql, userid)[0];
 		long fansNum = (long)resultMap.get("fansNum");
 		return (int)fansNum;
 	}
-	public int getFans3Num(Integer userid){
+	public int getFans2Num(Integer userid){
 		String sql = Idu.sqlString("select count(*) fansNum from {0} where {1}=?", WxUser.class, WxUser.T.INVITED1);
 		Map<String, Object> resultMap = Bean.executeQueryMap(sql, userid)[0];
 		long fansNum = (long)resultMap.get("fansNum");
 		return (int)fansNum;
 	}
 	public int getFansNum(Integer userid) {
-		String sql = Idu.sqlString("select count(*) fansNum from {0} where {1}=? or {2}=? or {3}=?", WxUser.class, WxUser.T.INVITED1, WxUser.T.INVITED2, WxUser.T.INVITED3);
-		Map<String, Object> resultMap = Bean.executeQueryMap(sql, userid, userid, userid)[0];
+		String sql = Idu.sqlString("select count(*) fansNum from {0} where {1}=? or {2}=?", WxUser.class, WxUser.T.INVITED1, WxUser.T.INVITED2);
+		Map<String, Object> resultMap = Bean.executeQueryMap(sql, userid, userid)[0];
 		long fansNum = (long)resultMap.get("fansNum");
 		return (int)fansNum;
 	}
 	public List<WxUser> getFans(Integer userid) {
-		List<WxUser> fanses = Bean.list(WxUser.class, Idu.sqlString("{0}=? or {1}=? or {2}=?", WxUser.T.INVITED1, WxUser.T.INVITED2, WxUser.T.INVITED3), false, userid, userid, userid);
+		List<WxUser> fanses = Bean.list(WxUser.class, Idu.sqlString("{0}=? or {1}=?", WxUser.T.INVITED1, WxUser.T.INVITED2), false, userid, userid);
 		return fanses;
 	}
 	public List<WxUser> getFansByCondition(String openid, Integer accountPkey, int level, int fanid) {
 		WxUser user = WxUser.loadUniqueOpenIdAccount(false, openid, accountPkey);
 		WxUser.T t = WxUser.T.PKEY;
 		if(fanid != 0) {
-			return Bean.list(WxUser.class, t+"=? and ("+t.INVITED1+"=? or "+t.INVITED2+"=? or "+t.INVITED3+"=?)", false, fanid, user.getPkey(), user.getPkey(), user.getPkey());
+			return Bean.list(WxUser.class, t+"=? and ("+t.INVITED1+"=? or "+t.INVITED2+"=?)", false, fanid, user.getPkey(), user.getPkey(), user.getPkey());
 		}
 		if(level == 1) {
-			return Bean.list(WxUser.class, WxUser.T.INVITED3+"=?", false, user.getPkey());
-		} else if(level == 2){
 			return Bean.list(WxUser.class, WxUser.T.INVITED2+"=?", false, user.getPkey());
-		} else if(level == 3){
+		} else if(level == 2){
 			return Bean.list(WxUser.class, WxUser.T.INVITED1+"=?", false, user.getPkey());
 		} else {
 			return null;

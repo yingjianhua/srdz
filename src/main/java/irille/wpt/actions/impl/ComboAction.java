@@ -29,30 +29,25 @@ public class ComboAction extends AbstractCRUDAction {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private String banquetId;
+	private String banquetId;    
 	private String pnum;
 	private String budget;
 	private String areaId;
 	private String longitude;
 	private String latitude;
 	private List<Combo> combos;
+	
+	private Combo bean;
+	
 	@Resource
 	private ComboService comboService;
 	
-	@DenyAll
-	public void deny() {
-		
-	}
-	@PermitAll
-	public void permit() {
-		
-	}
-	@RolesAllowed({"admin","ddd"})
-	public void roles() {
-		
+	public void add() {
+		System.out.println(bean);
+		System.out.println("add");
 	}
 
-	@RolesAllowed("user")
+	@PermitAll
 	public void list() throws JSONException, IOException {
 		combos = comboService.findByCondition(banquetId, pnum, budget, ((WptCity)getSession().get(CityInterceptor.CITY)).getPkey().toString(), areaId, longitude, latitude);
 		JSONArray array = new JSONArray();
@@ -111,5 +106,11 @@ public class ComboAction extends AbstractCRUDAction {
 	}
 	public void setCombos(List<Combo> combos) {
 		this.combos = combos;
+	}
+	public Combo getBean() {
+		return bean;
+	}
+	public void setBean(Combo bean) {
+		this.bean = bean;
 	}
 }

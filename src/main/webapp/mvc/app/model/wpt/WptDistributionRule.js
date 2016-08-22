@@ -8,7 +8,6 @@ proxy : {
 fields : [{name : 'bean.pkey',mapping : 'pkey',type : 'int',useNull : true}
 	,{name : 'bean.bonus1',mapping : 'bonus1',type : 'int',useNull : true}
 	,{name : 'bean.bonus2',mapping : 'bonus2',type : 'int',useNull : true}
-	,{name : 'bean.bonus3',mapping : 'bonus3',type : 'int',useNull : true}
 	,{name : 'bean.rowVersion',mapping : 'rowVersion',type : 'int',useNull : true}
 	]
 });

@@ -168,11 +168,9 @@ public class WxUserDAO {
 	private static WxUser ins(JSONObject json, Integer accountPkey, Long invitedId) {
 		WxUser user = buildWxUser(null, json, accountPkey);
 		if(invitedId != null) { 
-			WxUser invited3 = WxUser.load(WxUser.class, invitedId);
-			Integer invited2 = invited3.getInvited3();
-			Integer invited1 = invited3.getInvited2();
-			user.stInvited3(invited3);
-			user.setInvited2(invited2);
+			WxUser invited2 = WxUser.load(WxUser.class, invitedId);
+			Integer invited1 = invited2.getInvited2();
+			user.stInvited2(invited2);
 			user.setInvited1(invited1);
 		}
 		user.ins();

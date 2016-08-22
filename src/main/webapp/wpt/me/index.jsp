@@ -63,7 +63,7 @@
 		<a href="showServiceCenter?account.pkey=${account.pkey}"><div>客服中心</div></a>	
 		<a href="feedBack?account.pkey=${account.pkey}"><div>意见反馈</div></a>	
 	</div>
-	<div class="user_invited">您是由 【<s:if test="user.invited3!=null">${user.gtInvited3().nickname }</s:if><s:else>${user.gtAccount().accountName }</s:else>】 推荐</div>
+	<div class="user_invited">您是由 【<s:if test="user.invited2!=null">${user.gtInvited2().nickname }</s:if><s:else>${user.gtAccount().accountName }</s:else>】 推荐</div>
 </body>
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="js/base.js"></script>

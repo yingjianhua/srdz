@@ -15,7 +15,6 @@ public class WptDistributionRule extends BeanInt<WptDistributionRule> {
 		ACCOUNT(WxAccount.fldOneToOne()),
 		BONUS1(SYS.INT_PLUS_OR_ZERO, "一级邀请人提成百分比"),
 		BONUS2(SYS.INT_PLUS_OR_ZERO, "二级邀请人提成百分比"),
-		BONUS3(SYS.INT_PLUS_OR_ZERO, "三级邀请人提成百分比"),
 		ROW_VERSION(SYS.ROW_VERSION), 
 
 		// >>>以下是自动产生的源代码行--内嵌字段定义--请保留此行用于识别>>>
@@ -72,7 +71,6 @@ public class WptDistributionRule extends BeanInt<WptDistributionRule> {
   private Integer _pkey;	// 编号  INT
   private Integer _bonus1;	// 一级邀请人提成百分比  INT
   private Integer _bonus2;	// 二级邀请人提成百分比  INT
-  private Integer _bonus3;	// 三级邀请人提成百分比  INT
   private Short _rowVersion;	// 版本  SHORT
 
 	@Override
@@ -80,7 +78,6 @@ public class WptDistributionRule extends BeanInt<WptDistributionRule> {
 		super.init();
     _bonus1=0;	// 一级邀请人提成百分比  INT
     _bonus2=0;	// 二级邀请人提成百分比  INT
-    _bonus3=0;	// 三级邀请人提成百分比  INT
     _rowVersion=0;	// 版本  SHORT
     return this;
   }
@@ -110,12 +107,6 @@ public class WptDistributionRule extends BeanInt<WptDistributionRule> {
   }
   public void setBonus2(Integer bonus2){
     _bonus2=bonus2;
-  }
-  public Integer getBonus3(){
-    return _bonus3;
-  }
-  public void setBonus3(Integer bonus3){
-    _bonus3=bonus3;
   }
   public Short getRowVersion(){
     return _rowVersion;

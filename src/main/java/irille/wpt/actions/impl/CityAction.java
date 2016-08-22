@@ -20,7 +20,7 @@ import irille.wpt.actions.AbstractCRUDAction;
 import irille.wpt.interceptor.CityInterceptor;
 import irille.wpt.service.CityService;
 import irille.wx.wpt.WptCity;
-@Controller("customer_cityAction")
+@Controller
 @Scope("prototype")
 public class CityAction extends AbstractCRUDAction {
 	/**

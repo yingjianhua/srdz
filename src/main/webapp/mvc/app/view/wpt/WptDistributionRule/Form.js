@@ -23,11 +23,6 @@ Ext.define('mvc.view.wpt.WptDistributionRule.Form', {
 		},
 		{
 			xtype : 'numberfield',
-			name : 'bean.bonus3',
-			fieldLabel : '三级邀请人提成百分比',
-		},
-		{
-			xtype : 'numberfield',
 			name : 'bean.rowVersion',
 			value : 0,
 			afterLabelTextTpl : required,

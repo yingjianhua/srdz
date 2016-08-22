@@ -36,7 +36,6 @@ public class WxUser extends BeanInt<WxUser> implements IExtName{
     SUBSCRIBE_TIME(SYS.TIME__NULL,"关注时间"),
     INVITED1(WxUser.fldOutKey("invited1", "一级邀请人").setNull()),
     INVITED2(WxUser.fldOutKey("invited2", "二级邀请人").setNull()),
-    INVITED3(WxUser.fldOutKey("invited3", "三级邀请人").setNull()),
     IS_MEMBER(SYS.NY, "是否会员"),
     QRCODE(SYS.PHOTO__NULL, "专属二维码"),
     QRCODE_EXPIRE_TIME(SYS.TIME__NULL, "二维码到期时间"),
@@ -54,7 +53,6 @@ public class WxUser extends BeanInt<WxUser> implements IExtName{
     // 索引
 	public static final Index IDX_INVITED1_ACCOUNT = TB.addIndex("invited1Account", false, T.INVITED1, T.ACCOUNT);
 	public static final Index IDX_INVITED2_ACCOUNT = TB.addIndex("invited2Account", false, T.INVITED2, T.ACCOUNT);
-	public static final Index IDX_INVITED3_ACCOUNT = TB.addIndex("invited3Account", false, T.INVITED3, T.ACCOUNT);
     public static final Index IDX_OPEN_ID_ACCOUNT = TB.addIndex("openIdAccount", true, T.OPEN_ID, T.ACCOUNT);
     public static final Index IDX_UNION_ID_ACCOUNT = TB.addIndex("unionIdAccount", true, T.UNION_ID, T.ACCOUNT);
     public static final Index IDX_NICKNAME_ACCOUNT = TB.addIndex("nicknameAccount", false, T.NICKNAME, T.ACCOUNT);
@@ -129,7 +127,6 @@ public class WxUser extends BeanInt<WxUser> implements IExtName{
   private Date _subscribeTime;	// 关注时间  TIME<null>
   private Integer _invited1;	// 一级邀请人 <表主键:WxUser>  INT<null>
   private Integer _invited2;	// 二级邀请人 <表主键:WxUser>  INT<null>
-  private Integer _invited3;	// 三级邀请人 <表主键:WxUser>  INT<null>
   private Byte _isMember;	// 是否会员 <OYn>  BYTE
 	// YES:1,是
 	// NO:0,否
@@ -161,7 +158,6 @@ public class WxUser extends BeanInt<WxUser> implements IExtName{
     _subscribeTime=null;	// 关注时间  TIME
     _invited1=null;	// 一级邀请人 <表主键:WxUser>  INT
     _invited2=null;	// 二级邀请人 <表主键:WxUser>  INT
-    _invited3=null;	// 三级邀请人 <表主键:WxUser>  INT
     _isMember=OYn.DEFAULT.getLine().getKey();	// 是否会员 <OYn>  BYTE
     _qrcode=null;	// 专属二维码  STR(200)
     _qrcodeExpireTime=null;	// 二维码到期时间  TIME
@@ -321,23 +317,6 @@ public class WxUser extends BeanInt<WxUser> implements IExtName{
       setInvited2(null);
     else
       setInvited2(invited2.getPkey());
-  }
-  public Integer getInvited3(){
-    return _invited3;
-  }
-  public void setInvited3(Integer invited3){
-    _invited3=invited3;
-  }
-  public WxUser gtInvited3(){
-    if(getInvited3()==null)
-      return null;
-    return (WxUser)get(WxUser.class,getInvited3());
-  }
-  public void stInvited3(WxUser invited3){
-    if(invited3==null)
-      setInvited3(null);
-    else
-      setInvited3(invited3.getPkey());
   }
   public Byte getIsMember(){
     return _isMember;

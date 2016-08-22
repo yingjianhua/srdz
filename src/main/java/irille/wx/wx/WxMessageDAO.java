@@ -106,16 +106,12 @@ public class WxMessageDAO {
    * @param user
    */
   public static void notifyInvited(String accessToken, WxUser user) {
-	  WxUser invited3 = null;
 	  WxUser invited2 = null;
 	  WxUser invited1 = null;
-	  if((invited3=user.gtInvited3()) != null) {
-		  sendTextMessage(accessToken, invited3.getOpenId(), user.getNickname()+"通过您的邀请成为您的粉丝!");
-		  if((invited2=user.gtInvited2()) != null) {
-			  sendTextMessage(accessToken, invited2.getOpenId(), "您的朋友"+invited3.getNickname()+"新增粉丝"+user.getNickname());
-			  if((invited1=user.gtInvited1()) != null) {
-				  sendTextMessage(accessToken, invited1.getOpenId(), "您的朋友"+invited2.getNickname()+"新增粉丝"+user.getNickname());  
-			  }
+	  if((invited2=user.gtInvited2()) != null) {
+		  sendTextMessage(accessToken, invited2.getOpenId(), user.getNickname()+"通过您的邀请成为您的粉丝!");
+		  if((invited1=user.gtInvited1()) != null) {
+			  sendTextMessage(accessToken, invited1.getOpenId(), "您的朋友"+invited2.getNickname()+"新增粉丝"+user.getNickname());
 		  }
 	  }
   }
@@ -131,18 +127,14 @@ public class WxMessageDAO {
 	  content.append("获得分享金额：").append(journal.getCommission()).append("元\n");
 	  sendTextMessage(accessToken, openId, content.toString());
   }
-  public static void notifyCommissionJournal(String accessToken, WptCommissionJournal journal3, String openId3, WptCommissionJournal journal2, String openId2, WptCommissionJournal journal1, String openId1){
+  public static void notifyCommissionJournal(String accessToken, WptCommissionJournal journal2, String openId2, WptCommissionJournal journal1, String openId1){
 	  LOG.info("--------------notifyCommissionJournal:start--------------");
-	  if(journal3!=null) {
-		  LOG.info("journal3:"+journal3);
-		  notifyCommissionJournal(accessToken, openId3, journal3);
-		  if(journal2!=null) {
-			  LOG.info("journal2:"+journal2);
-			  notifyCommissionJournal(accessToken, openId2, journal2);
-			  if(journal1!=null) {
-				  LOG.info("journal1:"+journal1);
-				  notifyCommissionJournal(accessToken, openId1, journal1);
-			  }
+	  if(journal2!=null) {
+		  LOG.info("journal2:"+journal2);
+		  notifyCommissionJournal(accessToken, openId2, journal2);
+		  if(journal1!=null) {
+			  LOG.info("journal1:"+journal1);
+			  notifyCommissionJournal(accessToken, openId1, journal1);
 		  }
 	  }
 	  LOG.info("--------------notifyCommissionJournal:end--------------");

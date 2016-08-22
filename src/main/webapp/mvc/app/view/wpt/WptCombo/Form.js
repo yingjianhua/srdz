@@ -6,14 +6,14 @@ border : false,
 frame : false,
 insFlag : true,
 bodyPadding : '5 5 5 5',
-url : base_path+'/wpt_WptCombo_',
+url : base_path+'/wpt/resource/combo_',
 fieldDefaults : {
 	labelWidth : 100,
 	labelStyle : 'font-weight : bold'
 },
 initComponent : function(){
 			if (this.insFlag)
-				this.url = this.url + 'ins';
+				this.url = this.url + 'add';
 			else
 				this.url = this.url + 'upd';
 	var formFlds = [];
