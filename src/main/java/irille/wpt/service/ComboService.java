@@ -11,7 +11,7 @@ import irille.wpt.bean.Combo;
 import irille.wpt.dao.impl.ComboDao;
 
 @Service
-public class ComboService {
+public class ComboService extends BaseService {
 
 	
 	@Resource

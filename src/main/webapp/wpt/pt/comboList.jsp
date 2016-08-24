@@ -50,7 +50,7 @@ function checkJsApiSuccess() {
 <script>
 function findCombo(longitude,latitude) {
 	$.ajax({
-		url:"resource/combo_list?account.pkey=${account.pkey}",
+		url:"resource/combo_search?account.pkey=${account.pkey}",
 		type : "POST",
 		data:{
 			banquetId:"${banquetId}",
@@ -66,13 +66,13 @@ function findCombo(longitude,latitude) {
 			var items = "";
 			$.each(result, function(index, record) {
 				items += '<li>';
-				items += '<a class="item" pkey="'+record.id+'">';
+				items += '<a class="item" pkey="'+record.pkey+'">';
 				items += '	<div class="headImage"><img class="headImage lazy" data-original="../'+record.imgUrl+'"></div>';
 				items += '	<div class="desc">';
 				items += '		<h4 class="title">'+record.name+'</h4>';
-				items += '		<div class="addr"><p>'+record.area;
-				if(record.longitude && record.latitude) {
-					var dest = i.getDistance(new Location(record.longitude, record.latitude));
+				items += '		<div class="addr"><p>'+record.restaurant.cityline.name;
+				if(record.restaurant.longitude && record.restaurant.latitude) {
+					var dest = i.getDistance(new Location(record.restaurant.longitude, record.restaurant.latitude));
 					items += '		| '+dest.toFixed(2)+' km';
 				}
 				items += '</p></div>';
@@ -102,7 +102,7 @@ $(function() {
 	$(".go").click(function() {
 		location.href = "selectService?account.pkey=${account.pkey }&banquetId=${banquetId}&pnum=${pnum}&budget=${budget}&areaId=${areaId}";
 	})
-	//findCombo(120.732107,27.973482);
+	findCombo(120.732107,27.973482);
 })
 </script>
 </html>

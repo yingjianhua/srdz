@@ -1,40 +1,672 @@
-[2016-08-22 11:18:42][INFO ] irille.pub.bean.PackageBase
+[2016-08-23 09:15:26][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@625ba0d9: startup date [Tue Aug 23 09:15:26 CST 2016]; root of context hierarchy
+[2016-08-23 09:15:27][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-23 09:15:27][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-23 09:15:27][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-23 09:15:27][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-23 09:15:27][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-23 09:15:27][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-23 09:15:28][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-23 09:15:28][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-23 09:15:28][INFO ] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl
+HHH000422: Disabling contextual LOB creation as connection was null
+[2016-08-23 09:15:30][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-23 09:15:50][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6d9d3901: startup date [Tue Aug 23 09:15:50 CST 2016]; root of context hierarchy
+[2016-08-23 09:15:50][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-23 09:15:51][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-23 09:15:51][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-23 09:15:51][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-23 09:15:51][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-23 09:15:51][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-23 09:15:51][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-23 09:15:51][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-23 09:15:51][INFO ] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl
+HHH000422: Disabling contextual LOB creation as connection was null
+[2016-08-23 09:15:53][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-23 09:15:53][INFO ] irille.pub.bean.PackageBase
 初始化模块【class irille.core.sys.Sys】信息...
-[2016-08-22 11:18:42][INFO ] irille.pub.bean.PackageBase
+[2016-08-23 09:15:54][INFO ] irille.pub.bean.PackageBase
 初始化模块【class irille.core.lg.Lg】信息...
-[2016-08-22 11:18:42][INFO ] irille.pub.FileText
-文件[D:\workspace\srdz3\src\main\java\irille\wx\wx\WxUser.java]已修改, 请按【F5】键同步显示内容!
-[2016-08-22 11:18:42][INFO ] irille.pub.svr.DbPool
+[2016-08-23 09:16:26][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.sys.Sys】信息...
+[2016-08-23 09:16:26][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.lg.Lg】信息...
+[2016-08-23 09:16:26][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@31e956bd: startup date [Tue Aug 23 09:16:26 CST 2016]; root of context hierarchy
+[2016-08-23 09:16:26][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-23 09:16:27][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-23 09:16:27][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-23 09:16:27][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-23 09:16:27][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-23 09:16:27][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-23 09:16:27][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-23 09:16:27][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-23 09:16:27][INFO ] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl
+HHH000422: Disabling contextual LOB creation as connection was null
+[2016-08-23 09:16:29][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-23 09:17:06][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.sys.Sys】信息...
+[2016-08-23 09:17:06][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.lg.Lg】信息...
+[2016-08-23 09:17:06][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1be32243: startup date [Tue Aug 23 09:17:06 CST 2016]; root of context hierarchy
+[2016-08-23 09:17:06][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-23 09:17:07][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-23 09:17:07][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-23 09:17:07][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-23 09:17:07][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-23 09:17:07][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-23 09:17:07][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-23 09:17:07][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-23 09:17:07][INFO ] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl
+HHH000422: Disabling contextual LOB creation as connection was null
+[2016-08-23 09:17:09][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-23 09:18:43][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.sys.Sys】信息...
+[2016-08-23 09:18:43][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.lg.Lg】信息...
+[2016-08-23 09:18:43][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4e3dabe4: startup date [Tue Aug 23 09:18:43 CST 2016]; root of context hierarchy
+[2016-08-23 09:18:43][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-23 09:18:43][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-23 09:18:44][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-23 09:18:44][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-23 09:18:44][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-23 09:18:44][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-23 09:18:44][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-23 09:18:44][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-23 09:18:44][INFO ] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl
+HHH000422: Disabling contextual LOB creation as connection was null
+[2016-08-23 09:18:46][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-23 09:23:45][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.sys.Sys】信息...
+[2016-08-23 09:23:45][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.lg.Lg】信息...
+[2016-08-23 09:23:45][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@32e02ddd: startup date [Tue Aug 23 09:23:45 CST 2016]; root of context hierarchy
+[2016-08-23 09:23:45][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-23 09:23:46][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-23 09:23:46][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-23 09:23:46][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-23 09:23:46][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-23 09:23:46][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-23 09:23:46][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-23 09:23:46][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-23 09:23:46][INFO ] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl
+HHH000422: Disabling contextual LOB creation as connection was null
+[2016-08-23 09:23:48][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-23 09:25:01][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.sys.Sys】信息...
+[2016-08-23 09:25:01][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.lg.Lg】信息...
+[2016-08-23 09:25:01][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@71846ce0: startup date [Tue Aug 23 09:25:01 CST 2016]; root of context hierarchy
+[2016-08-23 09:25:01][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-23 09:25:02][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-23 09:25:02][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-23 09:25:02][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-23 09:25:02][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-23 09:25:02][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-23 09:25:02][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-23 09:25:02][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-23 09:25:02][INFO ] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl
+HHH000422: Disabling contextual LOB creation as connection was null
+[2016-08-23 09:25:04][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-23 09:25:40][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.sys.Sys】信息...
+[2016-08-23 09:25:40][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.lg.Lg】信息...
+[2016-08-23 09:25:40][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2d082059: startup date [Tue Aug 23 09:25:40 CST 2016]; root of context hierarchy
+[2016-08-23 09:25:40][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-23 09:25:41][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-23 09:25:41][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-23 09:25:41][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-23 09:25:41][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-23 09:25:41][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-23 09:25:41][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-23 09:25:41][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-23 09:25:41][INFO ] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl
+HHH000422: Disabling contextual LOB creation as connection was null
+[2016-08-23 09:25:43][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-23 09:31:18][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.sys.Sys】信息...
+[2016-08-23 09:31:18][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.lg.Lg】信息...
+[2016-08-23 09:31:19][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@626ddb07: startup date [Tue Aug 23 09:31:19 CST 2016]; root of context hierarchy
+[2016-08-23 09:31:19][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-23 09:31:19][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-23 09:31:19][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-23 09:31:19][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-23 09:31:19][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-23 09:31:19][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-23 09:31:19][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-23 09:31:20][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-23 09:31:20][INFO ] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl
+HHH000422: Disabling contextual LOB creation as connection was null
+[2016-08-23 09:31:21][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-23 09:31:22][INFO ] irille.pub.svr.DbPool
 DbPool初始化开始
-[2016-08-22 11:18:42][INFO ] snaq.db.ConnectionPoolManager
+[2016-08-23 09:31:22][INFO ] snaq.db.ConnectionPoolManager
 Loaded ConnectionPoolManager properties with encoding UTF-8
-[2016-08-22 11:18:42][INFO ] snaq.db.ConnectionPoolManager.irille
+[2016-08-23 09:31:22][INFO ] snaq.db.ConnectionPoolManager.irille
 irille: Created pool irille (minpool=0,maxpool=100,maxsize=100,idleTimeout=60)
-[2016-08-22 11:18:42][INFO ] irille.pub.svr.DbPool
+[2016-08-23 09:31:22][INFO ] irille.pub.svr.DbPool
 DbPool初始化成功
-[2016-08-22 11:18:42][INFO ] irille.pub.svr.DbPool
+[2016-08-23 09:31:22][INFO ] irille.pub.svr.DbPool
 init poolManager end...
-[2016-08-22 11:18:42][INFO ] snaq.db.ConnectionPool.irille
+[2016-08-23 09:31:22][INFO ] snaq.db.ConnectionPool.irille
 irille: Getting connection (user/password): jdbc:mysql://localhost:3306/srdz?useUnicode=true&characterEncoding=UTF8
-[2016-08-22 11:18:42][INFO ] snaq.db.ConnectionPool.irille
+[2016-08-23 09:31:22][INFO ] snaq.db.ConnectionPool.irille
 irille: Created a new connection
-[2016-08-22 11:38:33][INFO ] irille.pub.bean.PackageBase
+[2016-08-23 09:31:55][INFO ] irille.pub.bean.PackageBase
 初始化模块【class irille.core.sys.Sys】信息...
-[2016-08-22 11:38:33][INFO ] irille.pub.bean.PackageBase
+[2016-08-23 09:31:55][INFO ] irille.pub.bean.PackageBase
 初始化模块【class irille.core.lg.Lg】信息...
-[2016-08-22 11:38:33][INFO ] irille.pub.FileText
-文件[D:\workspace\srdz3\src\main\java\irille\wx\wpt\WptDistributionRule.java]已修改, 请按【F5】键同步显示内容!
-[2016-08-22 11:38:33][INFO ] irille.pub.svr.DbPool
+[2016-08-23 09:31:56][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@626ddb07: startup date [Tue Aug 23 09:31:56 CST 2016]; root of context hierarchy
+[2016-08-23 09:31:56][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-23 09:31:56][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-23 09:31:56][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-23 09:31:56][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-23 09:31:56][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-23 09:31:56][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-23 09:31:56][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-23 09:31:57][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-23 09:31:57][INFO ] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl
+HHH000422: Disabling contextual LOB creation as connection was null
+[2016-08-23 09:31:58][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-23 09:31:59][INFO ] irille.pub.svr.DbPool
 DbPool初始化开始
-[2016-08-22 11:38:33][INFO ] snaq.db.ConnectionPoolManager
+[2016-08-23 09:31:59][INFO ] snaq.db.ConnectionPoolManager
 Loaded ConnectionPoolManager properties with encoding UTF-8
-[2016-08-22 11:38:33][INFO ] snaq.db.ConnectionPoolManager.irille
+[2016-08-23 09:31:59][INFO ] snaq.db.ConnectionPoolManager.irille
 irille: Created pool irille (minpool=0,maxpool=100,maxsize=100,idleTimeout=60)
-[2016-08-22 11:38:33][INFO ] irille.pub.svr.DbPool
+[2016-08-23 09:31:59][INFO ] irille.pub.svr.DbPool
 DbPool初始化成功
-[2016-08-22 11:38:33][INFO ] irille.pub.svr.DbPool
+[2016-08-23 09:31:59][INFO ] irille.pub.svr.DbPool
 init poolManager end...
-[2016-08-22 11:38:33][INFO ] snaq.db.ConnectionPool.irille
+[2016-08-23 09:31:59][INFO ] snaq.db.ConnectionPool.irille
 irille: Getting connection (user/password): jdbc:mysql://localhost:3306/srdz?useUnicode=true&characterEncoding=UTF8
-[2016-08-22 11:38:33][INFO ] snaq.db.ConnectionPool.irille
+[2016-08-23 09:31:59][INFO ] snaq.db.ConnectionPool.irille
+irille: Created a new connection
+[2016-08-23 09:33:36][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.sys.Sys】信息...
+[2016-08-23 09:33:36][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.lg.Lg】信息...
+[2016-08-23 09:33:36][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@7083ca27: startup date [Tue Aug 23 09:33:36 CST 2016]; root of context hierarchy
+[2016-08-23 09:33:36][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-23 09:33:36][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-23 09:33:36][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-23 09:33:37][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-23 09:33:37][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-23 09:33:37][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-23 09:33:37][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-23 09:33:37][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-23 09:33:37][INFO ] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl
+HHH000422: Disabling contextual LOB creation as connection was null
+[2016-08-23 09:33:38][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-23 09:33:39][INFO ] irille.pub.svr.DbPool
+DbPool初始化开始
+[2016-08-23 09:33:39][INFO ] snaq.db.ConnectionPoolManager
+Loaded ConnectionPoolManager properties with encoding UTF-8
+[2016-08-23 09:33:39][INFO ] snaq.db.ConnectionPoolManager.irille
+irille: Created pool irille (minpool=0,maxpool=100,maxsize=100,idleTimeout=60)
+[2016-08-23 09:33:39][INFO ] irille.pub.svr.DbPool
+DbPool初始化成功
+[2016-08-23 09:33:39][INFO ] irille.pub.svr.DbPool
+init poolManager end...
+[2016-08-23 09:33:39][INFO ] snaq.db.ConnectionPool.irille
+irille: Getting connection (user/password): jdbc:mysql://localhost:3306/srdz?useUnicode=true&characterEncoding=UTF8
+[2016-08-23 09:33:39][INFO ] snaq.db.ConnectionPool.irille
+irille: Created a new connection
+[2016-08-23 09:34:02][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.sys.Sys】信息...
+[2016-08-23 09:34:02][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.lg.Lg】信息...
+[2016-08-23 09:34:02][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4344ee21: startup date [Tue Aug 23 09:34:02 CST 2016]; root of context hierarchy
+[2016-08-23 09:34:02][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-23 09:34:02][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-23 09:34:02][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-23 09:34:02][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-23 09:34:02][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-23 09:34:02][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-23 09:34:03][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-23 09:34:03][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-23 09:34:03][INFO ] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl
+HHH000422: Disabling contextual LOB creation as connection was null
+[2016-08-23 09:34:04][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-23 09:34:05][INFO ] irille.pub.svr.DbPool
+DbPool初始化开始
+[2016-08-23 09:34:05][INFO ] snaq.db.ConnectionPoolManager
+Loaded ConnectionPoolManager properties with encoding UTF-8
+[2016-08-23 09:34:05][INFO ] snaq.db.ConnectionPoolManager.irille
+irille: Created pool irille (minpool=0,maxpool=100,maxsize=100,idleTimeout=60)
+[2016-08-23 09:34:05][INFO ] irille.pub.svr.DbPool
+DbPool初始化成功
+[2016-08-23 09:34:05][INFO ] irille.pub.svr.DbPool
+init poolManager end...
+[2016-08-23 09:34:05][INFO ] snaq.db.ConnectionPool.irille
+irille: Getting connection (user/password): jdbc:mysql://localhost:3306/srdz?useUnicode=true&characterEncoding=UTF8
+[2016-08-23 09:34:05][INFO ] snaq.db.ConnectionPool.irille
+irille: Created a new connection
+[2016-08-23 09:34:24][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.sys.Sys】信息...
+[2016-08-23 09:34:24][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.lg.Lg】信息...
+[2016-08-23 09:34:24][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@626ddb07: startup date [Tue Aug 23 09:34:24 CST 2016]; root of context hierarchy
+[2016-08-23 09:34:24][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-23 09:34:25][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-23 09:34:25][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-23 09:34:25][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-23 09:34:25][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-23 09:34:25][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-23 09:34:25][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-23 09:34:25][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-23 09:34:25][INFO ] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl
+HHH000422: Disabling contextual LOB creation as connection was null
+[2016-08-23 09:34:27][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-23 09:34:27][INFO ] irille.pub.svr.DbPool
+DbPool初始化开始
+[2016-08-23 09:34:27][INFO ] snaq.db.ConnectionPoolManager
+Loaded ConnectionPoolManager properties with encoding UTF-8
+[2016-08-23 09:34:27][INFO ] snaq.db.ConnectionPoolManager.irille
+irille: Created pool irille (minpool=0,maxpool=100,maxsize=100,idleTimeout=60)
+[2016-08-23 09:34:27][INFO ] irille.pub.svr.DbPool
+DbPool初始化成功
+[2016-08-23 09:34:27][INFO ] irille.pub.svr.DbPool
+init poolManager end...
+[2016-08-23 09:34:27][INFO ] snaq.db.ConnectionPool.irille
+irille: Getting connection (user/password): jdbc:mysql://localhost:3306/srdz?useUnicode=true&characterEncoding=UTF8
+[2016-08-23 09:34:27][INFO ] snaq.db.ConnectionPool.irille
+irille: Created a new connection
+[2016-08-23 09:41:18][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.sys.Sys】信息...
+[2016-08-23 09:41:18][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.lg.Lg】信息...
+[2016-08-23 09:41:18][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@5cde6b02: startup date [Tue Aug 23 09:41:18 CST 2016]; root of context hierarchy
+[2016-08-23 09:41:18][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-23 09:41:18][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-23 09:41:18][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-23 09:41:18][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-23 09:41:18][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-23 09:41:18][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-23 09:41:19][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-23 09:41:19][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-23 09:41:19][INFO ] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl
+HHH000422: Disabling contextual LOB creation as connection was null
+[2016-08-23 09:41:20][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-23 09:41:21][INFO ] irille.pub.svr.DbPool
+DbPool初始化开始
+[2016-08-23 09:41:21][INFO ] snaq.db.ConnectionPoolManager
+Loaded ConnectionPoolManager properties with encoding UTF-8
+[2016-08-23 09:41:21][INFO ] snaq.db.ConnectionPoolManager.irille
+irille: Created pool irille (minpool=0,maxpool=100,maxsize=100,idleTimeout=60)
+[2016-08-23 09:41:21][INFO ] irille.pub.svr.DbPool
+DbPool初始化成功
+[2016-08-23 09:41:21][INFO ] irille.pub.svr.DbPool
+init poolManager end...
+[2016-08-23 09:41:21][INFO ] snaq.db.ConnectionPool.irille
+irille: Getting connection (user/password): jdbc:mysql://localhost:3306/srdz?useUnicode=true&characterEncoding=UTF8
+[2016-08-23 09:41:21][INFO ] snaq.db.ConnectionPool.irille
+irille: Created a new connection
+[2016-08-23 09:47:32][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.sys.Sys】信息...
+[2016-08-23 09:47:32][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.lg.Lg】信息...
+[2016-08-23 09:47:32][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@7083ca27: startup date [Tue Aug 23 09:47:32 CST 2016]; root of context hierarchy
+[2016-08-23 09:47:32][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-23 09:47:33][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-23 09:47:33][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-23 09:47:33][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-23 09:47:33][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-23 09:47:33][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-23 09:47:33][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-23 09:47:33][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-23 09:47:33][INFO ] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl
+HHH000422: Disabling contextual LOB creation as connection was null
+[2016-08-23 09:47:35][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-23 09:47:46][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.sys.Sys】信息...
+[2016-08-23 09:47:46][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.lg.Lg】信息...
+[2016-08-23 09:47:46][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4344ee21: startup date [Tue Aug 23 09:47:46 CST 2016]; root of context hierarchy
+[2016-08-23 09:47:46][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-23 09:47:47][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-23 09:47:47][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-23 09:47:47][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-23 09:47:47][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-23 09:47:47][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-23 09:47:47][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-23 09:47:47][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-23 09:47:47][INFO ] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl
+HHH000422: Disabling contextual LOB creation as connection was null
+[2016-08-23 09:47:49][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-23 09:47:50][INFO ] irille.pub.svr.DbPool
+DbPool初始化开始
+[2016-08-23 09:47:50][INFO ] snaq.db.ConnectionPoolManager
+Loaded ConnectionPoolManager properties with encoding UTF-8
+[2016-08-23 09:47:50][INFO ] snaq.db.ConnectionPoolManager.irille
+irille: Created pool irille (minpool=0,maxpool=100,maxsize=100,idleTimeout=60)
+[2016-08-23 09:47:50][INFO ] irille.pub.svr.DbPool
+DbPool初始化成功
+[2016-08-23 09:47:50][INFO ] irille.pub.svr.DbPool
+init poolManager end...
+[2016-08-23 09:47:50][INFO ] snaq.db.ConnectionPool.irille
+irille: Getting connection (user/password): jdbc:mysql://localhost:3306/srdz?useUnicode=true&characterEncoding=UTF8
+[2016-08-23 09:47:50][INFO ] snaq.db.ConnectionPool.irille
+irille: Created a new connection
+[2016-08-23 09:47:50][ERROR] irille.pub.bean.BeanBase
+query:查询数据出错!
+[2016-08-23 09:51:57][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.sys.Sys】信息...
+[2016-08-23 09:51:57][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.lg.Lg】信息...
+[2016-08-23 09:51:57][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@7083ca27: startup date [Tue Aug 23 09:51:57 CST 2016]; root of context hierarchy
+[2016-08-23 09:51:57][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-23 09:51:58][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-23 09:51:58][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-23 09:51:58][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-23 09:51:58][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-23 09:51:58][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-23 09:51:58][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-23 09:51:58][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-23 09:51:58][INFO ] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl
+HHH000422: Disabling contextual LOB creation as connection was null
+[2016-08-23 09:52:00][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-23 09:52:00][INFO ] irille.pub.svr.DbPool
+DbPool初始化开始
+[2016-08-23 09:52:00][INFO ] snaq.db.ConnectionPoolManager
+Loaded ConnectionPoolManager properties with encoding UTF-8
+[2016-08-23 09:52:00][INFO ] snaq.db.ConnectionPoolManager.irille
+irille: Created pool irille (minpool=0,maxpool=100,maxsize=100,idleTimeout=60)
+[2016-08-23 09:52:00][INFO ] irille.pub.svr.DbPool
+DbPool初始化成功
+[2016-08-23 09:52:00][INFO ] irille.pub.svr.DbPool
+init poolManager end...
+[2016-08-23 09:52:00][INFO ] snaq.db.ConnectionPool.irille
+irille: Getting connection (user/password): jdbc:mysql://localhost:3306/srdz?useUnicode=true&characterEncoding=UTF8
+[2016-08-23 09:52:00][INFO ] snaq.db.ConnectionPool.irille
+irille: Created a new connection
+[2016-08-23 14:46:21][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.sys.Sys】信息...
+[2016-08-23 14:46:21][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.lg.Lg】信息...
+[2016-08-23 14:46:21][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@7083ca27: startup date [Tue Aug 23 14:46:21 CST 2016]; root of context hierarchy
+[2016-08-23 14:46:21][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-23 14:46:22][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-23 14:46:22][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-23 14:46:23][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-23 14:46:23][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-23 14:46:23][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-23 14:46:23][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-23 14:46:23][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-23 14:46:23][INFO ] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl
+HHH000422: Disabling contextual LOB creation as connection was null
+[2016-08-23 14:46:25][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-23 14:46:26][INFO ] irille.pub.svr.DbPool
+DbPool初始化开始
+[2016-08-23 14:46:26][INFO ] snaq.db.ConnectionPoolManager
+Loaded ConnectionPoolManager properties with encoding UTF-8
+[2016-08-23 14:46:26][INFO ] snaq.db.ConnectionPoolManager.irille
+irille: Created pool irille (minpool=0,maxpool=100,maxsize=100,idleTimeout=60)
+[2016-08-23 14:46:26][INFO ] irille.pub.svr.DbPool
+DbPool初始化成功
+[2016-08-23 14:46:26][INFO ] irille.pub.svr.DbPool
+init poolManager end...
+[2016-08-23 14:46:26][INFO ] snaq.db.ConnectionPool.irille
+irille: Getting connection (user/password): jdbc:mysql://localhost:3306/srdz?useUnicode=true&characterEncoding=UTF8
+[2016-08-23 14:46:26][INFO ] snaq.db.ConnectionPool.irille
+irille: Created a new connection
+[2016-08-23 14:46:52][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.sys.Sys】信息...
+[2016-08-23 14:46:52][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.lg.Lg】信息...
+[2016-08-23 14:46:52][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@5c4d0026: startup date [Tue Aug 23 14:46:52 CST 2016]; root of context hierarchy
+[2016-08-23 14:46:52][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-23 14:46:53][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-23 14:46:53][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-23 14:46:53][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-23 14:46:53][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-23 14:46:53][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-23 14:46:53][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-23 14:46:53][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-23 14:46:53][INFO ] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl
+HHH000422: Disabling contextual LOB creation as connection was null
+[2016-08-23 14:46:55][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-23 14:46:55][INFO ] irille.pub.svr.DbPool
+DbPool初始化开始
+[2016-08-23 14:46:55][INFO ] snaq.db.ConnectionPoolManager
+Loaded ConnectionPoolManager properties with encoding UTF-8
+[2016-08-23 14:46:55][INFO ] snaq.db.ConnectionPoolManager.irille
+irille: Created pool irille (minpool=0,maxpool=100,maxsize=100,idleTimeout=60)
+[2016-08-23 14:46:55][INFO ] irille.pub.svr.DbPool
+DbPool初始化成功
+[2016-08-23 14:46:55][INFO ] irille.pub.svr.DbPool
+init poolManager end...
+[2016-08-23 14:46:55][INFO ] snaq.db.ConnectionPool.irille
+irille: Getting connection (user/password): jdbc:mysql://localhost:3306/srdz?useUnicode=true&characterEncoding=UTF8
+[2016-08-23 14:46:55][INFO ] snaq.db.ConnectionPool.irille
+irille: Created a new connection
+[2016-08-23 14:49:54][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.sys.Sys】信息...
+[2016-08-23 14:49:54][INFO ] irille.pub.bean.PackageBase
+初始化模块【class irille.core.lg.Lg】信息...
+[2016-08-23 14:49:54][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@7083ca27: startup date [Tue Aug 23 14:49:54 CST 2016]; root of context hierarchy
+[2016-08-23 14:49:54][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-23 14:49:55][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-23 14:49:55][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-23 14:49:55][INFO ] org.hibernate.Version
+HHH000412: Hibernate Core {5.1.0.Final}
+[2016-08-23 14:49:55][INFO ] org.hibernate.cfg.Environment
+HHH000206: hibernate.properties not found
+[2016-08-23 14:49:55][INFO ] org.hibernate.cfg.Environment
+HHH000021: Bytecode provider name : javassist
+[2016-08-23 14:49:55][INFO ] org.hibernate.annotations.common.Version
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[2016-08-23 14:49:55][INFO ] org.hibernate.dialect.Dialect
+HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[2016-08-23 14:49:55][INFO ] org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl
+HHH000422: Disabling contextual LOB creation as connection was null
+[2016-08-23 14:49:57][INFO ] org.hibernate.hql.internal.QueryTranslatorFactoryInitiator
+HHH000397: Using ASTQueryTranslatorFactory
+[2016-08-23 14:49:57][INFO ] irille.pub.svr.DbPool
+DbPool初始化开始
+[2016-08-23 14:49:57][INFO ] snaq.db.ConnectionPoolManager
+Loaded ConnectionPoolManager properties with encoding UTF-8
+[2016-08-23 14:49:57][INFO ] snaq.db.ConnectionPoolManager.irille
+irille: Created pool irille (minpool=0,maxpool=100,maxsize=100,idleTimeout=60)
+[2016-08-23 14:49:57][INFO ] irille.pub.svr.DbPool
+DbPool初始化成功
+[2016-08-23 14:49:57][INFO ] irille.pub.svr.DbPool
+init poolManager end...
+[2016-08-23 14:49:57][INFO ] snaq.db.ConnectionPool.irille
+irille: Getting connection (user/password): jdbc:mysql://localhost:3306/srdz?useUnicode=true&characterEncoding=UTF8
+[2016-08-23 14:49:57][INFO ] snaq.db.ConnectionPool.irille
 irille: Created a new connection

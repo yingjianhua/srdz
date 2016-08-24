@@ -1,16 +1,12 @@
 package irille.wpt.actions.impl;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.annotation.Resource;
-import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
-import javax.annotation.security.RolesAllowed;
 
-import org.json.JSONArray;
+import org.apache.struts2.json.annotations.IncludeProperties;
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -22,7 +18,7 @@ import irille.wx.wpt.WptCity;
 
 @Controller
 @Scope("prototype")
-public class ComboAction extends AbstractCRUDAction {
+public class ComboAction extends AbstractCRUDAction<Combo> {
 
 	/**
 	 * 
@@ -35,36 +31,26 @@ public class ComboAction extends AbstractCRUDAction {
 	private String areaId;
 	private String longitude;
 	private String latitude;
-	private List<Combo> combos;
-	
-	private Combo bean;
 	
 	@Resource
 	private ComboService comboService;
 	
-	public void add() {
-		System.out.println(bean);
-		System.out.println("add");
-	}
-
 	@PermitAll
-	public void list() throws JSONException, IOException {
-		combos = comboService.findByCondition(banquetId, pnum, budget, ((WptCity)getSession().get(CityInterceptor.CITY)).getPkey().toString(), areaId, longitude, latitude);
-		JSONArray array = new JSONArray();
-		for(Combo combo:combos) {
-			JSONObject json = new JSONObject();
-			json.put("id", combo.getPkey());
-			json.put("imgUrl", combo.getImgUrl());
-			json.put("name", combo.getName());
-			json.put("desc", combo.getDes());
-			json.put("area", combo.getRestaurant().getCityline().getName());
-			json.put("price", combo.getPrice());
-			json.put("longitude", combo.getRestaurant().getLongitude());
-			json.put("latitude", combo.getRestaurant().getLatitude());
-			array.put(json);
-		}
-		getResponse().getWriter().print(array.toString());
+	@IncludeProperties({
+		"\\[\\d+\\]\\.pkey",
+		"\\[\\d+\\]\\.imgUrl",
+		"\\[\\d+\\]\\.name",
+		"\\[\\d+\\]\\.desc",
+		"\\[\\d+\\]\\.restaurant\\.cityline\\.name",
+		"\\[\\d+\\]\\.price",
+		"\\[\\d+\\]\\.restaurant\\.longitude",
+		"\\[\\d+\\]\\.restaurant\\.latitude"})
+	public String search() throws JSONException, IOException {
+		beans = comboService.findByCondition(banquetId, pnum, budget, ((WptCity)getSession().get(CityInterceptor.CITY)).getPkey().toString(), areaId, longitude, latitude);
+		System.out.println(beans.size());
+		return "json";
 	}
+	
 	public String getBanquetId() {
 		return banquetId;
 	}
@@ -100,17 +86,5 @@ public class ComboAction extends AbstractCRUDAction {
 	}
 	public void setLatitude(String latitude) {
 		this.latitude = latitude;
-	}
-	public List<Combo> getCombos() {
-		return combos;
-	}
-	public void setCombos(List<Combo> combos) {
-		this.combos = combos;
-	}
-	public Combo getBean() {
-		return bean;
-	}
-	public void setBean(Combo bean) {
-		this.bean = bean;
 	}
 }

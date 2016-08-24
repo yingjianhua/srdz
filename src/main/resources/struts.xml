@@ -9,6 +9,10 @@
 	<constant name="struts.objectFactory" value="spring"/>
 	
 	<package name="wpt_resource" namespace="/wpt/resource" extends="struts-default">
+		<result-types>
+            <result-type name="json" class="org.apache.struts2.json.MyJSONResult"/>
+        </result-types>
+	
 		<interceptors>
 			<!-- 拦截器配置 -->
 			<interceptor name="ItpDb" class="irille.pub.svr.ItpDb" />
@@ -29,6 +33,9 @@
 			<result name="trends">${result}</result>
 			<result name="rtrends" type="redirect">${result}</result>
 			<result name="tact" type="chain">${result}</result>
+			<result name="json" type="json">
+				<param name="root">beans</param>
+			</result>
 		</global-results>
 		<action name="city_*" class="cityAction" method="{1}"></action>
 		<action name="order_*" class="orderAction" method="{1}"></action>
