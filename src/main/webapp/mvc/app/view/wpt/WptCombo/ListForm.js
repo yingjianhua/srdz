@@ -19,7 +19,7 @@ viewConfig: {
 },
 initComponent : function(){
 		this.columns =[
-			{text : '菜品',width : 100,dataIndex : 'bean.menu',sortable : true,renderer : mvc.Tools.beanRenderer()},
+			{text : '菜品',width : 100,dataIndex : 'bean.menu.pkey',sortable : true,renderer : mvc.Tools.beanRenderer()},
 			{text : '价格',width : 100,dataIndex : 'bean.price',sortable : true,renderer : mvc.Tools.numberRenderer(),align : 'right',editor : {xtype : 'numberfield',decimalPrecision : 2}},
 			{text : '排序',width : 100,dataIndex : 'bean.sort',sortable : true,editor : {xtype : 'numberfield',allowDecimals : false}},
 			{text: '操作',width: 50,xtype: 'actioncolumn',  
@@ -45,7 +45,7 @@ onIns : function(origModel){
 	var store = this.getStore();
 	var origData = origModel.data;
 	var targData = {
-			"bean.menu":origData["bean.pkey"]+bean_split+origData["bean.name"],
+			"bean.menu.pkey":origData["bean.pkey"]+bean_split+origData["bean.name"],
 			"bean.price":origData["bean.price"]
 	};
 	store.insert(0, Ext.create("mvc.model.wpt.WptComboLine", targData));

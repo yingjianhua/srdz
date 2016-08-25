@@ -11,6 +11,10 @@ import javax.persistence.NamedQuery;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
 
 /**
  * The persistent class for the wpt_combo database table.
@@ -61,6 +65,7 @@ public class Combo extends Product implements Serializable {
 	}
 
 	public Restaurant getRestaurant() {
+		System.out.println("combo.getRestaurant");
 		return this.restaurant;
 	}
 

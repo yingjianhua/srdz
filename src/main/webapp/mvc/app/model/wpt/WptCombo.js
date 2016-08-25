@@ -6,7 +6,10 @@ proxy : {
 	url : base_path+'/wpt_WptCombo_load'
 },
 fields : [{name : 'bean.pkey',mapping : 'pkey',type : 'int',useNull : true}
-	,{name : 'bean.restaurant',mapping : 'restaurant',type : 'string',outkey : true}
+	,{name : 'bean.restaurant.pkey',mapping : 'restaurant.pkey',type : 'string',outkey : true,
+		 convert: function(value, record) {
+			 return record.raw.restaurant.pkey+bean_split+record.raw.restaurant.name;
+         }}
 	,{name : 'bean.name',mapping : 'name',type : 'string'}
 	,{name : 'bean.imgUrl',mapping : 'imgUrl',type : 'string'}
 	,{name : 'bean.des',mapping : 'des',type : 'string'}

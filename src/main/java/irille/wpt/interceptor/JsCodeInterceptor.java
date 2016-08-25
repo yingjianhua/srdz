@@ -14,10 +14,9 @@ import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 
 import irille.pub.Log;
 import irille.pub.PubInfs.IMsg;
-import irille.wpt.actions.AbstractControllAction;
-import irille.wpt.actions.AbstractWptAction;
-import irille.wpt.actions.IMenuShareAppMessage;
-import irille.wpt.actions.IMenuShareTimeline;
+import irille.wpt.actions.controller.AbstractControllAction;
+import irille.wpt.actions.controller.IMenuShareAppMessage;
+import irille.wpt.actions.controller.IMenuShareTimeline;
 import irille.wpt.tools.WxJsCreater;
 import irille.wx.wx.WxAccount;
 import irille.wx.wx.WxUser;

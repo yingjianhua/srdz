@@ -6,11 +6,11 @@ import java.math.BigDecimal;
 
 
 /**
- * The persistent class for the wpt_restaurant database table.
+ * The persistent class for the restaurant database table.
  * 
  */
 @Entity
-@Table(name="wpt_restaurant")
+@Table(name="restaurant")
 @NamedQuery(name="Restaurant.findAll", query="SELECT r FROM Restaurant r")
 public class Restaurant implements Serializable {
 	private static final long serialVersionUID = 1L;

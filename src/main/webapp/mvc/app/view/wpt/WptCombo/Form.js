@@ -19,7 +19,7 @@ initComponent : function(){
 	var formFlds = [];
 	formFlds.push({
 		xtype : 'beantrigger',
-		name : 'bean.restaurant',
+		name : 'bean.restaurant.pkey',
 		fieldLabel : '餐厅',
 		bean : 'WptRestaurant',
 		beanType : 'wpt',
