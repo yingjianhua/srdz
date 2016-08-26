@@ -20,7 +20,7 @@ public class ComboLine implements Serializable {
 
 	private int account;
 
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="combo")
 	private Combo combo;
 
@@ -55,6 +55,7 @@ public class ComboLine implements Serializable {
 	}
 
 	public Combo getCombo() {
+		System.out.println("comboLine.getCombo");
 		return this.combo;
 	}
 
@@ -63,6 +64,7 @@ public class ComboLine implements Serializable {
 	}
 
 	public RestaurantMenu getMenu() {
+		System.out.println("comboLine.getMenu");
 		return this.menu;
 	}
 
@@ -92,6 +94,12 @@ public class ComboLine implements Serializable {
 
 	public void setSort(int sort) {
 		this.sort = sort;
+	}
+
+	@Override
+	public String toString() {
+		return "ComboLine [pkey=" + pkey + ", account=" + account + ", combo=" + combo + ", menu=" + menu + ", price="
+				+ price + ", rowVersion=" + rowVersion + ", sort=" + sort + "]";
 	}
 
 }

@@ -1,80 +1,331 @@
-[2016-08-25 14:43:43][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
-Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@53372fcf: startup date [Thu Aug 25 14:43:43 CST 2016]; root of context hierarchy
-[2016-08-25 14:43:43][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+[2016-08-26 09:50:44][INFO ] irille.wxpub.util.WeixinUtil
+requestUrl:http://tingapi.ting.baidu.com/v1/restserver/ting?from=qianqian&version=2.1.0&method=baidu.ting.song.getInfos&format=json&songid=8059247&ts=1408284347323&e=JoN56kTXnnbEpd9MVczkYJCSx%2FE1mkLx%2BPMIkTcOEu4%3D&nw=2&ucf=1&res=1
+[2016-08-26 09:50:44][INFO ] irille.wxpub.util.WeixinUtil
+requestStr:null
+[2016-08-26 09:50:44][ERROR] irille.wxpub.util.WeixinUtil
+执行到非法的代码出错!
+java.lang.ClassCastException: sun.net.www.protocol.http.HttpURLConnection cannot be cast to javax.net.ssl.HttpsURLConnection
+	at irille.wxpub.util.WeixinUtil.httpRequestStr(WeixinUtil.java:239)
+	at irille.wpt.dao.BaseDao.main(BaseDao.java:63)
+[2016-08-26 09:51:21][INFO ] irille.wxpub.util.WeixinUtil
+requestUrl:https://tingapi.ting.baidu.com/v1/restserver/ting?from=qianqian&version=2.1.0&method=baidu.ting.song.getInfos&format=json&songid=8059247&ts=1408284347323&e=JoN56kTXnnbEpd9MVczkYJCSx%2FE1mkLx%2BPMIkTcOEu4%3D&nw=2&ucf=1&res=1
+[2016-08-26 09:51:21][INFO ] irille.wxpub.util.WeixinUtil
+requestStr:null
+[2016-08-26 09:51:21][ERROR] irille.wxpub.util.WeixinUtil
+执行到非法的代码出错!
+java.net.ProtocolException: Invalid HTTP method: get
+	at java.net.HttpURLConnection.setRequestMethod(HttpURLConnection.java:428)
+	at sun.net.www.protocol.https.HttpsURLConnectionImpl.setRequestMethod(HttpsURLConnectionImpl.java:374)
+	at irille.wxpub.util.WeixinUtil.httpRequestStr(WeixinUtil.java:246)
+	at irille.wpt.dao.BaseDao.main(BaseDao.java:63)
+[2016-08-26 09:51:29][INFO ] irille.wxpub.util.WeixinUtil
+requestUrl:https://tingapi.ting.baidu.com/v1/restserver/ting?from=qianqian&version=2.1.0&method=baidu.ting.song.getInfos&format=json&songid=8059247&ts=1408284347323&e=JoN56kTXnnbEpd9MVczkYJCSx%2FE1mkLx%2BPMIkTcOEu4%3D&nw=2&ucf=1&res=1
+[2016-08-26 09:51:29][INFO ] irille.wxpub.util.WeixinUtil
+requestStr:null
+[2016-08-26 09:51:50][ERROR] irille.wxpub.util.WeixinUtil
+timeout:微信服务器连接超时
+[2016-08-26 09:54:23][INFO ] irille.wxpub.util.WeixinUtil
+requestUrl:http://tingapi.ting.baidu.com/v1/restserver/ting?from=qianqian&version=2.1.0&method=baidu.ting.song.getInfos&format=json&songid=8059247&ts=1408284347323&e=JoN56kTXnnbEpd9MVczkYJCSx%2FE1mkLx%2BPMIkTcOEu4%3D&nw=2&ucf=1&res=1
+[2016-08-26 09:54:23][INFO ] irille.wxpub.util.WeixinUtil
+requestStr:null
+[2016-08-26 09:54:23][ERROR] irille.wxpub.util.WeixinUtil
+执行到非法的代码出错!
+java.lang.ClassCastException: sun.net.www.protocol.http.HttpURLConnection cannot be cast to javax.net.ssl.HttpsURLConnection
+	at irille.wxpub.util.WeixinUtil.httpRequest(WeixinUtil.java:171)
+	at irille.wpt.dao.BaseDao.main(BaseDao.java:62)
+[2016-08-26 10:12:47][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6879c0f4: startup date [Fri Aug 26 10:12:47 CST 2016]; root of context hierarchy
+[2016-08-26 10:12:47][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
 Loading XML bean definitions from class path resource [applicationContext.xml]
-[2016-08-25 14:43:43][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+[2016-08-26 10:12:48][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
 JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-[2016-08-25 14:43:44][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+[2016-08-26 10:12:48][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
 Loaded JDBC driver: com.mysql.jdbc.Driver
-[2016-08-25 14:44:41][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
-Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4c23e9b7: startup date [Thu Aug 25 14:44:41 CST 2016]; root of context hierarchy
-[2016-08-25 14:44:42][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+[2016-08-26 10:13:23][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6879c0f4: startup date [Fri Aug 26 10:13:23 CST 2016]; root of context hierarchy
+[2016-08-26 10:13:23][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
 Loading XML bean definitions from class path resource [applicationContext.xml]
-[2016-08-25 14:44:42][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+[2016-08-26 10:13:23][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
 JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-[2016-08-25 14:44:42][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+[2016-08-26 10:13:24][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
 Loaded JDBC driver: com.mysql.jdbc.Driver
-[2016-08-25 14:48:52][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
-Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@49c5146e: startup date [Thu Aug 25 14:48:52 CST 2016]; root of context hierarchy
-[2016-08-25 14:48:52][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+[2016-08-26 10:33:14][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@818b1bc: startup date [Fri Aug 26 10:33:14 CST 2016]; root of context hierarchy
+[2016-08-26 10:33:14][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
 Loading XML bean definitions from class path resource [applicationContext.xml]
-[2016-08-25 14:48:53][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+[2016-08-26 10:33:15][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
 JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-[2016-08-25 14:48:53][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+[2016-08-26 10:33:15][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
 Loaded JDBC driver: com.mysql.jdbc.Driver
-[2016-08-25 14:49:25][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
-Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@29c06798: startup date [Thu Aug 25 14:49:25 CST 2016]; root of context hierarchy
-[2016-08-25 14:49:25][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+[2016-08-26 10:34:41][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@d3cb1cb: startup date [Fri Aug 26 10:34:41 CST 2016]; root of context hierarchy
+[2016-08-26 10:34:41][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
 Loading XML bean definitions from class path resource [applicationContext.xml]
-[2016-08-25 14:49:26][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+[2016-08-26 10:34:42][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
 JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-[2016-08-25 14:49:26][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+[2016-08-26 10:34:42][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
 Loaded JDBC driver: com.mysql.jdbc.Driver
-[2016-08-25 15:01:33][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
-Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@49c5146e: startup date [Thu Aug 25 15:01:33 CST 2016]; root of context hierarchy
-[2016-08-25 15:01:33][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+[2016-08-26 10:35:04][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@d3cb1cb: startup date [Fri Aug 26 10:35:04 CST 2016]; root of context hierarchy
+[2016-08-26 10:35:04][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
 Loading XML bean definitions from class path resource [applicationContext.xml]
-[2016-08-25 15:01:34][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+[2016-08-26 10:35:05][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
 JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-[2016-08-25 15:01:34][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+[2016-08-26 10:35:05][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
 Loaded JDBC driver: com.mysql.jdbc.Driver
-[2016-08-25 15:03:38][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
-Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@818b1bc: startup date [Thu Aug 25 15:03:38 CST 2016]; root of context hierarchy
-[2016-08-25 15:03:38][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+[2016-08-26 10:36:17][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@bbc8d37: startup date [Fri Aug 26 10:36:17 CST 2016]; root of context hierarchy
+[2016-08-26 10:36:17][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
 Loading XML bean definitions from class path resource [applicationContext.xml]
-[2016-08-25 15:03:39][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+[2016-08-26 10:36:18][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
 JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-[2016-08-25 15:03:39][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+[2016-08-26 10:36:18][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
 Loaded JDBC driver: com.mysql.jdbc.Driver
-[2016-08-25 15:17:11][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
-Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@bbc8d37: startup date [Thu Aug 25 15:17:11 CST 2016]; root of context hierarchy
-[2016-08-25 15:17:11][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+[2016-08-26 10:48:02][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@42049d11: startup date [Fri Aug 26 10:48:02 CST 2016]; root of context hierarchy
+[2016-08-26 10:48:02][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
 Loading XML bean definitions from class path resource [applicationContext.xml]
-[2016-08-25 15:17:12][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+[2016-08-26 10:48:02][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
 JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-[2016-08-25 15:17:12][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+[2016-08-26 10:48:03][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
 Loaded JDBC driver: com.mysql.jdbc.Driver
-[2016-08-25 15:21:13][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
-Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@7db1be6: startup date [Thu Aug 25 15:21:13 CST 2016]; root of context hierarchy
-[2016-08-25 15:21:13][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+[2016-08-26 10:57:53][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@d3cb1cb: startup date [Fri Aug 26 10:57:53 CST 2016]; root of context hierarchy
+[2016-08-26 10:57:53][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
 Loading XML bean definitions from class path resource [applicationContext.xml]
-[2016-08-25 15:21:13][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+[2016-08-26 10:57:53][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
 JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-[2016-08-25 15:21:13][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+[2016-08-26 10:57:54][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
 Loaded JDBC driver: com.mysql.jdbc.Driver
-[2016-08-25 15:25:04][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
-Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@42049d11: startup date [Thu Aug 25 15:25:04 CST 2016]; root of context hierarchy
-[2016-08-25 15:25:04][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+[2016-08-26 11:16:16][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@bbc8d37: startup date [Fri Aug 26 11:16:16 CST 2016]; root of context hierarchy
+[2016-08-26 11:16:17][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
 Loading XML bean definitions from class path resource [applicationContext.xml]
-[2016-08-25 15:25:05][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+[2016-08-26 11:16:17][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
 JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-[2016-08-25 15:25:05][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+[2016-08-26 11:16:17][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
 Loaded JDBC driver: com.mysql.jdbc.Driver
-[2016-08-25 15:25:32][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
-Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@bbc8d37: startup date [Thu Aug 25 15:25:32 CST 2016]; root of context hierarchy
-[2016-08-25 15:25:32][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+[2016-08-26 11:57:52][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@18de9738: startup date [Fri Aug 26 11:57:52 CST 2016]; root of context hierarchy
+[2016-08-26 11:57:53][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
 Loading XML bean definitions from class path resource [applicationContext.xml]
-[2016-08-25 15:25:32][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+[2016-08-26 11:57:53][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
 JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-[2016-08-25 15:25:33][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+[2016-08-26 11:57:53][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-26 11:58:59][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3d99ea49: startup date [Fri Aug 26 11:58:59 CST 2016]; root of context hierarchy
+[2016-08-26 11:58:59][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-26 11:58:59][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-26 11:59:00][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-26 11:59:39][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@49c6c5b7: startup date [Fri Aug 26 11:59:39 CST 2016]; root of context hierarchy
+[2016-08-26 11:59:39][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-26 11:59:40][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-26 11:59:40][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-26 12:00:33][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@49c6c5b7: startup date [Fri Aug 26 12:00:33 CST 2016]; root of context hierarchy
+[2016-08-26 12:00:33][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-26 12:00:34][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-26 12:00:34][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-26 12:01:49][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@49c6c5b7: startup date [Fri Aug 26 12:01:49 CST 2016]; root of context hierarchy
+[2016-08-26 12:01:49][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-26 12:01:50][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-26 12:01:50][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-26 12:08:37][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@43e47e37: startup date [Fri Aug 26 12:08:37 CST 2016]; root of context hierarchy
+[2016-08-26 12:08:37][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-26 12:08:37][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-26 12:08:38][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-26 12:09:14][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@18de9738: startup date [Fri Aug 26 12:09:14 CST 2016]; root of context hierarchy
+[2016-08-26 12:09:14][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-26 12:09:14][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-26 12:09:14][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-26 12:10:00][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3d5b5d86: startup date [Fri Aug 26 12:10:00 CST 2016]; root of context hierarchy
+[2016-08-26 12:10:00][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-26 12:10:01][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-26 12:10:01][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-26 12:23:32][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3d99ea49: startup date [Fri Aug 26 12:23:32 CST 2016]; root of context hierarchy
+[2016-08-26 12:23:32][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-26 12:23:33][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-26 12:23:33][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-26 12:24:29][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@43e47e37: startup date [Fri Aug 26 12:24:29 CST 2016]; root of context hierarchy
+[2016-08-26 12:24:29][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-26 12:24:29][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-26 12:24:30][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-26 13:27:46][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3d99ea49: startup date [Fri Aug 26 13:27:46 CST 2016]; root of context hierarchy
+[2016-08-26 13:27:46][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-26 13:27:47][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-26 13:27:47][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-26 13:33:34][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@299b78d4: startup date [Fri Aug 26 13:33:34 CST 2016]; root of context hierarchy
+[2016-08-26 13:33:34][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-26 13:33:34][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-26 13:33:35][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-26 13:35:06][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@7141cf63: startup date [Fri Aug 26 13:35:06 CST 2016]; root of context hierarchy
+[2016-08-26 13:35:06][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-26 13:35:07][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-26 13:35:07][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-26 13:36:10][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@395927e2: startup date [Fri Aug 26 13:36:10 CST 2016]; root of context hierarchy
+[2016-08-26 13:36:10][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-26 13:36:11][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-26 13:36:11][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-26 13:38:31][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2e6ee035: startup date [Fri Aug 26 13:38:31 CST 2016]; root of context hierarchy
+[2016-08-26 13:38:31][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-26 13:38:31][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-26 13:38:32][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-26 13:51:25][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3d99ea49: startup date [Fri Aug 26 13:51:25 CST 2016]; root of context hierarchy
+[2016-08-26 13:51:25][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-26 13:51:25][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-26 13:51:26][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-26 13:51:29][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@c4983d8: startup date [Fri Aug 26 13:51:29 CST 2016]; root of context hierarchy
+[2016-08-26 13:51:29][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-26 13:51:30][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-26 13:51:30][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-26 14:19:56][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@43e47e37: startup date [Fri Aug 26 14:19:56 CST 2016]; root of context hierarchy
+[2016-08-26 14:19:56][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-26 14:19:57][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-26 14:19:57][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-26 14:23:44][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@c4983d8: startup date [Fri Aug 26 14:23:44 CST 2016]; root of context hierarchy
+[2016-08-26 14:23:44][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-26 14:23:44][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-26 14:23:45][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-26 14:24:18][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2e6ee035: startup date [Fri Aug 26 14:24:18 CST 2016]; root of context hierarchy
+[2016-08-26 14:24:18][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-26 14:24:19][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-26 14:24:19][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-26 15:52:32][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6d782f7c: startup date [Fri Aug 26 15:52:32 CST 2016]; root of context hierarchy
+[2016-08-26 15:52:32][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-26 15:52:33][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-26 15:52:33][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-26 15:52:54][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@26250f55: startup date [Fri Aug 26 15:52:54 CST 2016]; root of context hierarchy
+[2016-08-26 15:52:54][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-26 15:52:55][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-26 15:52:55][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-26 15:53:25][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@26250f55: startup date [Fri Aug 26 15:53:25 CST 2016]; root of context hierarchy
+[2016-08-26 15:53:26][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-26 15:53:26][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-26 15:53:26][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-26 15:53:39][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@746f2a75: startup date [Fri Aug 26 15:53:39 CST 2016]; root of context hierarchy
+[2016-08-26 15:53:39][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-26 15:53:40][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-26 15:53:40][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-26 15:54:00][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4b11a903: startup date [Fri Aug 26 15:54:00 CST 2016]; root of context hierarchy
+[2016-08-26 15:54:00][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-26 15:54:00][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-26 15:54:01][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-26 15:54:15][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2b6dd9c5: startup date [Fri Aug 26 15:54:15 CST 2016]; root of context hierarchy
+[2016-08-26 15:54:15][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-26 15:54:15][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-26 15:54:15][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-26 15:54:35][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@38f42ac9: startup date [Fri Aug 26 15:54:35 CST 2016]; root of context hierarchy
+[2016-08-26 15:54:35][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-26 15:54:36][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-26 15:54:36][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
+Loaded JDBC driver: com.mysql.jdbc.Driver
+[2016-08-26 15:55:56][INFO ] org.springframework.context.support.ClassPathXmlApplicationContext
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6d782f7c: startup date [Fri Aug 26 15:55:56 CST 2016]; root of context hierarchy
+[2016-08-26 15:55:56][INFO ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+Loading XML bean definitions from class path resource [applicationContext.xml]
+[2016-08-26 15:55:56][INFO ] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[2016-08-26 15:55:57][INFO ] org.springframework.jdbc.datasource.DriverManagerDataSource
 Loaded JDBC driver: com.mysql.jdbc.Driver

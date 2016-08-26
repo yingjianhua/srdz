@@ -33,7 +33,7 @@ public class Combo extends Product implements Serializable {
 	@Column(name="number_min")
 	private int numberMin;
 
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="restaurant")
 	private Restaurant restaurant;
 
