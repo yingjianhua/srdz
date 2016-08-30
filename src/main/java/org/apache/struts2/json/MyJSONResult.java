@@ -16,6 +16,7 @@ import org.apache.struts2.StrutsConstants;
 import org.apache.struts2.StrutsStatics;
 import org.apache.struts2.json.annotations.ExcludeProperties;
 import org.apache.struts2.json.annotations.IncludeProperties;
+import org.apache.struts2.json.annotations.MaxLevel;
 import org.apache.struts2.json.smd.SMDGenerator;
 import org.glassfish.jersey.server.model.AnnotatedMethod;
 
@@ -77,11 +78,15 @@ public class MyJSONResult implements Result {
      */
     public void setExcludeProperties(String[] excludePatterns) {
         if (excludePatterns != null) {
-            this.excludeProperties = new ArrayList<Pattern>(excludePatterns.length);
+            this.excludeProperties = new ArrayList<Pattern>(excludePatterns.length + 2);
             for (String pattern : excludePatterns) {
-                this.excludeProperties.add(Pattern.compile(pattern));
+            	this.excludeProperties.add(Pattern.compile(pattern));
             }
+        } else {
+        	this.excludeProperties = new ArrayList<Pattern>(2);
         }
+        this.excludeProperties.add(Pattern.compile(".*handler.*"));
+        this.excludeProperties.add(Pattern.compile(".*hibernateLazyInitializer.*"));
     }
 
     /**
@@ -128,15 +133,6 @@ public class MyJSONResult implements Result {
     }
 
     public void execute(ActionInvocation invocation) throws Exception {
-    	Method method = invocation.getProxy().getAction().getClass().getMethod(invocation.getProxy().getMethod());
-		AnnotatedMethod am = new AnnotatedMethod(method);
-		if (am.isAnnotationPresent(ExcludeProperties.class)) {
-			setExcludeProperties(method.getAnnotation(ExcludeProperties.class).value());
-		}
-		if (am.isAnnotationPresent(IncludeProperties.class)) {
-			setIncludeProperties(method.getAnnotation(IncludeProperties.class).value());
-		}
-    	
         ActionContext actionContext = invocation.getInvocationContext();
         HttpServletRequest request = (HttpServletRequest) actionContext.get(StrutsStatics.HTTP_REQUEST);
         HttpServletResponse response = (HttpServletResponse) actionContext.get(StrutsStatics.HTTP_RESPONSE);
@@ -144,6 +140,37 @@ public class MyJSONResult implements Result {
         try {
             Object rootObject;
             rootObject = readRootObject(invocation);
+            
+            Method method = invocation.getProxy().getAction().getClass().getMethod(invocation.getProxy().getMethod());
+            AnnotatedMethod am = new AnnotatedMethod(method);
+            if (am.isAnnotationPresent(ExcludeProperties.class)) {
+            	setExcludeProperties(method.getAnnotation(ExcludeProperties.class).value());
+            } else {
+            	setExcludeProperties(null);
+            }
+            if (am.isAnnotationPresent(IncludeProperties.class)) {
+            	setIncludeProperties(method.getAnnotation(IncludeProperties.class).value());
+            } else {
+            	final int maxLevel;
+            	if(am.isAnnotationPresent(MaxLevel.class)) {
+            		maxLevel = method.getAnnotation(MaxLevel.class).value();
+            	} else {
+            		if(rootObject.getClass().isArray() || rootObject instanceof Iterable) maxLevel = 3;
+            		else maxLevel = 2;
+            	}
+            	if(maxLevel > 0) {
+            		int i = 0;
+            		String[] maxLevelPattern = new String[maxLevel];
+            		StringBuilder sb = new StringBuilder("[a-zA-Z0-9_\\[\\]\\{\\}]+");
+            		while(++i<maxLevel){
+            			sb.append("\\.[a-zA-Z0-9_\\[\\]\\{\\}]+");
+            			maxLevelPattern[i] = sb.toString();
+            		}
+            		maxLevelPattern[0] = "[a-zA-Z0-9_\\[\\]\\{\\}]+";
+            		setIncludeProperties(maxLevelPattern);
+            	}
+            }
+            
             writeToResponse(response, createJSONString(request, rootObject), enableGzip(request));
         } catch (IOException exception) {
             LOG.error(exception.getMessage(), exception);

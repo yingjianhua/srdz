@@ -1,12 +1,14 @@
 package irille.wpt.actions.resource;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 import javax.annotation.Resource;
 import javax.annotation.security.RolesAllowed;
 
 import org.apache.struts2.json.annotations.ExcludeProperties;
 import org.apache.struts2.json.annotations.IncludeProperties;
+import org.apache.struts2.json.annotations.MaxLevel;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import irille.tools.GenericsUtils;
@@ -43,8 +45,8 @@ public abstract class AbstractCRUDAction<T> extends AbstractWptAction {
 	public void add() {
 		
 	}
-	@ExcludeProperties({
-		"\\[\\d+\\]\\..+\\..+\\..+"})
+
+	//@MaxLevel(3)
 	public String list() {
 		beans = service.list(entityClass, start, limit);
 		System.out.println(beans.size());

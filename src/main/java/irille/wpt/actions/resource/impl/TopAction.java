@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import javax.annotation.Resource;
 
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.json.annotations.IncludeProperties;
 import org.json.JSONArray;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -39,14 +40,16 @@ public class TopAction extends AbstractCRUDAction {
 	/**
 	 * 筛选
 	 */
-	public void list() {
-		JSONArray tops = topService.search4Json(cityId, areaId, banquetId, accountId);
-		try {
-			PrintWriter writer = ServletActionContext.getResponse().getWriter();
-			writer.print(tops.toString());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	@IncludeProperties({
+		"\\[\\d+\\]\\.pkey",
+		"\\[\\d+\\]\\.url",
+		"\\[\\d+\\]\\.imgUrl",
+		"\\[\\d+\\]\\.title",
+		"\\[\\d+\\]\\.date"
+	})
+	public String list() {
+		beans = topService.search(cityId, areaId, banquetId, accountId);
+		return "json";
 	}
 	public Integer getId() {
 		return id;

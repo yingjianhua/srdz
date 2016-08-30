@@ -22,11 +22,11 @@ public class Restaurant implements Serializable {
 
 	private String addr;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="city")
 	private City city;
 
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="cityline")
 	private CityLine cityline;
 

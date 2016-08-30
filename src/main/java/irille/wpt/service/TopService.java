@@ -53,6 +53,7 @@ public class TopService {
 		where.append(" ORDER BY " + WptTop.T.TOP + " DESC " + "," + WptTop.T.SORT);
 		return WptTop.list(WptTop.class, where.toString(), false, cityId, accountId);
 	}
+	
 	public JSONArray search4Json(Integer cityId, Integer areaId, Integer banquetId, Integer accountId) {
 		List<WptTop> tops = search(cityId, areaId, banquetId, accountId);
 		JSONArray result = new JSONArray();

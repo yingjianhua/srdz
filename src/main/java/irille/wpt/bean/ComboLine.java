@@ -24,7 +24,7 @@ public class ComboLine implements Serializable {
 	@JoinColumn(name="combo")
 	private Combo combo;
 
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="menu")
 	private RestaurantMenu menu;
 

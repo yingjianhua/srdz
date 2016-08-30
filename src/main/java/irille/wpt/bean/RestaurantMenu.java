@@ -26,7 +26,7 @@ public class RestaurantMenu implements Serializable {
 
 	private BigDecimal price;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="restaurant")
 	private Restaurant restaurant;
 
