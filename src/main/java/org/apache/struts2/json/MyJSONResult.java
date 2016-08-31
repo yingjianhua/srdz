@@ -140,37 +140,37 @@ public class MyJSONResult implements Result {
         try {
             Object rootObject;
             rootObject = readRootObject(invocation);
-            
-            Method method = invocation.getProxy().getAction().getClass().getMethod(invocation.getProxy().getMethod());
-            AnnotatedMethod am = new AnnotatedMethod(method);
-            if (am.isAnnotationPresent(ExcludeProperties.class)) {
-            	setExcludeProperties(method.getAnnotation(ExcludeProperties.class).value());
-            } else {
-            	setExcludeProperties(null);
+            if(rootObject != null) {
+	            Method method = invocation.getProxy().getAction().getClass().getMethod(invocation.getProxy().getMethod());
+	            AnnotatedMethod am = new AnnotatedMethod(method);
+	            if (am.isAnnotationPresent(ExcludeProperties.class)) {
+	            	setExcludeProperties(method.getAnnotation(ExcludeProperties.class).value());
+	            } else {
+	            	setExcludeProperties(null);
+	            }
+	            if (am.isAnnotationPresent(IncludeProperties.class)) {
+	            	setIncludeProperties(method.getAnnotation(IncludeProperties.class).value());
+	            } else {
+	            	final int maxLevel;
+	            	if(am.isAnnotationPresent(MaxLevel.class)) {
+	            		maxLevel = method.getAnnotation(MaxLevel.class).value();
+	            	} else {
+	            		if(rootObject.getClass().isArray() || rootObject instanceof Iterable) maxLevel = 4;
+	            		else maxLevel = 3;
+	            	}
+	            	if(maxLevel > 0) {
+	            		int i = 0;
+	            		String[] maxLevelPattern = new String[maxLevel];
+	            		StringBuilder sb = new StringBuilder("[a-zA-Z0-9_\\[\\]\\{\\}]+");
+	            		while(++i<maxLevel){
+	            			sb.append("\\.[a-zA-Z0-9_\\[\\]\\{\\}]+");
+	            			maxLevelPattern[i] = sb.toString();
+	            		}
+	            		maxLevelPattern[0] = "[a-zA-Z0-9_\\[\\]\\{\\}]+";
+	            		setIncludeProperties(maxLevelPattern);
+	            	}
+	            }
             }
-            if (am.isAnnotationPresent(IncludeProperties.class)) {
-            	setIncludeProperties(method.getAnnotation(IncludeProperties.class).value());
-            } else {
-            	final int maxLevel;
-            	if(am.isAnnotationPresent(MaxLevel.class)) {
-            		maxLevel = method.getAnnotation(MaxLevel.class).value();
-            	} else {
-            		if(rootObject.getClass().isArray() || rootObject instanceof Iterable) maxLevel = 3;
-            		else maxLevel = 2;
-            	}
-            	if(maxLevel > 0) {
-            		int i = 0;
-            		String[] maxLevelPattern = new String[maxLevel];
-            		StringBuilder sb = new StringBuilder("[a-zA-Z0-9_\\[\\]\\{\\}]+");
-            		while(++i<maxLevel){
-            			sb.append("\\.[a-zA-Z0-9_\\[\\]\\{\\}]+");
-            			maxLevelPattern[i] = sb.toString();
-            		}
-            		maxLevelPattern[0] = "[a-zA-Z0-9_\\[\\]\\{\\}]+";
-            		setIncludeProperties(maxLevelPattern);
-            	}
-            }
-            
             writeToResponse(response, createJSONString(request, rootObject), enableGzip(request));
         } catch (IOException exception) {
             LOG.error(exception.getMessage(), exception);

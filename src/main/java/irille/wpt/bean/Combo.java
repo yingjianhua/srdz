@@ -11,10 +11,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-
 
 /**
  * The persistent class for the wpt_combo database table.

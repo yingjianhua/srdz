@@ -7,9 +7,9 @@ import org.springframework.stereotype.Controller;
 
 import irille.pub.bean.BeanBase;
 import irille.wpt.actions.controller.AbstractControllAction;
+import irille.wpt.bean.City;
 import irille.wpt.interceptor.CityInterceptor;
 import irille.wx.wpt.WptBanquet;
-import irille.wx.wpt.WptCity;
 import irille.wx.wpt.WptCityLine;
 @Controller
 @Scope("prototype")
@@ -22,7 +22,7 @@ public class ApplyServiceAction extends AbstractControllAction {
 	private List<WptBanquet> banquets;
 	@Override
 	public String execute() throws Exception {
-		areas = BeanBase.list(WptCityLine.class, WptCityLine.T.CITY + "=?", false, ((WptCity)getSession().get(CityInterceptor.CITY)).getPkey());
+		areas = BeanBase.list(WptCityLine.class, WptCityLine.T.CITY + "=?", false, ((City)getSession().get(CityInterceptor.CITY)).getPkey());
 		banquets = BeanBase.list(WptBanquet.class, WptBanquet.T.ACCOUNT + "=?", false, getAccount().getPkey());
 		setResult("pt/applyService.jsp");
 		return TRENDS;

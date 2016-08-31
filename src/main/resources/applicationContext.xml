@@ -17,7 +17,7 @@
 	
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://localhost:3306/srdz"></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/srdz?useUnicode=true&amp;characterEncoding=UTF8"></property>
 		<property name="username" value="root"></property>
 		<property name="password" value="root"></property>
 	</bean>
@@ -54,7 +54,7 @@
 	 </tx:advice>
 	 
 	 <aop:config>
-	 	<aop:pointcut id="pointcut" expression="execution(* irille.wpt.service.*.*(..))" />
+	 	<aop:pointcut id="pointcut" expression="execution(* irille.wpt.service.impl.*.*(..))" />
 	 	<aop:advisor advice-ref="advice" pointcut-ref="pointcut"/>
 	 </aop:config>
 

@@ -15,13 +15,16 @@
 	
 		<interceptors>
 			<!-- 拦截器配置 -->
-			<interceptor name="ItpDb" class="irille.pub.svr.ItpDb" />
+			
+			<!-- 统计请求数据 -->
+			<interceptor name="StatisticsInterceptor" class="irille.wpt.interceptor.StatisticsInterceptor" />
+			<!-- 权限拦截 -->
 			<interceptor name="role22" class="irille.wpt.interceptor.RoleInterceptor" />
 
 			<!-- 拦截器栈配置,拦截栈可以包含拦截器栈 -->
 			<interceptor-stack name="wpt_resource">
 				<interceptor-ref name="defaultStack" />
-				<interceptor-ref name="ItpDb" />
+				<interceptor-ref name="StatisticsInterceptor" />
 				<interceptor-ref name="role22" />
 			</interceptor-stack>
 		</interceptors>
@@ -33,13 +36,20 @@
 			<result name="trends">${result}</result>
 			<result name="rtrends" type="redirect">${result}</result>
 			<result name="tact" type="chain">${result}</result>
-			<result name="json" type="json">
+			<result name="beans" type="json">
 				<param name="root">beans</param>
 			</result>
+			<result name="object" type="json">
+				<param name="root">object</param>
+			</result>
+			<result name="pages" type="json">
+				<param name="root">pages</param>
+			</result>
 		</global-results>
+		
 		<action name="city_*" class="cityAction" method="{1}"></action>
 		<action name="order_*" class="orderAction" method="{1}"></action>
-		<action name="top_*" class="topAction" method="{1}"></action>
+		<action name="headline_*" class="headlineAction" method="{1}"></action>
 		<action name="feedback_*" class="feedbackAction" method="{1}"></action>
 		<action name="seller_*" class="sellerAction" method="{1}"></action>
 		<action name="order_confirmOrder" class="orderAction" method="confirmOrder">
@@ -51,6 +61,7 @@
 		<action name="comboLine_*" class="comboLineAction" method="{1}"></action>
 		<action name="restaurantMenu_*" class="restaurantMenuAction" method="{1}"></action>
 		<action name="serviceCenter_*" class="serviceCenterAction" method="{1}"></action>
+		<action name="restaurant_*" class="restaurantAction" method="{1}"></action>
 	</package>
 	
 	<package name="wpt" namespace="/wpt" extends="wpt_resource">
@@ -63,7 +74,7 @@
 			
 			<interceptor-stack name="wpt">
 				<interceptor-ref name="defaultStack" />
-				<interceptor-ref name="ItpDb" />
+				<interceptor-ref name="StatisticsInterceptor" />
 				<interceptor-ref name="authorizeInterceptor" />
 				<interceptor-ref name="cityInterceptor" />
 				<interceptor-ref name="jsCodeInterceptor" />
@@ -85,10 +96,10 @@
 		<action name="showOrder" class="showOrderAction"></action>
 		<action name="showMe" class="showMeAction"></action>
 		<action name="listCollect" class="listCollectAction"></action>
-		<action name="showTop" class="showTopAction"></action>
+		<action name="showHeadline" class="showHeadlineAction"></action>
 		<action name="showServiceCenter" class="showServiceCenterAction"></action>
 		<action name="feedBack" class="feedBackAction"></action>
-		<action name="listTop" class="listTopAction"></action>
+		<action name="listHeadline" class="listHeadlineAction"></action>
 		<action name="listSpecial" class="listSpecialAction"></action>
 		<action name="listHot" class="listHotAction"></action>
 		<action name="showSpecial" class="showSpecialAction"></action>

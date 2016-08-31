@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.wpt.actions.controller.AbstractControllAction;
-import irille.wpt.service.RestaurantService;
+import irille.wpt.service.impl.RestaurantService;
 import irille.wx.wpt.WptRestaurant;
 import irille.wxpub.js.JMOpenLocation;
 import irille.wxpub.js.JQFunDefine;

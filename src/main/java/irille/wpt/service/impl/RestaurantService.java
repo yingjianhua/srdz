@@ -1,4 +1,4 @@
-package irille.wpt.service;
+package irille.wpt.service.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;

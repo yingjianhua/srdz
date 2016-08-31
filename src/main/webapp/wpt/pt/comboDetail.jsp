@@ -73,6 +73,11 @@
 		
 </body>
 <script src="../wp/fif/assets/js/libs/TouchSlide.1.1.js"></script>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/base.js"></script>
+<script>
+${jsCode}
+</script>
 <script>
 //轮播图
 TouchSlide({ 
@@ -83,11 +88,6 @@ TouchSlide({
 	autoPlay:true,//自动播放
 	autoPage:true, //自动分页
 });
-</script>
-<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="js/base.js"></script>
-<script>
-${jsCode}
 </script>
 <script>
 $(function() {

@@ -13,7 +13,7 @@ $(function() {
 	var hrefs = [
 	             "listSpecial?account.pkey=${account.pkey}",
 	             "startJourney?account.pkey=${account.pkey}",
-	             "listTop?account.pkey=${account.pkey}",
+	             "listHeadline?account.pkey=${account.pkey}",
 	             "showMe?account.pkey=${account.pkey}",
 	             ];
 	$(".footer a").each(function(index) {

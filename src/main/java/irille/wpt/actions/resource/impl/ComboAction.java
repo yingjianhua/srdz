@@ -15,7 +15,7 @@ import irille.wpt.actions.resource.AbstractCRUDAction;
 import irille.wpt.bean.Combo;
 import irille.wpt.bean.ComboLine;
 import irille.wpt.interceptor.CityInterceptor;
-import irille.wpt.service.ComboService;
+import irille.wpt.service.impl.ComboService;
 import irille.wx.wpt.WptCity;
 
 @Controller
@@ -27,7 +27,7 @@ public class ComboAction extends AbstractCRUDAction<Combo> {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private String banquetId;    
+	private String banquetId;
 	private String pnum;
 	private String budget;
 	private String areaId;

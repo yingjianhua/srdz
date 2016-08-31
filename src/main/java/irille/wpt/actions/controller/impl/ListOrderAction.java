@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.wpt.actions.controller.AbstractControllAction;
-import irille.wpt.service.OrderService;
+import irille.wpt.service.impl.OrderService;
 import irille.wx.wpt.WptOrder;
 @Controller
 @Scope("prototype")

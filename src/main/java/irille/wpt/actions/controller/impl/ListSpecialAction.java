@@ -8,8 +8,8 @@ import org.springframework.stereotype.Controller;
 import irille.core.sys.Sys.OYn;
 import irille.pub.idu.Idu;
 import irille.wpt.actions.controller.AbstractControllAction;
+import irille.wpt.bean.City;
 import irille.wpt.interceptor.CityInterceptor;
-import irille.wx.wpt.WptCity;
 import irille.wx.wpt.WptSpecial;
 @Controller
 @Scope("prototype")
@@ -25,7 +25,7 @@ public class ListSpecialAction extends AbstractControllAction {
 	 */
 	@Override
 	public String execute() throws Exception {
-		WptCity city = (WptCity)getSession().get(CityInterceptor.CITY);
+		City city = (City)getSession().get(CityInterceptor.CITY);
 		String where = Idu.sqlString("{0}=? or {1}=? order by {2}", WptSpecial.T.CITY, WptSpecial.T.IGNORE_CITY, WptSpecial.T.SORT);
 		specials = WptSpecial.list(WptSpecial.class, where, false, city.getPkey(), OYn.YES.getLine().getKey());
 		setResult("find/specialList.jsp");

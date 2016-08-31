@@ -7,8 +7,8 @@ import org.springframework.stereotype.Controller;
 
 import irille.pub.idu.Idu;
 import irille.wpt.actions.controller.AbstractControllAction;
+import irille.wpt.bean.City;
 import irille.wpt.interceptor.CityInterceptor;
-import irille.wx.wpt.WptCity;
 import irille.wx.wpt.WptHot;
 import irille.wxpub.js.JMGetLocation;
 import irille.wxpub.js.JMOpenLocation;
@@ -29,7 +29,7 @@ public class ListHotAction extends AbstractControllAction {
 	 */
 	@Override
 	public String execute() throws Exception {
-		WptCity city = (WptCity)getSession().get(CityInterceptor.CITY);
+		City city = (City)getSession().get(CityInterceptor.CITY);
 		String where = Idu.sqlString("{0}=? order by {1}", WptHot.T.CITY, WptHot.T.SORT);
 		hots = WptHot.list(WptHot.class, where, false, city.getPkey());
 		setResult("find/hotList.jsp");

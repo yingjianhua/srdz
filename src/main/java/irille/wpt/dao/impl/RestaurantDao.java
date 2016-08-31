@@ -5,10 +5,10 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import irille.wpt.bean.Restaurant;
-import irille.wpt.dao.BaseDao;
+import irille.wpt.dao.AbstractDao;
 
 @Repository
-public class RestaurantDao extends BaseDao {
+public class RestaurantDao extends AbstractDao<Restaurant, Integer> {
 	/**
 	 * 
 	 * @param cityId 城市id

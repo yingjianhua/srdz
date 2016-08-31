@@ -14,7 +14,7 @@ import org.springframework.stereotype.Controller;
 import irille.pub.Log;
 import irille.pub.idu.Idu;
 import irille.wpt.actions.resource.AbstractCRUDAction;
-import irille.wpt.service.SellerService;
+import irille.wpt.service.impl.SellerService;
 import irille.wx.wpt.Wpt.OStatus;
 import irille.wx.wpt.WptRestaurant;
 @Controller

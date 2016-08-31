@@ -1,4 +1,4 @@
-package irille.wpt.service;
+package irille.wpt.service.impl;
 
 import org.springframework.stereotype.Service;
 

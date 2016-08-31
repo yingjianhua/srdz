@@ -1,4 +1,4 @@
-package irille.wpt.service;
+package irille.wpt.service.impl;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
@@ -111,7 +111,7 @@ public class UserService {
 		WptQrcodeRule rule = Bean.get(WptQrcodeRule.class, user.getAccount());
 		Calendar calendar = Calendar.getInstance();
 		calendar.add(Calendar.DAY_OF_MONTH, rule.getAheadUpdate());
-		if(calendar.getTime().after(user.getQrcodeExpireTime())) {
+		if(user.getQrcodeExpireTime() == null || calendar.getTime().after(user.getQrcodeExpireTime())) {
 			qrcodeRuleService.createQrcode(user, rule);
 		}
 	}

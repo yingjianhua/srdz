@@ -1,41 +1,38 @@
 package irille.wpt.actions.resource.impl;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.annotation.Resource;
+import javax.annotation.security.PermitAll;
 
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.json.annotations.IncludeProperties;
-import org.json.JSONArray;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.wpt.actions.resource.AbstractCRUDAction;
-import irille.wpt.service.TopService;
+import irille.wpt.bean.Headline;
+import irille.wpt.service.impl.HeadlineService;
 import irille.wx.wx.WxUser;
 @Controller
 @Scope("prototype")
-public class TopAction extends AbstractCRUDAction {
+public class HeadlineAction extends AbstractCRUDAction<Headline> {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -3731521594935712289L;
+	
 	private Integer id;
-
 	private Integer cityId;
 	private Integer areaId;
 	private Integer banquetId;
 	private Integer accountId;
 	@Resource
-	private TopService topService;
+	private HeadlineService headlineService;
 	/**
 	 * 收藏或取消收藏
 	 */
 	public void collect() {
 		WxUser user = chkWxUser();
-		topService.collectOrCancel(id, user.getPkey());
+		headlineService.collectOrCancel(id, user.getPkey());
 	}
 	/**
 	 * 筛选
@@ -47,10 +44,12 @@ public class TopAction extends AbstractCRUDAction {
 		"\\[\\d+\\]\\.title",
 		"\\[\\d+\\]\\.date"
 	})
-	public String list() {
-		beans = topService.search(cityId, areaId, banquetId, accountId);
-		return "json";
+	@PermitAll
+	public String search() {
+		beans = headlineService.search(cityId, areaId, banquetId, accountId);
+		return BEANS;
 	}
+
 	public Integer getId() {
 		return id;
 	}

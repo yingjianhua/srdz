@@ -8,14 +8,13 @@ import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
-import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 
 import irille.pub.Log;
+import irille.wpt.bean.City;
+import irille.wpt.service.impl.CityService;
 import irille.wpt.tools.SinaLocationTool;
-import irille.wx.wpt.WptCity;
-import irille.wx.wpt.WptCityDAO;
 
-public class CityInterceptor extends AbstractInterceptor {
+public class CityInterceptor extends MyAbstractInterceptor {
 	
 	/**
 	 * 
@@ -23,9 +22,9 @@ public class CityInterceptor extends AbstractInterceptor {
 	private static final long serialVersionUID = 4027438797941908882L;
 	private static final Log LOG = new Log(CityInterceptor.class);
 	public static final String CITY = "city";
+	
 	@Override
 	public String intercept(ActionInvocation actionInvocation) throws Exception {
-		LOG.info("--------------intercept():start--------------");
 		ActionContext actionContext = actionInvocation.getInvocationContext();
 		Map<String, Object> session = actionContext.getSession();
 		if(session.get(CITY) == null) {
@@ -33,21 +32,20 @@ public class CityInterceptor extends AbstractInterceptor {
 			Map<String, Object> map = actionContext.getParameters();
 			Integer account = Integer.parseInt(((String[])map.get("account.pkey"))[0]);
 			try {
-				String city = SinaLocationTool.findCityByIp(request.getRemoteAddr());
-				WptCity wptCity = WptCityDAO.findByName(account, city);
-				if(wptCity != null){
-					session.put(CITY, wptCity);
+				String cityName = SinaLocationTool.findCityByIp(request.getRemoteAddr());
+				City city = getFactory().getBean(CityService.class).findByName(cityName, account);
+				if(city != null){
+					session.put(CITY, city);
 				}else{
-					session.put(CITY, WptCityDAO.findByName(account, "温州"));
+					session.put(CITY, getFactory().getBean(CityService.class).findByName("温州", account));
 				}
 			} catch (Exception e) {
-				session.put(CITY, WptCityDAO.findByName(account, "温州"));
+				session.put(CITY, getFactory().getBean(CityService.class).findByName("温州", account));
 				e.printStackTrace();
 			}
 		}
-		LOG.info("city:"+((WptCity)session.get(CITY)).getName());
+		LOG.info("cityInterceptor:"+((City)session.get(CITY)).getName());
 		String rtn = actionInvocation.invoke();
-		LOG.info("--------------intercept():end--------------");
 		return rtn;
 	}
 

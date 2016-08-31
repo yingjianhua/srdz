@@ -4,6 +4,8 @@ package irille.wx.wpt;
 
 import java.util.Date;
 
+import org.apache.struts2.json.annotations.JSON;
+
 import irille.core.sys.Sys.OYn;
 import irille.pub.Log;
 import irille.pub.bean.BeanInt;
@@ -208,6 +210,7 @@ public class WptTop extends BeanInt<WptTop> implements IExtName {
   public void setImgUrl(String imgUrl){
     _imgUrl=imgUrl;
   }
+  @JSON(format="yyyy-MM-dd")
   public Date getDate(){
     return _date;
   }

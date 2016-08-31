@@ -3,7 +3,6 @@ package irille.wpt.dao;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -12,7 +11,6 @@ import javax.annotation.Resource;
 
 import org.apache.struts2.json.JSONException;
 import org.apache.struts2.json.JSONUtil;
-import org.apache.struts2.json.annotations.IncludeProperties;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -29,12 +27,14 @@ import com.google.gson.GsonBuilder;
 
 import irille.tools.GenericsUtils;
 import irille.wpt.actions.resource.impl.ComboLineAction;
+import irille.wpt.bean.Combo;
 import irille.wpt.bean.ComboLine;
 import irille.wpt.json.MySimplePropertyPreFilter;
-import irille.wpt.service.ComboService;
+import irille.wpt.service.impl.ComboService;
+import irille.wpt.tools.Page;
 
 @Repository
-public class BaseDao<T,ID extends Serializable> {
+public abstract class AbstractDao<T,ID extends Serializable> {
 	@Resource
 	protected SessionFactory sessionFactory;
 	protected Class<T> entityClass;
@@ -44,9 +44,10 @@ public class BaseDao<T,ID extends Serializable> {
 		return session.get(entityClass, id);
 	}
 	
-	public BaseDao() {
+	public AbstractDao() {
 		this.entityClass = GenericsUtils.getSuperClassGenricType(getClass());  
 	}
+	
 	public T load(ID id) {
 		Session session = sessionFactory.getCurrentSession();
 		return session.load(entityClass, id);
@@ -55,35 +56,28 @@ public class BaseDao<T,ID extends Serializable> {
 		Session session = sessionFactory.getCurrentSession();
 		return session.createQuery("from "+entityClass.getName()).list();
 	}
-	
-	public List<T> list(Class entity, Integer start, Integer limit) {
+	public Page<T> page(Integer start, Integer limit) {
 		Session session = sessionFactory.getCurrentSession();
-		Query query = session.createQuery("from "+entity.getSimpleName());
-		if(start!=null) {
-			query.setFirstResult(start);
-		}
-		if(limit!=null) {
-			query.setMaxResults(limit);
-		}
-		System.out.println("entityClass:"+entity.getName());
-		return query.list();
+		Long total = (Long)session.createQuery("select count(*) from "+entityClass.getName()).uniqueResult();
+		Query query = session.createQuery("from "+entityClass.getName());
+		query.setFirstResult(start).setMaxResults(limit);
+		List<T> items = query.list();
+		Page<T> page = new Page<T>(total, items);
+		return page;
 	}
 	
 	public static void main(String[] args) throws IOException {
 		ClassPathXmlApplicationContext bf = new ClassPathXmlApplicationContext("applicationContext.xml");
-		ComboService dao = bf.getBean(ComboService.class);
-		ComboLineAction action = bf.getBean(ComboLineAction.class);
-		action.list();
 		SessionFactory sf = bf.getBean(SessionFactory.class);
 		Session session = sf.openSession();
+		Object count = session.createQuery("select count(*) from Combo").uniqueResult();
+		List<Combo> list = session.createQuery("from Combo").list();
+		System.out.println("count:"+count);
+		System.out.println("list.size:"+list.size());
 		Date point1 = new Date();
-		ComboLine comboLine = session.get(ComboLine.class, 50);
 		System.out.println("------------------------------------------");
 		Date point2 = new Date();
-		testStrutsJson(comboLine, 3);
-		Date point3 = new Date();
 		System.out.println(point2.getTime()-point1.getTime());
-		System.out.println(point3.getTime()-point2.getTime());
 	}
 	@Transactional
 	public static void testJson() {

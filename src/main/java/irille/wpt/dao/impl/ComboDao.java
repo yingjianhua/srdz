@@ -1,85 +1,25 @@
 package irille.wpt.dao.impl;
 
-import java.util.Date;
 import java.util.List;
 
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import irille.core.sys.Sys.OEnabled;
 import irille.pub.bean.Bean;
 import irille.wpt.bean.Combo;
-import irille.wpt.dao.BaseDao;
+import irille.wpt.dao.AbstractDao;
 import irille.wx.wpt.WptCombo;
 import irille.wx.wpt.WptRestaurant;
 import irille.wx.wpt.WptRestaurantLine;
 @Repository
-public class ComboDao extends BaseDao<Combo, Integer>{
+public class ComboDao extends AbstractDao<Combo, Integer> {
 	private static final String pattern1 = ",(\\d+)";
 	private static final String pattern2 = "(\\d+,)";
 	private static final String pattern3 = "(\\d+),(\\d+)";
 	private static final String pattern4 = "(\\d+)";
-	
-	public static void main(String[] args) {
-		WptCombo.TB.getCode();
-		BeanFactory bf = new ClassPathXmlApplicationContext("applicationContext.xml");
-		ComboDao dao = bf.getBean(ComboDao.class);
-		
-		Date start=new Date();
-		Date end = new Date();
-		
-		for(int i=0;i<5;i++) {
-			List<Combo> list = dao.f1();
-			end = new Date();
-			System.out.println(end.getTime()-start.getTime());
-			start = end;
-		}
-		System.out.println("-------------------------------------------");
-		for(int i=0;i<5;i++) {
-			List<WptCombo> list = dao.f2();
-			end = new Date();
-			System.out.println(end.getTime()-start.getTime());
-			start = end;
-		}
-		System.out.println("-------------------------------------------");
-		for(int i=0;i<5;i++) {
-			
-			List<Combo> list = dao.pageByCondition(null, null, null, null, null, null, null, null, null);
-			for(Combo combo:list) {
-			}
-			end = new Date();
-			System.out.println(end.getTime()-start.getTime());
-			start = end;
-		}
-		System.out.println("-------------------------------------------");
-		
-		for(int i=0;i<5;i++) {
-			List<WptCombo> list2 = dao.findByCondition(null, null, null, null, null);
-			for(WptCombo wptCombo:list2) {
-				//System.out.println(wptCombo);
-			}
-			end = new Date();
-			System.out.println(end.getTime()-start.getTime());
-			start = end;
-		}
-	}
-	@Transactional
-	public List<Combo> f1() {
-		Session session = sessionFactory.getCurrentSession();
-		String sql = "select c.*,p.* from product_combo c left join product p on (c.comboId=p.pkey) left join wpt_restaurant r on c.RESTAURANT=r.PKEY where p.ENABLED=1";
-		session.createSQLQuery(sql.toString()).list();
-		return null;
-	}
-	@Transactional
-	public List<WptCombo> f2() {
-		String sql = "select c.*,p.* from product_combo c left join product p on (c.comboId=p.pkey) left join wpt_restaurant r on c.RESTAURANT=r.PKEY where p.ENABLED=1";
-		Bean.executeQueryMap(sql);
-		return null;
-	}
 	
 	@Transactional
 	public List<Combo> pageByCondition(String banquet, String pnum, String budget, String city, String area, String longitude, String latitude, Integer start, Integer limit) {

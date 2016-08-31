@@ -1,103 +1,73 @@
 package irille.wpt.actions.resource.impl;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
-
 import javax.annotation.Resource;
+import javax.annotation.security.PermitAll;
 
-import org.apache.struts2.ServletActionContext;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.apache.struts2.json.annotations.IncludeProperties;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import irille.pub.Exp;
 import irille.pub.Log;
-import irille.pub.bean.Bean;
 import irille.wpt.actions.resource.AbstractCRUDAction;
+import irille.wpt.bean.City;
 import irille.wpt.interceptor.CityInterceptor;
-import irille.wpt.service.CityService;
-import irille.wx.wpt.WptCity;
+import irille.wpt.service.impl.CityService;
 @Controller
 @Scope("prototype")
-public class CityAction extends AbstractCRUDAction {
+public class CityAction extends AbstractCRUDAction<City> {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -5574652896687120596L;
+	
 	private static final Log LOG = new Log(CityAction.class);
 	private int id;
 	private String petitionCity;
 	@Resource
 	private CityService cityService;
 	
-	public void select() {
-		LOG.info("--------------select():start--------------");
-		LOG.info("id:{0}", id);
-		WptCity city = WptCity.get(WptCity.class, id);
+	@PermitAll
+	public String select() {
+		City city = cityService.load(id);
+		LOG.info("select:{0}", city.getName());
 		if(city != null) {
 			getSession().put(CityInterceptor.CITY, city);
 		}
-		PrintWriter writer;
-		try {
-			writer = ServletActionContext.getResponse().getWriter();
-			writer.print("success");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		LOG.info("--------------select():end--------------");
+		object = "success";
+		return OBJECT;
 	}
-	public void currCity() {
-		WptCity city = (WptCity)getSession().get(CityInterceptor.CITY);
+	@IncludeProperties({
+		"\\[\\d+\\]\\.pkey",
+		"\\[\\d+\\]\\.name"
+	})
+	@PermitAll
+	public String currCity() {
+		City city = (City)getSession().get(CityInterceptor.CITY);
 		if(city != null) {
-			try {
-				PrintWriter writer = ServletActionContext.getResponse().getWriter();
-				writer.print(new JSONObject().put("id", city.getPkey()).put("name", city.getName()));
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
+			object = city;
 		}
+		return OBJECT;
 	}
-	public void listCity() {
-		List<WptCity> citys = Bean.list(WptCity.class, WptCity.T.ACCOUNT+"=?", false, getAccount().getPkey());
-		JSONArray result = new JSONArray();
-		for(WptCity city:citys) {
-			try {
-				result.put(new JSONObject().put("id", city.getPkey()).put("name", city.getName()));
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-		}
-		PrintWriter writer;
-		try {
-			writer = ServletActionContext.getResponse().getWriter();
-			writer.print(result.toString());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	
+	@IncludeProperties({
+		"\\[\\d+\\]\\.pkey",
+		"\\[\\d+\\]\\.name"
+	})
+	@PermitAll
+	public String search() {
+		beans = cityService.search(getAccount().getPkey());
+		return BEANS;
 	}
+	
 	/**
 	 * 请愿城市
 	 */
-	public void petition(){
-		PrintWriter writer = null;
-		try {
-			writer = ServletActionContext.getResponse().getWriter();
-			if(getPetitionCity() != null)
-				cityService.insOrUpd(getPetitionCity(), getAccount().getPkey());
-			writer.print("享食光马上就来");
-		} catch (Exp e) {
-			writer.print(e.getLastMessage());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
+	@PermitAll
+	public String petition(){
+		cityService.insOrUpd(getPetitionCity(), getAccount().getPkey());
+		object = "享食光马上就来";
+		return OBJECT;
 	}
-	
 
 	public void setId(int id) {
 		this.id = id;

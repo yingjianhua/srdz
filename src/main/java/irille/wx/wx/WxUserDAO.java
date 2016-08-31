@@ -17,7 +17,7 @@ import irille.pub.bean.Bean;
 import irille.pub.bean.BeanBase;
 import irille.pub.idu.Idu;
 import irille.pub.svr.Svr;
-import irille.wpt.service.QrcodeRuleService;
+import irille.wpt.service.impl.QrcodeRuleService;
 import irille.wx.wpt.WptQrcodeRule;
 import irille.wxpub.util.WeixinUtil;
 

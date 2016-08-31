@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.wpt.actions.resource.AbstractCRUDAction;
-import irille.wpt.service.FeedBackService;
+import irille.wpt.service.impl.FeedBackService;
 @Controller
 @Scope("prototype")
 public class FeedbackAction extends AbstractCRUDAction {

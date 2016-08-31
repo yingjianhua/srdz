@@ -18,7 +18,7 @@ import irille.pub.Exp;
 import irille.pub.Log;
 import irille.wpt.actions.resource.AbstractCRUDAction;
 import irille.wpt.interceptor.CityInterceptor;
-import irille.wpt.service.OrderService;
+import irille.wpt.service.impl.OrderService;
 import irille.wx.wpt.WptCity;
 import irille.wx.wpt.WptOrder;
 import irille.wx.wx.WxAccount;

@@ -191,16 +191,16 @@ $(function(){
 	}
 	var currCity = $(".select_city_btn").text();
 	$.ajax({
-		url:"resource/city_listCity?account.pkey=${account.pkey}",
+		url:"resource/city_search?account.pkey=${account.pkey}",
 		type:"POST",
 		dataType:"json",
 		success:function(result) {
 			var citys = "";
 			$.each(result, function(index, line){
 				if(line.name == currCity) {
-					citys += '<li><a pkey="'+line.id+'" href="javascript:;" class="hover">'+line.name+'</a></li>';	
+					citys += '<li><a pkey="'+line.pkey+'" href="javascript:;" class="hover">'+line.name+'</a></li>';	
 				} else {
-					citys += '<li><a pkey="'+line.id+'" href="javascript:;" >'+line.name+'</a></li>';
+					citys += '<li><a pkey="'+line.pkey+'" href="javascript:;" >'+line.name+'</a></li>';
 				}
 			});
 			$(".hmcity_items").html(citys);

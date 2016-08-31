@@ -10,7 +10,6 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
-import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 
 import irille.pub.Log;
 import irille.pub.PubInfs.IMsg;
@@ -24,7 +23,7 @@ import irille.wxpub.js.JMHideMenuItems;
 import irille.wxpub.js.JMOnMenuShareAppMessage;
 import irille.wxpub.js.JMOnMenuShareTimeline;
 
-public class JsCodeInterceptor extends AbstractInterceptor{
+public class JsCodeInterceptor extends MyAbstractInterceptor{
 	/**
 	 * 
 	 */
@@ -37,8 +36,8 @@ public class JsCodeInterceptor extends AbstractInterceptor{
 		private String _msg;
 		private Msgs(String msg) { _msg=msg; }
 		public String getMsg() {return _msg; }
-	} 
-	BeanFactory factory;
+	}
+	
 	@Override
 	public String intercept(ActionInvocation actionInvocation) throws Exception {
 		Object action = actionInvocation.getAction();
@@ -96,15 +95,4 @@ public class JsCodeInterceptor extends AbstractInterceptor{
 		return rtn;
 	}
 	
-	public synchronized BeanFactory getFactory() {
-		if(factory == null) {
-			factory = (WebApplicationContext)ServletActionContext.getServletContext().getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
-		}
-		return factory;
-	}
-
-	public void setFactory(BeanFactory factory) {
-		this.factory = factory;
-	}
-
 }

@@ -84,7 +84,7 @@ function search() {
 	$(".front_flog").hide();
 	$(".front_slide").hide();
 	$.ajax({
-		url:"resource/top_list?account.pkey=${account.pkey}",
+		url:"resource/headline_search?account.pkey=${account.pkey}",
 		data : {
 			cityId : "${sessionScope.city.pkey}",
 			areaId : areaId==0?"":areaId,
@@ -124,7 +124,7 @@ function search() {
 				if(ur !='')
 					location.href=ur;
 				else
-					location.href = "showTop?id=" + pkey+"&account.pkey="+${account.pkey};
+					location.href = "showHeadline?id=" + pkey+"&account.pkey="+${account.pkey};
 			});
 		}
 	})
@@ -167,7 +167,7 @@ $(function(){
 		if(ur !='')
 			location.href=ur;
 		else
-			location.href = "showTop?id=" + pkey+"&account.pkey="+${account.pkey};
+			location.href = "showHeadline?id=" + pkey+"&account.pkey="+${account.pkey};
 	});
 	if(location.hash) {
 		var condition = location.hash.substr(1).split("&");

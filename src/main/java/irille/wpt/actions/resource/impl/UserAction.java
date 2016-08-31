@@ -16,7 +16,7 @@ import org.springframework.stereotype.Controller;
 
 import irille.pub.Log;
 import irille.wpt.actions.resource.AbstractCRUDAction;
-import irille.wpt.service.UserService;
+import irille.wpt.service.impl.UserService;
 import irille.wx.wpt.WptCommissionJournal;
 import irille.wx.wx.WxUser;
 @Controller

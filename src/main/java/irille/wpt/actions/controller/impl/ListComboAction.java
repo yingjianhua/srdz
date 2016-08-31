@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.wpt.actions.controller.AbstractControllAction;
-import irille.wpt.service.ComboService;
+import irille.wpt.service.impl.ComboService;
 import irille.wx.wpt.WptCombo;
 import irille.wxpub.js.JMOpenLocation;
 import irille.wxpub.js.JQFunDefine;

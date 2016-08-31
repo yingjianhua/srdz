@@ -14,7 +14,7 @@ import irille.action.ActionBase;
 import irille.pub.Str;
 import irille.pub.idu.Idu;
 import irille.pub.idu.IduPage;
-import irille.wpt.service.QrcodeRuleService;
+import irille.wpt.service.impl.QrcodeRuleService;
 import irille.wx.wx.WxAccount;
 import irille.wx.wx.WxAccountDAO;
 import irille.wx.wx.WxUser;

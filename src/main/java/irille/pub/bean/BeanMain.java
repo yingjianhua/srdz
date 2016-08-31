@@ -52,6 +52,7 @@ public abstract class BeanMain<BEAN extends BeanMain, TYPE extends Serializable>
 	 * @return 结果
 	 */
 	public boolean equals(Object o) {
+		if(o == null || !(o instanceof BeanMain)) return false;
 		BeanMain model = (BeanMain) o;
 		if (model.getPkey() == null || getPkey() == null)
 			return false;

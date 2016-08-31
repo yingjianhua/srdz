@@ -3,7 +3,7 @@ package irille.wpt.bean;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import irille.wpt.service.ComboService;
+import irille.wpt.service.impl.ComboService;
 
 public class TestRestaurant {
 	

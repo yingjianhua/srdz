@@ -8,7 +8,7 @@ import irille.wx.wpt.WptCollect;
 import irille.wx.wpt.WptTop;
 @Controller
 @Scope("prototype")
-public class ShowTopAction extends AbstractControllAction {
+public class ShowHeadlineAction extends AbstractControllAction {
 
 	/**
 	 * 
@@ -26,7 +26,7 @@ public class ShowTopAction extends AbstractControllAction {
 	public String execute() throws Exception {
 		top = WptTop.load(WptTop.class, id);
 		isCollect = WptCollect.chkUniqueWxUserTop(false, chkWxUser().getPkey(), id) == null ? false : true;
-		setResult("front/topDetail.jsp");
+		setResult("headline/headlineDetail.jsp");
 		return TRENDS;
 	}
 

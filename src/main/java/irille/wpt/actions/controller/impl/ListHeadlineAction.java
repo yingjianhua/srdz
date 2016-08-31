@@ -8,15 +8,15 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.wpt.actions.controller.AbstractControllAction;
+import irille.wpt.bean.City;
 import irille.wpt.interceptor.CityInterceptor;
-import irille.wpt.service.TopService;
+import irille.wpt.service.impl.HeadlineService;
 import irille.wx.wpt.WptBanquet;
-import irille.wx.wpt.WptCity;
 import irille.wx.wpt.WptCityLine;
 import irille.wx.wpt.WptTop;
 @Controller
 @Scope("prototype")
-public class ListTopAction extends AbstractControllAction {
+public class ListHeadlineAction extends AbstractControllAction {
 
 	/**
 	 * 
@@ -27,17 +27,17 @@ public class ListTopAction extends AbstractControllAction {
 	private List<WptBanquet> banquets;
 	private List<WptTop> tops;
 	@Resource
-	private TopService topService;
+	private HeadlineService topService;
 	/**
 	 * 头条列表
 	 */
 
 	@Override
 	public String execute() throws Exception {
-		WptCity city = (WptCity) getSession().get(CityInterceptor.CITY);
+		City city = (City) getSession().get(CityInterceptor.CITY);
 		areas = WptCityLine.list(WptCityLine.class, WptCityLine.T.CITY + " = ?", false, city.getPkey());
 		banquets = WptBanquet.list(WptBanquet.class,  WptBanquet.T.ACCOUNT + " = ?", false, getAccount().getPkey());
-		setResult("front/topList.jsp");
+		setResult("headline/headlineList.jsp");
 		return TRENDS;
 	}
 	

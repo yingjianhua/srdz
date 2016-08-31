@@ -1,4 +1,4 @@
-package irille.wpt.service;
+package irille.wpt.service.impl;
 
 import java.util.List;
 
@@ -8,10 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import irille.wpt.bean.Combo;
+import irille.wpt.dao.AbstractDao;
 import irille.wpt.dao.impl.ComboDao;
 
 @Service
-public class ComboService extends BaseService {
+public class ComboService extends AbstractDao {
 
 	
 	@Resource

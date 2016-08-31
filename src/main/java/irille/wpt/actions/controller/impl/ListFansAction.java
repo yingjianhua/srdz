@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.wpt.actions.controller.AbstractControllAction;
-import irille.wpt.service.UserService;
+import irille.wpt.service.impl.UserService;
 @Controller
 @Scope("prototype")
 public class ListFansAction extends AbstractControllAction {
