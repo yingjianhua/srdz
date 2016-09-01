@@ -14,8 +14,12 @@ import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 
 import irille.action.sys.SysUserAction;
+import irille.core.sys.SysUser;
 import irille.pub.svr.Env;
 import irille.pub.svr.LoginUserMsg;
+import irille.wpt.actions.AbstractWptAction;
+import irille.wx.wx.WxAccount;
+import irille.wx.wx.WxAccountDAO;
 
 public class RoleInterceptor extends AbstractInterceptor {
 
@@ -49,6 +53,11 @@ public class RoleInterceptor extends AbstractInterceptor {
 		Map<String, Object> session = invocation.getInvocationContext().getSession();
 		LoginUserMsg umsg = (LoginUserMsg) session.get(LOGIN);
 		if (umsg != null) {
+			WxAccount account = WxAccountDAO.getByUser(umsg.getUser());
+			if(account != null && invocation.getAction() instanceof AbstractWptAction) {
+				AbstractWptAction action = (AbstractWptAction)invocation.getAction();
+				action.setAccount(account);
+			}
 			// 这里缓存的线程级对象会在请求结束后在DBITP中释放
 			Env.INST.initTran(umsg, invocation.getProxy().getActionName());
 			// 存在的情况下进行后续操作。

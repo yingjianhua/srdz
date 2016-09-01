@@ -5,23 +5,21 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import irille.wpt.bean.Combo;
-import irille.wpt.dao.AbstractDao;
+import irille.wpt.bean.ComboLine;
 import irille.wpt.dao.impl.ComboDao;
+import irille.wpt.dao.impl.ComboLineDao;
 
 @Service
-public class ComboService extends AbstractDao {
+public class ComboService {
 
 	
 	@Resource
 	private ComboDao comboDao;
+	@Resource
+	private ComboLineDao comboLineDao;
 	
-	@Transactional
-	public Combo get(Integer id) {
-		return comboDao.get(id);
-	}
 	/**
 	 * 
 	 * @param banquetId 宴会类型id
@@ -30,8 +28,15 @@ public class ComboService extends AbstractDao {
 	 * @param areaId 区域id
 	 * @return List<套餐>
 	 */
-	@Transactional
 	public List<Combo> findByCondition(String banquet, String pnum, String budget, String city, String area,String longitude,String latitude) {
 		return comboDao.pageByCondition(banquet, pnum, budget, city, area, longitude, latitude, null, null);
+	}
+	
+	public void save(Combo combo, List<ComboLine> listLine) {
+		comboDao.save(combo);
+		for(ComboLine comboLine:listLine) {
+			comboLine.setCombo(combo);
+			comboLineDao.save(comboLine);
+		}
 	}
 }

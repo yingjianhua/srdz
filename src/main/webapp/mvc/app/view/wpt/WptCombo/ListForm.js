@@ -45,8 +45,10 @@ onIns : function(origModel){
 	var store = this.getStore();
 	var origData = origModel.data;
 	var targData = {
-			"bean.menu.pkey":origData["bean.pkey"]+bean_split+origData["bean.name"],
-			"bean.price":origData["bean.price"]
+			"menu":{
+				"pkey":origData["bean.pkey"]+bean_split+origData["bean.name"],
+			},
+			"price":origData["bean.price"]
 	};
 	store.insert(0, Ext.create("mvc.model.wpt.WptComboLine", targData));
 },

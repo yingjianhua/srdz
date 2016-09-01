@@ -6,14 +6,18 @@ proxy : {
 	url : base_path+'/wpt_WptComboLine_load'
 },
 fields : [{name : 'bean.pkey',mapping : 'pkey',type : 'int',useNull : true}
-	,{name : 'bean.combo',mapping : 'combo',type : 'string',outkey : true,
+	,{name : 'bean.combo.pkey',mapping : 'combo.pkey',type : 'string',outkey : true,
 		 convert: function(value, record) {
-			 return record.raw.combo.pkey+bean_split+record.raw.combo.name;
+			 if(record.raw.combo)
+				 return record.raw.combo.pkey+bean_split+record.raw.combo.name;
+			 return value;
          }
 	}
-	,{name : 'bean.menu',mapping : 'menu',type : 'string',outkey : true,
+	,{name : 'bean.menu.pkey',mapping : 'menu.pkey',type : 'string',outkey : true,
 		 convert: function(value, record) {
-			 return record.raw.menu.pkey+bean_split+record.raw.menu.name;
+			 if(record.raw.menu)
+				 return record.raw.menu.pkey+bean_split+record.raw.menu.name;
+			 return value;
          }}
 	,{name : 'bean.price',mapping : 'price',type : 'float',useNull : true}
 	,{name : 'bean.account',mapping : 'account',type : 'string',outkey : true}

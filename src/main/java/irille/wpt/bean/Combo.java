@@ -24,10 +24,10 @@ public class Combo extends Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Column(name="number_max")
-	private int numberMax;
+	private Integer numberMax;
 
 	@Column(name="number_min")
-	private int numberMin;
+	private Integer numberMin;
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="restaurant")
@@ -39,29 +39,28 @@ public class Combo extends Product implements Serializable {
 	@Column(name="service_time")
 	private String serviceTime;
 
-	private int sort;
+	private Integer sort;
 
 	public Combo() {
 	}
 
-	public int getNumberMax() {
+	public Integer getNumberMax() {
 		return this.numberMax;
 	}
 
-	public void setNumberMax(int numberMax) {
+	public void setNumberMax(Integer numberMax) {
 		this.numberMax = numberMax;
 	}
 
-	public int getNumberMin() {
+	public Integer getNumberMin() {
 		return this.numberMin;
 	}
 
-	public void setNumberMin(int numberMin) {
+	public void setNumberMin(Integer numberMin) {
 		this.numberMin = numberMin;
 	}
 
 	public Restaurant getRestaurant() {
-		System.out.println("combo.getRestaurant");
 		return this.restaurant;
 	}
 
@@ -85,11 +84,11 @@ public class Combo extends Product implements Serializable {
 		this.serviceTime = serviceTime;
 	}
 
-	public int getSort() {
+	public Integer getSort() {
 		return this.sort;
 	}
 
-	public void setSort(int sort) {
+	public void setSort(Integer sort) {
 		this.sort = sort;
 	}
 

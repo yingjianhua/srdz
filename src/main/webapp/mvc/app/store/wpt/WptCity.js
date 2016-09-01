@@ -7,7 +7,7 @@ remoteSort : false,
 autoLoad : false,
 proxy : {
 	type : 'ajax',
-	url : base_path+'/wpt_WptCity_list',
+	url : base_path+'/wpt/resource/city_page',
 	reader : {
 		type : 'json',
 		root : 'items',

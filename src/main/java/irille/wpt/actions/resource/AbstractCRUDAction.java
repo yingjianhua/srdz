@@ -6,14 +6,18 @@ import javax.annotation.Resource;
 import javax.annotation.security.RolesAllowed;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import irille.pub.Str;
 import irille.pub.svr.Env;
+import irille.pub.tb.Fld;
 import irille.pub.tb.Tb;
 import irille.tools.GenericsUtils;
 import irille.wpt.actions.AbstractWptAction;
 import irille.wpt.service.impl.BaseService;
+import irille.wpt.tools.SqlBuilder;
 import irille.wpt.tools.Page;
 /**
  * 用于对资源做增删改查
@@ -55,61 +59,99 @@ public abstract class AbstractCRUDAction<T> extends AbstractWptAction {
 	
 	@Resource
 	@Qualifier("baseService")
-	private BaseService service;
+	public BaseService service;
 	
+	//初始化action并根据泛型赋值bean的class
 	public AbstractCRUDAction() {
 		entityClass = GenericsUtils.getSuperClassGenricType(getClass());
 	}
 
-	@RolesAllowed("admin")
-	public void add() {
-		
+	public String add() {
+		service.add(bean);
+		object = bean;
+		return OBJECT;
 	}
 	
 	//@MaxLevel(4)
-	public String list() {
-		beans = service.list(entityClass, start, limit);
-		System.out.println(beans.size());
+	public String list() throws JSONException {
+		System.out.println(service.getClass());
+		String where = getFilter()==null?crtSqlByQuery():crtSqlByFilter();
+		beans = service.list(entityClass, start, limit, where);
 		return BEANS;
 	}
-	public String page() {
-		if(filter != null && !filter.trim().isEmpty()) {
-			// {"property":"flds","value":"1=1"} //初始化选择器的情况
-			// [{"property":"flds","value":"pkey,name"},{"property":"param","value":"1111"}]
-			JSONArray ja = new JSONArray(getQuery());
-			String[] flds = null;
-			String param = null;
-			String diy = ""; // 获取前台EXT动态写死的SQL条件
-			for (int i = 0; i < ja.length(); i++) {
-				String pro = ja.getJSONObject(i).getString(QUERY_PROPERTY);
-				if (pro.equals("flds")) {
-					if (ja.getJSONObject(i).getString(QUERY_VALUE).equals("1=1") == false)
-						flds = ja.getJSONObject(i).getString(QUERY_VALUE).split(",");
-				} else if (pro.equals("param"))
-					param = ja.getJSONObject(i).getString(QUERY_VALUE);
-				else
-					diy = ja.getJSONObject(i).getString(QUERY_VALUE);
-			}
-			if (flds == null && Str.isEmpty(diy)) {
-			}
-			String sql = "";
-			Tb tb = tb();
-			if (flds != null) {
-				for (String line : flds)
-					sql += " OR " + Env.INST.getDB().crtWhereSearch(tb.get(line), param);
-				sql = sql.substring(4);
-			}
-			String where = crtQueryAll();
-			if (Str.isEmpty(diy) == false)
-				where += " AND " + diy;
-			if (Str.isEmpty(sql) == false)
-				where += " AND (" + sql + ")";
-			if (tb().chk("enabled")) 
-				where += " AND enabled = 1";
-			return where + orderBy();
-		}
-		pages = service.page(entityClass, start, limit);
+	
+	public String page() throws JSONException {
+		System.out.println(service.getClass());
+		String where = getFilter()==null?crtSqlByQuery():crtSqlByFilter();
+		pages = service.page(entityClass, start, limit, where);
 		return PAGES;
+	}
+	
+	private String crtSqlByFilter() throws JSONException {
+		if (Str.isEmpty(getFilter()))
+			return crtFilterAll() + orderBy();
+		JSONArray ja = new JSONArray(getFilter());
+		String sql = "";
+		for (int i = 0; i < ja.length(); i++) {
+			JSONObject json = ja.getJSONObject(i);
+			String fldName = json.getString(QUERY_PROPERTY);
+			String param = json.getString(QUERY_VALUE);
+			if (Str.isEmpty(param))
+				continue;
+			sql += " AND " + SqlBuilder.crtWhereSearch(entityClass, fldName, param);
+		}
+		return crtFilterAll() + sql + orderBy();
+	}
+	private String crtSqlByQuery() throws JSONException {
+		if (Str.isEmpty(getQuery()))
+			return crtQueryAll() + orderBy();
+		// {"property":"flds","value":"1=1"} //初始化选择器的情况
+		// [{"property":"flds","value":"pkey,name"},{"property":"param","value":"1111"}]
+		JSONArray ja = new JSONArray(getQuery());
+		String[] flds = null;
+		String param = null;
+		String diy = ""; // 获取前台EXT动态写死的SQL条件
+		for (int i = 0; i < ja.length(); i++) {
+			String pro = ja.getJSONObject(i).getString(QUERY_PROPERTY);
+			if (pro.equals("flds")) {
+				if (ja.getJSONObject(i).getString(QUERY_VALUE).equals("1=1") == false)
+					flds = ja.getJSONObject(i).getString(QUERY_VALUE).split(",");
+			} else if (pro.equals("param"))
+				param = ja.getJSONObject(i).getString(QUERY_VALUE);
+			else
+				diy = ja.getJSONObject(i).getString(QUERY_VALUE);
+		}
+		if (flds == null && Str.isEmpty(diy)) {
+			return crtQueryAll() + orderBy();
+		}
+		String sql = "";
+		if (flds != null) {
+			for (String line : flds)
+				sql += " OR " + SqlBuilder.crtWhereSearch(entityClass, line, param);
+			sql = sql.substring(4);
+		}
+		String where = crtQueryAll();
+		if (Str.isEmpty(diy) == false)
+			where += " AND " + diy;
+		if (Str.isEmpty(sql) == false)
+			where += " AND (" + sql + ")";
+		return where + orderBy();
+	}
+	
+	public String orderBy() {
+		return " ORDER BY PKEY DESC";
+	}
+	public String orderByAsc() {
+		return " ORDER BY PKEY ASC";
+	}
+	public String crtQueryAll() {
+		return crtAll();
+	}
+	public String crtFilterAll() {
+		return crtAll();
+	}
+	public String crtAll() {
+		return "1=1";
 	}
 
 	public T getBean() {

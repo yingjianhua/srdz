@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 
 import irille.pub.Log;
 import irille.wpt.bean.City;
+import irille.wpt.bean.CityLine;
 import irille.wpt.dao.AbstractDao;
 import irille.wpt.dao.impl.CityDao;
+import irille.wpt.dao.impl.CityLineDao;
 import irille.wx.wpt.WptCity;
 import irille.wx.wpt.WptPetitionCity;
 @Service
@@ -19,6 +21,18 @@ public class CityService extends AbstractDao<City, Integer> {
 	
 	@Resource
 	private CityDao cityDao;
+	@Resource
+	private CityLineDao cityLineDao;
+	
+	public void save(City city, List<CityLine> listLine, Integer accountId) {
+		city.setAccount(accountId);
+		cityDao.save(city);
+		for(CityLine cityLine:listLine) {
+			cityLine.setAccount(accountId);
+			cityLine.setCity(city);
+			cityLineDao.save(cityLine);
+		}
+	}
 	/**
 	 * 添加请愿城市
 	 */

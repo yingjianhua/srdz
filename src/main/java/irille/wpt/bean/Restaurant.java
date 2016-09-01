@@ -6,6 +6,8 @@ import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -24,9 +26,10 @@ public class Restaurant implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int pkey;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer pkey;
 
-	private int account;
+	private Integer account;
 
 	private String addr;
 	
@@ -44,9 +47,9 @@ public class Restaurant implements Serializable {
 
 	private String des;
 
-	private byte display;
+	private Byte display;
 
-	private byte enabled;
+	private Byte enabled;
 
 	@Column(name="img_url")
 	private String imgUrl;
@@ -79,19 +82,19 @@ public class Restaurant implements Serializable {
 	public Restaurant() {
 	}
 
-	public int getPkey() {
+	public Integer getPkey() {
 		return this.pkey;
 	}
 
-	public void setPkey(int pkey) {
+	public void setPkey(Integer pkey) {
 		this.pkey = pkey;
 	}
 
-	public int getAccount() {
+	public Integer getAccount() {
 		return this.account;
 	}
 
-	public void setAccount(int account) {
+	public void setAccount(Integer account) {
 		this.account = account;
 	}
 
@@ -143,19 +146,19 @@ public class Restaurant implements Serializable {
 		this.des = des;
 	}
 
-	public byte getDisplay() {
+	public Byte getDisplay() {
 		return this.display;
 	}
 
-	public void setDisplay(byte display) {
+	public void setDisplay(Byte display) {
 		this.display = display;
 	}
 
-	public byte getEnabled() {
+	public Byte getEnabled() {
 		return this.enabled;
 	}
 
-	public void setEnabled(byte enabled) {
+	public void setEnabled(Byte enabled) {
 		this.enabled = enabled;
 	}
 

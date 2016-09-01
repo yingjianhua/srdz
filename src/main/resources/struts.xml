@@ -48,6 +48,7 @@
 		</global-results>
 		
 		<action name="city_*" class="cityAction" method="{1}"></action>
+		<action name="cityLine_*" class="cityLineAction" method="{1}"></action>
 		<action name="order_*" class="orderAction" method="{1}"></action>
 		<action name="headline_*" class="headlineAction" method="{1}"></action>
 		<action name="feedback_*" class="feedbackAction" method="{1}"></action>

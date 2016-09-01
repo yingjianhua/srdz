@@ -37,14 +37,12 @@ public class ComboAction extends AbstractCRUDAction<Combo> {
 	private List<ComboLine> listLine;
 	
 	@Resource
-	private ComboService comboService;
+	protected ComboService service;
 	
 	@Override
-	public void add() {
-		System.out.println(listLine);
-		if(listLine!=null)
-			System.out.println(listLine.size());
-		super.add();
+	public String add() {
+		
+		return OBJECT;
 	}
 	
 	@PermitAll
@@ -58,7 +56,7 @@ public class ComboAction extends AbstractCRUDAction<Combo> {
 		"\\[\\d+\\]\\.restaurant\\.longitude",
 		"\\[\\d+\\]\\.restaurant\\.latitude"})
 	public String search() throws JSONException, IOException {
-		beans = comboService.findByCondition(banquetId, pnum, budget, ((WptCity)getSession().get(CityInterceptor.CITY)).getPkey().toString(), areaId, longitude, latitude);
+		beans = service.findByCondition(banquetId, pnum, budget, ((WptCity)getSession().get(CityInterceptor.CITY)).getPkey().toString(), areaId, longitude, latitude);
 		System.out.println(beans.size());
 		return "json";
 	}

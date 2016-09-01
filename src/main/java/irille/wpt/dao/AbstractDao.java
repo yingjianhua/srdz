@@ -26,6 +26,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import irille.tools.GenericsUtils;
+import irille.wpt.actions.resource.impl.ComboAction;
 import irille.wpt.actions.resource.impl.ComboLineAction;
 import irille.wpt.bean.Combo;
 import irille.wpt.bean.ComboLine;
@@ -65,15 +66,20 @@ public abstract class AbstractDao<T,ID extends Serializable> {
 		Page<T> page = new Page<T>(total, items);
 		return page;
 	}
+	public void save(T bean) {
+		Session session = sessionFactory.getCurrentSession();
+		session.save(bean);
+	}
 	
 	public static void main(String[] args) throws IOException {
 		ClassPathXmlApplicationContext bf = new ClassPathXmlApplicationContext("applicationContext.xml");
 		SessionFactory sf = bf.getBean(SessionFactory.class);
-		Session session = sf.openSession();
-		Object count = session.createQuery("select count(*) from Combo").uniqueResult();
-		List<Combo> list = session.createQuery("from Combo").list();
-		System.out.println("count:"+count);
-		System.out.println("list.size:"+list.size());
+		ComboAction action = bf.getBean(ComboAction.class);
+		try {
+			action.list();
+		} catch (org.json.JSONException e) {
+			e.printStackTrace();
+		}
 		Date point1 = new Date();
 		System.out.println("------------------------------------------");
 		Date point2 = new Date();
@@ -84,7 +90,6 @@ public abstract class AbstractDao<T,ID extends Serializable> {
 		ClassPathXmlApplicationContext bf = new ClassPathXmlApplicationContext("applicationContext.xml");
 		ComboService dao = bf.getBean(ComboService.class);
 		ComboLineAction action = bf.getBean(ComboLineAction.class);
-		action.list();
 		SessionFactory sf = bf.getBean(SessionFactory.class);
 		Session session = sf.openSession();
 		ComboLine comboLine = session.get(ComboLine.class, 50);

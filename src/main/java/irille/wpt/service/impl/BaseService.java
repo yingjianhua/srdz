@@ -16,16 +16,20 @@ public class BaseService {
 	@Resource
 	private BaseDao baseDao;
 	
-	public <E> List<E> list(Class<E> entityClass, Integer start, Integer limit) {
-		return baseDao.list(entityClass, start, limit);
+	public <E> List<E> list(Class<E> entityClass, Integer start, Integer limit, String where) {
+		return baseDao.list(entityClass, start, limit, where);
 	}
 	
 	public <E> E load(Class<E> entityClass, Serializable id) {
 		return (E)baseDao.load(entityClass, id);
 	}
 	
-	public <E> Page<E> page(Class<E> entityClass, Integer start, Integer limit) {
-		return baseDao.page(entityClass, start, limit);
+	public <E> Page<E> page(Class<E> entityClass, Integer start, Integer limit, String where) {
+		return baseDao.page(entityClass, start, limit, where);
+	}
+	
+	public <E> void add(E bean) {
+		baseDao.save(bean);
 	}
 
 }

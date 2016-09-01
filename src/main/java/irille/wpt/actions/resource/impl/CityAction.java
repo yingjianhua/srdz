@@ -1,5 +1,7 @@
 package irille.wpt.actions.resource.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.annotation.security.PermitAll;
 
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import irille.pub.Log;
 import irille.wpt.actions.resource.AbstractCRUDAction;
 import irille.wpt.bean.City;
+import irille.wpt.bean.CityLine;
 import irille.wpt.interceptor.CityInterceptor;
 import irille.wpt.service.impl.CityService;
 @Controller
@@ -23,6 +26,7 @@ public class CityAction extends AbstractCRUDAction<City> {
 	private static final Log LOG = new Log(CityAction.class);
 	private int id;
 	private String petitionCity;
+	private List<CityLine> listLine;
 	@Resource
 	private CityService cityService;
 	
@@ -36,10 +40,8 @@ public class CityAction extends AbstractCRUDAction<City> {
 		object = "success";
 		return OBJECT;
 	}
-	@IncludeProperties({
-		"\\[\\d+\\]\\.pkey",
-		"\\[\\d+\\]\\.name"
-	})
+	
+	@IncludeProperties({"\\[\\d+\\]\\.pkey","\\[\\d+\\]\\.name"})
 	@PermitAll
 	public String currCity() {
 		City city = (City)getSession().get(CityInterceptor.CITY);
@@ -49,10 +51,7 @@ public class CityAction extends AbstractCRUDAction<City> {
 		return OBJECT;
 	}
 	
-	@IncludeProperties({
-		"\\[\\d+\\]\\.pkey",
-		"\\[\\d+\\]\\.name"
-	})
+	@IncludeProperties({"\\[\\d+\\]\\.pkey","\\[\\d+\\]\\.name"})
 	@PermitAll
 	public String search() {
 		beans = cityService.search(getAccount().getPkey());
@@ -68,7 +67,15 @@ public class CityAction extends AbstractCRUDAction<City> {
 		object = "享食光马上就来";
 		return OBJECT;
 	}
-
+	
+	@Override
+	public String add() {
+		cityService.save(bean, listLine, account.getPkey());
+		System.out.println("cityAction.add.bean:"+bean);
+		object = bean;
+		return OBJECT;
+	}
+	
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -80,5 +87,11 @@ public class CityAction extends AbstractCRUDAction<City> {
 	}
 	public void setPetitionCity(String petitionCity) {
 		this.petitionCity = petitionCity;
+	}
+	public List<CityLine> getListLine() {
+		return listLine;
+	}
+	public void setListLine(List<CityLine> listLine) {
+		this.listLine = listLine;
 	}
 }

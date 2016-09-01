@@ -6,6 +6,8 @@ import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -24,9 +26,10 @@ public class RestaurantMenu implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int pkey;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer pkey;
 
-	private int account;
+	private Integer account;
 
 	private String des;
 
@@ -39,24 +42,24 @@ public class RestaurantMenu implements Serializable {
 	private Restaurant restaurant;
 
 	@Column(name="row_version")
-	private short rowVersion;
+	private Short rowVersion;
 
 	public RestaurantMenu() {
 	}
 
-	public int getPkey() {
+	public Integer getPkey() {
 		return this.pkey;
 	}
 
-	public void setPkey(int pkey) {
+	public void setPkey(Integer pkey) {
 		this.pkey = pkey;
 	}
 
-	public int getAccount() {
+	public Integer getAccount() {
 		return this.account;
 	}
 
-	public void setAccount(int account) {
+	public void setAccount(Integer account) {
 		this.account = account;
 	}
 
@@ -85,7 +88,6 @@ public class RestaurantMenu implements Serializable {
 	}
 
 	public Restaurant getRestaurant() {
-		System.out.println("restaurantMenu.getRestaurant");
 		return this.restaurant;
 	}
 
@@ -93,11 +95,11 @@ public class RestaurantMenu implements Serializable {
 		this.restaurant = restaurant;
 	}
 
-	public short getRowVersion() {
+	public Short getRowVersion() {
 		return this.rowVersion;
 	}
 
-	public void setRowVersion(short rowVersion) {
+	public void setRowVersion(Short rowVersion) {
 		this.rowVersion = rowVersion;
 	}
 

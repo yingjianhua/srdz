@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -13,12 +15,14 @@ import javax.persistence.Table;
 @Table(name="product")
 @Inheritance(strategy=InheritanceType.JOINED)
 public abstract class Product {
+	
 	@Id
-	private int pkey;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer pkey;
 
 	private String des;
 
-	private byte enabled;
+	private Byte enabled;
 
 	@Column(name="img_url")
 	private String imgUrl;
@@ -32,15 +36,15 @@ public abstract class Product {
 
 	private String rem;
 
-	private int account;
+	private Integer account;
 
 	@Column(name="row_version")
-	private short rowVersion;
+	private Short rowVersion;
 
-	public int getPkey() {
+	public Integer getPkey() {
 		return pkey;
 	}
-	public void setPkey(int pkey) {
+	public void setPkey(Integer pkey) {
 		this.pkey = pkey;
 	}
 	public String getDes() {
@@ -49,10 +53,10 @@ public abstract class Product {
 	public void setDes(String des) {
 		this.des = des;
 	}
-	public byte getEnabled() {
+	public Byte getEnabled() {
 		return enabled;
 	}
-	public void setEnabled(byte enabled) {
+	public void setEnabled(Byte enabled) {
 		this.enabled = enabled;
 	}
 	public String getImgUrl() {
@@ -85,16 +89,16 @@ public abstract class Product {
 	public void setRem(String rem) {
 		this.rem = rem;
 	}
-	public int getAccount() {
+	public Integer getAccount() {
 		return account;
 	}
-	public void setAccount(int account) {
+	public void setAccount(Integer account) {
 		this.account = account;
 	}
-	public short getRowVersion() {
+	public Short getRowVersion() {
 		return rowVersion;
 	}
-	public void setRowVersion(short rowVersion) {
+	public void setRowVersion(Short rowVersion) {
 		this.rowVersion = rowVersion;
 	}
 	@Override

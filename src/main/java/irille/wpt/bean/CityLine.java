@@ -4,7 +4,12 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
@@ -20,41 +25,44 @@ public class CityLine implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int pkey;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer pkey;
 
-	private int account;
-
-	private int city;
+	private Integer account;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="city")
+	private City city;
 
 	private String name;
 
 	@Column(name="row_version")
-	private short rowVersion;
+	private Short rowVersion;
 
 	public CityLine() {
 	}
 
-	public int getPkey() {
+	public Integer getPkey() {
 		return this.pkey;
 	}
 
-	public void setPkey(int pkey) {
+	public void setPkey(Integer pkey) {
 		this.pkey = pkey;
 	}
 
-	public int getAccount() {
+	public Integer getAccount() {
 		return this.account;
 	}
 
-	public void setAccount(int account) {
+	public void setAccount(Integer account) {
 		this.account = account;
 	}
 
-	public int getCity() {
+	public City getCity() {
 		return this.city;
 	}
 
-	public void setCity(int city) {
+	public void setCity(City city) {
 		this.city = city;
 	}
 
@@ -66,11 +74,11 @@ public class CityLine implements Serializable {
 		this.name = name;
 	}
 
-	public short getRowVersion() {
+	public Short getRowVersion() {
 		return this.rowVersion;
 	}
 
-	public void setRowVersion(short rowVersion) {
+	public void setRowVersion(Short rowVersion) {
 		this.rowVersion = rowVersion;
 	}
 

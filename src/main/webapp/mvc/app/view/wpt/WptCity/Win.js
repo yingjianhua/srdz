@@ -10,7 +10,7 @@ initComponent : function(){
 		this.items =[{
 		anchor : '100%',
 		plain : true,
-		xtype : Ext.create('mvc.view.wpt.WptCity.Form',{	insFlag : this.insFlag})
+		xtype : Ext.create('mvc.view.wpt.WptCity.Form',{insFlag : this.insFlag})
 	},{
 		xtype : Ext.create('mvc.view.wpt.WptCity.ListForm',{height : 300,border : false })
 	}];

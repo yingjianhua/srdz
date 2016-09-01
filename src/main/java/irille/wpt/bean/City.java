@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -20,31 +22,32 @@ public class City implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int pkey;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer pkey;
 
-	private int account;
+	private Integer account;
 
 	private String name;
 
 	@Column(name="row_version")
-	private short rowVersion;
+	private Short rowVersion;
 
 	public City() {
 	}
 
-	public int getPkey() {
+	public Integer getPkey() {
 		return this.pkey;
 	}
 
-	public void setPkey(int pkey) {
+	public void setPkey(Integer pkey) {
 		this.pkey = pkey;
 	}
 
-	public int getAccount() {
+	public Integer getAccount() {
 		return this.account;
 	}
 
-	public void setAccount(int account) {
+	public void setAccount(Integer account) {
 		this.account = account;
 	}
 
@@ -56,11 +59,11 @@ public class City implements Serializable {
 		this.name = name;
 	}
 
-	public short getRowVersion() {
+	public Short getRowVersion() {
 		return this.rowVersion;
 	}
 
-	public void setRowVersion(short rowVersion) {
+	public void setRowVersion(Short rowVersion) {
 		this.rowVersion = rowVersion;
 	}
 

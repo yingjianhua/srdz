@@ -6,6 +6,8 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -29,11 +31,12 @@ public class Headline implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int pkey;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer pkey;
 
-	private int account;
+	private Integer account;
 
-	private int banquet;
+	private Integer banquet;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="city")
@@ -53,40 +56,40 @@ public class Headline implements Serializable {
 	private String imgUrl;
 
 	@Column(name="row_version")
-	private short rowVersion;
+	private Short rowVersion;
 
-	private int sort;
+	private Integer sort;
 
 	private String title;
 
-	private byte top;
+	private Byte top;
 
 	private String url;
 
 	public Headline() {
 	}
 
-	public int getPkey() {
+	public Integer getPkey() {
 		return this.pkey;
 	}
 
-	public void setPkey(int pkey) {
+	public void setPkey(Integer pkey) {
 		this.pkey = pkey;
 	}
 
-	public int getAccount() {
+	public Integer getAccount() {
 		return this.account;
 	}
 
-	public void setAccount(int account) {
+	public void setAccount(Integer account) {
 		this.account = account;
 	}
 
-	public int getBanquet() {
+	public Integer getBanquet() {
 		return this.banquet;
 	}
 
-	public void setBanquet(int banquet) {
+	public void setBanquet(Integer banquet) {
 		this.banquet = banquet;
 	}
 
@@ -131,19 +134,19 @@ public class Headline implements Serializable {
 		this.imgUrl = imgUrl;
 	}
 
-	public short getRowVersion() {
+	public Short getRowVersion() {
 		return this.rowVersion;
 	}
 
-	public void setRowVersion(short rowVersion) {
+	public void setRowVersion(Short rowVersion) {
 		this.rowVersion = rowVersion;
 	}
 
-	public int getSort() {
+	public Integer getSort() {
 		return this.sort;
 	}
 
-	public void setSort(int sort) {
+	public void setSort(Integer sort) {
 		this.sort = sort;
 	}
 
@@ -155,11 +158,11 @@ public class Headline implements Serializable {
 		this.title = title;
 	}
 
-	public byte getTop() {
+	public Byte getTop() {
 		return this.top;
 	}
 
-	public void setTop(byte top) {
+	public void setTop(Byte top) {
 		this.top = top;
 	}
 
