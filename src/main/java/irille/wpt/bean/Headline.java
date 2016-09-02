@@ -56,7 +56,7 @@ public class Headline implements Serializable {
 	private String imgUrl;
 
 	@Column(name="row_version")
-	private Short rowVersion;
+	private Short rowVersion = 1;
 
 	private Integer sort;
 

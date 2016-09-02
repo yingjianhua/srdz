@@ -36,14 +36,17 @@
 			<result name="trends">${result}</result>
 			<result name="rtrends" type="redirect">${result}</result>
 			<result name="tact" type="chain">${result}</result>
+			<result name="bean" type="json">
+				<param name="root">bean</param>
+			</result>
 			<result name="beans" type="json">
 				<param name="root">beans</param>
 			</result>
-			<result name="object" type="json">
-				<param name="root">object</param>
-			</result>
 			<result name="pages" type="json">
 				<param name="root">pages</param>
+			</result>
+			<result name="object" type="json">
+				<param name="root">object</param>
 			</result>
 		</global-results>
 		

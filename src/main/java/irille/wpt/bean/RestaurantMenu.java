@@ -42,7 +42,7 @@ public class RestaurantMenu implements Serializable {
 	private Restaurant restaurant;
 
 	@Column(name="row_version")
-	private Short rowVersion;
+	private Short rowVersion = 1;
 
 	public RestaurantMenu() {
 	}

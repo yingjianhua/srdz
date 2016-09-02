@@ -148,6 +148,8 @@ getStore : function(){
 		return this.mdMainTable.store;
 },
 onSaveRecord : function(form, data){
+	console.log("data")
+	console.log(data)
 		this.mdMainTable.store.insert(0,data);
 		this.mdMainTable.getView().select(0);
 		Ext.example.msg(msg_title, msg_text);

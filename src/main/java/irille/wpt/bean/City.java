@@ -30,7 +30,7 @@ public class City implements Serializable {
 	private String name;
 
 	@Column(name="row_version")
-	private Short rowVersion;
+	private Short rowVersion = 1;
 
 	public City() {
 	}

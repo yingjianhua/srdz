@@ -32,7 +32,7 @@ public class CityAction extends AbstractCRUDAction<City> {
 	
 	@PermitAll
 	public String select() {
-		City city = cityService.load(id);
+		City city = service.load(City.class, id);
 		LOG.info("select:{0}", city.getName());
 		if(city != null) {
 			getSession().put(CityInterceptor.CITY, city);
@@ -72,8 +72,7 @@ public class CityAction extends AbstractCRUDAction<City> {
 	public String add() {
 		cityService.save(bean, listLine, account.getPkey());
 		System.out.println("cityAction.add.bean:"+bean);
-		object = bean;
-		return OBJECT;
+		return BEAN;
 	}
 	
 	public void setId(int id) {

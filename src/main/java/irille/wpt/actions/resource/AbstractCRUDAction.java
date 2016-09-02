@@ -32,9 +32,10 @@ public abstract class AbstractCRUDAction<T> extends AbstractWptAction {
 	private static final long serialVersionUID = 1L;
 	
 	//action的返回值
-	protected static final String BEANS = "beans";
-	protected static final String PAGES = "pages";
-	protected static final String OBJECT = "object";
+	public static final String BEAN = "bean";
+	public static final String BEANS = "beans";
+	public static final String PAGES = "pages";
+	public static final String OBJECT = "object";
 	
 	//前台filter中的固定参数名
 	private static final String QUERY_PROPERTY = "property";
@@ -44,9 +45,9 @@ public abstract class AbstractCRUDAction<T> extends AbstractWptAction {
 	
 	//用于存储action返回值
 	protected T bean;
-	protected Object object;
 	protected List<T> beans;
 	protected Page<T> pages;
+	protected Object object;
 	
 	//分页参数
 	private Integer start;
@@ -68,8 +69,7 @@ public abstract class AbstractCRUDAction<T> extends AbstractWptAction {
 
 	public String add() {
 		service.add(bean);
-		object = bean;
-		return OBJECT;
+		return BEAN;
 	}
 	
 	//@MaxLevel(4)

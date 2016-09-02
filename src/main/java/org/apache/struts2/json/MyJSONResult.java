@@ -20,6 +20,7 @@ import org.apache.struts2.json.annotations.MaxLevel;
 import org.apache.struts2.json.smd.SMDGenerator;
 import org.glassfish.jersey.server.model.AnnotatedMethod;
 
+import com.alibaba.fastjson.JSONObject;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.Result;
@@ -28,6 +29,8 @@ import com.opensymphony.xwork2.util.ValueStack;
 import com.opensymphony.xwork2.util.WildcardUtil;
 import com.opensymphony.xwork2.util.logging.Logger;
 import com.opensymphony.xwork2.util.logging.LoggerFactory;
+
+import irille.wpt.actions.resource.AbstractCRUDAction;
 
 public class MyJSONResult implements Result {
 
@@ -171,7 +174,15 @@ public class MyJSONResult implements Result {
 	            	}
 	            }
             }
-            writeToResponse(response, createJSONString(request, rootObject), enableGzip(request));
+            System.out.println("~~~~~~~~");
+            if(this.root.equals(AbstractCRUDAction.BEAN)) {
+            	String jsonString = createJSONString(request, rootObject);
+            	JSONObject jsonObject = JSONObject.parseObject(jsonString);
+            	jsonObject.put("success", true);
+            	writeToResponse(response, jsonObject.toJSONString(), enableGzip(request));
+            } else {
+            	writeToResponse(response, createJSONString(request, rootObject), enableGzip(request));
+            }
         } catch (IOException exception) {
             LOG.error(exception.getMessage(), exception);
             throw exception;

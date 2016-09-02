@@ -10,13 +10,12 @@ import org.springframework.stereotype.Service;
 import irille.pub.Log;
 import irille.wpt.bean.City;
 import irille.wpt.bean.CityLine;
-import irille.wpt.dao.AbstractDao;
 import irille.wpt.dao.impl.CityDao;
 import irille.wpt.dao.impl.CityLineDao;
 import irille.wx.wpt.WptCity;
 import irille.wx.wpt.WptPetitionCity;
 @Service
-public class CityService extends AbstractDao<City, Integer> {
+public class CityService {
 	public static final Log LOG = new Log(CityService.class);
 	
 	@Resource

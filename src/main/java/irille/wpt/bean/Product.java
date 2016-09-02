@@ -39,7 +39,7 @@ public abstract class Product {
 	private Integer account;
 
 	@Column(name="row_version")
-	private Short rowVersion;
+	private Short rowVersion = 1;
 
 	public Integer getPkey() {
 		return pkey;

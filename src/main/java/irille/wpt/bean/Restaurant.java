@@ -67,7 +67,7 @@ public class Restaurant implements Serializable {
 	private String rem;
 
 	@Column(name="row_version")
-	private short rowVersion;
+	private short rowVersion = 1;
 
 	private String startdate;
 
