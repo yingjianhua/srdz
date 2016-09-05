@@ -7,7 +7,7 @@ viewConfig : {enableTextSelection : true},
 oneTdCount : 4,
 searchField : null,
 initComponent : function(){
-this.columns = [{text : '城市',width : 100,dataIndex : 'bean.name',sortable : true}
+this.columns = [{text : '城市',width : 100,dataIndex : 'name',sortable : true}
 	];
 		this.store=Ext.create('mvc.store.wpt.WptCity');this.dockedItems = [{
 		dock : 'top',
@@ -65,7 +65,7 @@ listeners : {
 onTriggerList : function(){
 			var selection = this.getView().getSelectionModel().getSelection()[0];
 		if (selection){
-			this.fireEvent('trigger', selection.get('bean.pkey') + bean_split + selection.get('bean.name'), null);
+			this.fireEvent('trigger', selection.get('pkey') + bean_split + selection.get('name'), null);
 		}
 }
 });

@@ -13,16 +13,17 @@ fieldDefaults : {
 },
 initComponent : function(){
 			if (this.insFlag)
-				this.url = this.url + 'add';
+				this.url = this.url + 'ins';
 			else
 				this.url = this.url + 'upd';
 			var formFlds = [];
 			formFlds.push
-({xtype : 'textfield',name : 'bean.name',afterLabelTextTpl : required,allowBlank : false,fieldLabel : '城市'}
-	,{xtype : 'numberfield',name : 'bean.rowVersion',value : 0,afterLabelTextTpl : required,allowBlank : false,fieldLabel : '版本',hidden : true,allowDecimals : false}
+({xtype : 'textfield',name : 'bean.name', id : "name",afterLabelTextTpl : required,allowBlank : false,fieldLabel : '城市'}
+	,{xtype : 'numberfield',name : 'bean.rowVersion',id:"rowVersion",value : 0,afterLabelTextTpl : required,allowBlank : false,fieldLabel : '版本',hidden : false,allowDecimals : false}
 	,{
 		xtype : 'hiddenfield',
-		name : 'bean.pkey'
+		name : 'bean.pkey',
+		id : "pkey"
 	});
 	this.items = [{
 		layout : {

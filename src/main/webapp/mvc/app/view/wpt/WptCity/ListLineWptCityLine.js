@@ -5,7 +5,7 @@ loadMask : true,
 multiSelect : true,
 viewConfig : {enableTextSelection : true},
 initComponent : function(){
-		this.columns = [{text : '区',width : 100,dataIndex : 'bean.name',sortable : true}
+		this.columns = [{text : '区',width : 100,name:"bean.name", dataIndex : 'name',sortable : true}
 	];
 		this.store=Ext.create('mvc.store.wpt.WptCityLine');
 		this.store.remoteFilter = true;

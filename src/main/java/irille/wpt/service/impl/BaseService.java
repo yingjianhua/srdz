@@ -28,8 +28,16 @@ public class BaseService {
 		return baseDao.page(entityClass, start, limit, where);
 	}
 	
-	public <E> void add(E bean) {
+	public <E> void save(E bean) {
 		baseDao.save(bean);
+	}
+	
+	public <E> void update(E bean) {
+		baseDao.update(bean);
+	}
+	
+	public <E> void delete(E bean) {
+		baseDao.delete(bean);
 	}
 
 }

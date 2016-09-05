@@ -8,6 +8,7 @@ import javax.annotation.security.RolesAllowed;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.omg.CORBA.portable.ServantObject;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import irille.pub.Str;
@@ -67,9 +68,18 @@ public abstract class AbstractCRUDAction<T> extends AbstractWptAction {
 		entityClass = GenericsUtils.getSuperClassGenricType(getClass());
 	}
 
-	public String add() {
-		service.add(bean);
+	public String ins() {
+		service.save(bean);
 		return BEAN;
+	}
+	public String upd() {
+		service.update(bean);
+		return BEAN;
+	}
+	public String del() {
+		service.delete(bean);
+		object = "success";
+		return OBJECT;
 	}
 	
 	//@MaxLevel(4)
@@ -98,7 +108,9 @@ public abstract class AbstractCRUDAction<T> extends AbstractWptAction {
 			String param = json.getString(QUERY_VALUE);
 			if (Str.isEmpty(param))
 				continue;
-			sql += " AND " + SqlBuilder.crtWhereSearch(entityClass, fldName, param);
+			String condition = SqlBuilder.crtWhereSearch(entityClass, fldName, param);
+			if(!Str.isEmpty(condition))
+				sql += " AND " + condition;
 		}
 		return crtFilterAll() + sql + orderBy();
 	}

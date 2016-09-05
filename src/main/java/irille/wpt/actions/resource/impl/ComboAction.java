@@ -40,7 +40,7 @@ public class ComboAction extends AbstractCRUDAction<Combo> {
 	protected ComboService service;
 	
 	@Override
-	public String add() {
+	public String ins() {
 		
 		return OBJECT;
 	}

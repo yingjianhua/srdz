@@ -7,7 +7,7 @@ roles : '',
 selModel : {selType : 'checkboxmodel'},
 viewConfig : {enableTextSelection : true},
 initComponent : function(){
-this.columns =[{text : '城市',width : 100,dataIndex : 'bean.name',sortable : true}
+this.columns =[{text : '城市',width : 100,dataIndex : 'name',sortable : true}
 	];
 		this.store=Ext.create('mvc.store.wpt.WptCity');
 		this.store.remoteFilter = true;
@@ -59,7 +59,7 @@ onDelRow : function(grid, rowIndex){
 					return;
 				var row = me.getStore().getAt(rowIndex);
 				Ext.Ajax.request({
-					url : '/wpt_WptCity_del?pkey='+row.get('bean.pkey')+'&rowVersion='+row.get(BEAN_VERSION),
+					url : '/wpt_WptCity_del?pkey='+row.get('pkey')+'&rowVersion='+row.get(BEAN_VERSION),
 					success : function (response, options) {
 						var result = Ext.decode(response.responseText);
 						if (result.success){

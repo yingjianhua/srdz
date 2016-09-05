@@ -16,7 +16,7 @@ initComponent : function(){
 		scope : this,
 		handler : this.onDel
 	}];
-		this.tbar = mainActs;		this.columns =[{text : '区',width : 100,dataIndex : 'bean.name',sortable : true,editor : {}
+		this.tbar = mainActs;		this.columns =[{text : '区',width : 100,dataIndex : 'name',sortable : true,editor : {}
 		}
 	];
 		this.store=Ext.create('mvc.store.wpt.WptCityLine');

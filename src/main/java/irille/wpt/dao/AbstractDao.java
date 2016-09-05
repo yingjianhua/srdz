@@ -70,6 +70,14 @@ public abstract class AbstractDao<T,ID extends Serializable> {
 		Session session = sessionFactory.getCurrentSession();
 		session.save(bean);
 	}
+	public void update(T bean) {
+		Session session = sessionFactory.getCurrentSession();
+		session.update(bean);
+	}
+	public void delete(T bean) {
+		Session session = sessionFactory.getCurrentSession();
+		session.delete(bean);
+	}
 	
 	public static void main(String[] args) throws IOException {
 		ClassPathXmlApplicationContext bf = new ClassPathXmlApplicationContext("applicationContext.xml");

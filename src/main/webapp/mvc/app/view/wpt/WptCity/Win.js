@@ -37,10 +37,14 @@ this.buttons =[{
 		this.lineTable = this.items.items[1];
 },
 setActiveRecord : function(record){
+	console.log("setActiveRecord:")
+	console.log(record)
+	console.log("form")
+	console.log(this.form)
 		this.form.activeRecord = record;
 		if (record || this.form.activeRecord) {
 			this.form.getForm().loadRecord(record);
-			this.lineTable.store.filter([{'id':'filter','property':'city','value':record.get('bean.pkey')}]);
+			this.lineTable.store.filter([{'id':'filter','property':'city','value':record.get('pkey')}]);
 		} else {
 			this.form.getForm().reset();
 			this.lineTable.store.removeAll();

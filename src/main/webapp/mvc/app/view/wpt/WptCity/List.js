@@ -88,7 +88,7 @@ mainActs.push({
 							type : 'table',
 							columns : 3
 						},
-						items : [{xtype : 'textfield',name : 'bean.name',fieldLabel : '城市'}
+						items : [{xtype : 'textfield',name : 'name',fieldLabel : '城市'}
 							]
 					}]
 			}]
@@ -109,7 +109,7 @@ mainActs.push({
 				                selectionchange: function(model, records) {
 				                    if (records.length === 1){
 				                        this.mdMain.getForm().loadRecord(records[0]);
-        								this.mdLineTable.store.filter([{'id':'filter', 'property':'city','value':records[0].get('bean.pkey')}]);
+        								this.mdLineTable.store.filter([{'id':'filter', 'property':'city','value':records[0].get('pkey')}]);
     									if (this.roles.indexOf('upd') != -1)
 											this.down('#'+this.oldId+'upd').setDisabled(false);
 										if (this.roles.indexOf('del') != -1)
@@ -150,7 +150,11 @@ getStore : function(){
 onSaveRecord : function(form, data){
 	console.log("data")
 	console.log(data)
-		this.mdMainTable.store.insert(0,data);
+	var model = Ext.create("mvc.model.wpt.WptCity", data);
+	console.log(model)
+	console.log(this.mdMainTable.store)
+	this.mdMainTable.store.insert(0, model)
+		//this.mdMainTable.store.insert(0,data);
 		this.mdMainTable.getView().select(0);
 		Ext.example.msg(msg_title, msg_text);
 },
@@ -176,7 +180,7 @@ onDel : function(){
 					var arr=new Array();
 					var arrv = new Array();
 					for(var i = 0; i < selection.length; i++){
-						arr.push(selection[i].get('bean.pkey'));
+						arr.push(selection[i].get('pkey'));
 						arrv.push(selection[i].get(BEAN_VERSION));
 					}
 					Ext.Ajax.request({

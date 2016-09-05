@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.regex.Pattern;
 
@@ -58,6 +59,12 @@ public class MyJSONResult implements Result {
     private String wrapPrefix;
     private String wrapSuffix;
 
+    public static void main(String[] args) {
+    	StringBuilder stringBuilder = new StringBuilder();
+    	stringBuilder.append("{pkey:1}");
+    	stringBuilder.insert(0, "{}&& ");
+        System.out.println(stringBuilder);
+	}
     @Inject(StrutsConstants.STRUTS_I18N_ENCODING)
     public void setDefaultEncoding(String val) {
         this.defaultEncoding = val;
@@ -177,6 +184,9 @@ public class MyJSONResult implements Result {
             System.out.println("~~~~~~~~");
             if(this.root.equals(AbstractCRUDAction.BEAN)) {
             	String jsonString = createJSONString(request, rootObject);
+            	/*StringBuilder stringBuilder = new StringBuilder(jsonString);
+            	stringBuilder.insert(0, "{bean:");
+            	stringBuilder.append("}");*/
             	JSONObject jsonObject = JSONObject.parseObject(jsonString);
             	jsonObject.put("success", true);
             	writeToResponse(response, jsonObject.toJSONString(), enableGzip(request));

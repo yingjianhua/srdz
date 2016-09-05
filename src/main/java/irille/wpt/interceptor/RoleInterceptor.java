@@ -6,18 +6,22 @@ import java.util.Map;
 import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.StrutsStatics;
 import org.glassfish.jersey.server.model.AnnotatedMethod;
 
+import com.alibaba.fastjson.JSONObject;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 
 import irille.action.sys.SysUserAction;
-import irille.core.sys.SysUser;
 import irille.pub.svr.Env;
 import irille.pub.svr.LoginUserMsg;
 import irille.wpt.actions.AbstractWptAction;
+import irille.wpt.exception.ExtjsException;
 import irille.wx.wx.WxAccount;
 import irille.wx.wx.WxAccountDAO;
 
@@ -45,7 +49,19 @@ public class RoleInterceptor extends AbstractInterceptor {
 			System.out.println(method.getAnnotation(RolesAllowed.class).value());
 		}
 
-		return checkLogin(invocation);
+		String result = "";
+		try {
+			result = checkLogin(invocation);
+		} catch (ExtjsException e) {
+			ActionContext actionContext = invocation.getInvocationContext();
+			HttpServletResponse response = (HttpServletResponse) actionContext.get(StrutsStatics.HTTP_RESPONSE);
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("msg", e.getMessage());
+			jsonObject.put("success", false);
+			response.getWriter().print(jsonObject.toString());
+			return null;
+		}
+		return result;
 	}
 
 	public String checkLogin(ActionInvocation invocation) throws Exception {

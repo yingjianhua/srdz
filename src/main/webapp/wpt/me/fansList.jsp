@@ -25,7 +25,6 @@
 		<div class="nav">
 			<ul>
 				<li class="select">我的粉丝（${fans1Num }）</li>
-				<li>粉丝圈（${fans2Num }）</li>
 			</ul>
 			<div class="clean"></div>
 		</div>
