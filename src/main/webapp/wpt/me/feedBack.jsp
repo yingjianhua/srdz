@@ -96,7 +96,7 @@ $(function(){
 			}
 		}
 		$.ajax({
-			url : "resource/feedBack_suggest?account.pkey=${account.pkey}",
+			url : "resource/feedback_suggest?account.pkey=${account.pkey}",
 			type : "POST",
 			data : {
 				"content" : $(".usba_mes").val(),

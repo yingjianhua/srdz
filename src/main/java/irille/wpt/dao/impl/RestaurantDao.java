@@ -20,5 +20,9 @@ public class RestaurantDao extends AbstractDao<Restaurant, Integer> {
 	public List<Restaurant> findByCondition(Integer cityId, Integer areaId, Integer pnum, Integer perCapitaBudget) {
 		return null;
 	}
+	
+	public Long countByCity(Integer city) {
+		return count("select count(*) from wpt_restaurant where city=?", city);
+	}
 
 }

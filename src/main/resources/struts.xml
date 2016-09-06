@@ -52,8 +52,10 @@
 		
 		<action name="city_*" class="cityAction" method="{1}"></action>
 		<action name="cityLine_*" class="cityLineAction" method="{1}"></action>
+		<action name="petitionCity_*" class="petitionCityAction" method="{1}"></action>
 		<action name="order_*" class="orderAction" method="{1}"></action>
 		<action name="headline_*" class="headlineAction" method="{1}"></action>
+		<action name="collect_*" class="collectAction" method="{1}"></action>
 		<action name="feedback_*" class="feedbackAction" method="{1}"></action>
 		<action name="seller_*" class="sellerAction" method="{1}"></action>
 		<action name="order_confirmOrder" class="orderAction" method="confirmOrder">

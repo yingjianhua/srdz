@@ -27,13 +27,7 @@ public class HeadlineAction extends AbstractCRUDAction<Headline> {
 	private Integer accountId;
 	@Resource
 	private HeadlineService headlineService;
-	/**
-	 * 收藏或取消收藏
-	 */
-	public void collect() {
-		WxUser user = chkWxUser();
-		headlineService.collectOrCancel(id, user.getPkey());
-	}
+
 	/**
 	 * 筛选
 	 */

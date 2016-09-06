@@ -1,40 +1,42 @@
 package irille.wpt.bean;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 
 /**
- * The persistent class for the wpt_city database table.
+ * The persistent class for the wpt_collect database table.
  * 
  */
 @Entity
-@Table(name="wpt_city")
-@NamedQuery(name="City.findAll", query="SELECT c FROM City c")
-public class City implements Serializable {
+@Table(name="wpt_collect")
+@NamedQuery(name="Collect.findAll", query="SELECT c FROM Collect c")
+public class Collect implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer pkey;
 
 	private Integer account;
 
-	private String name;
-
 	@Column(name="row_version")
 	private Short rowVersion = 1;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="top")
+	private Headline headline;
 
-	public City() {
+	private Integer wxuser;
+
+	public Collect() {
 	}
 
 	public Integer getPkey() {
@@ -53,14 +55,6 @@ public class City implements Serializable {
 		this.account = account;
 	}
 
-	public String getName() {
-		return this.name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public Short getRowVersion() {
 		return this.rowVersion;
 	}
@@ -69,8 +63,20 @@ public class City implements Serializable {
 		this.rowVersion = rowVersion;
 	}
 
-	@Override
-	public String toString() {
-		return "City [pkey=" + pkey + ", account=" + account + ", name=" + name + ", rowVersion=" + rowVersion + "]";
+	public Headline getHeadline() {
+		return this.headline;
 	}
+
+	public void setHeadline(Headline headline) {
+		this.headline = headline;
+	}
+
+	public Integer getWxuser() {
+		return this.wxuser;
+	}
+
+	public void setWxuser(Integer wxuser) {
+		this.wxuser = wxuser;
+	}
+
 }

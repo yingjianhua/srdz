@@ -166,10 +166,10 @@ $(function() {
 			$(".hmcity_add").hide();
 			$(".hmcity_flog").removeClass("hmcity_flogshow");
 			$.ajax({
-				url : "resource/city_petition?account.pkey=${account.pkey}",
+				url : "resource/petitionCity_petition?account.pkey=${account.pkey}",
 				type : "POST",
 				data : {
-					"petitionCity" : $(".hmcity_add .new_city").val()
+					"name" : $(".hmcity_add .new_city").val()
 				},
 				success: function(data){
 					tipbox(data);

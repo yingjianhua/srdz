@@ -1,7 +1,10 @@
 package irille.wpt.service.impl;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -12,9 +15,8 @@ import irille.wpt.bean.City;
 import irille.wpt.bean.CityLine;
 import irille.wpt.dao.impl.CityDao;
 import irille.wpt.dao.impl.CityLineDao;
+import irille.wpt.dao.impl.RestaurantDao;
 import irille.wpt.exception.ExtjsException;
-import irille.wx.wpt.WptCity;
-import irille.wx.wpt.WptPetitionCity;
 @Service
 public class CityService {
 	public static final Log LOG = new Log(CityService.class);
@@ -23,6 +25,8 @@ public class CityService {
 	private CityDao cityDao;
 	@Resource
 	private CityLineDao cityLineDao;
+	@Resource
+	private RestaurantDao restaurantDao;
 	
 	public void save(City city, List<CityLine> listLine, Integer accountId) {
 		if(cityDao.findByName(city.getName(), accountId) != null) {
@@ -37,49 +41,51 @@ public class CityService {
 		}
 	}
 	public void update(City city, List<CityLine> listLine, Integer accountId) {
-		City obean = cityDao.findByName(city.getName(), accountId);
-		if(obean != null && !obean.getPkey().equals(city.getPkey())) {
-			throw new ExtjsException("{0} 已存在", city.getName());
-		}
-		obean = cityDao.load(city.getPkey());
-		if(!obean.getAccount().equals(accountId)) {
-			throw new ExtjsException("没有权限");
-		}
 		city.setAccount(accountId);
-		city.setName(obean.getName());
 		cityDao.update(city);
+		if(listLine == null || listLine.size() == 0) {
+			throw new ExtjsException("请设置区域");
+		}
+		Map<String, CityLine> oMap = new HashMap<String, CityLine>();
+		for(CityLine cityLine:cityLineDao.listByCity(city.getPkey())) {
+			oMap.put(cityLine.getName(), cityLine);
+		}
+		Map<String, CityLine> nMap = new HashMap<String, CityLine>();
 		for(CityLine cityLine:listLine) {
+			if(cityLine == null) continue;
+			nMap.put(cityLine.getName(), cityLine);
+		}
+		//需要删除
+		List<CityLine> needDel = new ArrayList<CityLine>();
+		for(String name:oMap.keySet()) {
+			if(!nMap.containsKey(name)) {
+				needDel.add(oMap.get(name));
+			}
+		}
+		//需要新增
+		List<CityLine> needAdd = new ArrayList<CityLine>();
+		for(String name:nMap.keySet()) {
+			if(!oMap.containsKey(name)) {
+				needAdd.add(nMap.get(name));
+			}
+		}
+		//删除cityLine
+		for(CityLine cityLine:needDel) {
+			cityLineDao.delete(cityLine);
+		}
+		//新增cityLine
+		for(CityLine cityLine:needAdd) {
 			cityLine.setAccount(accountId);
 			cityLine.setCity(city);
 			cityLineDao.save(cityLine);
 		}
 	}
 	public void delete(City city) {
-		
-	}
-	/**
-	 * 添加请愿城市
-	 */
-	public void insOrUpd(String cityName, int account) {
-		if(cityName == null) {
-			return ;
+		if(restaurantDao.countByCity(city.getPkey()) > 0) {
+			throw new ExtjsException("已有餐厅在 {0} 驻扎，不能删除", city.getName());
 		}
-		WptCity city = WptCity.chkUniqueNameAccount(false, cityName, account);
-		if(city != null){
-			throw LOG.err("cityIsExists", "城市已经存在");
-		}
-		WptPetitionCity bean = WptPetitionCity.chkUniqueName(false, cityName);
-		if(bean == null){
-			bean = new WptPetitionCity();
-			bean.setName(cityName);
-			bean.setAccount(account);
-			bean.setCount(1);
-			bean.setEnabled((byte)1);
-			bean.ins();
-		}else{
-			bean.setCount(bean.getCount() + 1);
-			bean.upd();
-		}
+		cityLineDao.deleteByCity(city.getPkey());
+		cityDao.delete(city);
 	}
 	public List<City> search(Integer accountId) {
 		return cityDao.search(accountId);

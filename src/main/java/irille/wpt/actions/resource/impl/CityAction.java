@@ -58,16 +58,6 @@ public class CityAction extends AbstractCRUDAction<City> {
 		return BEANS;
 	}
 	
-	/**
-	 * 请愿城市
-	 */
-	@PermitAll
-	public String petition(){
-		cityService.insOrUpd(getPetitionCity(), getAccount().getPkey());
-		object = "享食光马上就来";
-		return OBJECT;
-	}
-	
 	@Override
 	public String ins() {
 		cityService.save(bean, listLine, account.getPkey());

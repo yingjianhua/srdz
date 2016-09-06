@@ -1,20 +1,16 @@
 package irille.wpt.actions.resource.impl;
 
-import java.io.IOException;
-
 import javax.annotation.Resource;
 
-import org.apache.struts2.ServletActionContext;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.wpt.actions.resource.AbstractCRUDAction;
-import irille.wpt.service.impl.FeedBackService;
+import irille.wpt.bean.Feedback;
+import irille.wpt.service.impl.FeedbackService;
 @Controller
 @Scope("prototype")
-public class FeedbackAction extends AbstractCRUDAction {
+public class FeedbackAction extends AbstractCRUDAction<Feedback> {
 
 	/**
 	 * 
@@ -24,20 +20,15 @@ public class FeedbackAction extends AbstractCRUDAction {
 	private String contactWay;
 	private Byte contactType;
 	@Resource
-	private FeedBackService feedBackService;
+	private FeedbackService feedBackService;
 	
 	/**
 	 * 把反馈插入到数据库
 	 */
-	public void suggest(){
+	public String suggest(){
 		feedBackService.suggest(content, contactType, contactWay, getAccount().getPkey());
-		try {
-			ServletActionContext.getResponse().getWriter().print(new JSONObject().put(SUCCESS, true));
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
+		object = "{\"success\":true}";
+		return OBJECT;
 	}
 	public String getContent() {
 		return content;

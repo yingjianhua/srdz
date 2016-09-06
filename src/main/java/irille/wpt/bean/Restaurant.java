@@ -20,7 +20,7 @@ import javax.persistence.Table;
  * 
  */
 @Entity
-@Table(name="restaurant")
+@Table(name="wpt_restaurant")
 @NamedQuery(name="Restaurant.findAll", query="SELECT r FROM Restaurant r")
 public class Restaurant implements Serializable {
 	private static final long serialVersionUID = 1L;
