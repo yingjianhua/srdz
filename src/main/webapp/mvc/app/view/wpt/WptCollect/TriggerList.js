@@ -7,8 +7,8 @@ viewConfig : {enableTextSelection : true},
 oneTdCount : 4,
 searchField : null,
 initComponent : function(){
-this.columns = [{text : '关注用户',width : 100,dataIndex : 'bean.wxuser',sortable : true,renderer : mvc.Tools.beanRenderer()}
-	,{text : '头条',width : 100,dataIndex : 'bean.top',sortable : true,renderer : mvc.Tools.beanRenderer()}
+this.columns = [{text : '关注用户',width : 100,dataIndex : 'wxuser',sortable : true,renderer : mvc.Tools.beanRenderer()}
+	,{text : '头条',width : 100,dataIndex : 'headline',sortable : true,renderer : mvc.Tools.beanRenderer()}
 	];
 		this.store=Ext.create('mvc.store.wpt.WptCollect');this.dockedItems = [{
 		dock : 'top',
@@ -22,10 +22,10 @@ this.columns = [{text : '关注用户',width : 100,dataIndex : 'bean.wxuser',sor
 				typeAhead : true,
 				editable : false,
 				width : 100,
-				value : 'top',
+				value : 'headline',
 				store:	Ext.create('Ext.data.Store',{
 							fields :  ['value', 'text'],
-							data : [{value : 'top',text : '头条'}
+							data : [{value : 'headline',text : '头条'}
 								]
 						}),
 				listeners : {
@@ -66,7 +66,7 @@ listeners : {
 onTriggerList : function(){
 			var selection = this.getView().getSelectionModel().getSelection()[0];
 		if (selection){
-			this.fireEvent('trigger', selection.get('bean.pkey') + bean_split + selection.get('bean.top'), null);
+			this.fireEvent('trigger', selection.get('pkey') + bean_split + selection.get('headline'), null);
 		}
 }
 });

@@ -34,7 +34,9 @@ public class Collect implements Serializable {
 	@JoinColumn(name="top")
 	private Headline headline;
 
-	private Integer wxuser;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="wxuser")
+	private Member wxuser;
 
 	public Collect() {
 	}
@@ -71,11 +73,11 @@ public class Collect implements Serializable {
 		this.headline = headline;
 	}
 
-	public Integer getWxuser() {
+	public Member getWxuser() {
 		return this.wxuser;
 	}
 
-	public void setWxuser(Integer wxuser) {
+	public void setWxuser(Member wxuser) {
 		this.wxuser = wxuser;
 	}
 

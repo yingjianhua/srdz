@@ -25,11 +25,12 @@ public class SellerService {
 	private static final Log LOG = new Log(SellerService.class);
 	@Resource
 	private SmsTool smsTool;
+	private static final String SMG_CODE = "msgCode";
 	
 	public void sendCheckCode(String manager, Map<String, Object> session){
 		String code = MchUtil.createRandomNum(4);
 		LOG.info("code:" + code);
-		session.put("msgCode", code);
+		session.put(SMG_CODE, code);
 		session.put("manager", manager);
     	session.put("date", System.currentTimeMillis());
 		String c = "【享食光】验证码: 1234 (享食光手机登录验证，请完成验证)，如非本人操作，请忽略本条短息。";
@@ -38,7 +39,7 @@ public class SellerService {
 	}
 	public boolean checkCode(String identify, Map<String, Object> session) {
 		long i = System.currentTimeMillis()- (Long)session.get("date");
-		if(!identify.equals(session.get("msgCode")) || i > 300000){
+		if(!identify.equals(session.get(SMG_CODE)) || i > 300000){
 			return false;
 		} else {
 			return true;
@@ -48,8 +49,8 @@ public class SellerService {
 		if((Integer)session.get(LoginSellerAction.RESTAURANT) != null) {
 			return WptRestaurant.get(WptRestaurant.class, (Integer) session.get(LoginSellerAction.RESTAURANT));
 		} else {
-			if(!identify.equals((String) session.get("identify"))){
-				throw LOG.err("invalidCheckCode", "错误验证码："+identify+";正确验证码："+session.get("identify"));
+			if(!identify.equals((String) session.get(SMG_CODE))){
+				throw LOG.err("invalidCheckCode", "错误验证码："+identify);
 			}
 			String manager;
 			if((manager=(String)session.get("manager")) == null){

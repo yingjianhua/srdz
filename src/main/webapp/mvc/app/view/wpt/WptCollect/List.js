@@ -9,8 +9,8 @@ roles : '',
 selModel : {selType : 'checkboxmodel'},
 viewConfig : {enableTextSelection : true},
 initComponent : function(){
-var mainActs = [];this.columns = [{text : '关注用户',width : 100,dataIndex : 'bean.wxuser',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wxex',mn : 'view.wx.WxUser.List'}
-	,{text : '头条',width : 100,dataIndex : 'bean.top',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wpt',mn : 'view.wpt.WptTop.List'}
+var mainActs = [];this.columns = [{text : '关注用户',width : 100,dataIndex : 'wxuser',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wxex',mn : 'view.wx.WxUser.List'}
+	,{text : '头条',width : 100,dataIndex : 'headline.pkey',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wpt',mn : 'view.wpt.WptTop.List'}
 	];
 		if (mainActs.length > 0)
 			this.tbar=mainActs;
@@ -26,7 +26,7 @@ this.dockedItems=[{
 				text : '头条：'
 			},{
 				xtype : 'beantrigger',
-				name : 'top',
+				name : 'headline',
 				bean : 'WptTop',
 				beanType : 'wpt',
 				emptyText : form_empty_text

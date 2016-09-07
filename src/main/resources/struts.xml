@@ -63,6 +63,7 @@
 			<interceptor-ref name="wpt_resource" />
 		</action>
 		<action name="user_*" class="userAction" method="{1}"></action>
+		<action name="member_*" class="memberAction" method="{1}"></action>
 		<action name="combo_*" class="comboAction" method="{1}"></action>
 		<action name="comboLine_*" class="comboLineAction" method="{1}"></action>
 		<action name="restaurantMenu_*" class="restaurantMenuAction" method="{1}"></action>

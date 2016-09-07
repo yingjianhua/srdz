@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import irille.wpt.actions.resource.AbstractCRUDAction;
 import irille.wpt.bean.Headline;
 import irille.wpt.service.impl.HeadlineService;
-import irille.wx.wx.WxUser;
 @Controller
 @Scope("prototype")
 public class HeadlineAction extends AbstractCRUDAction<Headline> {

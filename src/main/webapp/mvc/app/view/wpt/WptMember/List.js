@@ -73,9 +73,9 @@ initComponent : function(){
 							columns : 3
 						},
 						items : [
-						         {xtype : 'textfield',name : 'bean.nickname',fieldLabel : '昵称'},
-						         {xtype : 'numberfield',name : 'bean.historyCommission',fieldLabel : '历史佣金'},
-						         {xtype : 'numberfield',name : 'bean.cashableCommission',fieldLabel : '可提现佣金'}
+						         {xtype : 'textfield',name : 'nickname',fieldLabel : '昵称'},
+						         {xtype : 'numberfield',name : 'historyCommission',fieldLabel : '历史佣金'},
+						         {xtype : 'numberfield',name : 'cashableCommission',fieldLabel : '可提现佣金'}
 						         ]
 					}]
 			}]
@@ -96,8 +96,8 @@ initComponent : function(){
 				                selectionchange: function(model, records) {
 				                    if (records.length === 1){
 				                        this.mdMain.getForm().loadRecord(records[0]);
-        								this.mdLineTable.store.filter([{'id':'filter', 'property':'wxuser','value':records[0].get('bean.pkey')}]);
-        								this.mdLineTable2.store.filter([{'id':'filter', 'property':'wxuser','value':records[0].get('bean.pkey')}]);
+        								this.mdLineTable.store.filter([{'id':'filter', 'property':'wxuser','value':records[0].get('pkey')}]);
+        								this.mdLineTable2.store.filter([{'id':'filter', 'property':'wxuser','value':records[0].get('pkey')}]);
 				                    }else{
 				                    	this.mdMain.getForm().reset();
 				                    	this.mdLineTable.store.removeAll();
@@ -134,7 +134,7 @@ getStore : function(){
 },
 onCreateAllQrcode : function() {
 	Ext.Ajax.request({
-		url : base_path+'/wx_WxUser_createAllQrcode'
+		url : base_path+'/wpt/resource/member_createAllQrcode'
 	});
 },
 onBeenMember : function() {
@@ -147,12 +147,12 @@ onBeenMember : function() {
 				if (btn != 'yes')
 					return;
 				Ext.Ajax.request({
-					url : base_path+'/wx_WxUser_beenMember?bean.pkey='+selection.get('bean.pkey')+'&bean.rowVersions='+selection.get('bean.rowVersion'),
+					url : base_path+'/wpt/resource/member_becomeMember?pkey='+selection.get('pkey')+'&rowVersions='+selection.get('rowVersion'),
 					success : function (response, options) {
 						var result = Ext.decode(response.responseText);
 						if (result.success){
 							var selection = me.mdMainTable.getView().getSelectionModel().getSelection()[0];
-							var bean = Ext.create('mvc.model.wx.WxUser', result);
+							var bean = Ext.create('mvc.model.wpt.WptMember', result);
 							Ext.apply(selection.data,result);
 							selection.commit();
 							this.getView().select(selection);

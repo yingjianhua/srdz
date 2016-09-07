@@ -24,7 +24,7 @@ initComponent : function(){
 			border : false,
 			frame : false,
 			bodyPadding : '5 5 5 5',
-			url : base_path+'/wpt_WptCollect_list',
+			url : base_path+'/wpt/resource/collect_page',
 			fieldDefaults : {
 				labelWidth : 100,
 				labelStyle : 'font-weight : bold'
@@ -66,7 +66,7 @@ initComponent : function(){
 										})
 							,{
 								xtype : 'beantrigger',
-								name : 'top',
+								name : 'headline',
 								bean : 'WptTop',
 								beanType : 'wpt',
 								emptyText : form_empty_text

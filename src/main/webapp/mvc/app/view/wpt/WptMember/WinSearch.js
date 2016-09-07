@@ -24,7 +24,7 @@ initComponent : function(){
 			border : false,
 			frame : false,
 			bodyPadding : '5 5 5 5',
-			url : base_path+'/wx_WxUser_list',
+			url : base_path+'/wpt/resource/member_page',
 			fieldDefaults : {
 				labelWidth : 100,
 				labelStyle : 'font-weight : bold'

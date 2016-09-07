@@ -6,8 +6,8 @@ multiSelect : true,
 viewConfig : {enableTextSelection : true},
 initComponent : function(){
 		this.columns = [
-		                {text : '金额',width : 100,dataIndex : 'bean.price',sortable : true,renderer : mvc.Tools.numberRenderer(),align : 'right'},
-		                {text : '提现时间',width : 140,dataIndex : 'bean.createTime',sortable : true,renderer : Ext.util.Format.dateRenderer('Y-m-d H:i:s')},
+		                {text : '金额',width : 100,dataIndex : 'price',sortable : true,renderer : mvc.Tools.numberRenderer(),align : 'right'},
+		                {text : '提现时间',width : 140,dataIndex : 'createTime',sortable : true,renderer : Ext.util.Format.dateRenderer('Y-m-d H:i:s')},
 	];
 		this.store=Ext.create('mvc.store.wpt.WptCashJournal');
 		this.store.remoteFilter = true;

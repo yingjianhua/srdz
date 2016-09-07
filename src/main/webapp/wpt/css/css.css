@@ -1752,6 +1752,7 @@ div.clear{
 	border:0;
 	border-bottom:2px solid #fff;	
 	background:none;
+	position: relative;
 }
 .selg_in .text::-webkit-input-placeholder {
 	color: #fff !important;
@@ -1771,6 +1772,9 @@ div.clear{
 	margin-top:5px;
 	border-radius:10px;
 	color:#4f4f4f;
+	position: absolute;
+	right: 0;
+	bottom: 0;
 }
 .selg_wait{
 	float:right;
@@ -1784,6 +1788,9 @@ div.clear{
 	border-radius:10px;
 	color:#fff;
 	display:none;
+	position: absolute;
+	right: 0;
+	bottom: 0;
 }
 .selg_sub{
 	display:block;

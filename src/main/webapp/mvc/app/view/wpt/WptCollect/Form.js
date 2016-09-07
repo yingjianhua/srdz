@@ -6,7 +6,7 @@ border : false,
 frame : false,
 insFlag : true,
 bodyPadding : '5 5 5 5',
-url : base_path+'/wpt_WptCollect_',
+url : base_path+'/wpt/resource/collect_',
 fieldDefaults : {
 	labelWidth : 100,
 	labelStyle : 'font-weight : bold'
@@ -20,6 +20,7 @@ initComponent : function(){
 			formFlds.push
 ({
 		xtype : 'beantrigger',
+		id:'wxuser',
 		name : 'bean.wxuser',
 		fieldLabel : '关注用户',
 		bean : 'WxUser',
@@ -29,16 +30,18 @@ initComponent : function(){
 		allowBlank : false
 	},{
 		xtype : 'beantrigger',
-		name : 'bean.top',
+		id:'headline.pkey',
+		name : 'bean.headline.pkey',
 		fieldLabel : '头条',
 		bean : 'WptTop',
 		beanType : 'wpt',
 		emptyText : form_empty_text,
 		afterLabelTextTpl : required,
 		allowBlank : false
-	},{xtype : 'numberfield',name : 'bean.rowVersion',value : 0,afterLabelTextTpl : required,allowBlank : false,fieldLabel : '版本',hidden : true,allowDecimals : false}
+	},{xtype : 'numberfield',id:'rowVersion', name : 'bean.rowVersion',value : 0,afterLabelTextTpl : required,allowBlank : false,fieldLabel : '版本',hidden : true,allowDecimals : false}
 	,{
 		xtype : 'hiddenfield',
+		id:'pkey',
 		name : 'bean.pkey'
 	});
 	this.items = [{

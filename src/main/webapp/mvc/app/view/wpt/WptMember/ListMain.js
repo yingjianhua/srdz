@@ -8,20 +8,21 @@ selModel : {selType : 'checkboxmodel'},
 viewConfig : {enableTextSelection : true},
 initComponent : function(){
 this.columns =[
-               {text : '昵称',width : 100,dataIndex : 'bean.nickname',sortable : true},
-               {text : '性别',width : 100,dataIndex : 'bean.sex',sortable : true,renderer : mvc.Tools.optRenderer('sys','Sys','OSex')},
-               {text : '城市',width : 100,dataIndex : 'bean.city',sortable : true},
-               {text : '省份',width : 100,dataIndex : 'bean.province',sortable : true},
-               {text : '国家',width : 100,dataIndex : 'bean.country',sortable : true},
-               {text : '头像',width : 100,dataIndex : 'bean.imageUrl',sortable : true, renderer: function(v) {return "<img src='"+v+"' height='50px'/ >"}},
-               {text : '备注',width : 100,dataIndex : 'bean.rem',sortable : true},
-               {text : '关注时间',width : 140,dataIndex : 'bean.subscribeTime',sortable : true,renderer : Ext.util.Format.dateRenderer('Y-m-d H:i:s')},
-               {text : '一级邀请人',width : 100,dataIndex : 'bean.invited1',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wxex',mn : 'view.wx.WxUser.List'},
-               {text : '二级邀请人',width : 100,dataIndex : 'bean.invited2',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wxex',mn : 'view.wx.WxUser.List'},
-               {text : '推广二维码',width : 100,dataIndex : 'bean.qrcode',sortable : true, renderer: function(v) {return "<img src='.."+v+"' height='50px'/ >"}},
-               {text : '二维码到期时间',width : 140,dataIndex : 'bean.qrcodeExpireTime',sortable : true,renderer : Ext.util.Format.dateRenderer('Y-m-d H:i:s')},
+               {text : '昵称',width : 100,dataIndex : 'nickname',sortable : true},
+               {text : '头像',width : 100,dataIndex : 'imageUrl',sortable : true, renderer: function(v) {return "<img src='"+v+"' height='50px'/ >"}},
+               {text : '性别',width : 100,dataIndex : 'sex',sortable : true,renderer : mvc.Tools.optRenderer('sys','Sys','OSex')},
+               {text : '是否代言人',width : 100,dataIndex : 'isMember',sortable : true,renderer : function(v) {return v?"是":"否"}},
+               {text : '一级邀请人',width : 100,dataIndex : 'invited1.pkey',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wpt',mn : 'view.wpt.WptMember.List'},
+               {text : '二级邀请人',width : 100,dataIndex : 'invited2.pkey',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wpt',mn : 'view.wpt.WptMember.List'},
+               {text : '推广二维码',width : 100,dataIndex : 'qrcode',sortable : true, renderer: function(v) {return "<img src='.."+v+"' height='50px'/ >"}},
+               {text : '二维码到期时间',width : 140,dataIndex : 'qrcodeExpireTime',sortable : true,renderer : Ext.util.Format.dateRenderer('Y-m-d H:i:s')},
+               {text : '关注时间',width : 140,dataIndex : 'subscribeTime',sortable : true,renderer : Ext.util.Format.dateRenderer('Y-m-d H:i:s')},
+               {text : '国家',width : 100,dataIndex : 'country',sortable : true},
+               {text : '省份',width : 100,dataIndex : 'province',sortable : true},
+               {text : '城市',width : 100,dataIndex : 'city',sortable : true},
+               {text : '备注',width : 100,dataIndex : 'rem',sortable : true},
 	];
-		this.store=Ext.create('mvc.store.wx.WxUser');
+		this.store=Ext.create('mvc.store.wpt.WptMember');
 		this.store.remoteFilter = true;
 		this.store.proxy.filterParam = 'filter';
 		this.on({cellclick:mvc.Tools.onCellclick});
@@ -39,7 +40,7 @@ this.columns =[
 		this.callParent(arguments);},
 onUpdateRecord : function(form, data){
 		var selection = this.getView().getSelectionModel().getSelection()[0];
-		var bean = Ext.create('mvc.model.wx.WxUser', data);
+		var bean = Ext.create('mvc.model.wpt.WptMember', data);
 		Ext.apply(selection.data,bean.data);
 		selection.commit();
 		this.getSelectionModel().deselectAll();
