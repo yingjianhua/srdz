@@ -165,7 +165,7 @@ $(function() {
 			},
 			success : function(result, data2) {
 				if(result.success) {
-					location.href = "confirmOrder?orderId=" + result.orderId +"&account.pkey=${account.pkey}";						
+					location.href = "confirmOrder?orderid=" + result.orderid +"&account.pkey=${account.pkey}";						
 				} else {
 					if(result.errMsg) {
 						if(result.errMsg == "qrerr") {

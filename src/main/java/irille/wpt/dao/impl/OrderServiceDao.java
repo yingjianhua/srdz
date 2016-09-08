@@ -2,9 +2,10 @@ package irille.wpt.dao.impl;
 
 import org.springframework.stereotype.Repository;
 
-import irille.wpt.bean.ComboLine;
+import irille.wpt.bean.OrderService;
 import irille.wpt.dao.AbstractDao;
 
 @Repository
-public class ComboLineDao extends AbstractDao<ComboLine, Integer>{
+public class OrderServiceDao extends AbstractDao<OrderService, Integer>{
+
 }

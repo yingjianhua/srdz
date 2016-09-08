@@ -2,6 +2,7 @@ package irille.wpt.actions;
 
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,6 +11,8 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import irille.wpt.bean.Member;
+import irille.wpt.service.impl.MemberService;
 import irille.wx.wx.WxAccount;
 import irille.wx.wx.WxUser;
 
@@ -28,6 +31,9 @@ public abstract class AbstractWptAction extends ActionSupport implements Session
 	private String result;
 	public static final String TRENDS = "trends";
 	public static final String RTRENDS = "rtrends";
+
+	@Resource
+	private MemberService memberService;
 	
 	public Map<String, Object> getSession() {
 		if(session == null)
@@ -77,6 +83,20 @@ public abstract class AbstractWptAction extends ActionSupport implements Session
 			requestUrl = getRequest().getRequestURL() + (query == null ? "" : "?" + query);
 		}
 		return requestUrl;
+	}
+	
+	/**
+	 * 网页授权后，session里保留了用户的基本信息，可以调用该方法，把微信用户对象从数据中提取出来
+	 * @return
+	 */
+	public Member chkMember() {
+		String openid = (String)getSession().get("openid");
+		Integer accountPkey = (Integer)getSession().get("accountPkey");
+		if(openid != null && accountPkey != null) {
+			return memberService.findByOpenidInAccount(accountPkey, openid);
+		} else {
+			return null;
+		}
 	}
 	/**
 	 * 网页授权后，session里保留了用户的基本信息，可以调用该方法，把微信用户对象从数据中提取出来

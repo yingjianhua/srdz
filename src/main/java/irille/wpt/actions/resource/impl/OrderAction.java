@@ -7,8 +7,10 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import javax.annotation.Resource;
+import javax.annotation.security.PermitAll;
 
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.json.annotations.IncludeProperties;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.context.annotation.Scope;
@@ -17,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import irille.pub.Exp;
 import irille.pub.Log;
 import irille.wpt.actions.resource.AbstractCRUDAction;
+import irille.wpt.bean.Order;
 import irille.wpt.interceptor.CityInterceptor;
 import irille.wpt.service.impl.OrderService;
 import irille.wx.wpt.WptCity;
@@ -27,7 +30,7 @@ import irille.wxpub.util.MessageUtil;
 import irille.wxpub.util.mch.MchUtil;
 @Controller
 @Scope("prototype")
-public class OrderAction extends AbstractCRUDAction {
+public class OrderAction extends AbstractCRUDAction<Order> {
 	/**
 	 * 
 	 */
@@ -54,18 +57,13 @@ public class OrderAction extends AbstractCRUDAction {
 	private String checkCode;
 	@Resource
 	private OrderService orderService;
-
-	public void confirmOrder() throws ParseException, JSONException, IOException {
-		LOG.info("--------------confirmOrder():start--------------");
-		WptOrder order = orderService.createOrder(contactMan, contactSex, date, contactWay, contactType, rem, 
-				comboId, banquetId, pnum, budget, ((WptCity)getSession().get(CityInterceptor.CITY)).getPkey(), areaId, services, chkWxUser().getPkey(), getAccount().getPkey());
-		JSONObject result = new JSONObject();
-		if(order != null) {
-			result.put(SUCCESS, true);
-			result.put("orderId", order.getOrderid());
-			ServletActionContext.getResponse().getWriter().print(result.toString());
-		}
-		LOG.info("--------------confirmOrder():end--------------");
+	
+	@PermitAll
+	@IncludeProperties({"orderid"})
+	public String confirmOrder() throws ParseException, JSONException, IOException {
+		bean = orderService.createOrder(comboId, comboNumber, date, chkMember(), rem, services, 
+				contactMan, contactSex, contactType, contactWay);
+		return BEAN;
 	}
 	/**
 	 * 在快捷支付页面生成预支付参数,快捷支付页面可以调整订单中的套餐数量(只用于套餐订单)

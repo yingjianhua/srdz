@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -27,16 +29,17 @@ public class OrderEventJournal implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer pkey;
 	
-	private String desc;
+	private String des;
 	
 	private String tips;
 	
 	private Date createTime;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="order")
+	@JoinColumn(name="order_id")
 	private Order order;
 
 	public OrderEventJournal() {
@@ -50,12 +53,12 @@ public class OrderEventJournal implements Serializable {
 		this.pkey = pkey;
 	}
 
-	public String getDesc() {
-		return desc;
+	public String getDes() {
+		return des;
 	}
 
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setDesc(String des) {
+		this.des = des;
 	}
 
 	public String getTips() {

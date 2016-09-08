@@ -5,8 +5,10 @@ import java.sql.ResultSet;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -15,13 +17,26 @@ import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import irille.pub.Log;
+import irille.pub.Str;
 import irille.pub.bean.Bean;
 import irille.pub.bean.BeanBase;
 import irille.pub.idu.Idu;
+import irille.wpt.bean.Combo;
+import irille.wpt.bean.ComboLine;
+import irille.wpt.bean.Member;
+import irille.wpt.bean.Order;
+import irille.wpt.bean.OrderDetail;
+import irille.wpt.bean.Restaurant;
+import irille.wpt.dao.impl.ComboDao;
+import irille.wpt.dao.impl.ComboLineDao;
+import irille.wpt.dao.impl.OrderDao;
+import irille.wpt.dao.impl.OrderDetailDao;
+import irille.wpt.dao.impl.OrderServiceDao;
+import irille.wpt.dao.impl.ServiceDao;
+import irille.wpt.exception.ExtjsException;
 import irille.wpt.tools.SmsTool;
 import irille.wpt.tools.TradeNoFactory;
 import irille.wx.wpt.Wpt.OStatus;
-import irille.wx.wpt.WptCityLine;
 import irille.wx.wpt.WptCombo;
 import irille.wx.wpt.WptComboLine;
 import irille.wx.wpt.WptOrder;
@@ -46,7 +61,94 @@ public class OrderService {
 	@Resource
 	private QrcodeRuleService qrcodeRuleService;
 	
+	@Resource
+	private ComboDao comboDao;
+	@Resource
+	private ComboLineDao comboLineDao;
+	@Resource
+	private OrderDao orderDao;
+	@Resource
+	private OrderDetailDao orderDetailDao;
+	@Resource
+	private OrderServiceDao orderServiceDao;
+	@Resource
+	private ServiceDao serviceDao;
+	
 	private static final SimpleDateFormat INPUT_DATE_FORMAT = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+	private static final SimpleDateFormat ORDERID_FORMAT = new SimpleDateFormat("yyyyMMddHHmmss");
+	/**
+	 * 用户在微信端提交订单信息，产生的订单记录，
+	 * @param comboId 套餐Id
+	 * @param number 套餐数量
+	 * @param time 用餐时间
+	 * @param member 下单的微信用户
+	 * @param rem 备注
+	 * @param serviceIds 额外增加的服务列表
+	 * @param contactMan 联系人
+	 * @param contactSex 联系人性别
+	 * @param contactType 联系方式
+	 * @param contactWay 联系号码
+	 * @return 创建成功的订单，若出错返回null
+	 * @throws ParseException
+	 */
+	public Order createOrder(Integer comboId, Integer number, String time, Member member, String rem, String serviceIds,
+			String contactMan, String contactSex, String contactType, String contactWay) {
+		Order order;
+		try {
+			order = new Order();
+			order.setTime(INPUT_DATE_FORMAT.parse(time));
+			order.setContactMan(contactMan);
+			order.setContactSex(Byte.valueOf(contactSex));
+			order.setContactType(Byte.valueOf(contactType));
+			order.setContactWay(contactWay);
+			order.setRem(rem);
+			order.setMember(member);
+			Combo combo = comboDao.load(comboId);
+			Restaurant restaurant = combo.getRestaurant();
+			order.setComboName(combo.getName());
+			order.setRestaurant(restaurant);
+			order.setPrice(combo.getPrice());
+			order.setCity(restaurant.getCity());
+			order.setNumber(number);
+			order.setCreateTime(new Date());
+			order.setAccount(member.getAccount());
+			order.setOrderid(ORDERID_FORMAT.format(new Date())+MchUtil.createRandomNum(4));
+			orderDao.save(order);
+			Set<ComboLine> comboLines = combo.getComboLines();
+			Set<OrderDetail> details = new HashSet<OrderDetail>();
+			for(ComboLine comboLine:comboLines) {
+				OrderDetail detail = new OrderDetail();
+				detail.setName(comboLine.getMenu().getName());
+				detail.setNumber(1);
+				detail.setPrice(comboLine.getPrice());
+				detail.setOrder(order);
+				orderDetailDao.save(detail);
+				details.add(detail);
+			}
+			order.setDetails(details);
+			if(!Str.isEmpty(serviceIds)) {
+				order.setStatus(OStatus.NOTACCEPTED.getLine().getKey());
+				List<irille.wpt.bean.Service> services = serviceDao.listByIds(serviceIds);
+				Set<irille.wpt.bean.OrderService> orderServices = new HashSet<irille.wpt.bean.OrderService>();
+				for (irille.wpt.bean.Service service : services) {
+					irille.wpt.bean.OrderService orderService = new irille.wpt.bean.OrderService();
+					orderService.setName(service.getName());
+					orderService.setPrice(service.getPrice());
+					orderService.setOrder(order);
+					orderServiceDao.save(orderService);
+					orderServices.add(orderService);
+				}
+				order.setServices(orderServices);
+			} else {
+				order.setStatus(OStatus.UNPAYMENT.getLine().getKey());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new ExtjsException("订单生成异常");
+		}
+		return order;
+	}
+	
 	/**
 	 * 根据参数生成一个订单对象
 	 * @param contactMan 联系人姓名
@@ -302,5 +404,9 @@ public WptOrder complete(WptOrder order, String checkCode) {
 		order.upd();
 		LOG.info("--------------paidCallback():end--------------");
 		return true;
+	}
+	
+	public Order findByOrderid(String orderid) {
+		return orderDao.findByOrderid(orderid);
 	}
 }

@@ -3,23 +3,18 @@ package irille.wpt.actions.resource;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.annotation.security.RolesAllowed;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.omg.CORBA.portable.ServantObject;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import irille.pub.Str;
-import irille.pub.svr.Env;
-import irille.pub.tb.Fld;
-import irille.pub.tb.Tb;
 import irille.tools.GenericsUtils;
 import irille.wpt.actions.AbstractWptAction;
 import irille.wpt.service.impl.BaseService;
-import irille.wpt.tools.SqlBuilder;
 import irille.wpt.tools.Page;
+import irille.wpt.tools.SqlBuilder;
 /**
  * 用于对资源做增删改查
  * @author Yingjianhua

@@ -69,8 +69,8 @@ public class Wpt extends PackageBase {
 		super.initOnlyOne();
 	}
 	public enum OStatus implements IEnumOpt {
-	    UNPAYMENT(0, "未付款"), NOTACCEPTED(1, "未受理"), ACCEPTED(2,"已受理"), 
-	    DEPOSIT (3,"已付定金"),  PAYMENT(4,"已付款"),  FINISH(5,"已完成"), 
+		NOTACCEPTED(0, "未受理"), ACCEPTED(1,"已受理"), UNPAYMENT(2, "未付款"),
+	    DEPOSIT (3,"已付定金"),  PAYMENT(4,"已付款"),  FINISH(5,"已完成"),
 	    CLOSE(6,"已关闭"), CANCEL(7, "申请取消订单"), REFUND(8, "申请退款");
 	    public static String NAME = "订单状态";
 	    public static OStatus DEFAULT = UNPAYMENT; // 定义缺省值

@@ -43,7 +43,7 @@
 			<li><span class="name">${order.contactMan }</span><i class="sex_ico <s:if test="order.contactSex==1">nav</s:if><s:else>nv</s:else>"></i></li><!--class="sex_ico nav"就是男图标-->
 			<li><span class="<s:if test="order.contactType==0">tel_ico</s:if><s:elseif test="order.contactType==1">wx_ico</s:elseif><s:elseif test="contactType==2">qq_ico</s:elseif>"></span><a href="tel:${order.contactWay }">${order.contactWay }</a></li>
 			<s:if test="banquet.name!=null"><li>${banquet.name} </li></s:if>
-			<li>${order.formatDate }</li>
+			<li>${order.time }</li>
 			<s:if test="order.num"><li>${order.number }位</li></s:if>
 			<s:if test="order.consumption"><li>${order.consumption }元/位</li></s:if>
 			<s:if test="orderServices.size()!=0"><li><s:iterator value="orderServices" var="line">${line.name } &nbsp;</s:iterator></li></s:if>

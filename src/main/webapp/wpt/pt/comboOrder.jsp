@@ -30,7 +30,7 @@
 	<div class="resok_top">
 		<dl>
 			<dt><img src="images/hm_logo.png" /></dt>
-			<dd>${order.gtRestaurant().name } | ${order.comboName }</dd>	
+			<dd>${order.restaurant.name } | ${order.comboName }</dd>	
 		</dl>
 		<div class="resok_flog"></div>
 		<img src="images/reserve_bg.jpg" class="bg" />	

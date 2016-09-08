@@ -23,9 +23,9 @@ import javax.persistence.Table;
  * 
  */
 @Entity
-@Table(name="wpt_order_detail")
-@NamedQuery(name="OrderDetail.findAll", query="SELECT w FROM OrderDetail w")
-public class OrderDetail implements Serializable {
+@Table(name="wpt_order_service")
+@NamedQuery(name="OrderService.findAll", query="SELECT w FROM OrderService w")
+public class OrderService implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -34,15 +34,13 @@ public class OrderDetail implements Serializable {
 	
 	private String name;
 	
-	private Integer number;
-	
 	private BigDecimal price;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="order_id")
 	private Order order;
 	
-	public OrderDetail() {
+	public OrderService() {
 	}
 
 	public Integer getPkey() {
@@ -59,14 +57,6 @@ public class OrderDetail implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public Integer getNumber() {
-		return number;
-	}
-
-	public void setNumber(Integer number) {
-		this.number = number;
 	}
 
 	public BigDecimal getPrice() {

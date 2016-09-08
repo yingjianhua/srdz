@@ -1,15 +1,14 @@
 package irille.wpt.actions.controller.impl;
 
-import java.util.List;
+import javax.annotation.Resource;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import irille.pub.bean.BeanBase;
 import irille.wpt.actions.controller.AbstractControllAction;
-import irille.wx.wpt.WptBanquet;
-import irille.wx.wpt.WptOrder;
-import irille.wx.wpt.WptOrderService;
+import irille.wpt.bean.Order;
+import irille.wpt.service.impl.OrderService;
+import irille.wx.wpt.Wpt.OStatus;
 import irille.wxpub.js.JMChooseWXPay;
 import irille.wxpub.js.JsFunDefine;
 @Controller
@@ -20,10 +19,11 @@ public class ConfirmOrderAction extends AbstractControllAction {
 	 */
 	private static final long serialVersionUID = -8451388149340391377L;
 
-	private String orderId;
-	private WptBanquet banquet;
-	private WptOrder order;
-	private List<WptOrderService> orderServices;
+	private String orderid;
+	private Order order;
+	
+	@Resource
+	private OrderService orderService;
 	
 	/**w
 	 * 订单提交成功，跳转到简单的临时订单详情页，若为普通的套餐订单，则直接跳转到支付页面
@@ -31,13 +31,10 @@ public class ConfirmOrderAction extends AbstractControllAction {
 	 * @throws Exception 
 	 */
 	public String execute() {
-		order = WptOrder.loadUniqueOrderid(false, orderId);
-		if(order.gtIsPt()) {
-			banquet = order.gtBanquet();
-			order.getComboName();
-			orderServices = BeanBase.list(WptOrderService.class, WptOrderService.T.WPTORDER+"=?", false, order.getPkey());
+		order = orderService.findByOrderid(orderid);
+		if(order.getStatus().equals(OStatus.NOTACCEPTED.getLine().getKey())) {//未受理
 			setResult("pt/orderDetail.jsp");
-		} else {
+		} else if(order.getStatus().equals(OStatus.UNPAYMENT.getLine().getKey())){//未付款
 			setResult("pt/comboOrder.jsp");
 		}
 		return TRENDS;
@@ -48,28 +45,17 @@ public class ConfirmOrderAction extends AbstractControllAction {
 		getJsCreater().add(fun.add(cwxp));
 	}
 	
-	public String getOrderId() {
-		return orderId;
+	public String getOrderid() {
+		return orderid;
 	}
-	public void setOrderId(String orderId) {
-		this.orderId = orderId;
+	public void setOrderid(String orderid) {
+		this.orderid = orderid;
 	}
-	public WptBanquet getBanquet() {
-		return banquet;
-	}
-	public void setBanquet(WptBanquet banquet) {
-		this.banquet = banquet;
-	}
-	public WptOrder getOrder() {
+	public Order getOrder() {
 		return order;
 	}
-	public void setOrder(WptOrder order) {
+	public void setOrder(Order order) {
 		this.order = order;
 	}
-	public List<WptOrderService> getOrderServices() {
-		return orderServices;
-	}
-	public void setOrderServices(List<WptOrderService> orderServices) {
-		this.orderServices = orderServices;
-	}
+	
 }

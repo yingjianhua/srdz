@@ -8,6 +8,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -31,8 +33,10 @@ public class Order implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer pkey;
 	
+	//格式：yyyyMMddHHmmss+4位数字随机数
 	private String orderid;
 	
 	private Byte status;
@@ -44,9 +48,11 @@ public class Order implements Serializable {
 	@Column(name="combo_name")
 	private String comboName;
 	
-	private Integer member;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="member")
+	private Member member;
 	
-	private String number;
+	private Integer number;
 	
 	private BigDecimal price;
 	
@@ -80,22 +86,26 @@ public class Order implements Serializable {
 	private Integer account;
 	
 	@Column(name="row_version")
-	private Short rowVersion;
+	private Short rowVersion = 1;
 	
     @OneToMany(fetch=FetchType.LAZY)
-    @JoinColumn(name="order")
+    @JoinColumn(name="order_id")
 	private Set<OrderCoupon> coupons;
     
     @OneToMany(fetch=FetchType.LAZY)
-    @JoinColumn(name="order")
+    @JoinColumn(name="order_id")
 	private Set<OrderDetail> details;
     
     @OneToMany(fetch=FetchType.LAZY)
-    @JoinColumn(name="order")
+    @JoinColumn(name="order_id")
+	private Set<OrderService> services;
+    
+    @OneToMany(fetch=FetchType.LAZY)
+    @JoinColumn(name="order_id")
 	private Set<OrderEventJournal> eventJournals;
     
     @OneToMany(fetch=FetchType.LAZY)
-    @JoinColumn(name="order")
+    @JoinColumn(name="order_id")
 	private Set<OrderPayJournal> payJournals;
 
 	public Order() {
@@ -141,19 +151,19 @@ public class Order implements Serializable {
 		this.comboName = comboName;
 	}
 
-	public Integer getMember() {
+	public Member getMember() {
 		return member;
 	}
 
-	public void setMember(Integer member) {
+	public void setMember(Member member) {
 		this.member = member;
 	}
 
-	public String getNumber() {
+	public Integer getNumber() {
 		return number;
 	}
 
-	public void setNumber(String number) {
+	public void setNumber(Integer number) {
 		this.number = number;
 	}
 
@@ -269,6 +279,14 @@ public class Order implements Serializable {
 
 	public void setDetails(Set<OrderDetail> details) {
 		this.details = details;
+	}
+
+	public Set<OrderService> getServices() {
+		return services;
+	}
+
+	public void setServices(Set<OrderService> services) {
+		this.services = services;
 	}
 
 	public Set<OrderEventJournal> getEventJournals() {

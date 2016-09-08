@@ -25,6 +25,10 @@ public class MemberService {
 	@Resource
 	private QrcodeRuleDao qrcodeRuleDao;
 	
+	public Member findByOpenidInAccount(Integer accountId, String openid) {
+		return memberDao.findByOpenidInAccount(accountId, openid);
+	}
+	
 	public void becomeMember(Member member) {
 		if(member.getIsMember() == true) {
 			//已经是会员，不做处理
