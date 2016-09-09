@@ -37,11 +37,30 @@
 	</div>
 	
 	<div class="cood_info">
-		
+		<div class="cood_in" style="text-align:center;">
+			<span style="font-size:26px;font-weight:bold;">${order.comboName }</span>	
+		</div>
+		<div class="cood_in" style="text-align:center;">
+		<s:iterator value="order.details" var="line">
+			<p style="padding:8px 0;color: #7b7b7b;"><span>${line.name }</span></p>	
+		</s:iterator>
+		</div>
 		<div class="cood_in">
-			<span class="lt">价格</span>	
+			<span class="lt">餐厅</span>	
 			<div class="rt">
-				<span class="price_d">${order.price.intValue() }</span>元/套	
+				<span>${order.restaurant.name }</span>
+			</div>
+		</div>
+		<div class="cood_in">
+			<span class="lt">餐厅电话</span>	
+			<div class="rt">
+				<span>${order.restaurant.mobile }</span>
+			</div>
+		</div>
+		<div class="cood_in">
+			<span class="lt">地址</span>	
+			<div class="rt">
+				<span>${order.restaurant.addr }</span>
 			</div>
 		</div>
 		<div class="cood_in">
@@ -52,8 +71,15 @@
 				<span class="cbtn jia">+</span>	
 			</div>
 		</div>
+		
 		<div class="cood_in">
-			<span class="lt">价格</span>	
+			<span class="lt">单价</span>	
+			<div class="rt">
+				<span class="price_d">${order.price.intValue() }</span>元/套	
+			</div>
+		</div>
+		<div class="cood_in">
+			<span class="lt">总计</span>	
 			<div class="rt">
 				<span class="price_h">${order.price.intValue() }</span>元
 			</div>
@@ -62,8 +88,7 @@
 			<span class="lt">姓名</span>	
 			<div class="rt">
 				<input type="text" class="text lt" value="${order.contactMan }" readonly="readonly" />
-				<a href="javascript:;" class="sex_sel sex_nv<s:if test="order.contactSex==2"> hover</s:if>" val="女"></a>
-				<a href="javascript:;" class="sex_sel sex_nan<s:if test="order.contactSex==1"> hover</s:if>" val="男"></a>
+				<a href="javascript:;" class="sex_sel <s:if test="order.contactSex==2">sex_nv</s:if><s:else>sex_nan</s:else> hover"></a>
 			</div>
 		</div>
 		<div class="cood_in">
@@ -89,7 +114,7 @@ function chooseWxPay() {
 	$(".cm_btn1-btn.cood_btn").attr("href","javascript:;");
 	$(".loading_float").show();
 	$.ajax({
-		url : "resource/order_preparePay?orderId=${orderId}&account.pkey=${account.pkey}",
+		url : "resource/order_preparePay?orderid=${orderid}&account.pkey=${account.pkey}",
 		type : "POST",
 		dataType : "json",
 		data : {comboNumber : $("input[name=comboNumber]").val()},

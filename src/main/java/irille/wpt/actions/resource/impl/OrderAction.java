@@ -20,9 +20,7 @@ import irille.pub.Exp;
 import irille.pub.Log;
 import irille.wpt.actions.resource.AbstractCRUDAction;
 import irille.wpt.bean.Order;
-import irille.wpt.interceptor.CityInterceptor;
 import irille.wpt.service.impl.OrderService;
-import irille.wx.wpt.WptCity;
 import irille.wx.wpt.WptOrder;
 import irille.wx.wx.WxAccount;
 import irille.wx.wx.WxUser;
@@ -51,7 +49,7 @@ public class OrderAction extends AbstractCRUDAction<Order> {
 	private Integer areaId;
 	private String services;
 
-	private String orderId;
+	private String orderid;
 	private Integer comboNumber;
 
 	private String checkCode;
@@ -69,13 +67,11 @@ public class OrderAction extends AbstractCRUDAction<Order> {
 	 * 在快捷支付页面生成预支付参数,快捷支付页面可以调整订单中的套餐数量(只用于套餐订单)
 	 * @throws Exception
 	 */
-	public void preparePay() throws Exception {
-		LOG.info("--------------preparePay():start--------------");
+	@PermitAll
+	public String preparePay() throws Exception {
 		account = WxAccount.get(WxAccount.class, account.getPkey());
-		JSONObject result = orderService.createPreparePay(orderId, comboNumber, chkWxUser(), account, getRequest());
-		result.put(SUCCESS, true);
-		ServletActionContext.getResponse().getWriter().print(result);
-		LOG.info("--------------preparePay():end--------------");
+		object = orderService.createPreparePay(orderid, comboNumber, chkMember(), account, getRequest());
+		return OBJECT;
 	}
 	/**
 	 * 取消订单
@@ -252,11 +248,11 @@ public class OrderAction extends AbstractCRUDAction<Order> {
 	public void setServices(String services) {
 		this.services = services;
 	}
-	public String getOrderId() {
-		return orderId;
+	public String getOrderid() {
+		return orderid;
 	}
-	public void setOrderId(String orderId) {
-		this.orderId = orderId;
+	public void setOrderid(String orderid) {
+		this.orderid = orderid;
 	}
 	public Integer getComboNumber() {
 		return comboNumber;

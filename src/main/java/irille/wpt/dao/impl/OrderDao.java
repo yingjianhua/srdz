@@ -8,7 +8,9 @@ import irille.wpt.dao.AbstractDao;
 @Repository
 public class OrderDao extends AbstractDao<Order, Integer>{
 
+	
 	public Order findByOrderid(String orderid) {
 		return findUnique("select * from wpt_order where orderid=?", orderid);
 	}
+
 }

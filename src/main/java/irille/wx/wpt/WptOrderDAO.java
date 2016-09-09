@@ -18,6 +18,9 @@ import irille.pub.idu.Idu;
 import irille.pub.idu.IduDel;
 import irille.pub.idu.IduInsLines;
 import irille.pub.idu.IduUpdLines;
+import irille.wpt.bean.Member;
+import irille.wpt.bean.Order;
+import irille.wpt.pay.WXPay;
 import irille.wpt.tools.SmsTool;
 import irille.wpt.tools.TradeNoFactory;
 import irille.wx.wpt.Wpt.OContactStatus;
@@ -89,6 +92,21 @@ public class WptOrderDAO {
 	 * @param total_fee 总金额
 	 * @throws Exception
 	 */
+	private static Map<String, String> unifiedOrder(WxAccount account, Member member, Order order, HttpServletRequest request) throws Exception {
+		String spbill_create_id = request.getRemoteAddr();
+		Map<String, String> result = UnifiedOrder.unifiedorder(account, order, "WEB", order.getClass().getName(), null, spbill_create_id, null, null, null, 
+				notify_pay_url, "JSAPI", null, null, member.getOpenId());
+		return result;
+	}
+	
+	/**
+	 * 统一下单
+	 * @param account 公众账号
+	 * @param user 微信用户
+	 * @param spbill_create_id 终端IP
+	 * @param total_fee 总金额
+	 * @throws Exception
+	 */
 	private static Map<String, String> unifiedOrder(WxAccount account, WxUser wxUser, WptOrder order, HttpServletRequest request) throws Exception {
 		String spbill_create_id = request.getRemoteAddr();
 		Map<String, String> result = UnifiedOrder.unifiedorder(account, order, "WEB", order.getClass().getName(), null, spbill_create_id, null, null, null, 
@@ -105,6 +123,32 @@ public class WptOrderDAO {
 	private static Map<String, String> refundOrder(WxAccount account, WptOrder order) throws Exception {
 		Map<String, String> result = RefundOrder.refundorder(account, order, null, null);
 		return result;
+	}
+	/**
+	 * 生成统一下单所需的参数
+	 * @param request
+	 * @param order
+	 * @param wxUser
+	 * @param account
+	 * @return
+	 * @throws Exception
+	 */
+	public static WXPay prepareParams(HttpServletRequest request, Order order, WxUser wxUser, WxAccount account) throws Exception {
+		Map<String, String> payParams = new TreeMap<String, String>();
+		WXPay wxpay = new WXPay();
+		wxpay.setPayAppId(account.getAccountAppid());
+		wxpay.setPayTimestamp(new Date().getTime()/1000+"");
+		wxpay.setPayNonceStr(MchUtil.createRandom(32));
+		wxpay.setPayPackage("prepay_id="+WptOrderDAO.unifiedOrder(account, wxUser, order, request).get("prepay_id"), new Date());
+		wxpay.setPaySignType("MD5");
+		StringBuilder buffer = new StringBuilder();
+		for(String key:payParams.keySet()) {
+			buffer.append(key+"="+payParams.get(key)+"&");
+		}
+		buffer.append("key=").append(account.getMchKey());
+		System.out.println(buffer.toString());
+		wxpay.setPayPaySign(MchUtil.md5(buffer.toString()));
+		return wxpay;
 	}
 	/**
 	 * 生成统一下单所需的参数

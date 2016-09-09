@@ -39,4 +39,7 @@
 			</list>
 		</property>
 	</bean>
+	<bean class="irille.wpt.tools.Constant">
+		<constructor-arg name="webPath" value="http://www.51xiangshiguang.com/srdz" />
+	</bean>
 </beans>        

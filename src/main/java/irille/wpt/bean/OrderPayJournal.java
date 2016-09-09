@@ -1,6 +1,8 @@
 package irille.wpt.bean;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -35,6 +37,22 @@ public class OrderPayJournal implements Serializable {
 	@JoinColumn(name="order_id")
 	private Order order;
 	
+	//商户订单号
+	private String outTradeNo;
+	
+	//商户退款单号
+	private String outRefundNo;
+	
+	private BigDecimal price;
+	
+	private Date createTime;
+	
+	//支付成功时间
+	private Date payTime;
+	
+	//退款成功时间
+	private Date refundTime;
+	
 	public OrderPayJournal() {
 	}
 
@@ -52,6 +70,54 @@ public class OrderPayJournal implements Serializable {
 
 	public void setOrder(Order order) {
 		this.order = order;
+	}
+
+	public String getOutTradeNo() {
+		return outTradeNo;
+	}
+
+	public void setOutTradeNo(String outTradeNo) {
+		this.outTradeNo = outTradeNo;
+	}
+
+	public String getOutRefundNo() {
+		return outRefundNo;
+	}
+
+	public void setOutRefundNo(String outRefundNo) {
+		this.outRefundNo = outRefundNo;
+	}
+
+	public BigDecimal getPrice() {
+		return price;
+	}
+
+	public void setPrice(BigDecimal price) {
+		this.price = price;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public Date getPayTime() {
+		return payTime;
+	}
+
+	public void setPayTime(Date payTime) {
+		this.payTime = payTime;
+	}
+
+	public Date getRefundTime() {
+		return refundTime;
+	}
+
+	public void setRefundTime(Date refundTime) {
+		this.refundTime = refundTime;
 	}
 	
 }

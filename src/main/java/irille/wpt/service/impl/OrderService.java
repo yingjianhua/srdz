@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -26,34 +27,37 @@ import irille.wpt.bean.ComboLine;
 import irille.wpt.bean.Member;
 import irille.wpt.bean.Order;
 import irille.wpt.bean.OrderDetail;
+import irille.wpt.bean.OrderPayJournal;
 import irille.wpt.bean.Restaurant;
 import irille.wpt.dao.impl.ComboDao;
 import irille.wpt.dao.impl.ComboLineDao;
 import irille.wpt.dao.impl.OrderDao;
 import irille.wpt.dao.impl.OrderDetailDao;
+import irille.wpt.dao.impl.OrderPayJournalDao;
 import irille.wpt.dao.impl.OrderServiceDao;
 import irille.wpt.dao.impl.ServiceDao;
 import irille.wpt.exception.ExtjsException;
+import irille.wpt.pay.WXPay;
+import irille.wpt.tools.Constant;
 import irille.wpt.tools.SmsTool;
-import irille.wpt.tools.TradeNoFactory;
 import irille.wx.wpt.Wpt.OStatus;
-import irille.wx.wpt.WptCombo;
-import irille.wx.wpt.WptComboLine;
 import irille.wx.wpt.WptOrder;
 import irille.wx.wpt.WptOrderDAO;
 import irille.wx.wpt.WptOrderLine;
 import irille.wx.wpt.WptOrderService;
-import irille.wx.wpt.WptRestaurant;
-import irille.wx.wpt.WptService;
 import irille.wx.wpt.WptServiceCen;
 import irille.wx.wpt.WptWxTips;
 import irille.wx.wx.WxAccount;
 import irille.wx.wx.WxAccountDAO;
 import irille.wx.wx.WxUser;
 import irille.wxpub.util.mch.MchUtil;
+import irille.wxpub.util.mch.UnifiedOrder;
 @Service
 public class OrderService {
 	private static final Log LOG = new Log(OrderService.class);
+	
+	@Resource
+	private Constant constant;
 	@Resource
 	private SmsTool smsTool;
 	@Resource
@@ -72,6 +76,8 @@ public class OrderService {
 	@Resource
 	private OrderServiceDao orderServiceDao;
 	@Resource
+	private OrderPayJournalDao orderPayJournalDao;
+	@Resource
 	private ServiceDao serviceDao;
 	
 	private static final SimpleDateFormat INPUT_DATE_FORMAT = new SimpleDateFormat("yyyy/MM/dd HH:mm");
@@ -83,7 +89,7 @@ public class OrderService {
 	 * @param time 用餐时间
 	 * @param member 下单的微信用户
 	 * @param rem 备注
-	 * @param serviceIds 额外增加的服务列表
+	 * @param serviceIds 额外增加的服务列表 id1,id2,id3,id4
 	 * @param contactMan 联系人
 	 * @param contactSex 联系人性别
 	 * @param contactType 联系方式
@@ -105,8 +111,10 @@ public class OrderService {
 			order.setMember(member);
 			Combo combo = comboDao.load(comboId);
 			Restaurant restaurant = combo.getRestaurant();
+			order.setCombo(combo);
 			order.setComboName(combo.getName());
 			order.setRestaurant(restaurant);
+			order.setRestaurantName(restaurant.getName());
 			order.setPrice(combo.getPrice());
 			order.setCity(restaurant.getCity());
 			order.setNumber(number);
@@ -148,98 +156,6 @@ public class OrderService {
 		}
 		return order;
 	}
-	
-	/**
-	 * 根据参数生成一个订单对象
-	 * @param contactMan 联系人姓名
-	 * @param contactSex 联系人性别
-	 * @param date 用餐时间 yyyy/MM/dd HH:mm
-	 * @param contactWay 联系号码
-	 * @param contactType 联系方式
-	 * @param rem 备注
-	 * @param comboId 套餐id
-	 * @param banquetId 宴会类型id
-	 * @param pnum 就餐人数
-	 * @param perCapitaBudget 人均消费
-	 * @param areaId 区域
-	 * @param services 定制服务 id1,id2,id3,id4
-	 * @param user 微信用户id
-	 * @param account 微信公众号id
-	 * @return 生成的订单
-	 */
-	public WptOrder createOrder(String contactMan, String contactSex, String date, String contactWay, String contactType, String rem,
-			Integer comboId, Integer banquetId, String pnum, String budget, Integer cityId, Integer areaId, String services, Integer user, Integer account) {
-		WptOrder order = new WptOrder();
-		try {
-			order.setTime(INPUT_DATE_FORMAT.parse(date));
-		} catch (ParseException e) {
-			e.printStackTrace();
-			return null;
-		}
-		order.setContactMan(contactMan);
-		order.setContactSex(Byte.valueOf(contactSex));
-		order.setContactType(Byte.valueOf(contactType));
-		order.setContactWay(contactWay);
-		order.setRem(rem);
-		order.setBanquet(banquetId);
-		order.setWxuser(user);
-		if(comboId != null) {
-			WptCombo combo = WptCombo.load(WptCombo.class, comboId);
-			WptRestaurant restaurant = combo.gtRestaurant();
-			order.setComboName(combo.getName());
-			order.setRestaurant(combo.getRestaurant());
-			order.setPrice(combo.getPrice());
-			order.setCity(restaurant.getCity());
-		} else {
-			order.setCity(cityId);
-		}
-		order.setConsumption(budget);
-		order.setNumber(pnum);
-		
-		order.setCreateTime(new Date());
-		order.setAccount(account);
-		order.setRowVersion((short)1);
-		if((services != null && !services.equals("")) || comboId == null) {
-			//是私人定制类型的订单
-			order.stIsPt(true);
-			order.stStatus(OStatus.NOTACCEPTED);
-		} else {
-			//不是私人定制类型的订单
-			order.stIsPt(false);
-			order.stStatus(OStatus.UNPAYMENT);
-		}
-		order.setOrderid(TradeNoFactory.createOrderidUnique());
-		order.setDepPayId(order.getOrderid()+"d");
-		order.ins();
-		//添加订单的菜品
-		if(comboId != null) {
-			List<WptComboLine> comboLines = BeanBase.list(WptComboLine.class, WptComboLine.T.COMBO+"=?", false, comboId);
-			for(WptComboLine line:comboLines) {
-				WptOrderLine orderLine = new WptOrderLine();
-				orderLine.setAccount(account);
-				orderLine.setName(line.gtMenu().getName());
-				orderLine.setPrice(line.getPrice());
-				orderLine.setNumber(1);
-				orderLine.stWptorder(order);
-				orderLine.ins();
-			}
-		}
-		//添加订单的服务
-		if(services != null && !services.equals("")) {
-			for(WptService line:BeanBase.list(WptService.class, WptService.T.PKEY+" in ("+services+")", false)) {
-				WptOrderService orderService = new WptOrderService();
-				orderService.setName(line.getName());
-				orderService.setPrice(line.getPrice());
-				orderService.setWptorder(order.getPkey());
-				orderService.setAccount(order.getAccount());
-				orderService.ins();
-			}
-		}
-		//假如是私人订制的订单,或者有备注的订单发送短信和微信提醒 
-		//if(order.gtIsPt() == true || (order.getRem()!= null && !order.getRem().trim().equals("")))
-			doSent(order);
-		return order;
-	}
 	/**
 	 * 生成支付时需要的准备参数
 	 * @param orderId 订单号
@@ -249,35 +165,79 @@ public class OrderService {
 	 * @param request 
 	 * @return 
 	 */
-	public JSONObject createPreparePay(String orderId, Integer comboNumber, WxUser user, WxAccount account, HttpServletRequest request) {
-		WptOrder order = WptOrder.loadUniqueOrderid(false, orderId);
-		if(order.gtStatus() != OStatus.UNPAYMENT && order.gtStatus() != OStatus.DEPOSIT && order.gtStatus() != OStatus.ACCEPTED) {
-			throw LOG.err("numberErr", "套餐数量异常");
+	public WXPay createPreparePay(String orderid, Integer comboNumber, Member member, WxAccount account, HttpServletRequest request) {
+		Order order = orderDao.findByOrderid(orderid);
+		if(!order.getStatus().equals(OStatus.UNPAYMENT.getLine().getKey())) {
+			throw new ExtjsException("订单状态出错");
 		}
-		if(!order.getWxuser().equals(user.getPkey())) {return null;}
-		if(comboNumber != null) {
-			if(comboNumber < 1) {
-				throw LOG.err("statusErr", "状态异常");
-			} else if(comboNumber > 1) {
-				List<WptOrderLine> list = BeanBase.list(WptOrderLine.class, WptOrderLine.T.WPTORDER+"=?", false, order.getPkey());
-				for(WptOrderLine line:list) {
-					line.setNumber(comboNumber*line.getNumber());
-					line.upd();
-				}
-				order.setPrice(order.getPrice().multiply(BigDecimal.valueOf(comboNumber)));
-				order.upd();
+		//假如套餐数量有增加，则修改套餐数量字段，并增加订单额外的套餐费用
+		if(comboNumber != null && comboNumber > 1) {
+			Integer extNumber = comboNumber - order.getNumber();
+			if(extNumber > 0) {
+				BigDecimal extPrice = order.getCombo().getPrice().multiply(BigDecimal.valueOf(extNumber));
+				order.setNumber(comboNumber);
+				order.setPrice(order.getPrice().add(extPrice));
+				orderDao.update(order);
 			}
 		}
+		BigDecimal needPay = null;
+		if(order.getPayment().compareTo(order.getDeposit()) < 0) {//已支付金额未超过定金的，需支付剩余的定金
+			needPay = order.getDeposit().subtract(order.getPayment());
+		} else if(order.getPayment().compareTo(order.getPrice()) < 0){//已支付金额未超过总金额的，需支付剩余金额
+			needPay = order.getPrice().subtract(order.getPayment());
+		} else {//否则出错
+			throw new ExtjsException("支付金额出错");
+		}
+		OrderPayJournal payJournal = new OrderPayJournal();
+		payJournal.setOrder(order);
+		payJournal.setCreateTime(new Date());
+		payJournal.setPrice(needPay);
+		payJournal.setOutTradeNo(order.getPkey()+ORDERID_FORMAT.format(new Date()));
+		orderPayJournalDao.save(payJournal);
 		
-		Map<String, String> payParams;
+		WXPay wxpay;
 		try {
-			payParams = WptOrderDAO.prepareParams(request, order, user, account);
+			wxpay = prepareParams(payJournal, member, account, request);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new ExtjsException("参数产生出错");
 		}
-		return new JSONObject(payParams);
+		return wxpay;
 	}
+	
+	/**
+	 * 生成统一下单所需的参数
+	 * @param request
+	 * @param order
+	 * @param wxUser
+	 * @param account
+	 * @return
+	 * @throws Exception
+	 */
+	private WXPay prepareParams(OrderPayJournal payJournal, Member member, WxAccount account, HttpServletRequest request) throws Exception {
+		Map<String, String> payParams = new TreeMap<String, String>();
+		String spbill_create_ip = request.getRemoteAddr();
+		Order order = payJournal.getOrder();
+		String body = order.getRestaurantName()+"|"+order.getComboName();
+		String notify_url = constant.getWebPath()+"/wpt/resource/order_notifyPay";
+		Map<String, String> result = UnifiedOrder.unifiedorder(account, body, payJournal.getOutTradeNo(), payJournal.getPrice(), spbill_create_ip, notify_url, member.getOpenId());
+	
+		WXPay wxpay = new WXPay();
+		wxpay.setPayAppId(account.getAccountAppid());
+		wxpay.setPayTimestamp(new Date().getTime()/1000+"");
+		wxpay.setPayNonceStr(MchUtil.createRandom(32));
+		wxpay.setPayPackage("prepay_id="+result.get("prepay_id"));
+		wxpay.setPaySignType("MD5");
+		StringBuilder buffer = new StringBuilder();
+		for(String key:payParams.keySet()) {
+			buffer.append(key+"="+payParams.get(key)+"&");
+		}
+		buffer.append("key=").append(account.getMchKey());
+		System.out.println(buffer.toString());
+		wxpay.setPayPaySign(MchUtil.md5(buffer.toString()));
+		return wxpay;
+	}
+	
 	public List<WptOrder> list(Integer user) {
 		String orderBy = " ORDER BY " + WptOrder.T.CREATE_TIME + " DESC ";
 		List<WptOrder> orders = BeanBase.list(WptOrder.class, WptOrder.T.WXUSER+"=?" + orderBy, false, user);

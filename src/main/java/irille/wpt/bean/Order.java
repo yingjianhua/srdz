@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -45,16 +46,30 @@ public class Order implements Serializable {
 	@JoinColumn(name="restaurant")
 	private Restaurant restaurant;
 	
+	@Column(name="restaurant_name")
+	private String restaurantName;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="combo")
+	private Combo combo;
+	
 	@Column(name="combo_name")
 	private String comboName;
-	
+
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="member")
 	private Member member;
 	
 	private Integer number;
 	
+	//定金
+	private BigDecimal deposit;
+	
+	//订单总金额
 	private BigDecimal price;
+	
+	//已支付金额
+	private BigDecimal payment;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date time;
@@ -90,22 +105,27 @@ public class Order implements Serializable {
 	
     @OneToMany(fetch=FetchType.LAZY)
     @JoinColumn(name="order_id")
+    @OrderBy("pkey")
 	private Set<OrderCoupon> coupons;
     
     @OneToMany(fetch=FetchType.LAZY)
     @JoinColumn(name="order_id")
+    @OrderBy("pkey")
 	private Set<OrderDetail> details;
     
     @OneToMany(fetch=FetchType.LAZY)
     @JoinColumn(name="order_id")
+    @OrderBy("pkey")
 	private Set<OrderService> services;
     
     @OneToMany(fetch=FetchType.LAZY)
     @JoinColumn(name="order_id")
+    @OrderBy("pkey")
 	private Set<OrderEventJournal> eventJournals;
     
     @OneToMany(fetch=FetchType.LAZY)
     @JoinColumn(name="order_id")
+    @OrderBy("pkey")
 	private Set<OrderPayJournal> payJournals;
 
 	public Order() {
@@ -143,6 +163,22 @@ public class Order implements Serializable {
 		this.restaurant = restaurant;
 	}
 
+	public String getRestaurantName() {
+		return restaurantName;
+	}
+
+	public void setRestaurantName(String restaurantName) {
+		this.restaurantName = restaurantName;
+	}
+	
+	public Combo getCombo() {
+		return combo;
+	}
+
+	public void setCombo(Combo combo) {
+		this.combo = combo;
+	}
+
 	public String getComboName() {
 		return comboName;
 	}
@@ -167,12 +203,28 @@ public class Order implements Serializable {
 		this.number = number;
 	}
 
+	public BigDecimal getDeposit() {
+		return deposit;
+	}
+
+	public void setDeposit(BigDecimal deposit) {
+		this.deposit = deposit;
+	}
+
 	public BigDecimal getPrice() {
 		return price;
 	}
 
 	public void setPrice(BigDecimal price) {
 		this.price = price;
+	}
+
+	public BigDecimal getPayment() {
+		return payment;
+	}
+
+	public void setPayment(BigDecimal payment) {
+		this.payment = payment;
 	}
 
 	@JSON(format="yyyy-MM-dd HH:mm")
