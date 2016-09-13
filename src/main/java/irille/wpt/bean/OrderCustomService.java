@@ -24,8 +24,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="wpt_order_service")
-@NamedQuery(name="OrderService.findAll", query="SELECT w FROM OrderService w")
-public class OrderService implements Serializable {
+@NamedQuery(name="OrderCustomService.findAll", query="SELECT w FROM OrderCustomService w")
+public class OrderCustomService implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -40,7 +40,7 @@ public class OrderService implements Serializable {
 	@JoinColumn(name="order_id")
 	private Order order;
 	
-	public OrderService() {
+	public OrderCustomService() {
 	}
 
 	public Integer getPkey() {

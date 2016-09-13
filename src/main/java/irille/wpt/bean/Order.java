@@ -116,7 +116,7 @@ public class Order implements Serializable {
     @OneToMany(fetch=FetchType.LAZY)
     @JoinColumn(name="order_id")
     @OrderBy("pkey")
-	private Set<OrderService> services;
+	private Set<OrderCustomService> services;
     
     @OneToMany(fetch=FetchType.LAZY)
     @JoinColumn(name="order_id")
@@ -333,11 +333,11 @@ public class Order implements Serializable {
 		this.details = details;
 	}
 
-	public Set<OrderService> getServices() {
+	public Set<OrderCustomService> getServices() {
 		return services;
 	}
 
-	public void setServices(Set<OrderService> services) {
+	public void setServices(Set<OrderCustomService> services) {
 		this.services = services;
 	}
 

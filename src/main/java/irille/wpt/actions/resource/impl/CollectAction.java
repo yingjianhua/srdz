@@ -27,7 +27,7 @@ public class CollectAction extends AbstractCRUDAction<Collect> {
 	 */
 	public void collect() {
 		WxUser user = chkWxUser();
-		collectService.collectOrCancel(id, user);
+		//collectService.collectOrCancel(id, user);
 	}
 
 	public Integer getId() {

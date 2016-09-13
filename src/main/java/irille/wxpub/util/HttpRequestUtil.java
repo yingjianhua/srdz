@@ -44,14 +44,12 @@ public class HttpRequestUtil {
 		dos.close();  
 		// 取得输入流，并使用Reader读取  
 		BufferedReader reader = new BufferedReader(new InputStreamReader(httpConn.getInputStream()));  
-		System.out.println("=========post request接收数据内容开始============");  
 		String result = null;
 		while ((result = reader.readLine()) != null) {
 			buffer.append(result);
 		}
 		result = buffer.toString();
 		reader.close();  
-		System.out.println("=========post request接收数据内容结束============"); 
 		httpConn.disconnect();  
 		return result;
 	}  

@@ -19,7 +19,10 @@ import org.springframework.stereotype.Controller;
 import irille.pub.Exp;
 import irille.pub.Log;
 import irille.wpt.actions.resource.AbstractCRUDAction;
+import irille.wpt.bean.City;
 import irille.wpt.bean.Order;
+import irille.wpt.interceptor.CityInterceptor;
+import irille.wpt.service.impl.CustomFormService;
 import irille.wpt.service.impl.OrderService;
 import irille.wx.wpt.WptOrder;
 import irille.wx.wx.WxAccount;
@@ -55,13 +58,20 @@ public class OrderAction extends AbstractCRUDAction<Order> {
 	private String checkCode;
 	@Resource
 	private OrderService orderService;
+	@Resource
+	private CustomFormService customFormService;
 	
 	@PermitAll
-	@IncludeProperties({"orderid"})
+	@IncludeProperties({"orderid","formid"})
 	public String confirmOrder() throws ParseException, JSONException, IOException {
-		bean = orderService.createOrder(comboId, comboNumber, date, chkMember(), rem, services, 
-				contactMan, contactSex, contactType, contactWay);
-		return BEAN;
+		if(comboId == null) {
+			object = customFormService.createForm(banquetId, budget, pnum, date, (City)getSession().get(CityInterceptor.CITY), areaId, services, rem, chkMember(),
+					contactMan, contactSex, contactType, contactWay);
+		} else {
+			object = orderService.createOrder(comboId, comboNumber, date, chkMember(), rem, services, (City)getSession().get(CityInterceptor.CITY), 
+					contactMan, contactSex, contactType, contactWay);
+		}
+		return OBJECT;
 	}
 	/**
 	 * 在快捷支付页面生成预支付参数,快捷支付页面可以调整订单中的套餐数量(只用于套餐订单)
@@ -80,8 +90,7 @@ public class OrderAction extends AbstractCRUDAction<Order> {
 	 */
 	public void cancel() {
 		LOG.info("--------------cancel():start--------------");
-		LOG.info("orderId:{0}", orderId);
-		WptOrder order = WptOrder.loadUniqueOrderid(false, orderId);
+		WptOrder order = WptOrder.loadUniqueOrderid(false, orderid); //TODO
 		WxUser wxUser = chkWxUser();
 		if(!order.getWxuser().equals(wxUser.getPkey())) { 
 			return ;
@@ -105,7 +114,7 @@ public class OrderAction extends AbstractCRUDAction<Order> {
 	 */
 	public void checkCode() throws IOException{
 		try {
-			orderService.complete(WptOrder.loadUniqueOrderid(false, orderId), checkCode);
+			orderService.complete(WptOrder.loadUniqueOrderid(false, orderid), checkCode);//TODO
 			ServletActionContext.getResponse().getWriter().print("ok");
 		} catch (Exp e) {
 			ServletActionContext.getResponse().getWriter().print(e.getLastMessage());

@@ -40,10 +40,12 @@ public class SmsTool {
 			LOG.info("mobile:{0}", mobile);
 			LOG.info("content:{0}", content);
 			content = URLEncoder.encode(content, "utf-8");
+			String urlStr = "http://218.244.141.161:8888/sms.aspx?action=send&userid=339&account=bl1174&password=xiangshiguang1030&mobile="+mobile+"&content="
+					+ content + "&sendTime=&extno=";
+			LOG.info(urlStr);
 			//短信机请求，获取返回的xml文件格式的字符串
-			String xmlStr = HttpRequestUtil.httpRequestPost(
-					"http://218.244.141.161:8888/sms.aspx?action=send&userid=339&account=bl1174&password=xiangshiguang1030&mobile="+mobile+"&content="
-							+ content + "&sendTime=&extno=");
+			String xmlStr = HttpRequestUtil.httpRequestPost(urlStr);
+			LOG.info(xmlStr);
 			
 			//获取节点系列mobile对应的值
 			List<String> status = ReadXmlUtil.getValues("returnstatus", xmlStr);

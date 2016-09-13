@@ -43,7 +43,7 @@ function checkJsApiSuccess() {
 	//调用微信的获取当前地理位置接口
 	wx.getLocation({
 		type : 'wgs84',
-		success : jsDistance
+		complete: jsDistance
 	});
 }
 </script>
@@ -62,7 +62,10 @@ function findCombo(longitude,latitude) {
 		},
 		dataType:"json",
 		success:function(result) {
-			var i = new Location(longitude, latitude);
+			var i;
+			if(longitude && latitude) {
+				i = new Location(longitude, latitude);
+			}
 			var items = "";
 			$.each(result, function(index, record) {
 				items += '<li>';
@@ -71,7 +74,7 @@ function findCombo(longitude,latitude) {
 				items += '	<div class="desc">';
 				items += '		<h4 class="title">'+record.name+'</h4>';
 				items += '		<div class="addr"><p>'+record.restaurant.cityline.name;
-				if(record.restaurant.longitude && record.restaurant.latitude) {
+				if(i && record.restaurant.longitude && record.restaurant.latitude) {
 					var dest = i.getDistance(new Location(record.restaurant.longitude, record.restaurant.latitude));
 					items += '		| '+dest.toFixed(2)+' km';
 				}

@@ -19,6 +19,7 @@ public class Wpt_Install extends InstallBase {
 		SysMenu wptRule = m.procParent("参数设置", "wpt", 150, null);
 		
 		m.proc(WptOrder.TB, 10, null);
+		m.proc(WptCustomForm.TB, 11, null);
 //		m.proc(WptOrderService.TB, 12, wptOrder);
 		
 		m.proc(WptRestaurant.TB, 21, wptRes);//餐厅

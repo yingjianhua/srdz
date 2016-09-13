@@ -2,35 +2,29 @@ package irille.wpt.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.math.BigDecimal;
 
 
 /**
- * The persistent class for the wpt_service database table.
+ * The persistent class for the wpt_banquet database table.
  * 
  */
 @Entity
-@Table(name="wpt_service")
-@NamedQuery(name="Service.findAll", query="SELECT s FROM Service s")
-public class Service implements Serializable {
+@Table(name="wpt_banquet")
+@NamedQuery(name="Banquet.findAll", query="SELECT b FROM Banquet b")
+public class Banquet implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer pkey;
 
 	private Integer account;
 
-	private String icon;
-
 	private String name;
 
-	private BigDecimal price;
-
 	@Column(name="row_version")
-	private Short rowVersion = 1;
+	private Short rowVersion;
 
-	public Service() {
+	public Banquet() {
 	}
 
 	public Integer getPkey() {
@@ -49,28 +43,12 @@ public class Service implements Serializable {
 		this.account = account;
 	}
 
-	public String getIcon() {
-		return this.icon;
-	}
-
-	public void setIcon(String icon) {
-		this.icon = icon;
-	}
-
 	public String getName() {
 		return this.name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public BigDecimal getPrice() {
-		return this.price;
-	}
-
-	public void setPrice(BigDecimal price) {
-		this.price = price;
 	}
 
 	public Short getRowVersion() {

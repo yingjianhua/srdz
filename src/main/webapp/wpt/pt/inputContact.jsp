@@ -164,17 +164,10 @@ $(function() {
 				"struts.token" : $("form input[name='struts.token']").val() 
 			},
 			success : function(result, data2) {
-				if(result.success) {
+				if(result.orderid) {
 					location.href = "confirmOrder?orderid=" + result.orderid +"&account.pkey=${account.pkey}";						
-				} else {
-					if(result.errMsg) {
-						if(result.errMsg == "qrerr") {
-							qrbox("${account.pkey}");
-						} else {
-							tipbox(result.errMsg)
-						}
-					}
-					submit = false;
+				} else if(result.formid){
+					location.href = "confirmOrder?formid=" + result.formid +"&account.pkey=${account.pkey}";
 				}
 			}
 		})

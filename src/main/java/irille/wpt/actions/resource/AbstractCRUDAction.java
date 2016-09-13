@@ -179,6 +179,12 @@ public abstract class AbstractCRUDAction<T> extends AbstractWptAction {
 	public void setPages(Page<T> pages) {
 		this.pages = pages;
 	}
+	public Object getObject() {
+		return object;
+	}
+	public void setObject(Object object) {
+		this.object = object;
+	}
 	public Integer getPage() {
 		return page;
 	}

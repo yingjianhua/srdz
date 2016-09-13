@@ -22,7 +22,7 @@ public class MemberAction extends AbstractCRUDAction<Member>  {
 	private MemberService memberService;
 
 	public String becomeMember() {
-		memberService.becomeMember(bean);
+		//TODO memberService.becomeMember(bean);
 		return BEAN;
 	}
 }

@@ -12,11 +12,11 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.wpt.actions.resource.AbstractCRUDAction;
+import irille.wpt.bean.City;
 import irille.wpt.bean.Combo;
 import irille.wpt.bean.ComboLine;
 import irille.wpt.interceptor.CityInterceptor;
 import irille.wpt.service.impl.ComboService;
-import irille.wx.wpt.WptCity;
 
 @Controller
 @Scope("prototype")
@@ -56,9 +56,9 @@ public class ComboAction extends AbstractCRUDAction<Combo> {
 		"\\[\\d+\\]\\.restaurant\\.longitude",
 		"\\[\\d+\\]\\.restaurant\\.latitude"})
 	public String search() throws JSONException, IOException {
-		beans = service.findByCondition(banquetId, pnum, budget, ((WptCity)getSession().get(CityInterceptor.CITY)).getPkey().toString(), areaId, longitude, latitude);
+		beans = service.findByCondition(banquetId, pnum, budget, ((City)getSession().get(CityInterceptor.CITY)).getPkey().toString(), areaId, longitude, latitude);
 		System.out.println(beans.size());
-		return "json";
+		return BEANS;
 	}
 	
 	public String getBanquetId() {

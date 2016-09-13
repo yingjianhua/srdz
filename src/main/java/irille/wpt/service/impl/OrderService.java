@@ -14,7 +14,6 @@ import java.util.TreeMap;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import irille.pub.Log;
@@ -22,28 +21,32 @@ import irille.pub.Str;
 import irille.pub.bean.Bean;
 import irille.pub.bean.BeanBase;
 import irille.pub.idu.Idu;
+import irille.wpt.bean.City;
 import irille.wpt.bean.Combo;
 import irille.wpt.bean.ComboLine;
 import irille.wpt.bean.Member;
 import irille.wpt.bean.Order;
+import irille.wpt.bean.OrderCustomService;
 import irille.wpt.bean.OrderDetail;
 import irille.wpt.bean.OrderPayJournal;
 import irille.wpt.bean.Restaurant;
+import irille.wpt.bean.ServiceCen;
 import irille.wpt.dao.impl.ComboDao;
 import irille.wpt.dao.impl.ComboLineDao;
+import irille.wpt.dao.impl.CustomServiceDao;
 import irille.wpt.dao.impl.OrderDao;
 import irille.wpt.dao.impl.OrderDetailDao;
 import irille.wpt.dao.impl.OrderPayJournalDao;
 import irille.wpt.dao.impl.OrderServiceDao;
-import irille.wpt.dao.impl.ServiceDao;
+import irille.wpt.dao.impl.ServiceCenDao;
+import irille.wpt.dao.impl.WxTipsDao;
 import irille.wpt.exception.ExtjsException;
 import irille.wpt.pay.WXPay;
 import irille.wpt.tools.Constant;
 import irille.wpt.tools.SmsTool;
+import irille.wx.wpt.Wpt.OContactStatus;
 import irille.wx.wpt.Wpt.OStatus;
 import irille.wx.wpt.WptOrder;
-import irille.wx.wpt.WptOrderDAO;
-import irille.wx.wpt.WptOrderLine;
 import irille.wx.wpt.WptOrderService;
 import irille.wx.wpt.WptServiceCen;
 import irille.wx.wpt.WptWxTips;
@@ -78,7 +81,11 @@ public class OrderService {
 	@Resource
 	private OrderPayJournalDao orderPayJournalDao;
 	@Resource
-	private ServiceDao serviceDao;
+	private CustomServiceDao serviceDao;
+	@Resource
+	private ServiceCenDao serviceCenDao;
+	@Resource
+	private WxTipsDao wxTipsDao;
 	
 	private static final SimpleDateFormat INPUT_DATE_FORMAT = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 	private static final SimpleDateFormat ORDERID_FORMAT = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -97,7 +104,7 @@ public class OrderService {
 	 * @return 创建成功的订单，若出错返回null
 	 * @throws ParseException
 	 */
-	public Order createOrder(Integer comboId, Integer number, String time, Member member, String rem, String serviceIds,
+	public Order createOrder(Integer comboId, Integer number, String time, Member member, String rem, String serviceIds, City city,
 			String contactMan, String contactSex, String contactType, String contactWay) {
 		Order order;
 		try {
@@ -121,6 +128,11 @@ public class OrderService {
 			order.setCreateTime(new Date());
 			order.setAccount(member.getAccount());
 			order.setOrderid(ORDERID_FORMAT.format(new Date())+MchUtil.createRandomNum(4));
+			if(!Str.isEmpty(serviceIds)) {
+				order.setStatus(OStatus.NOTACCEPTED.getLine().getKey());
+			} else {
+				order.setStatus(OStatus.UNPAYMENT.getLine().getKey());
+			}
 			orderDao.save(order);
 			Set<ComboLine> comboLines = combo.getComboLines();
 			Set<OrderDetail> details = new HashSet<OrderDetail>();
@@ -135,10 +147,9 @@ public class OrderService {
 			}
 			order.setDetails(details);
 			if(!Str.isEmpty(serviceIds)) {
-				order.setStatus(OStatus.NOTACCEPTED.getLine().getKey());
-				List<irille.wpt.bean.Service> services = serviceDao.listByIds(serviceIds);
+				List<irille.wpt.bean.CustomService> services = serviceDao.listByIds(serviceIds);
 				Set<irille.wpt.bean.OrderService> orderServices = new HashSet<irille.wpt.bean.OrderService>();
-				for (irille.wpt.bean.Service service : services) {
+				for (irille.wpt.bean.CustomService service : services) {
 					irille.wpt.bean.OrderService orderService = new irille.wpt.bean.OrderService();
 					orderService.setName(service.getName());
 					orderService.setPrice(service.getPrice());
@@ -147,8 +158,6 @@ public class OrderService {
 					orderServices.add(orderService);
 				}
 				order.setServices(orderServices);
-			} else {
-				order.setStatus(OStatus.UNPAYMENT.getLine().getKey());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -156,6 +165,7 @@ public class OrderService {
 		}
 		return order;
 	}
+	
 	/**
 	 * 生成支付时需要的准备参数
 	 * @param orderId 订单号
@@ -286,6 +296,52 @@ public WptOrder complete(WptOrder order, String checkCode) {
 		}
 		return order;
 	}
+	/**
+	 * 生成订单发送消息给管理人员
+	 */
+	@SuppressWarnings("unchecked")
+	public void doSent(Order order){
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		final ServiceCen serviceCen = serviceCenDao.find(order.getAccount());
+		StringBuilder c = new StringBuilder("【享食光】私人订制 单生成,内容如下:\n");
+		c.append("订单号：").append(order.getOrderid()).append("\n");
+		c.append(" 餐厅：").append(order.getRestaurantName()).append("\n");
+		c.append(" 套餐：").append(order.getComboName()).append("\n");
+		c.append(" 用餐时间：").append(format.format(order.getTime())).append("\n");
+		c.append(" 联系人：").append(order.getContactMan()).append("\n");
+		c.append(" 联系方式：");
+		for(OContactStatus line:OContactStatus.values()) {
+			if(order.getContactType().equals(line.getLine().getKey())) {
+				c.append(line.getLine().getName()).append(":");
+				break;
+			}
+		}
+		c.append(order.getContactWay()).append("\n");
+		c.append(" 服务：[");
+		for(OrderCustomService line:order.getServices()){
+			c.append(line.getName()).append(" ");
+		}
+		c.append("]").append("\n");
+		if(order.getRem() != null) {
+			c.append(" 备注:").append(order.getRem()).append("\n");
+		}
+		for(String line : serviceCen.getSmsTips().split(",")){
+			smsTool.doSent(line, c.toString());
+		}
+		for(WxTips line:wxTipsDao)
+		String sql = Idu.sqlString("select r.* from {0} r right join {1} s on (r.{2}=s.{3}) where s.{4}=?", WxUser.class, WptWxTips.class, WxUser.T.PKEY, WptWxTips.T.PKEY, WptWxTips.T.ACCOUNT);
+		List<WxUser> users = BeanBase.list(sql, new BeanBase.ResultSetBean<WxUser>() {
+			@Override
+			public WxUser tran(ResultSet set) {
+				WxUser bean = Bean.newInstance(WxUser.class);
+				bean.fromResultSet(set);
+				return bean;
+			}
+		}, order.getAccount());
+		String accessToken = WxAccountDAO.getAccessToken(order.gtAccount());
+		smsTool.doSend(accessToken, users, c.toString());
+	}
+
 	/**
 	 * 生成订单发送消息给管理人员
 	 */

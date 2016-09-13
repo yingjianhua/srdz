@@ -48,6 +48,7 @@ public class Wpt extends PackageBase {
 		addTb(26, WptRedPackRule.class);
 		addTb(27, WptWxTips.class);
 		addTb(28, WptRestaurantTemplate.class);
+		addTb(29, WptCustomForm.class);
 	}
 
 	public void initTranData() { // 初始化PrvTranData表数据
