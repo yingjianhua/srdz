@@ -1,12 +1,16 @@
 package irille.wpt.service.impl;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import irille.wpt.bean.CommissionJournal;
+import irille.wpt.bean.Member;
+import irille.wpt.bean.Order;
 import irille.wpt.dao.impl.CommissionJournalDao;
 import irille.wx.wpt.Wpt.OStatus;
 import irille.wx.wpt.WptCommissionJournal;
@@ -16,6 +20,30 @@ import irille.wx.wx.WxUser;
 public class CommissionJournalService {
 	@Resource
 	private CommissionJournalDao commissionJournalDao;
+	
+	/**
+	 * 用户订单付款后，新增邀请人的佣金流水
+	 * @param order
+	 * @param fan
+	 * @param commission
+	 * @param user
+	 * @return
+	 */
+	public CommissionJournal add(Order order, Member fan, BigDecimal commission, Member member) {
+		CommissionJournal journal = new CommissionJournal();
+		journal.setOrderid(order.getOrderid());
+		journal.setPrice(order.getPrice());
+		journal.setCommission(commission);
+		journal.setFan(fan);
+		journal.setImageUrl(fan.getImageUrl());
+		journal.setNickname(fan.getNickname());
+		journal.setWxuser(member);
+		journal.setStatus(OStatus.PAYMENT.getLine().getKey());
+		journal.setCreateTime(new Date());
+		journal.setAccount(order.getAccount());
+		commissionJournalDao.save(journal);
+		return journal;
+	}
 	/**
 	 * 用户订单付款后，新增邀请人的佣金流水
 	 * @param order
@@ -42,5 +70,8 @@ public class CommissionJournalService {
 			user.setCashableCommission(user.getCashableCommission().add(journal.getCommission()));
 			user.upd();
 		}
+	}
+	public BigDecimal countFans1Sale(Integer memberId) {
+		return commissionJournalDao.countFans1Sale(memberId);
 	}
 }

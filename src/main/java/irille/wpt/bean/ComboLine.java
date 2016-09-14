@@ -20,7 +20,7 @@ import javax.persistence.Table;
  * 
  */
 @Entity
-@Table(name="product_combo_line")
+@Table(name="wpt_combo_line")
 @NamedQuery(name="ComboLine.findAll", query="SELECT c FROM ComboLine c")
 public class ComboLine implements Serializable {
 	private static final long serialVersionUID = 1L;

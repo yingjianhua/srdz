@@ -12,6 +12,7 @@ import org.xml.sax.SAXException;
 
 import irille.pub.Log;
 import irille.pub.PubInfs.IMsg;
+import irille.wpt.bean.Member;
 import irille.wx.wx.WxMessageDAO;
 import irille.wx.wx.WxUser;
 import irille.wxpub.util.HttpRequestUtil;
@@ -68,6 +69,9 @@ public class SmsTool {
 		for(WxUser user:users) {
 			WxMessageDAO.sendTextMessage(accessToken, user.getOpenId(), content);
 		}
+	}
+	public void doSend(String accessToken, Member member, String content) {
+		WxMessageDAO.sendTextMessage(accessToken, member.getOpenId(), content);
 	}
 	public void doSend(String accessToken, WxUser user, String content) {
 		WxMessageDAO.sendTextMessage(accessToken, user.getOpenId(), content);

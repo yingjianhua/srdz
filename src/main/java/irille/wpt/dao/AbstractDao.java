@@ -1,6 +1,7 @@
 package irille.wpt.dao;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -27,9 +28,19 @@ public abstract class AbstractDao<T,ID extends Serializable> {
 		SQLQuery query = createSQLQuery(sql, params);
 		query.executeUpdate();
 	}
+	public Object uniqueResult(String sql, Object ... params) {
+		SQLQuery query = createSQLQuery(sql, params);
+		return query.uniqueResult();
+	}
 	public Long count(String sql, Object ... params) {
 		SQLQuery query = createSQLQuery(sql, params);
-		return (Long)query.uniqueResult();
+		Object result = query.uniqueResult();
+		if(result instanceof BigInteger) {
+			return ((BigInteger)result).longValue();
+		} else if(result instanceof Long) {
+			return (Long)result;
+		}
+		return null;
 	}
 	public T get(ID id) {
 		Session session = sessionFactory.getCurrentSession();
@@ -52,6 +63,15 @@ public abstract class AbstractDao<T,ID extends Serializable> {
 		SQLQuery query = createSQLQuery(sql, params);
 		query.addEntity(entityClass);
 		return query.list();
+	}
+	public Page<T> page(Integer start, Integer limit, String where, Object ... params) {
+		SQLQuery totalQuery = createSQLQuery("select count(*) "+where, params);
+		Long total = (Long)totalQuery.uniqueResult();
+		SQLQuery itemsQuery = createSQLQuery("select * "+where, params);
+		itemsQuery.setFirstResult(start).setMaxResults(limit);
+		List<T> items = itemsQuery.list();
+		Page<T> page = new Page<T>(total, items);
+		return page;
 	}
 	public Page<T> page(Integer start, Integer limit) {
 		Session session = sessionFactory.getCurrentSession();

@@ -108,9 +108,9 @@ public class WptCommissionJournal extends BeanInt<WptCommissionJournal> {
   private String _nickname;	// 昵称  STR(200)<null>
   private Integer _wxuser;	// 微信用户 <表主键:WxUser>  INT
   private Byte _status;	// 订单状态 <OStatus>  BYTE
-	// UNPAYMENT:0,未付款
-	// NOTACCEPTED:1,未受理
-	// ACCEPTED:2,已受理
+	// NOTACCEPTED:0,未受理
+	// ACCEPTED:1,已受理
+	// UNPAYMENT:2,未付款
 	// DEPOSIT:3,已付定金
 	// PAYMENT:4,已付款
 	// FINISH:5,已完成

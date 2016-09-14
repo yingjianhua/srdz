@@ -30,19 +30,29 @@
 <body>	
 	<s:iterator value="orders" var="order">
 	<a href="#" class="usorder_item" pkey="${order.pkey }">
-		<img src="../${order.gtRestaurant().imgUrl }" class="photo" />
+		<img src="../${order.restaurant.imgUrl }" class="photo" />
 		<div class="txt">
 			<div class="name">
 				<s:if test="#order.gtRestaurant()">
-					${order.gtRestaurant().name }
+					${order.restaurant.name }
 				</s:if>
 				<s:else>
 					等待人工处理
 				</s:else>
 			</div>
-			<div class="chuli">${order.gtStatus().line.name }</div>
+			<div class="chuli">
+			<s:if test="order.status==0">未受理</s:if>
+			<s:elseif test="order.status==1">已受理</s:elseif>
+			<s:elseif test="order.status==2">未付款</s:elseif>
+			<s:elseif test="order.status==3">已付定金</s:elseif>
+			<s:elseif test="order.status==4">已付款</s:elseif>
+			<s:elseif test="order.status==5">已完成</s:elseif>
+			<s:elseif test="order.status==6">已关闭</s:elseif>
+			<s:elseif test="order.status==7">申请取消订单</s:elseif>
+			<s:elseif test="order.status==8">申请退款</s:elseif>
+			</div>
 			<ul>
-				<li>${order.formatDate }</li>
+				<li>${order.time }</li>
 				<li>¥ <s:if test="#order.price">${order.price.intValue() }</s:if>
 					<s:else>___</s:else>
 				</li>

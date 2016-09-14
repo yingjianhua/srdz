@@ -8,10 +8,16 @@ import org.springframework.stereotype.Repository;
 
 import irille.pub.bean.Bean;
 import irille.pub.idu.Idu;
+import irille.wpt.bean.CommissionJournal;
+import irille.wpt.dao.AbstractDao;
 import irille.wx.wpt.Wpt.OStatus;
 import irille.wx.wpt.WptCommissionJournal;
 @Repository
-public class CommissionJournalDao {
+public class CommissionJournalDao extends AbstractDao<CommissionJournal, Integer> {
+	
+	public BigDecimal countFans1Sale(Integer memberId) {
+		return (BigDecimal)uniqueResult("select sum(price) from wpt_commission_journal where wxuser=?", memberId);
+	}
 	
 	public WptCommissionJournal ins(String orderid, BigDecimal price, BigDecimal commission, Integer fans, String imageUrl, String nickname, Integer wxuser, Byte status, Integer account) {
 		WptCommissionJournal journal = new WptCommissionJournal();

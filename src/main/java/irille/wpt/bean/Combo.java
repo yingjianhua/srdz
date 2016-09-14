@@ -19,7 +19,7 @@ import javax.persistence.Table;
  * 
  */
 @Entity
-@Table(name="product_combo")
+@Table(name="wpt_combo")
 @PrimaryKeyJoinColumn(name="comboId")
 @NamedQuery(name="Combo.findAll", query="SELECT c FROM Combo c")
 public class Combo extends Product implements Serializable {

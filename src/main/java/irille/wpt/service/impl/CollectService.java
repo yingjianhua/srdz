@@ -42,5 +42,8 @@ public class CollectService {
 			collectDao.delete(collect);
 		}
 	}
+	public Long countByMember(Integer memberId) {
+		return collectDao.countByMember(memberId);
+	}
 
 }

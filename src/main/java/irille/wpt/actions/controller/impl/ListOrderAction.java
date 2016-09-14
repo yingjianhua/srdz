@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.wpt.actions.controller.AbstractControllAction;
+import irille.wpt.bean.Order;
 import irille.wpt.service.impl.OrderService;
-import irille.wx.wpt.WptOrder;
 @Controller
 @Scope("prototype")
 public class ListOrderAction extends AbstractControllAction {
@@ -18,7 +18,7 @@ public class ListOrderAction extends AbstractControllAction {
 	 * 
 	 */
 	private static final long serialVersionUID = -8118977310825408135L;
-	private List<WptOrder> orders;
+	private List<Order> orders;
 	@Resource
 	private OrderService orderService;
 	/**
@@ -26,15 +26,15 @@ public class ListOrderAction extends AbstractControllAction {
 	 */
 	@Override
 	public String execute() throws Exception {
-		orders = orderService.list(chkWxUser().getPkey());
+		orders = orderService.list(chkMember().getPkey());
 		setResult("me/orderList.jsp");
 		return TRENDS;
 	}
 	
-	public List<WptOrder> getOrders() {
+	public List<Order> getOrders() {
 		return orders;
 	}
-	public void setOrders(List<WptOrder> orders) {
+	public void setOrders(List<Order> orders) {
 		this.orders = orders;
 	}
 }

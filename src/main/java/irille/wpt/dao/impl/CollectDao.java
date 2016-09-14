@@ -9,6 +9,9 @@ import irille.wpt.dao.AbstractDao;
 public class CollectDao extends AbstractDao<Collect, Integer>{
 	
 	public Collect findByHeadlineInUser(Integer userId, Integer headlineId) {
-		return findUnique("select * from wpt_collect where user=? and top=?", userId, headlineId);
+		return findUnique("select * from wpt_collect where wxuser=? and top=?", userId, headlineId);
+	}
+	public Long countByMember(Integer memberId) {
+		return count("select count(*) from wpt_collect where wxuser=?", memberId);
 	}
 }

@@ -12,7 +12,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="product")
+@Table(name="wpt_product")
 @Inheritance(strategy=InheritanceType.JOINED)
 public abstract class Product {
 	

@@ -36,9 +36,9 @@
 	<!--footer 底部导航-->
 	<div class="user_face">
 		<dl class="re_face">
-			<dt class="face_outer"><img src="${user.imageUrl }" /></dt>	
-			<dd>${user.nickname }<a href="javascript:;"></a></dd>
-			<dd class="small">ID:${user.pkey }</dd>
+			<dt class="face_outer"><img src="${member.imageUrl }" /></dt>	
+			<dd>${member.nickname }<a href="javascript:;"></a></dd>
+			<dd class="small">ID:${member.pkey }</dd>
 			<dd class="small">如何成为代言人><a href="javascript:;"></a></dd>
 		</dl>
 		<img src="images/user_face.jpg" class="bg" />
@@ -50,8 +50,8 @@
 		<a href="showCash?account.pkey=${account.pkey }">
 			<div class="balance">
  	  	  	   <p>历史累计奖励(元)</p>
- 	  	  	   <h1>${user.historyCommission }</h1>
- 	  	  	   <p class="jl">可提现金额 <span>${user.cashableCommission }</span>元</p>
+ 	  	  	   <h1>${member.historyCommission }</h1>
+ 	  	  	   <p class="jl">可提现金额 <span>${member.cashableCommission }</span>元</p>
 			</div>
 	 	</a>
 	 	<div class="double_line"></div>
@@ -63,7 +63,7 @@
 		<a href="showServiceCenter?account.pkey=${account.pkey}"><div>客服中心</div></a>	
 		<a href="showFeedback?account.pkey=${account.pkey}"><div>意见反馈</div></a>	
 	</div>
-	<div class="user_invited">您是由 【<s:if test="user.invited2!=null">${user.gtInvited2().nickname }</s:if><s:else>${user.gtAccount().accountName }</s:else>】 推荐</div>
+	<div class="user_invited">您是由 【<s:if test="member.invited2!=null">${member.Invited2.nickname }</s:if><s:else>${account.accountName }</s:else>】 推荐</div>
 </body>
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="js/base.js"></script>

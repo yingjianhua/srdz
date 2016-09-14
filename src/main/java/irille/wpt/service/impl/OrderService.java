@@ -24,6 +24,7 @@ import irille.pub.idu.Idu;
 import irille.wpt.bean.City;
 import irille.wpt.bean.Combo;
 import irille.wpt.bean.ComboLine;
+import irille.wpt.bean.CustomService;
 import irille.wpt.bean.Member;
 import irille.wpt.bean.Order;
 import irille.wpt.bean.OrderCustomService;
@@ -31,6 +32,7 @@ import irille.wpt.bean.OrderDetail;
 import irille.wpt.bean.OrderPayJournal;
 import irille.wpt.bean.Restaurant;
 import irille.wpt.bean.ServiceCen;
+import irille.wpt.bean.WxTips;
 import irille.wpt.dao.impl.ComboDao;
 import irille.wpt.dao.impl.ComboLineDao;
 import irille.wpt.dao.impl.CustomServiceDao;
@@ -147,10 +149,10 @@ public class OrderService {
 			}
 			order.setDetails(details);
 			if(!Str.isEmpty(serviceIds)) {
-				List<irille.wpt.bean.CustomService> services = serviceDao.listByIds(serviceIds);
-				Set<irille.wpt.bean.OrderService> orderServices = new HashSet<irille.wpt.bean.OrderService>();
+				List<CustomService> services = serviceDao.listByIds(serviceIds);
+				Set<OrderCustomService> orderServices = new HashSet<OrderCustomService>();
 				for (irille.wpt.bean.CustomService service : services) {
-					irille.wpt.bean.OrderService orderService = new irille.wpt.bean.OrderService();
+					OrderCustomService orderService = new OrderCustomService();
 					orderService.setName(service.getName());
 					orderService.setPrice(service.getPrice());
 					orderService.setOrder(order);
@@ -248,11 +250,10 @@ public class OrderService {
 		return wxpay;
 	}
 	
-	public List<WptOrder> list(Integer user) {
-		String orderBy = " ORDER BY " + WptOrder.T.CREATE_TIME + " DESC ";
-		List<WptOrder> orders = BeanBase.list(WptOrder.class, WptOrder.T.WXUSER+"=?" + orderBy, false, user);
-		return orders;
+	public List<Order> list(Integer memberId) {
+		return orderDao.listByMember(memberId);
 	}
+	
 	/**
 	 * 用户申请取消订单
 	 * 私人订单：	
@@ -281,7 +282,7 @@ public class OrderService {
 		throw LOG.err("showMsg", msg);
 	}
 
-public WptOrder complete(WptOrder order, String checkCode) {
+	public WptOrder complete(WptOrder order, String checkCode) {
 		if(order.gtStatus() != OStatus.PAYMENT){
 			throw LOG.err("statusErr", "订单未付款");
 		} else if(!order.getCheckcode().equals(checkCode)) {
@@ -299,17 +300,24 @@ public WptOrder complete(WptOrder order, String checkCode) {
 	/**
 	 * 生成订单发送消息给管理人员
 	 */
-	@SuppressWarnings("unchecked")
 	public void doSent(Order order){
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		final ServiceCen serviceCen = serviceCenDao.find(order.getAccount());
 		StringBuilder c = new StringBuilder("【享食光】私人订制 单生成,内容如下:\n");
 		c.append("订单号：").append(order.getOrderid()).append("\n");
-		c.append(" 餐厅：").append(order.getRestaurantName()).append("\n");
-		c.append(" 套餐：").append(order.getComboName()).append("\n");
-		c.append(" 用餐时间：").append(format.format(order.getTime())).append("\n");
-		c.append(" 联系人：").append(order.getContactMan()).append("\n");
-		c.append(" 联系方式：");
+		c.append("餐厅：").append(order.getRestaurantName()).append("\n");
+		c.append("套餐：").append(order.getComboName()).append("\n");
+		c.append("用餐时间：").append(format.format(order.getTime())).append("\n");
+		c.append("服务：[");
+		for(OrderCustomService line:order.getServices()){
+			c.append(line.getName()).append(" ");
+		}
+		c.append("]").append("\n");
+		if(order.getRem() != null) {
+			c.append("备注:").append(order.getRem()).append("\n");
+		}
+		c.append("联系人：").append(order.getContactMan()).append("\n");
+		c.append("联系方式：");
 		for(OContactStatus line:OContactStatus.values()) {
 			if(order.getContactType().equals(line.getLine().getKey())) {
 				c.append(line.getLine().getName()).append(":");
@@ -317,29 +325,19 @@ public WptOrder complete(WptOrder order, String checkCode) {
 			}
 		}
 		c.append(order.getContactWay()).append("\n");
-		c.append(" 服务：[");
-		for(OrderCustomService line:order.getServices()){
-			c.append(line.getName()).append(" ");
+		//发送到微信用户
+		String accessToken = WxAccountDAO.getAccessToken(Bean.get(WxAccount.class, order.getAccount()));
+		for(WxTips line:wxTipsDao.list(order.getAccount())) {
+			smsTool.doSend(accessToken, line.getMember(), c.toString());
 		}
-		c.append("]").append("\n");
-		if(order.getRem() != null) {
-			c.append(" 备注:").append(order.getRem()).append("\n");
+		boolean flag = true;
+		if(flag) {
+			return ;
 		}
+		//发送到手机短信
 		for(String line : serviceCen.getSmsTips().split(",")){
 			smsTool.doSent(line, c.toString());
 		}
-		for(WxTips line:wxTipsDao)
-		String sql = Idu.sqlString("select r.* from {0} r right join {1} s on (r.{2}=s.{3}) where s.{4}=?", WxUser.class, WptWxTips.class, WxUser.T.PKEY, WptWxTips.T.PKEY, WptWxTips.T.ACCOUNT);
-		List<WxUser> users = BeanBase.list(sql, new BeanBase.ResultSetBean<WxUser>() {
-			@Override
-			public WxUser tran(ResultSet set) {
-				WxUser bean = Bean.newInstance(WxUser.class);
-				bean.fromResultSet(set);
-				return bean;
-			}
-		}, order.getAccount());
-		String accessToken = WxAccountDAO.getAccessToken(order.gtAccount());
-		smsTool.doSend(accessToken, users, c.toString());
 	}
 
 	/**
@@ -424,5 +422,8 @@ public WptOrder complete(WptOrder order, String checkCode) {
 	
 	public Order findByOrderid(String orderid) {
 		return orderDao.findByOrderid(orderid);
+	}
+	public Long countPending(Integer memberId) {
+		return orderDao.countPending(memberId);
 	}
 }

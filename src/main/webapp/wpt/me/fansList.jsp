@@ -41,7 +41,7 @@ ${jsCode}
 function getFans(level, fanid) {
 	console.log(fanid)
 	$.ajax({
-		url: "resource/user_fans?account.pkey=${account.pkey}",
+		url: "resource/member_fans?account.pkey=${account.pkey}",
 		type: "post",
 		data: {
 			userid: "${sessionScope.openid}",
@@ -54,10 +54,10 @@ function getFans(level, fanid) {
 			console.log(result)
 			$.each(result, function(index, fan) {
 				content += '<li class="fan"><ul>';
-				content += '<li class="fan-detail-head"><img src="'+fan.head+'"></li>';
-				content += '<li class="fan-detail-nick"><p>'+fan.nick+'</p></li>';
-				content += '<li class="fan-detail-id"><p>ID:'+fan.id+'</p></li>';
-				content += '<li class="fan-detail-subtime"><p>'+fan.subtime+'关注</p></li>';
+				content += '<li class="fan-detail-head"><img src="'+fan.imageUrl+'"></li>';
+				content += '<li class="fan-detail-nick"><p>'+fan.nickname+'</p></li>';
+				content += '<li class="fan-detail-id"><p>ID:'+fan.pkey+'</p></li>';
+				content += '<li class="fan-detail-subtime"><p>'+fan.subscribeTime+'关注</p></li>';
 				content += '</ul></li>';
 			});
 			$("#list").html(content);

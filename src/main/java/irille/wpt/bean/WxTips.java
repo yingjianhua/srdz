@@ -10,7 +10,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="wpt_wx_tips")
-@NamedQuery(name="WxTip.findAll", query="SELECT w FROM WxTip w")
+@NamedQuery(name="WxTips.findAll", query="SELECT w FROM WxTips w")
 public class WxTips implements Serializable {
 	private static final long serialVersionUID = 1L;
 
