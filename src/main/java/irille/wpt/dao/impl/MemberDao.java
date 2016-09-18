@@ -1,5 +1,7 @@
 package irille.wpt.dao.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import irille.wpt.bean.Member;
@@ -33,5 +35,13 @@ public class MemberDao extends AbstractDao<Member, Integer> {
 	//获取下下一级粉丝
 	public Member findByInvited1(Integer invitedId, Integer memberId) {
 		return findUnique("select * from wx_user where invited1=? and pkey=?", invitedId, memberId);
+	}
+	//获取下一级粉丝
+	public List<Member> listByInvited2(Integer invitedId) {
+		return list("select * from wx_user where invited2=?", invitedId);
+	}
+	//获取下下一级粉丝
+	public List<Member> listByInvited1(Integer invitedId) {
+		return list("select from wx_user where invited1=?", invitedId);
 	}
 }

@@ -39,10 +39,16 @@ public class SendRedPack extends MchUtil {
 	}
 
 	public static Map<String, String> sendRedPack(WxAccount account, String openId, String send_name, int total_amount,
-			String wishing, String client_ip, String act_name, String remark) throws Exception {
-		SendRedPack uorder = new SendRedPack(account, send_name, openId, total_amount, wishing, client_ip, act_name, remark);
-		String result = WeixinUtil.httpPost(SEND_RED_PACK_URL, uorder.trans2XML(), createSSLFactory(account));
-		Map<String, String> map_result = MessageUtil.parseXml(result);
+			String wishing, String client_ip, String act_name, String remark) {
+		Map<String, String> map_result = null;
+		try {
+			SendRedPack uorder = new SendRedPack(account, send_name, openId, total_amount, wishing, client_ip, act_name, remark);
+			String result = WeixinUtil.httpPost(SEND_RED_PACK_URL, uorder.trans2XML(), createSSLFactory(account));
+			map_result = MessageUtil.parseXml(result);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw LOG.err("err", "红包发送出错，错误未知");
+		}
 		map_result = new TreeMap<String, String>(map_result);
 
 		if(!map_result.containsKey("return_code") || map_result.get("return_code").equals("FAIL")) throw LOG.err("err", map_result.get("return_msg"));

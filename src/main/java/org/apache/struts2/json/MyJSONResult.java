@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map.Entry;
 import java.util.Set;
 import java.util.regex.Pattern;
 
@@ -181,15 +180,12 @@ public class MyJSONResult implements Result {
 	            	}
 	            }
             }
-            System.out.println("~~~~~~~~");
             if(this.root.equals(AbstractCRUDAction.BEAN)) {
             	String jsonString = createJSONString(request, rootObject);
-            	/*StringBuilder stringBuilder = new StringBuilder(jsonString);
-            	stringBuilder.insert(0, "{bean:");
-            	stringBuilder.append("}");*/
             	JSONObject jsonObject = JSONObject.parseObject(jsonString);
-            	jsonObject.put("success", true);
-            	writeToResponse(response, jsonObject.toJSONString(), enableGzip(request));
+            	if(jsonObject == null) jsonObject = new JSONObject();
+        		jsonObject.put("success", true);
+        		writeToResponse(response, jsonObject.toJSONString(), enableGzip(request));
             } else {
             	writeToResponse(response, createJSONString(request, rootObject), enableGzip(request));
             }

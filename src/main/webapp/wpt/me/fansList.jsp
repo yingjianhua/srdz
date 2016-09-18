@@ -38,28 +38,50 @@
 ${jsCode}
 </script>
 <script>
-function getFans(level, fanid) {
-	console.log(fanid)
+function toFanHtml(fan) {
+	var content = "";
+	content += '<li class="fan"><ul>';
+	content += '<li class="fan-detail-head"><img src="'+fan.imageUrl+'"></li>';
+	content += '<li class="fan-detail-nick"><p>'+fan.nickname+'</p></li>';
+	content += '<li class="fan-detail-id"><p>ID:'+fan.pkey+'</p></li>';
+	content += '<li class="fan-detail-subtime"><p>'+fan.subscribeTime+'关注</p></li>';
+	content += '</ul></li>';
+	return content;
+}
+function getFan(level, fanId) {
 	$.ajax({
-		url: "resource/member_fans?account.pkey=${account.pkey}",
+		url: "resource/member_fan?account.pkey=${account.pkey}",
 		type: "post",
 		data: {
-			userid: "${sessionScope.openid}",
 			level: level,
-			fanid: fanid?fanid:undefined,
+			fanId: fanId?fanId:undefined,
+		},
+		dataType: "json",
+		success: function(fan) {
+			var content = "";
+			if(fan) {
+				content += toFanHtml(fan);
+			}
+			$("#list").html(content);
+		}
+	})
+}
+function getFans(level) {
+	$.ajax({
+		url: "resource/member_listFans?account.pkey=${account.pkey}",
+		type: "post",
+		data: {
+			level: level
 		},
 		dataType: "json",
 		success: function(result) {
 			var content = "";
 			console.log(result)
-			$.each(result, function(index, fan) {
-				content += '<li class="fan"><ul>';
-				content += '<li class="fan-detail-head"><img src="'+fan.imageUrl+'"></li>';
-				content += '<li class="fan-detail-nick"><p>'+fan.nickname+'</p></li>';
-				content += '<li class="fan-detail-id"><p>ID:'+fan.pkey+'</p></li>';
-				content += '<li class="fan-detail-subtime"><p>'+fan.subscribeTime+'关注</p></li>';
-				content += '</ul></li>';
-			});
+			if(result instanceof Array) {
+				$.each(result, function(index, fan) {
+					content += toFanHtml(fan);
+				});
+			}
 			$("#list").html(content);
 		}
 	})
@@ -67,10 +89,10 @@ function getFans(level, fanid) {
 $(function() {
 	getFans(1);
 	$("#search-btn").click(function() {
-		var fanid = $("#idinput").val();
-		if(fanid) {
+		var fanId = $("#idinput").val();
+		if(fanId) {
 			$(".nav").hide();
-			getFans(undefined, fanid);
+			getFan(1, fanId);
 		} else {
 			$(".nav").show();
 			getFans(1);			

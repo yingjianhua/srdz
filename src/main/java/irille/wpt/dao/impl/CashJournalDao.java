@@ -5,9 +5,12 @@ import java.util.Date;
 
 import org.springframework.stereotype.Repository;
 
+import irille.wpt.bean.CashJournal;
+import irille.wpt.dao.AbstractDao;
 import irille.wx.wpt.WptCashJournal;
 @Repository
-public class CashJournalDao{
+public class CashJournalDao extends AbstractDao<CashJournal, Integer> {
+	
 	public WptCashJournal ins(Integer wxuser, Integer account, BigDecimal amt) {
 		WptCashJournal journal = new WptCashJournal();
 		journal.setWxuser(wxuser);

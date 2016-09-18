@@ -1,6 +1,7 @@
 package irille.wpt.service.impl;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -8,19 +9,29 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import irille.pub.Log;
 import irille.pub.bean.Bean;
 import irille.pub.idu.Idu;
+import irille.wpt.actions.controller.impl.InputContactAction;
+import irille.wpt.bean.CashJournal;
 import irille.wpt.bean.Member;
 import irille.wpt.bean.QrcodeRule;
+import irille.wpt.bean.RedPackRule;
+import irille.wpt.dao.impl.CashJournalDao;
 import irille.wpt.dao.impl.CommissionJournalDao;
 import irille.wpt.dao.impl.MemberDao;
 import irille.wpt.dao.impl.QrcodeRuleDao;
+import irille.wpt.dao.impl.RedPackRuleDao;
+import irille.wpt.exception.ExtjsException;
 import irille.wpt.tools.Page;
 import irille.wx.wpt.Wpt.OStatus;
 import irille.wx.wpt.WptOrder;
+import irille.wx.wx.WxAccount;
+import irille.wxpub.util.mch.SendRedPack;
 
 @Service
 public class MemberService {
+	private static final Log LOG = new Log(MemberService.class);
 
 	@Resource
 	private MemberDao memberDao;
@@ -28,6 +39,11 @@ public class MemberService {
 	private QrcodeRuleDao qrcodeRuleDao;
 	@Resource
 	private CommissionJournalDao commissionJournalDao;
+	@Resource
+	private RedPackRuleDao redPackRuleDao;
+	@Resource
+	private CashJournalDao cashJournalDao;
+	
 	
 	public Member findByOpenidInAccount(Integer accountId, String openid) {
 		return memberDao.findByOpenidInAccount(accountId, openid);
@@ -58,6 +74,33 @@ public class MemberService {
 			member.setIsMember(true);
 			//createQrcode(user, rule);
 		}
+	}
+	/**
+	 * 提现
+	 */
+	public CashJournal cash(BigDecimal amt, Member member, String client_ip) {
+		final RedPackRule rule = redPackRuleDao.load(member.getAccount());
+		if(amt.compareTo(rule.getLeastAmt()) < 0) {
+			throw LOG.err("less than least", "提现金额少于最少提现金额");
+		} else if(amt.compareTo(member.getCashableCommission()) > 0) {
+			throw LOG.err("more than cashable", "提现金额多于用户可提现佣金");
+		}
+		WxAccount account = Bean.get(WxAccount.class, member.getAccount());
+		SendRedPack.sendRedPack(account, member.getOpenId(), rule.getSendName(), amt.multiply(BigDecimal.valueOf(100)).intValue(), rule.getWishing(), client_ip, rule.getActName(), rule.getRemark());
+		
+		member.setCashableCommission(member.getCashableCommission().subtract(amt));
+		if(member.getCashableCommission().compareTo(BigDecimal.ZERO) < 0) {
+			throw LOG.err("not enough", "可提现金额不足");
+		}
+		memberDao.update(member);
+		CashJournal journal = new CashJournal();
+		journal.setMember(member);
+		journal.setPrice(amt);
+		journal.setCreateTime(new Date());
+		journal.setAccount(member.getAccount());
+		cashJournalDao.save(journal);
+		
+		return journal;
 	}
 	/**
 	 * 统计下一级粉丝的数量
@@ -102,6 +145,21 @@ public class MemberService {
 			return memberDao.pageByInvited2(start, limit, member.getPkey());
 		} else if(level == 2){
 			return memberDao.pageByInvited1(start, limit, member.getPkey());
+		}
+		return null;
+	}
+	/**
+	 * 根据层级关系和粉丝id获取粉丝对象
+	 * @param member
+	 * @param level 1级表示层级最接近
+	 * @param fanId
+	 * @return
+	 */
+	public List<Member> listFansByCondition(Member member, int level) {
+		if(level == 1) {
+			return memberDao.listByInvited2(member.getPkey());
+		} else if(level == 2){
+			return memberDao.listByInvited1(member.getPkey());
 		}
 		return null;
 	}

@@ -1,16 +1,12 @@
 package irille.wpt.actions.resource.impl;
 
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DateFormat;
-import java.util.List;
+import java.math.BigDecimal;
 
 import javax.annotation.Resource;
 import javax.annotation.security.PermitAll;
 
 import org.apache.struts2.json.annotations.IncludeProperties;
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -18,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import irille.wpt.actions.resource.AbstractCRUDAction;
 import irille.wpt.bean.Member;
 import irille.wpt.service.impl.MemberService;
-import irille.wx.wx.WxUser;
 
 @Controller
 @Scope("prototype")
@@ -34,9 +29,21 @@ public class MemberAction extends AbstractCRUDAction<Member>  {
 	
 	private int level;
 	private int fanId;
+	private BigDecimal amt;
 
 	public String becomeMember() {
 		//TODO memberService.becomeMember(bean);
+		return BEAN;
+	}
+	@PermitAll
+	@IncludeProperties({
+		"imageUrl",
+		"nickname",
+		"pkey",
+		"subscribeTime",
+		})
+	public String fan() {
+		bean = memberService.findFanByCondition(chkMember(), level, fanId);
 		return BEAN;
 	}
 	@PermitAll
@@ -46,15 +53,40 @@ public class MemberAction extends AbstractCRUDAction<Member>  {
 		"\\[\\d+\\]\\.pkey",
 		"\\[\\d+\\]\\.subscribeTime",
 		})
-	public String fans() {
-		pages = memberService.pageFansByCondition(chkMember(), level, fanId, start, limit);
+	public String pageFans() {
+		pages = memberService.pageFansByCondition(chkMember(), level, start, limit);
 		return PAGES;
 	}
 	@PermitAll
-	public String fan() {
-		
+	@IncludeProperties({
+		"\\[\\d+\\]\\.imageUrl",
+		"\\[\\d+\\]\\.nickname",
+		"\\[\\d+\\]\\.pkey",
+		"\\[\\d+\\]\\.subscribeTime",
+		})
+	public String listFans() {
+		beans = memberService.listFansByCondition(chkMember(), level);
+		return BEANS;
 	}
 	
+	@PermitAll
+	@IncludeProperties({
+		"cashableCommission",
+		"isMember",
+		})
+	public String cashDetail() {
+		bean = chkMember();
+		return BEAN;
+	}
+	
+	/**
+	 * 佣金提现
+	 */
+	@PermitAll
+	public String cash() {
+		memberService.cash(amt, chkMember(), getRequest().getRemoteHost());
+		return BEAN;
+	}
 	public int getLevel() {
 		return level;
 	}
@@ -66,6 +98,12 @@ public class MemberAction extends AbstractCRUDAction<Member>  {
 	}
 	public void setFanId(int fanId) {
 		this.fanId = fanId;
+	}
+	public BigDecimal getAmt() {
+		return amt;
+	}
+	public void setAmt(BigDecimal amt) {
+		this.amt = amt;
 	}
 	
 }

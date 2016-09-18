@@ -3,9 +3,7 @@ package irille.wpt.service.impl;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -16,8 +14,6 @@ import irille.wpt.bean.City;
 import irille.wpt.bean.CustomForm;
 import irille.wpt.bean.CustomService;
 import irille.wpt.bean.Member;
-import irille.wpt.bean.Order;
-import irille.wpt.bean.OrderCustomService;
 import irille.wpt.bean.ServiceCen;
 import irille.wpt.bean.WxTips;
 import irille.wpt.dao.impl.BanquetDao;
@@ -136,5 +132,11 @@ public class CustomFormService {
 		for(String line : serviceCen.getSmsTips().split(",")){
 			smsTool.doSent(line, c.toString());
 		}
+	}
+	public List<CustomForm> list(Integer memberId) {
+		return customFormDao.listByMember(memberId);
+	}
+	public Long countByMember(Integer memberId) {
+		return customFormDao.countByMember(memberId);
 	}
 }

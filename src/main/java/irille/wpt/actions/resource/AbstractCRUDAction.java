@@ -46,9 +46,9 @@ public abstract class AbstractCRUDAction<T> extends AbstractWptAction {
 	protected Object object;
 	
 	//分页参数
-	private Integer start;
-	private Integer limit;
-	private Integer page;
+	protected Integer start;
+	protected Integer limit;
+	protected Integer page;
 	
 	//查询条件
 	private String filter;

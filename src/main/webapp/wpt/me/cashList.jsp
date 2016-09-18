@@ -85,11 +85,11 @@ $(function() {
 		  });
 	 });
 	$.ajax({
-		url : "resource/user_cashDetail?account.pkey=${account.pkey}",
+		url : "resource/member_cashDetail?account.pkey=${account.pkey}",
 		type : "POST",
 		dataType : "json",
 		success : function(result) {
-			cashLimit = new Number(result.commission).toFixed(2);
+			cashLimit = new Number(result.cashableCommission).toFixed(2);
 			$(".price").text("￥"+ cashLimit);
 			$("#cashLimit").text(cashLimit);
 			if(result.isMember) {
@@ -109,7 +109,7 @@ $(function() {
 		if(reg.test($("#cashinput").val())) {
 			$(".loading_float").show();
 			$.ajax({
-				url : "resource/user_cash?account.pkey=${account.pkey}",
+				url : "resource/member_cash?account.pkey=${account.pkey}",
 				type : "POST",
 				dataType : "json",
 				data : {

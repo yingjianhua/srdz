@@ -18,6 +18,7 @@ import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 
 import irille.action.sys.SysUserAction;
+import irille.pub.Exp;
 import irille.pub.svr.Env;
 import irille.pub.svr.LoginUserMsg;
 import irille.wpt.actions.AbstractWptAction;
@@ -52,7 +53,7 @@ public class RoleInterceptor extends AbstractInterceptor {
 		String result = "";
 		try {
 			result = checkLogin(invocation);
-		} catch (ExtjsException e) {
+		} catch (ExtjsException | Exp e) {
 			ActionContext actionContext = invocation.getInvocationContext();
 			HttpServletResponse response = (HttpServletResponse) actionContext.get(StrutsStatics.HTTP_RESPONSE);
 			JSONObject jsonObject = new JSONObject();

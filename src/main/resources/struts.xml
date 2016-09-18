@@ -103,6 +103,7 @@
 		<action name="showOrder" class="showOrderAction"></action>
 		<action name="showMe" class="showMeAction"></action>
 		<action name="listCollect" class="listCollectAction"></action>
+		<action name="listCustomForm" class="listCustomFormAction"></action>
 		<action name="showHeadline" class="showHeadlineAction"></action>
 		<action name="showServiceCenter" class="showServiceCenterAction"></action>
 		<action name="feedBack" class="feedBackAction"></action>

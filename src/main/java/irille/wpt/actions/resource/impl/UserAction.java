@@ -36,23 +36,6 @@ public class UserAction extends AbstractCRUDAction {
 	@Resource
 	private UserService userService;
 
-	public void cashDetail() {
-		WxUser user = chkWxUser();
-		BigDecimal commission = user.getCashableCommission();
-		boolean isMember = user.gtIsMember();
-		JSONObject json = new JSONObject();
-		try {
-			json.put("commission", commission);
-			json.put("isMember", isMember);
-			PrintWriter writer;
-			writer = getResponse().getWriter();
-			writer.print(json.toString());
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-	}
 	/**
 	 * 佣金提现
 	 */
@@ -67,27 +50,6 @@ public class UserAction extends AbstractCRUDAction {
 			e.printStackTrace();
 		}
 		LOG.info("--------------cash():end--------------");
-	}
-	public void fans() {
-		List<WxUser> fans = userService.getFansByCondition(userid, getAccount().getPkey(), level, fanid);
-		JSONArray result = new JSONArray();
-		try {
-			for(WxUser fan:fans) {
-				JSONObject o = new JSONObject();
-				o.put("head", fan.getImageUrl());
-				o.put("nick", fan.getNickname());
-				o.put("id", fan.getPkey());
-				o.put("subtime", DateFormat.getDateTimeInstance().format(fan.getSubscribeTime()));
-				result.put(o);
-			}
-			PrintWriter writer;
-			writer = getResponse().getWriter();
-			writer.print(result.toString());
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
 	}
 	/**
 	 * 获取佣金流水记录
