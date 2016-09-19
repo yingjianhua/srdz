@@ -253,6 +253,53 @@ public class OrderService {
 	public List<Order> list(Integer memberId) {
 		return orderDao.listByMember(memberId);
 	}
+	/**
+	 * 用户申请取消订单
+	 * 私人订单：	
+	 * 	未受理-->关闭
+	 * 套餐订单：
+	 * 	未付款-->关闭
+	 */
+	public void cancelOrder(String orderid, Member member) {//TODO
+		Order order = orderDao.findByOrderid(orderid);
+		if(!order.getMember().getPkey().equals(member.getPkey())) { 
+			return ;
+		}
+		String msg = "订单已取消";
+		switch (order.getStatus()) {
+		case 0: {//未处理订单，直接关闭
+			order.setStatus(OStatus.CLOSE.getLine().getKey());
+			break;
+		}
+		case 1: {//已受理订单，直接关闭
+			order.setStatus(OStatus.CLOSE.getLine().getKey());
+			break;
+		}
+		case 2: {//已受理订单，直接关闭
+			order.setStatus(OStatus.CLOSE.getLine().getKey());
+			break;
+		}
+		}
+		if(order.getStatus().equals(0)) {
+		} else if(order.getStatus().equals(1))
+		if(order.gtIsPt() == true) {
+			if(order.gtStatus() == OStatus.NOTACCEPTED || order.gtStatus() == OStatus.ACCEPTED || order.gtStatus() == OStatus.DEPOSIT) {
+				order.stStatus(OStatus.CLOSE); msg = "订单已取消";
+			} else if(order.gtStatus() == OStatus.PAYMENT) {
+				order.stStatus(OStatus.REFUND); msg = "已申请退款";
+			} else {
+				msg = "订单状态已过期";
+			}
+		} else {
+			if(order.gtStatus() == OStatus.UNPAYMENT) {
+				order.stStatus(OStatus.CLOSE); msg = "订单已取消";
+			} else if(order.gtStatus() == OStatus.PAYMENT) {
+				order.stStatus(OStatus.REFUND); msg = "已申请退款";
+			}
+		}
+		order.upd();
+		throw LOG.err("showMsg", msg);
+	}
 	
 	/**
 	 * 用户申请取消订单

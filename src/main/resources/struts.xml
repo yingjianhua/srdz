@@ -101,6 +101,7 @@
 		<action name="showRestaurant" class="showRestaurantAction"></action>
 		<action name="showCombo" class="showComboAction"></action>
 		<action name="showOrder" class="showOrderAction"></action>
+		<action name="showCustomForm" class="showCustomFormAction"></action>
 		<action name="showMe" class="showMeAction"></action>
 		<action name="listCollect" class="listCollectAction"></action>
 		<action name="listCustomForm" class="listCustomFormAction"></action>

@@ -8,7 +8,7 @@
 	</div>
 	<div class="cm_win1 dbb" style="display:none;">
 		<div class="tip_txt">是否确认取消用餐</div>	
-		<a href="javascript:;" class="btn close">取消</a>
+		<a href="javascript:;" class="btn close">返回</a>
 		<a href="javascript:;" class="btn close">确认</a>
 	</div>
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>

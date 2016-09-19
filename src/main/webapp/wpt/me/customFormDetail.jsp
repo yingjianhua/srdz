@@ -27,14 +27,21 @@
 <title>享食光</title>
 </head>
 
-<body>
+<body style="background-color:#eaeaea">
 
-	<div></div>
-	<s:iterator value="customForms" var="customForm">
-	<p style="text-align:center;">${customForm.createTime }</p>
-	<div style="border: 1px solid #000;border-radius: 15px;margin: 20px auto;width: 600px;">
+		<div class="resok_top">
+		<dl>
+			<dt><img src="images/hm_logo.png" /></dt>
+			<dd>期待您的光临</dd>	
+		</dl>
+		<img src="images/reserve_bg.jpg" class="bg" />	
+	</div>
+	<p style="text-align:center;line-height:70px;">${customForm.createTime }</p>
+	<div style="border: 1px solid #000;border-radius: 15px;margin: 20px auto;width: 600px;background-color:#fff">
 		<div class="resok_info">
-			<h2>私人订制信息表单&nbsp;&nbsp;</h2>
+			<h2 style="height:140px;line-height: 70px;text-align:center;">私人订制表单&nbsp;&nbsp;<br>
+				<p style="font-size: 22px;font-weight: normal;">客服人员将尽快与您联系</p>
+			</h2>
 			<div class="cood_in">
 				<span class="lt">表单编号</span>	
 				<div class="rt">
@@ -99,7 +106,6 @@
 			</div>
 		</div>
 	</div>
-	</s:iterator>
 	<div style="width:640px;height:83px"></div>
 	<!--footer 底部导航-->
 	<jsp:include page="../menu.jsp">

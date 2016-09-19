@@ -30,14 +30,31 @@
 	
 	<div class="uscombo_head">
 		<strong>订单编号：${order.orderid }</strong>
-		<span class="type">${order.gtStatus().line.name }</span>	
+		<span class="type">
+			<s:if test="order.status==0">未受理</s:if>
+			<s:elseif test="order.status==1">已受理</s:elseif>
+			<s:elseif test="order.status==2">未付款</s:elseif>
+			<s:elseif test="order.status==3">已付定金</s:elseif>
+			<s:elseif test="order.status==4">已付款</s:elseif>
+			<s:elseif test="order.status==5">已完成</s:elseif>
+			<s:elseif test="order.status==6">已关闭</s:elseif>
+			<s:elseif test="order.status==7">申请取消订单</s:elseif>
+			<s:elseif test="order.status==8">申请退款</s:elseif>
+		</span>	
 	</div>
 	
 	<ul class="uscombo_info">
-		<li>${order.gtRestaurant().name }</li>	
+		<li>${order.restaurantName }</li>	
 		<li>${order.comboName }</li>
-		<li><a href="tel:${order.gtRestaurant().mobile }" class="tel">${order.gtRestaurant().mobile }</a></li>
-		<i class="addr" latitude="${order.gtRestaurant().coordinate}" longitude="${order.gtRestaurant().longitude}" name="${order.gtRestaurant().name}" address="${order.gtRestaurant().addr}"><li><span class="pos">${order.gtRestaurant().addr }</span></li></i>
+		<s:if test="order.services.size()!=0">
+			<li>
+			<s:iterator value="order.services" var="line">
+				${line.name }&nbsp;
+			</s:iterator>
+			</li>
+		</s:if>
+		<li><a href="tel:${order.restaurant.mobile }" class="tel">${order.restaurant.mobile }</a></li>
+		<i class="addr" latitude="${order.restaurant.latitude}" longitude="${order.restaurant.longitude}" name="${order.restaurant.name}" address="${order.restaurant.addr}"><li><span class="pos">${order.restaurant.addr }</span></li></i>
 		<s:if test="order.checkcode != null"><li>核验码　${order.checkcode }</li></s:if>
 	</ul>	
 	
@@ -48,21 +65,44 @@
 		</div>
 		
 		<div class="cbdet_item">
-			<s:iterator value="listLine" var="line">
-			<p>${line.name }<span>${line.price.intValue() }元/份</span></p>
+			<s:iterator value="order.details" var="line">
+			<p>${line.name }
+			<s:if test="#line.price.intValue()!=0">
+			<span>${line.price.intValue() }元/份</span>
+			</s:if>
+			</p>
 			</s:iterator>
 		</div>
 			
 	</div>
 	
-	<s:if test="order.status==0"><div class="uscombo_ctrl">
-		<a href="javascript:;" class="pay_btn lt payOrder">立即付款</a>
-		<a href="javascript:;" class="esc_btn rt cancelOrder">取消订单</a>
-	</div></s:if>
-	<s:elseif test="order.status==4"><a href="javascript:;" class="cm_btn1 cancelOrder">申请退款</a></s:elseif>
+	<s:if test="order.status==0">
+		<a href="javascript:;" class="cm_btn1">正在为您处理</a>
+	</s:if>
+	<s:elseif test="order.status==2">
+		<div class="uscombo_ctrl">
+			<a href="javascript:;" class="pay_btn lt payOrder">
+				<s:if test="order.deposit.intValue()!=0">支付定金</s:if>
+				<s:else>立即付款</s:else>
+			</a>
+			<a href="javascript:;" class="esc_btn rt cancelOrder">取消订单</a>
+		</div>
+	</s:elseif>
+	<s:elseif test="order.status==3">
+		<div class="uscombo_ctrl">
+			<a href="javascript:;" class="pay_btn lt payOrder">支付余款</a>
+			<a href="javascript:;" class="esc_btn rt cancelOrder">取消订单</a>
+		</div>
+	</s:elseif>
+	<s:elseif test="order.status==4">
+		<div class="uscombo_ctrl">
+			<a href="javascript:;" class="pay_btn lt payOrder">支付完成</a>
+			<a href="javascript:;" class="esc_btn rt cancelOrder">取消订单</a>
+		</div>
+	</s:elseif>
 	<s:elseif test="order.status==5"><a href="javascript:;" class="cm_btn1">订单已完成</a></s:elseif>
 	<s:elseif test="order.status==6"><a href="javascript:;" class="cm_btn1">订单已关闭</a></s:elseif>
-	<s:elseif test="order.status==8"><a href="javascript:;" class="cm_btn1">正在为您处理</a></s:elseif>
+	<s:elseif test="order.status==7"><a href="javascript:;" class="cm_btn1">正在为您处理</a></s:elseif>
 	
 	<div class="usdet_zw"></div>
 	<jsp:include page="../messagebox.jsp"></jsp:include>
@@ -81,11 +121,11 @@ function cancelOrder(clicked) {
 			type : "POST",
 			dataType : "json",
 			data : {
-				"orderId" : "${order.orderid}"
+				"orderid" : "${order.orderid}"
 			},
 			success : function(result) {
 				if(result.success) {
-					tipbox(result.succMsg, function() {
+					tipbox("订单已取消", function() {
 						location.reload();
 					})
 				}
@@ -96,7 +136,7 @@ function cancelOrder(clicked) {
 function payOrder() {
 	$(".loading_float").show();
 	$.ajax({
-		url : "resource/order_preparePay?orderId=${order.orderid}&account.pkey=${account.pkey}",
+		url : "resource/order_preparePay?orderid=${order.orderid}&account.pkey=${account.pkey}",
 		type : "POST",
 		dataType : "json",
 		success : function(result) {
@@ -122,7 +162,7 @@ function payOrder() {
 $(function() {
 	var status = "${order.status}";
 	$(".cancelOrder").click(function() {
-		messagebox("您真的要取消订单吗？",cancelOrder);
+		messagebox("若取消订单  定金将无法退回",cancelOrder);
 	})
 	$(".payOrder").click(function() {
 		payOrder();

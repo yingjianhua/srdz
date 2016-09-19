@@ -85,29 +85,10 @@ public class OrderAction extends AbstractCRUDAction<Order> {
 	}
 	/**
 	 * 取消订单
-	 * @throws JSONException
-	 * @throws IOException
 	 */
-	public void cancel() {
-		LOG.info("--------------cancel():start--------------");
-		WptOrder order = WptOrder.loadUniqueOrderid(false, orderid); //TODO
-		WxUser wxUser = chkWxUser();
-		if(!order.getWxuser().equals(wxUser.getPkey())) { 
-			return ;
-		}
-		try {
-			orderService.cancelOrder(order);
-		} catch (Exp e) {
-			try {
-				PrintWriter writer = ServletActionContext.getResponse().getWriter();
-				writer.print(new JSONObject().put(SUCCESS, true).put("succMsg", e.getLastMessage()));
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			} catch (JSONException e1) {
-				e1.printStackTrace();
-			}
-		}
-		LOG.info("--------------cancel():end--------------");
+	public String cancel() {
+		orderService.cancelOrder(orderid, chkMember());
+		return BEAN;
 	}
 	/**
 	 * 校验核验码
