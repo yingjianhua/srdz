@@ -1,5 +1,7 @@
 package irille.wpt.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Repository;
@@ -45,5 +47,12 @@ public class CollectService {
 	public Long countByMember(Integer memberId) {
 		return collectDao.countByMember(memberId);
 	}
+	
+	public List<Collect> listByMember(Integer memberId) {
+		return collectDao.listByMember(memberId);
+	}
 
+	public Collect findByHeadlineMember(Integer headlineId, Integer memberId) {
+		return collectDao.findByHeadlineMember(headlineId, memberId);
+	}
 }

@@ -1,52 +1,36 @@
 package irille.wpt.actions.controller.impl;
 
-import java.util.List;
+import javax.annotation.Resource;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import irille.core.sys.Sys.OEnabled;
-import irille.pub.bean.BeanBase;
-import irille.pub.idu.Idu;
 import irille.wpt.actions.controller.AbstractControllAction;
 import irille.wpt.actions.controller.IMenuShareAppMessage;
 import irille.wpt.actions.controller.IMenuShareTimeline;
-import irille.wx.wpt.WptCase;
-import irille.wx.wpt.WptCombo;
-import irille.wx.wpt.WptRestaurant;
-import irille.wx.wpt.WptRestaurantBanner;
-import irille.wx.wpt.WptRestaurantTemplate;
+import irille.wpt.bean.Restaurant;
+import irille.wpt.service.impl.RestaurantService;
 @Controller
 @Scope("prototype")
 public class ShowRestaurantAction extends AbstractControllAction implements IMenuShareAppMessage, IMenuShareTimeline{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 8896673981225319609L;
+	private static final long serialVersionUID = 1L;
+	
 	private Integer id;
 	private String scombos;
-	private WptRestaurant restaurant;
-	private List<WptRestaurantBanner> banners;
-	private List<WptCombo> combos;
-	private List<WptCase> cases;
+	private Restaurant restaurant;
 	private static final String TITLE_PRE = "【享食光】特别推出 • ";
+	
+	@Resource
+	private RestaurantService restaurantService;
 	
 	/**
 	 * 显示餐厅信息
 	 */
 	@Override
 	public String execute() throws Exception {
-		String bannerSql = Idu.sqlString("{0}=? order by {1}", WptRestaurantBanner.T.RESTAURANT, WptRestaurantBanner.T.SORT);
-		banners = WptRestaurantBanner.list(WptRestaurantBanner.class, bannerSql, false, id);
-		cases = BeanBase.list(WptCase.class, WptCase.T.RESTAURANT+"=?", false, id);
-		if(scombos == null || scombos.equals("")){
-			combos = BeanBase.list(WptCombo.class, WptCombo.T.RESTAURANT+"=? and "+WptCombo.T.ENABLED+"=? order by "+WptCombo.T.SORT, false, id, OEnabled.TRUE.getLine().getKey());
-		}else{
-			combos = BeanBase.list(WptCombo.class, WptCombo.T.ENABLED+"=? and "+WptCombo.T.PKEY +" in ("+scombos+") order by " +WptCombo.T.SORT, false, OEnabled.TRUE.getLine().getKey());
-		}
+		restaurant = restaurantService.get(id);
 		if(getRestaurant().getTemplate() != null) {
-			WptRestaurantTemplate template = getRestaurant().gtTemplate();
-			setResult(template.getPath());
+			setResult(getRestaurant().getTemplate().getPath());
 		} else {
 			setResult("pt/restaurantDetail.jsp");
 		}
@@ -91,12 +75,13 @@ public class ShowRestaurantAction extends AbstractControllAction implements IMen
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public WptRestaurant getRestaurant() {
+	
+	public Restaurant getRestaurant() {
 		if(restaurant == null) 
-			restaurant = WptRestaurant.load(WptRestaurant.class, id);
+			restaurant = restaurantService.get(id);
 		return restaurant;
 	}
-	public void setRestaurant(WptRestaurant restaurant) {
+	public void setRestaurant(Restaurant restaurant) {
 		this.restaurant = restaurant;
 	}
 	public String getScombos() {
@@ -104,23 +89,5 @@ public class ShowRestaurantAction extends AbstractControllAction implements IMen
 	}
 	public void setScombos(String scombos) {
 		this.scombos = scombos;
-	}
-	public List<WptRestaurantBanner> getBanners() {
-		return banners;
-	}
-	public void setBanners(List<WptRestaurantBanner> banners) {
-		this.banners = banners;
-	}
-	public List<WptCombo> getCombos() {
-		return combos;
-	}
-	public void setCombos(List<WptCombo> combos) {
-		this.combos = combos;
-	}
-	public List<WptCase> getCases() {
-		return cases;
-	}
-	public void setCases(List<WptCase> cases) {
-		this.cases = cases;
 	}
 }

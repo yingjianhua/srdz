@@ -70,14 +70,14 @@ a.select_city_btn{
 	<div class="hot">
 		<s:iterator value="hots" var="line" status="st">
 			<div class="hall_item">
-					<a href="javascript:;" class="hall_item1" pkey="${line.restaurant}" >
-					<img style="height:358px" data-original="../${line.gtRestaurant().imgUrl}" class="photo lazy" />
+					<a href="javascript:;" class="hall_item1" pkey="${line.restaurant.pkey}" >
+					<img style="height:358px" data-original="../${line.restaurant.imgUrl}" class="photo lazy" />
 					<div class="item_flog"></div>
 					</a> 
-					<i class="addr" latitude="${line.gtRestaurant().latitude}" longitude="${line.gtRestaurant().longitude}" name="${line.gtRestaurant().name}" address="${line.gtRestaurant().addr}">
+					<i class="addr" latitude="${line.restaurant.latitude}" longitude="${line.restaurant.longitude}" name="${line.restaurant.name}" address="${line.restaurant.addr}">
 						<dl style="float:left">
-							<dt>${line.gtRestaurant().name}</dt>
-							<dd>${line.gtRestaurant().addr}</dd>
+							<dt>${line.restaurant.name}</dt>
+							<dd>${line.restaurant.addr}</dd>
 						</dl>
 						<dl class="dist_dl">
 							<dd class="dist_dd"></dd>
@@ -129,29 +129,11 @@ a.select_city_btn{
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="js/jquery.lazyload.min.js"></script>
 <script type="text/javascript" src="js/base.js"></script>
+<script type="text/javascript" src="js/location.js"></script>
 <script>
 ${jsCode}
 </script>
 <script>
-function Location(longitude, latitude) {
-	this.longitude = longitude;
-	this.latitude = latitude;
-}
-Location.prototype.R = 6371;
-Location.prototype.rad = function(len) {
-	return len*Math.PI/180;
-}
-Location.prototype.getDistance = function(dest) {
-	if(dest instanceof Location) {
-		var radLat1 = this.rad(this.latitude);  
-	    var radLat2 = this.rad(dest.latitude);  
-	    var a = radLat1 - radLat2;  
-	    var b = this.rad(this.longitude) - this.rad(dest.longitude);  
-	    var s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a/2),2)+Math.cos(radLat1)*Math.cos(radLat2)*Math.pow(Math.sin(b/2),2)));  
-	    s = s * this.R;  
-	    return s;  
-	}
-}
 //微信获取地理位置接口成功回调函数
 function jsDistance(res) {
 	var i = new Location(res.longitude, res.latitude);

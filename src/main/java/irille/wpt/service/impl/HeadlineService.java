@@ -22,8 +22,10 @@ public class HeadlineService {
 	 * @param accountId 微信公众号id 不可为空
 	 * @return
 	 */
-	public List<Headline> search(Integer cityId, Integer areaId, Integer banquetId, Integer accountId) {
-		return headlineDao.search(cityId, areaId, banquetId, accountId);
+	public List<Headline> search(Integer cityId, Integer areaId, Integer banquetId, Integer account) {
+		return headlineDao.search(cityId, areaId, banquetId, account);
 	}
-	
+	public Headline get(Integer id) {
+		return headlineDao.get(id);
+	}
 }

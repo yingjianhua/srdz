@@ -1,6 +1,7 @@
 package irille.wpt.actions.resource.impl;
 
 import javax.annotation.Resource;
+import javax.annotation.security.PermitAll;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -11,25 +12,24 @@ import irille.wpt.service.impl.FeedbackService;
 @Controller
 @Scope("prototype")
 public class FeedbackAction extends AbstractCRUDAction<Feedback> {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -404067309809885214L;
+	private static final long serialVersionUID = 1L;
+	
 	private String content;
 	private String contactWay;
 	private Byte contactType;
+	
 	@Resource
 	private FeedbackService feedBackService;
 	
 	/**
 	 * 把反馈插入到数据库
 	 */
+	@PermitAll
 	public String suggest(){
 		feedBackService.suggest(content, contactType, contactWay, getAccount().getPkey());
-		object = "{\"success\":true}";
-		return OBJECT;
+		return BEAN;
 	}
+	
 	public String getContent() {
 		return content;
 	}

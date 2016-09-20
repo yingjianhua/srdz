@@ -2,33 +2,37 @@ package irille.wpt.actions.controller.impl;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import irille.pub.bean.Bean;
 import irille.wpt.actions.controller.AbstractControllAction;
-import irille.wx.wpt.WptCashJournal;
+import irille.wpt.bean.CashJournal;
+import irille.wpt.service.impl.CashJournalService;
 @Controller
 @Scope("prototype")
 public class ListCashHistoryAction extends AbstractControllAction {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 6167838262656665489L;
-	private List<WptCashJournal> history;
+	private static final long serialVersionUID = 1L;
+	
+	@Resource
+	private CashJournalService cashJournalService;
+	
+	private List<CashJournal> cashJournals;
 	
 	@Override
 	public String execute() throws Exception {
-		history = Bean.list(WptCashJournal.class, WptCashJournal.T.WXUSER+"=?", false, chkWxUser().getPkey());
+		cashJournals = cashJournalService.listByMember(chkMember().getPkey());
 		setResult("me/cashHistoryList.jsp");
 		return TRENDS;
 	}
 
-	public List<WptCashJournal> getHistory() {
-		return history;
+	public List<CashJournal> getCashJournals() {
+		return cashJournals;
 	}
-	public void setHistory(List<WptCashJournal> history) {
-		this.history = history;
+
+	public void setCashJournals(List<CashJournal> cashJournals) {
+		this.cashJournals = cashJournals;
 	}
+
 }

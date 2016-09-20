@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import irille.core.sys.Sys.OEnabled;
 import irille.pub.bean.Bean;
 import irille.pub.idu.Idu;
+import irille.wpt.bean.Restaurant;
 import irille.wpt.dao.impl.RestaurantDao;
 import irille.wx.wpt.WptCityLine;
 import irille.wx.wpt.WptCombo;
@@ -22,6 +23,7 @@ public class RestaurantService {
 	
 	@Resource
 	private RestaurantDao restaurantDao;
+	
 	/**
 	 * 
 	 * @param areaId 区域id
@@ -30,6 +32,7 @@ public class RestaurantService {
 	 * @param perCapitaBudget 人均消费
 	 * @return Map<餐厅对象,List<套餐pkey>>
 	 */
+	@Deprecated
 	public Map<WptRestaurant, List<Object>> listRestaurant(Integer areaId, Integer banquetId, Integer pnum, Integer perCapitaBudget) {
 		Integer area = areaId;
 		Integer city = WptCityLine.load(WptCityLine.class, areaId).getCity();
@@ -61,5 +64,9 @@ public class RestaurantService {
 			mapCombo.get(mapRestaurant.get((Integer)line.get(sqlRestaurant))).add((Integer)line.get(sqlPkey));
 		}
 		return mapCombo;
+	}
+	
+	public Restaurant get(Integer id) {
+		return restaurantDao.get(id);
 	}
 }

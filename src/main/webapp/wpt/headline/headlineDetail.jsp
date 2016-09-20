@@ -18,10 +18,8 @@
 <body id="activity-detail" class="zh_CN mm_appmsg">
 	<div class="cm_flog"></div><!--遮罩层-->
     <div class="frdet_head">
-    <s:push value="top.top">
-		<h2>${top.title}</h2>	
-		<span class="time">${top.date} </span>
-	</s:push>
+		<h2>${headline.title}</h2>	
+		<span class="time">${headline.date} </span>
 		<a href="javascript:;" class="collect_a<s:if test="isCollect"> collect_over</s:if>"></a ><!--加上collect_over就是收藏后， 去了就是未收藏-->
 		<div class="clear"></div>
 	</div>
@@ -34,20 +32,18 @@
 	<jsp:include page="../messagebox.jsp"/>
 	
 	<div class="frdet_content">
-		<s:push value="top.top">
-		<input type="hidden" pkey=${top.pkey}>
+		<input type="hidden" pkey=${headline.pkey}>
 		<div id="js_article" class="rich_media">
 	        <div class="rich_media_inner">
 	            <div id="page-content">
 	                <div id="img-content" class="rich_media_area_primary">
 	                    <div class="rich_media_content " id="js_content">
-	                        ${top.content }
+	                        ${headline.content }
 	                    </div>
 					</div>
 	            </div>
 	        </div>
     	</div>
-    	</s:push>
 	</div>
 </body>
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>

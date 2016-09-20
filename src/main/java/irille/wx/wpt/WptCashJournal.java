@@ -32,7 +32,7 @@ public class WptCashJournal extends BeanInt<WptCashJournal> {
     //>>>以下是自动产生的源代码行--自动建立的索引定义--请保留此行用于识别>>>
     //<<<以上是自动产生的源代码行--自动建立的索引定义--请保留此行用于识别<<<
     // 索引
-	public static final Index IDX_WXUSER = TB.addIndex("wxuser",true, WXUSER);
+	public static final Index IDX_WXUSER = TB.addIndex("wxuser",false, WXUSER);
 	  
     private Fld _fld;
     private T(Class clazz, String name, boolean... isnull) {
@@ -98,12 +98,6 @@ public class WptCashJournal extends BeanInt<WptCashJournal> {
   }
 
   //方法----------------------------------------------
-  public static WptCashJournal loadUniqueWxuser(boolean lockFlag,Integer wxuser) {
-    return (WptCashJournal)loadUnique(T.IDX_WXUSER,lockFlag,wxuser);
-  }
-  public static WptCashJournal chkUniqueWxuser(boolean lockFlag,Integer wxuser) {
-    return (WptCashJournal)chkUnique(T.IDX_WXUSER,lockFlag,wxuser);
-  }
   public Integer getPkey(){
     return _pkey;
   }

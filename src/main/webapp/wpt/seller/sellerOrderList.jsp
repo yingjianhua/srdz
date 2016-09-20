@@ -74,7 +74,7 @@ var pkey;
 function onSearch() {
 	var isHistory = $(".slod_switch").hasClass("slod_switch_hover");
 	$.ajax({
-		url : "resource/seller_listOrder?account.pkey=${account.pkey}",
+		url : "resource/order_listSellerOrder?account.pkey=${account.pkey}",
 		type : "post",
 		data : {
 			restaurantId : $("input[name=restaurantId]").val(),

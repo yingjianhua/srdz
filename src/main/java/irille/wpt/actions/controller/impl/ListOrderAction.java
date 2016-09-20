@@ -16,15 +16,13 @@ import irille.wpt.service.impl.OrderService;
 @Controller
 @Scope("prototype")
 public class ListOrderAction extends AbstractControllAction {
+	private static final long serialVersionUID = 1L;
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -8118977310825408135L;
 	private List<Order> orders;
 	private List<CustomForm> customForms;
 	private long orderNum;
 	private long customFormNum;
+	
 	@Resource
 	private OrderService orderService;
 	@Resource
@@ -35,7 +33,7 @@ public class ListOrderAction extends AbstractControllAction {
 	@Override
 	public String execute() throws Exception {
 		Member member = chkMember();
-		orders = orderService.list(member.getPkey());
+		orders = orderService.listByMember(member.getPkey());
 		customForms = customFormService.list(member.getPkey());
 		orderNum = orders.size();
 		customFormNum = customForms.size();

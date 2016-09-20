@@ -6,36 +6,46 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import irille.pub.Log;
 import irille.wpt.actions.controller.impl.LoginSellerAction;
+import irille.wpt.bean.Member;
+import irille.wpt.bean.Restaurant;
+import irille.wpt.bean.RestaurantBsn;
+import irille.wpt.dao.impl.OrderDao;
+import irille.wpt.dao.impl.RestaurantBsnDao;
+import irille.wpt.dao.impl.RestaurantDao;
 import irille.wpt.tools.SmsTool;
-import irille.wx.wpt.Wpt.OStatus;
-import irille.wx.wpt.WptOrder;
-import irille.wx.wpt.WptRestaurant;
-import irille.wx.wpt.WptRestaurantBsn;
-import irille.wx.wx.WxUser;
 import irille.wxpub.util.mch.MchUtil;
 @Service
 public class SellerService {
+	
 	private static final Log LOG = new Log(SellerService.class);
+	
+	@Resource
+	private RestaurantDao restaurantDao;
+	@Resource
+	private RestaurantBsnDao restaurantBsnDao;
+	@Resource
+	private OrderDao orderDao;
 	@Resource
 	private SmsTool smsTool;
 	private static final String SMG_CODE = "msgCode";
 	
-	public void sendCheckCode(String manager, Map<String, Object> session){
+	private static final String CHECK_MSG = "【享食光】验证码: 1234 (享食光手机登录验证，请完成验证)，如非本人操作，请忽略本条短息。";
+	
+	public void sendCheckCode(String manager, Map<String, Object> session, Integer account){
+		List<Restaurant> list = restaurantDao.listByManger(account, manager);
+		if(list.isEmpty()) {
+			throw LOG.err("null", "null");
+		}
 		String code = MchUtil.createRandomNum(4);
 		LOG.info("code:" + code);
 		session.put(SMG_CODE, code);
 		session.put("manager", manager);
     	session.put("date", System.currentTimeMillis());
-		String c = "【享食光】验证码: 1234 (享食光手机登录验证，请完成验证)，如非本人操作，请忽略本条短息。";
-		c = c.replace("1234", code);
-		smsTool.doSent(manager, c);
+		smsTool.doSent(manager, CHECK_MSG.replace("1234", code));
 	}
 	public boolean checkCode(String identify, Map<String, Object> session) {
 		long i = System.currentTimeMillis()- (Long)session.get("date");
@@ -45,9 +55,11 @@ public class SellerService {
 			return true;
 		}
 	}
-	public WptRestaurant sellerLogin(Map<String, Object> session, String identify, Integer accountId, WxUser user) {
-		if((Integer)session.get(LoginSellerAction.RESTAURANT) != null) {
-			return WptRestaurant.get(WptRestaurant.class, (Integer) session.get(LoginSellerAction.RESTAURANT));
+
+	public Restaurant sellerLogin(Map<String, Object> session, String identify, Integer account, Member member) {
+		Integer restaurantId = (Integer)session.get(LoginSellerAction.RESTAURANT);
+		if(restaurantId != null) {
+			return restaurantDao.get(restaurantId);
 		} else {
 			if(!identify.equals((String) session.get(SMG_CODE))){
 				throw LOG.err("invalidCheckCode", "错误验证码："+identify);
@@ -56,48 +68,21 @@ public class SellerService {
 			if((manager=(String)session.get("manager")) == null){
 				throw LOG.err("timeout", "会话超时，请重新登陆");
 			}
-			List<WptRestaurant> list = WptRestaurant.list(WptRestaurant.class, WptRestaurant.T.MANAGER + "=? AND " + WptRestaurant.T.ACCOUNT + "=?", false, manager, accountId);
-	    	if(list.size() == 0) {
+			List<Restaurant> restaurants = restaurantDao.listByManger(account, manager);
+	    	if(restaurants.size() == 0) {
 	    		throw LOG.err("restaurantErr", "餐厅异常");
 	    	}
-			if(user != null && WptRestaurantBsn.chkUniqueWxUserAccount(false, user.getPkey(), accountId) == null){
-				WptRestaurantBsn restaurantBsn = new WptRestaurantBsn();
-				restaurantBsn.setAccount(accountId);
+			if(member != null && restaurantBsnDao.findByMember(member.getPkey()) == null){
+				
+				RestaurantBsn restaurantBsn = new RestaurantBsn();
+				restaurantBsn.setAccount(member.getAccount());
 				restaurantBsn.setCreateTime(new Date());
-				restaurantBsn.setOpenid(user.getOpenId());
-				restaurantBsn.setRestaurant(list.get(0).getPkey());
-				restaurantBsn.setWxuser(user.getPkey());
-				restaurantBsn.ins();
+				restaurantBsn.setOpenid(member.getOpenId());
+				restaurantBsn.setRestaurant(restaurants.get(0));
+				restaurantBsn.setMember(member);
+				restaurantBsnDao.save(restaurantBsn);
 			}
-	    	return list.get(0);
+	    	return restaurants.get(0);
 		}
-	}
-	public List<WptOrder> listOrder(Integer restaurantId, String orderId, OStatus status) {
-		StringBuilder where = new StringBuilder();
-		where.append(WptOrder.T.RESTAURANT).append("=?");
-		if(orderId != null) {
-			where.append(" and ").append(WptOrder.T.ORDERID).append(" like '%").append(orderId).append("%'");
-		}
-		if(status != null) {
-			where.append(" and ").append(WptOrder.T.STATUS).append("="+status.getLine().getKey());
-		}
-		List<WptOrder> list = WptOrder.list(WptOrder.class, where.toString(), false, restaurantId);
-		return list;
-	}
-	public JSONArray listOrder4Json(Integer restaurantId, String orderId, OStatus status) {
-		List<WptOrder> list = listOrder(restaurantId, orderId, status);
-		JSONArray result = new JSONArray();
-		try {
-			for(WptOrder order:list) {
-				JSONObject o = new JSONObject();
-				o.put("comboName", order.getComboName());
-				o.put("orderId", order.getOrderid());
-				o.put("price", order.getPrice().intValue());
-				result.put(o);
-			}
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		return result;
 	}
 }

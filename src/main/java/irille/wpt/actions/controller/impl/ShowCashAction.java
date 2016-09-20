@@ -8,11 +8,7 @@ import irille.wpt.actions.controller.AbstractControllAction;
 @Controller
 @Scope("prototype")
 public class ShowCashAction extends AbstractControllAction {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -135720894376631856L;
+	private static final long serialVersionUID = 1L;
 
 	@Override
 	public String execute() throws Exception {

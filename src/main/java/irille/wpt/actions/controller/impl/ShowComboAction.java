@@ -1,44 +1,37 @@
 package irille.wpt.actions.controller.impl;
 
 import java.math.BigDecimal;
-import java.util.List;
+
+import javax.annotation.Resource;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import irille.pub.idu.Idu;
 import irille.wpt.actions.controller.AbstractControllAction;
 import irille.wpt.actions.controller.IMenuShareAppMessage;
 import irille.wpt.actions.controller.IMenuShareTimeline;
-import irille.wx.wpt.WptCombo;
-import irille.wx.wpt.WptComboBanner;
-import irille.wx.wpt.WptComboLine;
+import irille.wpt.bean.Combo;
+import irille.wpt.bean.ComboLine;
+import irille.wpt.service.impl.ComboService;
 @Controller
 @Scope("prototype")
 public class ShowComboAction extends AbstractControllAction implements IMenuShareAppMessage, IMenuShareTimeline{
+	private static final long serialVersionUID = 1L;
 	
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -513008521098240625L;
-
 	private Integer id;
-	private WptCombo combo;
-	private List<WptComboLine> comboLines;
-	private List<WptComboBanner> banners;
+	private Combo combo;
 	private BigDecimal origPrice = BigDecimal.ZERO;
+	
+	@Resource
+	private ComboService comboService;
 	/**
 	 * 显示套餐详情
 	 */
 	@Override
 	public String execute() throws Exception {
-		String where = Idu.sqlString("{0}=? order by {1}", WptComboLine.T.COMBO, WptComboLine.T.SORT);
-		comboLines = WptComboLine.list(WptComboLine.class, where, false, getCombo().getPkey());
-		where = Idu.sqlString("{0}=? order by {1}", WptComboBanner.T.COMBO, WptComboBanner.T.SORT);
-		banners = WptComboBanner.list(WptComboBanner.class, where, false, id);
+		combo = comboService.get(id);
 		if(getCombo().getOrigPrice().intValue() == 0) {
-			for(WptComboLine line:comboLines) {
+			for(ComboLine line:combo.getComboLines()) {
 				origPrice = origPrice.add(line.getPrice());
 			}
 		} else {
@@ -87,26 +80,17 @@ public class ShowComboAction extends AbstractControllAction implements IMenuShar
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public WptCombo getCombo() {
+	
+	public Combo getCombo() {
 		if(combo == null)
-			combo = WptCombo.load(WptCombo.class, id);
+			combo = comboService.get(id);
 		return combo;
 	}
-	public void setCombo(WptCombo combo) {
+
+	public void setCombo(Combo combo) {
 		this.combo = combo;
 	}
-	public List<WptComboLine> getComboLines() {
-		return comboLines;
-	}
-	public void setComboLines(List<WptComboLine> comboLines) {
-		this.comboLines = comboLines;
-	}
-	public List<WptComboBanner> getBanners() {
-		return banners;
-	}
-	public void setBanners(List<WptComboBanner> banners) {
-		this.banners = banners;
-	}
+
 	public BigDecimal getOrigPrice() {
 		return origPrice;
 	}

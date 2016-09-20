@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -45,6 +46,11 @@ public class Combo extends Product implements Serializable {
     @JoinColumn(name="combo")
 	private Set<ComboLine> comboLines;
 	
+    @OneToMany(fetch=FetchType.LAZY)
+    @JoinColumn(name="combo")
+    @OrderBy("sort")
+	private Set<ComboBanner> banners;
+    
 	private Integer sort;
 
 	public Combo() {
@@ -96,6 +102,14 @@ public class Combo extends Product implements Serializable {
 
 	public void setComboLines(Set<ComboLine> comboLines) {
 		this.comboLines = comboLines;
+	}
+
+	public Set<ComboBanner> getBanners() {
+		return banners;
+	}
+
+	public void setBanners(Set<ComboBanner> banners) {
+		this.banners = banners;
 	}
 
 	public Integer getSort() {

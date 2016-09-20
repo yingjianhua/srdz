@@ -40,12 +40,12 @@
 		<p>${special.intro}</p>
 	</div>
 	
-	<s:iterator value="restaurants" var="line" status="x">
-		<a href="javascript:;" class="fddet_item" pkey="${line.pkey}">
-		<dl><dt>${line.name}</dt> <dd>${line.des}</dd></dl>
+	<s:iterator value="special.lines" var="line" status="x">
+		<a href="javascript:;" class="fddet_item" pkey="${line.restaurant.pkey}">
+		<dl><dt>${line.restaurant.name}</dt> <dd>${line.restaurant.des}</dd></dl>
 		<span class="xq">查看详情</span>
 		<div class="fddet_flog"></div>
-		<img data-original="../${line.imgUrl}" class="lazy"/>
+		<img data-original="../${line.restaurant.imgUrl}" class="lazy"/>
 		</a>
 	</s:iterator>
 			

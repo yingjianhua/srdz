@@ -29,19 +29,15 @@
 
 <body>	
 
-		<s:iterator value="tops" var="t">
-		<s:iterator value="collects" var="line">
-			<s:if test="#line.top==#t.pkey">
-			<a href="#" class="usct_item" pkey="${t.pkey}">
-			<img src="${t.imgUrl}" class="photo" />
-			<div class="txt">
-				<div class="name">${t.title}</div>
-				<span class="time">${t.date}</span>
-			</div>
-			<div class="clear"></div>
-			</a>
-			</s:if>
-		</s:iterator>
+	<s:iterator value="collects" var="line">
+		<a href="#" class="usct_item" pkey="${line.headline.pkey}">
+		<img src="${line.headline.imgUrl}" class="photo" />
+		<div class="txt">
+			<div class="name">${line.headline.title}</div>
+			<span class="time">${line.headline.date}</span>
+		</div>
+		<div class="clear"></div>
+		</a>
 	</s:iterator>
 	<!--footer 底部导航-->
 	<jsp:include page="../menu.jsp">

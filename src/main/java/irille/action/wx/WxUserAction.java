@@ -82,10 +82,6 @@ public class WxUserAction extends ActionBase<WxUser> {
 		JSONObject json = crtJsonByBean(user, "bean.");
 		response.getWriter().print(json.put("success", true).toString());
 	}
-	public void createAllQrcode() {
-		QrcodeRuleService service = new QrcodeRuleService();
-		service.createAllQrcode();
-	}
   
   @Override
   public void list() throws Exception {

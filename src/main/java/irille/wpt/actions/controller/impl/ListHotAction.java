@@ -2,14 +2,16 @@ package irille.wpt.actions.controller.impl;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import irille.pub.idu.Idu;
 import irille.wpt.actions.controller.AbstractControllAction;
 import irille.wpt.bean.City;
+import irille.wpt.bean.Hot;
 import irille.wpt.interceptor.CityInterceptor;
-import irille.wx.wpt.WptHot;
+import irille.wpt.service.impl.HotService;
 import irille.wxpub.js.JMGetLocation;
 import irille.wxpub.js.JMOpenLocation;
 import irille.wxpub.js.JQFunDefine;
@@ -18,11 +20,12 @@ import irille.wxpub.js.JsFunDefine;
 @Controller
 @Scope("prototype")
 public class ListHotAction extends AbstractControllAction {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -6110915177662480823L;
-	private List<WptHot> hots;
+	private static final long serialVersionUID = 1L;
+	
+	@Resource
+	private HotService hotService;
+	
+	private List<Hot> hots;
 
 	/**
 	 * 发现和热销
@@ -30,8 +33,7 @@ public class ListHotAction extends AbstractControllAction {
 	@Override
 	public String execute() throws Exception {
 		City city = (City)getSession().get(CityInterceptor.CITY);
-		String where = Idu.sqlString("{0}=? order by {1}", WptHot.T.CITY, WptHot.T.SORT);
-		hots = WptHot.list(WptHot.class, where, false, city.getPkey());
+		hots = hotService.listByCity(city.getPkey());
 		setResult("find/hotList.jsp");
 		return TRENDS;
 	}
@@ -51,10 +53,11 @@ public class ListHotAction extends AbstractControllAction {
 		getJsCreater().add(fun2.add(gl));
 	}
 	
-	public List<WptHot> getHots() {
+	public List<Hot> getHots() {
 		return hots;
 	}
-	public void setHots(List<WptHot> hots) {
+	public void setHots(List<Hot> hots) {
 		this.hots = hots;
 	}
+	
 }

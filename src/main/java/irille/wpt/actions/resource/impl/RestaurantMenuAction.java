@@ -8,5 +8,6 @@ import irille.wpt.bean.RestaurantMenu;
 @Controller
 @Scope("prototype")
 public class RestaurantMenuAction extends AbstractCRUDAction<RestaurantMenu> {
+	private static final long serialVersionUID = 1L;
 
 }

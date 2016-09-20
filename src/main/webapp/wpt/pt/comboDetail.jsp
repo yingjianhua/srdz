@@ -34,7 +34,7 @@
 	   	</div>
 		<div class="bd">
 	     	<ul>
-		     	<s:iterator value="banners" var="b">
+		     	<s:iterator value="combo.banners" var="b">
 		     	<li>
 		     	<img class="cbdet_photo" src="../${b.imgUrl}">
 		     	</li>
@@ -45,10 +45,10 @@
 	<h2 class="cbdet_head">${combo.name }</h2>
 	
 	<div class="cbdet_item">
-		<s:iterator value="comboLines" var="comboLine">
+		<s:iterator value="combo.comboLines" var="comboLine">
 			<p>
-				<s:if test="#comboLine.gtMenu().name == 'space'"><br></s:if>
-				<s:else><s:property value="#comboLine.gtMenu().name" /></s:else>
+				<s:if test="#comboLine.menu.name == 'space'"><br></s:if>
+				<s:else><s:property value="#comboLine.menu.name" /></s:else>
 				<s:if test="#comboLine.price.intValue()!=0">
 				<span><s:property value="#comboLine.price.intValue()"/>元/份</span>
 				</s:if>

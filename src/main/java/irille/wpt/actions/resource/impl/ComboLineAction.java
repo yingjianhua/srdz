@@ -8,5 +8,6 @@ import irille.wpt.bean.ComboLine;
 @Controller
 @Scope("prototype")
 public class ComboLineAction extends AbstractCRUDAction<ComboLine> {
+	private static final long serialVersionUID = 1L;
 
 }

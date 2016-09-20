@@ -74,36 +74,6 @@ public class UserService {
 		return amount==null?BigDecimal.ZERO:amount;
 	}
 	/**
-	 * 根据订单ID或者粉丝ID 搜索佣金流水
-	 * @param orderOrFan
-	 * @return
-	 */
-	public List<WptCommissionJournal> getCommissionJournal(String openid, Integer accountPkey, String orderOrFan) {
-		WxUser user = WxUser.loadUniqueOpenIdAccount(false, openid, accountPkey);
-		String where = "";
-		if(orderOrFan == null || orderOrFan.equals("")) {
-			where = Idu.sqlString("{0}=?", WptCommissionJournal.T.WXUSER);
-			return Bean.list(WptCommissionJournal.class, where, false, user.getPkey());
-		} else {
-			where = Idu.sqlString("{0}=? and ({1}=? or {2}=?)", WptCommissionJournal.T.WXUSER, WptCommissionJournal.T.FANS, WptCommissionJournal.T.ORDERID);
-			return Bean.list(WptCommissionJournal.class, where, false, user.getPkey(), orderOrFan, orderOrFan);
-		}
-	}
-	/**
-	 * 提现
-	 * @throws Exception 
-	 */
-	public WptCashJournal cash(BigDecimal amt, WxUser user, String client_ip) throws Exception {
-		WptRedPackRule rule = Bean.get(WptRedPackRule.class, user.getAccount());
-		if(amt.compareTo(rule.getLeastAmt()) < 0) {
-			throw LOG.err("less than least", "提现金额少于最少提现金额");
-		} else if(amt.compareTo(user.getCashableCommission()) > 0) {
-			throw LOG.err("more than cashable", "提现金额多于用户可提现佣金");
-		}
-		SendRedPack.sendRedPack(user.gtAccount(), user.getOpenId(), rule.getSendName(), amt.multiply(BigDecimal.valueOf(100)).intValue(), rule.getWishing(), client_ip, rule.getActName(), rule.getRemark());
-		return cashJournalService.add(user, amt);
-	}
-	/**
 	 * 检查推广二维码是否达到需要更新的时间，是则更新
 	 * @param user
 	 */

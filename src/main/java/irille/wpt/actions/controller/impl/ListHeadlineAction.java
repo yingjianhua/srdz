@@ -8,26 +8,25 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.wpt.actions.controller.AbstractControllAction;
+import irille.wpt.bean.Banquet;
 import irille.wpt.bean.City;
+import irille.wpt.bean.CityLine;
 import irille.wpt.interceptor.CityInterceptor;
-import irille.wpt.service.impl.HeadlineService;
-import irille.wx.wpt.WptBanquet;
-import irille.wx.wpt.WptCityLine;
-import irille.wx.wpt.WptTop;
+import irille.wpt.service.impl.BanquetService;
+import irille.wpt.service.impl.CityLineService;
 @Controller
 @Scope("prototype")
 public class ListHeadlineAction extends AbstractControllAction {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -4251137891559443632L;
+	private static final long serialVersionUID = 1L;
 	
-	private List<WptCityLine> areas;
-	private List<WptBanquet> banquets;
-	private List<WptTop> tops;
 	@Resource
-	private HeadlineService topService;
+	private CityLineService cityLineService;
+	@Resource
+	private BanquetService banquetService;
+	
+	private List<CityLine> areas;
+	private List<Banquet> banquets;
+	
 	/**
 	 * 头条列表
 	 */
@@ -35,28 +34,26 @@ public class ListHeadlineAction extends AbstractControllAction {
 	@Override
 	public String execute() throws Exception {
 		City city = (City) getSession().get(CityInterceptor.CITY);
-		areas = WptCityLine.list(WptCityLine.class, WptCityLine.T.CITY + " = ?", false, city.getPkey());
-		banquets = WptBanquet.list(WptBanquet.class,  WptBanquet.T.ACCOUNT + " = ?", false, getAccount().getPkey());
+		areas = cityLineService.listByCity(city.getPkey());
+		banquets = banquetService.listByAccount(getAccount().getPkey());
 		setResult("headline/headlineList.jsp");
 		return TRENDS;
 	}
-	
-	public List<WptCityLine> getAreas() {
+
+	public List<CityLine> getAreas() {
 		return areas;
 	}
-	public void setAreas(List<WptCityLine> areas) {
+
+	public void setAreas(List<CityLine> areas) {
 		this.areas = areas;
 	}
-	public List<WptBanquet> getBanquets() {
+
+	public List<Banquet> getBanquets() {
 		return banquets;
 	}
-	public void setBanquets(List<WptBanquet> banquets) {
+
+	public void setBanquets(List<Banquet> banquets) {
 		this.banquets = banquets;
 	}
-	public List<WptTop> getTops() {
-		return tops;
-	}
-	public void setTops(List<WptTop> tops) {
-		this.tops = tops;
-	}
+	
 }

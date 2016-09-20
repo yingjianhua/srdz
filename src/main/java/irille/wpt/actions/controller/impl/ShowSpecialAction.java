@@ -1,57 +1,40 @@
 package irille.wpt.actions.controller.impl;
 
-import java.sql.ResultSet;
-import java.util.List;
+import javax.annotation.Resource;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import irille.core.sys.Sys.OEnabled;
-import irille.pub.bean.Bean;
-import irille.pub.bean.BeanBase;
-import irille.pub.idu.Idu;
 import irille.wpt.actions.controller.AbstractControllAction;
 import irille.wpt.actions.controller.IMenuShareAppMessage;
 import irille.wpt.actions.controller.IMenuShareTimeline;
-import irille.wx.wpt.WptRestaurant;
-import irille.wx.wpt.WptSpecial;
-import irille.wx.wpt.WptSpecialLine;
+import irille.wpt.bean.Special;
+import irille.wpt.service.impl.SpecialService;
 @Controller
 @Scope("prototype")
 public class ShowSpecialAction extends AbstractControllAction implements IMenuShareAppMessage, IMenuShareTimeline {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -615820228352555970L;
+	private static final long serialVersionUID = 1L;
+	
 	private Integer id;
-	private WptSpecial special;
-	private List<WptRestaurant> restaurants;
+	private Special special;
 	private static final String TITLE_PRE = "【享食光】• ";
+	
+	@Resource
+	private SpecialService specialService;
+	
 	/**
 	 * 发现详情页
 	 */
 	@Override
 	public String execute() throws Exception {
-		String where = Idu.sqlString("select r.*,s.{0} from {1} r right join {2} s on (r.{3}=s.{4}) where s.{5}=? and r.{6}=? order by s.{0} asc", 
-				WptSpecialLine.T.SORT, WptRestaurant.class, WptSpecialLine.class, WptRestaurant.T.PKEY, WptSpecialLine.T.RESTAURANT,
-				WptSpecialLine.T.SPECIAL, WptRestaurant.T.ENABLED );
-		restaurants = BeanBase.list(where, new BeanBase.ResultSetBean<WptRestaurant>() {
-			@Override
-			public WptRestaurant tran(ResultSet set) {
-				WptRestaurant bean = Bean.newInstance(WptRestaurant.class);
-				bean.fromResultSet(set);
-				return bean;
-			}
-		}, id, OEnabled.TRUE.getLine().getKey());
-		System.out.println(where);
-		System.out.println(restaurants.size());
+		special = specialService.get(id);
 		setResult("find/specialDetail.jsp");
 		return TRENDS;
 	}
+	
 	@Override
 	public String getShareTimelineTitle() {
-		return TITLE_PRE + getSpecial().getExtName();
+		return TITLE_PRE + getSpecial().getTitle();
 	}
 	@Override
 	public String getShareTimelineLink() {
@@ -63,7 +46,7 @@ public class ShowSpecialAction extends AbstractControllAction implements IMenuSh
 	}
 	@Override
 	public String getShareAppMessageTitle() {
-		return TITLE_PRE + getSpecial().getExtName();
+		return TITLE_PRE + getSpecial().getTitle();
 	}
 	@Override
 	public String getShareAppMessageDesc() {
@@ -88,18 +71,12 @@ public class ShowSpecialAction extends AbstractControllAction implements IMenuSh
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public WptSpecial getSpecial() {
+	public Special getSpecial() {
 		if(special == null)
-			special = WptSpecial.load(WptSpecial.class, id);
+			special = specialService.get(id);
 		return special;
 	}
-	public void setSpecial(WptSpecial special) {
+	public void setSpecial(Special special) {
 		this.special = special;
-	}
-	public List<WptRestaurant> getRestaurants() {
-		return restaurants;
-	}
-	public void setRestaurants(List<WptRestaurant> restaurants) {
-		this.restaurants = restaurants;
 	}
 }

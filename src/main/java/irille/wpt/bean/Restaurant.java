@@ -2,6 +2,7 @@ package irille.wpt.bean;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 
@@ -53,6 +56,19 @@ public class Restaurant implements Serializable {
 
 	@Column(name="img_url")
 	private String imgUrl;
+	
+    @OneToMany(fetch=FetchType.LAZY)
+    @JoinColumn(name="restaurant")
+    @OrderBy("sort")
+	private Set<RestaurantBanner> banners;
+    
+    @OneToMany(fetch=FetchType.LAZY)
+    @JoinColumn(name="restaurant")
+	private Set<Combo> combos;
+    
+    @OneToMany(fetch=FetchType.LAZY)
+    @JoinColumn(name="restaurant")
+	private Set<RestaurantCase> cases;
 
 	private String latitude;
 
@@ -73,7 +89,9 @@ public class Restaurant implements Serializable {
 
 	private String stopdate;
 
-	private Integer template;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="template")
+	private RestaurantTemplate template;
 
 	private String wifiaccount;
 
@@ -170,6 +188,30 @@ public class Restaurant implements Serializable {
 		this.imgUrl = imgUrl;
 	}
 
+	public Set<RestaurantBanner> getBanners() {
+		return banners;
+	}
+
+	public void setBanners(Set<RestaurantBanner> banners) {
+		this.banners = banners;
+	}
+
+	public Set<Combo> getCombos() {
+		return combos;
+	}
+
+	public void setCombos(Set<Combo> combos) {
+		this.combos = combos;
+	}
+
+	public Set<RestaurantCase> getCases() {
+		return cases;
+	}
+
+	public void setCases(Set<RestaurantCase> cases) {
+		this.cases = cases;
+	}
+
 	public String getLatitude() {
 		return this.latitude;
 	}
@@ -242,11 +284,11 @@ public class Restaurant implements Serializable {
 		this.stopdate = stopdate;
 	}
 
-	public Integer getTemplate() {
+	public RestaurantTemplate getTemplate() {
 		return this.template;
 	}
 
-	public void setTemplate(Integer template) {
+	public void setTemplate(RestaurantTemplate template) {
 		this.template = template;
 	}
 

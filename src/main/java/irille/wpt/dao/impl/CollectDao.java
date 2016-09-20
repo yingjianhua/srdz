@@ -1,5 +1,7 @@
 package irille.wpt.dao.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import irille.wpt.bean.Collect;
@@ -13,5 +15,11 @@ public class CollectDao extends AbstractDao<Collect, Integer>{
 	}
 	public Long countByMember(Integer memberId) {
 		return count("select count(*) from wpt_collect where wxuser=?", memberId);
+	}
+	public List<Collect> listByMember(Integer memberId) {
+		return list("select * from wpt_collect where wxuser=?", memberId);
+	}
+	public Collect findByHeadlineMember(Integer headlineId, Integer memberId) {
+		return findUnique("select * from wpt_collect where top=? and wxuser=?", headlineId, memberId);
 	}
 }

@@ -1,34 +1,39 @@
 package irille.wpt.actions.controller.impl;
 
+import javax.annotation.Resource;
+
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.wpt.actions.controller.AbstractControllAction;
-import irille.wx.wpt.WptServiceCen;
+import irille.wpt.bean.ServiceCen;
+import irille.wpt.service.impl.ServiceCenService;
 @Controller
 @Scope("prototype")
 public class ShowServiceCenterAction extends AbstractControllAction {
+	private static final long serialVersionUID = 1L;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 4671621940447787133L;
-	private WptServiceCen serviceCenter;
+	private ServiceCen serviceCenter;
+	
+	@Resource
+	private ServiceCenService serviceCenService;
 	
 	/**
 	 * 客服中心
 	 */
 	@Override
 	public String execute() throws Exception {
-		serviceCenter = WptServiceCen.load(WptServiceCen.class, getAccount().getPkey());
+		serviceCenter = serviceCenService.find(getAccount().getPkey());
 		setResult("me/serviceCenter.jsp");
 		return TRENDS;
 	}
 
-	public WptServiceCen getServiceCenter() {
+	public ServiceCen getServiceCenter() {
 		return serviceCenter;
 	}
-	public void setServiceCenter(WptServiceCen serviceCenter) {
+
+	public void setServiceCenter(ServiceCen serviceCenter) {
 		this.serviceCenter = serviceCenter;
 	}
+	
 }

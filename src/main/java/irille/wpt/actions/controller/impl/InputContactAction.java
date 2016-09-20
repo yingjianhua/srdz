@@ -21,11 +21,9 @@ public class InputContactAction extends AbstractControllAction {
 	private String services;
 	@Override
 	public String execute() throws Exception {
-		LOG.info("--------------InputContactAction():start--------------");
 		LOG.info("comboId:{0}", comboId);
 		LOG.info("services:{0}", services);
 		setResult("pt/inputContact.jsp");
-		LOG.info("--------------InputContactAction():end--------------");
 		return TRENDS;
 	}
 	

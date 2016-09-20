@@ -1,21 +1,13 @@
 package irille.wpt.actions.controller.impl;
 
-import java.util.List;
-import java.util.Set;
-
 import javax.annotation.Resource;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import irille.pub.bean.BeanBase;
 import irille.wpt.actions.controller.AbstractControllAction;
 import irille.wpt.bean.Order;
-import irille.wpt.bean.OrderCustomService;
-import irille.wpt.bean.OrderDetail;
 import irille.wpt.service.impl.OrderService;
-import irille.wx.wpt.WptOrderLine;
-import irille.wx.wpt.WptOrderService;
 import irille.wxpub.js.JMChooseWXPay;
 import irille.wxpub.js.JMOpenLocation;
 import irille.wxpub.js.JQFunDefine;
@@ -38,11 +30,7 @@ public class ShowOrderAction extends AbstractControllAction {
 	@Override
 	public String execute() throws Exception {
 		order = orderService.findByOrderid(orderid);
-		if(order.getStatus().equals(0)) {
-			setResult("me/orderDetailPT.jsp");
-		} else {
-			setResult("me/orderDetail.jsp");
-		}
+		setResult("me/orderDetail.jsp");
 		return TRENDS;
 	}
 	public void addExtraWxJsCode() {

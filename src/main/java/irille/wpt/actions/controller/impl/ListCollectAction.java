@@ -2,46 +2,43 @@ package irille.wpt.actions.controller.impl;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.wpt.actions.controller.AbstractControllAction;
-import irille.wx.wpt.WptCollect;
-import irille.wx.wpt.WptTop;
-import irille.wx.wx.WxUser;
+import irille.wpt.bean.Collect;
+import irille.wpt.service.impl.CollectService;
+import irille.wpt.service.impl.HeadlineService;
 @Controller
 @Scope("prototype")
 public class ListCollectAction extends AbstractControllAction {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 7264087029941100928L;
-	private List<WptTop> tops;
-	private List<WptCollect> collects;
+	private static final long serialVersionUID = 1L;
+	
+	@Resource
+	private HeadlineService headlineService;
+	@Resource
+	private CollectService collectService;
+	
+	private List<Collect> collects;
 
 	/**
 	 * 我的收藏
 	 */
 	@Override
 	public String execute() throws Exception {
-		WxUser user = chkWxUser();
-		tops = WptTop.list(WptTop.class, "1=1 order by " + WptTop.T.DATE + " DESC", false);
-		collects = WptCollect.list(WptCollect.class, WptCollect.T.WXUSER + " = ?", false, user.getPkey());
+		collects = collectService.listByMember(chkMember().getPkey());
 		setResult("me/listCollect.jsp");
 		return TRENDS;
 	}
 
-	public List<WptTop> getTops() {
-		return tops;
-	}
-	public void setTops(List<WptTop> tops) {
-		this.tops = tops;
-	}
-	public List<WptCollect> getCollects() {
+	public List<Collect> getCollects() {
 		return collects;
 	}
-	public void setCollects(List<WptCollect> collects) {
+
+	public void setCollects(List<Collect> collects) {
 		this.collects = collects;
 	}
+
 }

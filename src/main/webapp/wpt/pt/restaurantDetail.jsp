@@ -34,7 +34,7 @@
     	</div>
 		<div class="bd">
 	     	<ul>
-		     	<s:iterator value="banners" var="b">
+		     	<s:iterator value="restaurant.banners" var="b">
 		     	<li>
 		     	<img class="photo" src="../${b.imgUrl}">
 		     	</li>
@@ -49,7 +49,7 @@
 	</div>
 	
 	<div class="hait_list">
-		<s:iterator value="combos" var="combo">
+		<s:iterator value="restaurant.combos" var="combo">
 		<a href="javascript:;" class="hait_li" pkey="<s:property value="#combo.pkey" />">
 			<img src="../<s:property value="#combo.imgUrl" />" class="photo" />
 			<dl>
@@ -66,12 +66,12 @@
 	</div>
 	
 	<div class="hait_det">
-		<s:if test="cases.size() > 0">
+		<s:if test="restaurant.cases.size() > 0">
 			<div class="title">
 				私人定制的案例介绍	
 			</div>
 		</s:if>
-		<s:iterator value="cases" var="case">
+		<s:iterator value="restaurant.cases" var="case">
 			<img src="../<s:property value="#case.imgUrl" />" class="photo" />
 			<s:property value="#case.des" />
 		</s:iterator>

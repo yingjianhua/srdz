@@ -2,39 +2,42 @@ package irille.wpt.actions.controller.impl;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import irille.core.sys.Sys.OYn;
-import irille.pub.idu.Idu;
 import irille.wpt.actions.controller.AbstractControllAction;
 import irille.wpt.bean.City;
+import irille.wpt.bean.Special;
 import irille.wpt.interceptor.CityInterceptor;
-import irille.wx.wpt.WptSpecial;
+import irille.wpt.service.impl.SpecialService;
 @Controller
 @Scope("prototype")
 public class ListSpecialAction extends AbstractControllAction {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -6110915177662480823L;
-	private List<WptSpecial> specials;
+	private static final long serialVersionUID = 1L;
+	
+	private List<Special> specials;
 
+	@Resource
+	private SpecialService specialService;
+	
 	/**
 	 * 发现和热销
 	 */
 	@Override
 	public String execute() throws Exception {
 		City city = (City)getSession().get(CityInterceptor.CITY);
-		String where = Idu.sqlString("{0}=? or {1}=? order by {2}", WptSpecial.T.CITY, WptSpecial.T.IGNORE_CITY, WptSpecial.T.SORT);
-		specials = WptSpecial.list(WptSpecial.class, where, false, city.getPkey(), OYn.YES.getLine().getKey());
+		specials = specialService.listByCity(city.getPkey());
 		setResult("find/specialList.jsp");
 		return TRENDS;
 	}
-	public List<WptSpecial> getSpecials() {
+	
+	public List<Special> getSpecials() {
 		return specials;
 	}
-	public void setSpecials(List<WptSpecial> specials) {
+	public void setSpecials(List<Special> specials) {
 		this.specials = specials;
 	}
+	
 }

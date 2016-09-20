@@ -25,6 +25,7 @@ import irille.wpt.interceptor.CityInterceptor;
 import irille.wpt.service.impl.CustomFormService;
 import irille.wpt.service.impl.OrderService;
 import irille.wx.wpt.WptOrder;
+import irille.wx.wpt.Wpt.OStatus;
 import irille.wx.wx.WxAccount;
 import irille.wx.wx.WxUser;
 import irille.wxpub.util.MessageUtil;
@@ -32,10 +33,8 @@ import irille.wxpub.util.mch.MchUtil;
 @Controller
 @Scope("prototype")
 public class OrderAction extends AbstractCRUDAction<Order> {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -4912468017257111167L;
+	private static final long serialVersionUID = 1L;
+
 	private static final Log LOG = new Log(OrderAction.class);
 	
 	private String contactMan;
@@ -56,10 +55,14 @@ public class OrderAction extends AbstractCRUDAction<Order> {
 	private Integer comboNumber;
 
 	private String checkCode;
+	
 	@Resource
 	private OrderService orderService;
 	@Resource
 	private CustomFormService customFormService;
+	
+	private Integer restaurantId;
+	private boolean isHistory;
 	
 	@PermitAll
 	@IncludeProperties({"orderid","formid"})
@@ -86,6 +89,7 @@ public class OrderAction extends AbstractCRUDAction<Order> {
 	/**
 	 * 取消订单
 	 */
+	@PermitAll
 	public String cancel() {
 		orderService.cancelOrder(orderid, chkMember());
 		return BEAN;
@@ -93,6 +97,7 @@ public class OrderAction extends AbstractCRUDAction<Order> {
 	/**
 	 * 校验核验码
 	 */
+	@PermitAll
 	public void checkCode() throws IOException{
 		try {
 			orderService.complete(WptOrder.loadUniqueOrderid(false, orderid), checkCode);//TODO
@@ -126,6 +131,7 @@ public class OrderAction extends AbstractCRUDAction<Order> {
 	 * @return
 	 * @throws Exception 
 	 */
+	@PermitAll
 	public void notifyPay() throws Exception {
 		LOG.info("--------------notifyPay():start--------------");
 		PrintWriter writer = getResponse().getWriter();
@@ -165,6 +171,20 @@ public class OrderAction extends AbstractCRUDAction<Order> {
 		LOG.info("--------------notifyPay():end--------------");
 	}
 
+	@PermitAll
+	@IncludeProperties({
+		"\\[\\d+\\]\\.comboName",
+		"\\[\\d+\\]\\.orderid",
+		"\\[\\d+\\]\\.price"
+	})
+	public String listSellerOrder() {
+		if(isHistory) {
+			beans = orderService.listByRestaurant(restaurantId, orderid, OStatus.FINISH);
+		} else {
+			beans = orderService.listByRestaurant(restaurantId, orderid, OStatus.PAYMENT);
+		}
+		return BEANS;
+	}
 	
 	public String getContactMan() {
 		return contactMan;
@@ -256,4 +276,17 @@ public class OrderAction extends AbstractCRUDAction<Order> {
 	public void setCheckCode(String checkCode) {
 		this.checkCode = checkCode;
 	}
+	public Integer getRestaurantId() {
+		return restaurantId;
+	}
+	public void setRestaurantId(Integer restaurantId) {
+		this.restaurantId = restaurantId;
+	}
+	public boolean isHistory() {
+		return isHistory;
+	}
+	public void setHistory(boolean isHistory) {
+		this.isHistory = isHistory;
+	}
+	
 }

@@ -250,22 +250,23 @@ public class OrderService {
 		return wxpay;
 	}
 	
-	public List<Order> list(Integer memberId) {
+	public List<Order> listByMember(Integer memberId) {
 		return orderDao.listByMember(memberId);
+	}
+	public List<Order> listByRestaurant(Integer restaurantId) {
+		return orderDao.listByRestaurant(restaurantId, null, OStatus.PAYMENT.getLine().getKey());
+	}
+	public List<Order> listByRestaurant(Integer restaurantId, String orderid, OStatus status) {
+		return orderDao.listByRestaurant(restaurantId, orderid, status.getLine().getKey());
 	}
 	/**
 	 * 用户申请取消订单
-	 * 私人订单：	
-	 * 	未受理-->关闭
-	 * 套餐订单：
-	 * 	未付款-->关闭
 	 */
-	public void cancelOrder(String orderid, Member member) {//TODO
+	public void cancelOrder(String orderid, Member member) {
 		Order order = orderDao.findByOrderid(orderid);
 		if(!order.getMember().getPkey().equals(member.getPkey())) { 
 			return ;
 		}
-		String msg = "订单已取消";
 		switch (order.getStatus()) {
 		case 0: {//未处理订单，直接关闭
 			order.setStatus(OStatus.CLOSE.getLine().getKey());
@@ -275,30 +276,36 @@ public class OrderService {
 			order.setStatus(OStatus.CLOSE.getLine().getKey());
 			break;
 		}
-		case 2: {//已受理订单，直接关闭
+		case 2: {//未付款订单，直接关闭
+			order.setStatus(OStatus.CLOSE.getLine().getKey());
+			break;
+		}
+		case 3: {//已付定金订单，直接关闭
+			order.setStatus(OStatus.CLOSE.getLine().getKey());
+			break;
+		}
+		case 4: {//已付款订单，设置为申请退款状态
+			order.setStatus(OStatus.REFUND.getLine().getKey());
+			break;
+		}
+		case 5: {//已完成订单，不做处理
+			break;
+		}
+		case 6: {//已关闭订单，不做处理
+			order.setStatus(OStatus.CLOSE.getLine().getKey());
+			break;
+		}
+		case 7: {//正在申请关闭的订单，不做处理
+			order.setStatus(OStatus.CLOSE.getLine().getKey());
+			break;
+		}
+		case 8: {//申请退款订单，不做处理
 			order.setStatus(OStatus.CLOSE.getLine().getKey());
 			break;
 		}
 		}
-		if(order.getStatus().equals(0)) {
-		} else if(order.getStatus().equals(1))
-		if(order.gtIsPt() == true) {
-			if(order.gtStatus() == OStatus.NOTACCEPTED || order.gtStatus() == OStatus.ACCEPTED || order.gtStatus() == OStatus.DEPOSIT) {
-				order.stStatus(OStatus.CLOSE); msg = "订单已取消";
-			} else if(order.gtStatus() == OStatus.PAYMENT) {
-				order.stStatus(OStatus.REFUND); msg = "已申请退款";
-			} else {
-				msg = "订单状态已过期";
-			}
-		} else {
-			if(order.gtStatus() == OStatus.UNPAYMENT) {
-				order.stStatus(OStatus.CLOSE); msg = "订单已取消";
-			} else if(order.gtStatus() == OStatus.PAYMENT) {
-				order.stStatus(OStatus.REFUND); msg = "已申请退款";
-			}
-		}
-		order.upd();
-		throw LOG.err("showMsg", msg);
+		orderDao.update(order);
+		return;
 	}
 	
 	/**

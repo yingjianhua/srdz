@@ -45,4 +45,12 @@ public class CommissionJournalDao extends AbstractDao<CommissionJournal, Integer
 		String where = Idu.sqlString("{0}=?", WptCommissionJournal.T.ORDERID);
 		return Bean.list(WptCommissionJournal.class, where, false, orderid);
 	}
+	
+	public List<CommissionJournal> listByOrderIdOrFanId(Integer memberId, String orderIdOrFanId) {
+		if(orderIdOrFanId != null && !orderIdOrFanId.equals("")) {
+			return list("select * from wpt_commission_journal where wxuser=? and (orderid=? or fans=?)", memberId, orderIdOrFanId);
+		} else {
+			return list("select * from wpt_commission_journal where wxuser=?", memberId);
+		}
+	}
 }

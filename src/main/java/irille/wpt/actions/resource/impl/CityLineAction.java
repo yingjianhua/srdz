@@ -9,10 +9,6 @@ import irille.wpt.bean.CityLine;
 @Controller
 @Scope("prototype")
 public class CityLineAction extends AbstractCRUDAction<CityLine> {
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	private static final Log LOG = new Log(CityLineAction.class);

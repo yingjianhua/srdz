@@ -25,4 +25,7 @@ public class RestaurantDao extends AbstractDao<Restaurant, Integer> {
 		return count("select count(*) from wpt_restaurant where city=?", city);
 	}
 
+	public List<Restaurant> listByManger(Integer account, String manager) {
+		return list("select * from wpt_restaurant where account=? and manger=?", account, manager);
+	}
 }

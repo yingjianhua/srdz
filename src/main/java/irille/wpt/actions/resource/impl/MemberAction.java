@@ -1,38 +1,36 @@
 package irille.wpt.actions.resource.impl;
 
-import java.io.PrintWriter;
 import java.math.BigDecimal;
 
 import javax.annotation.Resource;
 import javax.annotation.security.PermitAll;
 
 import org.apache.struts2.json.annotations.IncludeProperties;
-import org.json.JSONObject;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.wpt.actions.resource.AbstractCRUDAction;
 import irille.wpt.bean.Member;
+import irille.wpt.service.impl.CommissionJournalService;
 import irille.wpt.service.impl.MemberService;
 
 @Controller
 @Scope("prototype")
 public class MemberAction extends AbstractCRUDAction<Member>  {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	@Resource
 	private MemberService memberService;
+	@Resource
+	private CommissionJournalService commissionJournalService;
 	
 	private int level;
 	private int fanId;
+	private String orderIdOrFanId;
 	private BigDecimal amt;
 
 	public String becomeMember() {
-		//TODO memberService.becomeMember(bean);
+		memberService.becomeMember(chkMember(), true);
 		return BEAN;
 	}
 	@PermitAll
@@ -87,6 +85,33 @@ public class MemberAction extends AbstractCRUDAction<Member>  {
 		memberService.cash(amt, chkMember(), getRequest().getRemoteHost());
 		return BEAN;
 	}
+	
+	/**
+	 * 获取佣金流水记录
+	 */
+	@PermitAll
+	@IncludeProperties({
+		"\\[\\d+\\]\\.orderid",
+		"\\[\\d+\\]\\.createTime",
+		"\\[\\d+\\]\\.price",
+		"\\[\\d+\\]\\.commission",
+		"\\[\\d+\\]\\.fan\\.pkey",
+		"\\[\\d+\\]\\.imageUrl",
+		"\\[\\d+\\]\\.nickname",
+		"\\[\\d+\\]\\.status"
+		})
+	public String fanOrders() {
+		object = commissionJournalService.list(chkMember().getPkey(), orderIdOrFanId);
+		return OBJECT;
+	}
+	
+	/**
+	 * 为操作用户所在公众号的所有会员创建二维码
+	 */
+	public void createAllQrcode() {
+		memberService.createAllQrcode(account.getPkey());
+	}
+	
 	public int getLevel() {
 		return level;
 	}
@@ -104,6 +129,12 @@ public class MemberAction extends AbstractCRUDAction<Member>  {
 	}
 	public void setAmt(BigDecimal amt) {
 		this.amt = amt;
+	}
+	public String getOrderIdOrFanId() {
+		return orderIdOrFanId;
+	}
+	public void setOrderIdOrFanId(String orderIdOrFanId) {
+		this.orderIdOrFanId = orderIdOrFanId;
 	}
 	
 }

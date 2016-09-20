@@ -125,7 +125,7 @@ function cancelOrder(clicked) {
 			},
 			success : function(result) {
 				if(result.success) {
-					tipbox("订单已取消", function() {
+					tipbox("提交成功", function() {
 						location.reload();
 					})
 				}

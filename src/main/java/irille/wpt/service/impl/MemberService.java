@@ -1,6 +1,7 @@
 package irille.wpt.service.impl;
 
 import java.math.BigDecimal;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -11,8 +12,6 @@ import org.springframework.stereotype.Service;
 
 import irille.pub.Log;
 import irille.pub.bean.Bean;
-import irille.pub.idu.Idu;
-import irille.wpt.actions.controller.impl.InputContactAction;
 import irille.wpt.bean.CashJournal;
 import irille.wpt.bean.Member;
 import irille.wpt.bean.QrcodeRule;
@@ -20,12 +19,11 @@ import irille.wpt.bean.RedPackRule;
 import irille.wpt.dao.impl.CashJournalDao;
 import irille.wpt.dao.impl.CommissionJournalDao;
 import irille.wpt.dao.impl.MemberDao;
+import irille.wpt.dao.impl.OrderDao;
 import irille.wpt.dao.impl.QrcodeRuleDao;
 import irille.wpt.dao.impl.RedPackRuleDao;
-import irille.wpt.exception.ExtjsException;
 import irille.wpt.tools.Page;
-import irille.wx.wpt.Wpt.OStatus;
-import irille.wx.wpt.WptOrder;
+import irille.wx.wa.WaQRCodeDAO;
 import irille.wx.wx.WxAccount;
 import irille.wxpub.util.mch.SendRedPack;
 
@@ -43,38 +41,80 @@ public class MemberService {
 	private RedPackRuleDao redPackRuleDao;
 	@Resource
 	private CashJournalDao cashJournalDao;
+	@Resource
+	private OrderDao orderDao;
 	
 	
 	public Member findByOpenidInAccount(Integer accountId, String openid) {
 		return memberDao.findByOpenidInAccount(accountId, openid);
 	}
 	
+	/**
+	 * 成为会员
+	 * @param member
+	 * @param force
+	 */
 	public void becomeMember(Member member, Boolean force) {
 		if(member.getIsMember() == true) {
 			//已经是会员，不做处理
 			return;
 		}
 		boolean flag = false;
+		Integer memberId = member.getPkey();
 		QrcodeRule rule = qrcodeRuleDao.get(member.getAccount());
+		
 		if(!force) {
 			BigDecimal single = rule.getSingle();
 			BigDecimal amount = rule.getAmount();
-			String sql = Idu.sqlString("select max({0}) max, sum({0}) sum from {1} where {2}=? and {3}=?", WptOrder.T.PRICE, WptOrder.class, WptOrder.T.WXUSER, WptOrder.T.STATUS);
-			Map<String, Object> resultMap = Bean.executeQueryMap(sql, member.getPkey(), OStatus.FINISH.getLine().getKey())[0];
-			//判断是否满足条件
-			if(resultMap.get("max") != null && resultMap.get("sum") != null) {
-				if(single.compareTo((BigDecimal)resultMap.get("max")) <= 0 || amount.compareTo((BigDecimal)resultMap.get("sum")) <= 0) {
-					flag = true;
-				}
+			if(orderDao.totalConsumptionByMember(memberId).compareTo(amount) >= 0 || orderDao.MaxSingleConsumptionByMember(memberId).compareTo(single) >= 0) {
+				flag = true;
 			}
 		} else {
 			flag = true;
 		}
 		if(flag) {
 			member.setIsMember(true);
-			//createQrcode(user, rule);
+			createQrcode(member, rule);
 		}
 	}
+	/**
+	 * 为一指定会员创建二维码
+	 * @param member
+	 * @param rule
+	 */
+	public void createQrcode(Member member, QrcodeRule rule){
+		Map<String, Object> map = WaQRCodeDAO.obtain(true, member.getPkey()+"", BigDecimal.valueOf(rule.getValidityPeriod()), Bean.get(WxAccount.class, member.getAccount()), member.getPkey()+".jpg");
+		member.setQrcode((String)map.get("imgUrl"));
+		Calendar time = Calendar.getInstance();
+		time.add(Calendar.SECOND, rule.getValidityPeriod()*24*60*60);
+		member.setQrcodeExpireTime(time.getTime());
+		memberDao.update(member);
+	}
+	/**
+	 * 为所有没有二维码的会员创建二维码
+	 */
+	public void createAllQrcode(Integer account) {
+		QrcodeRule rule = qrcodeRuleDao.get(account);
+		List<Member> members = memberDao.listQrcodeIsNull(account);
+		for(int i=1;i<members.size();i++) {
+			System.out.println(i);
+			createQrcode(members.get(i), rule);
+		}
+	}
+	
+	/**
+	 * 检查推广二维码是否达到需要更新的时间，是则更新
+	 * @param member
+	 */
+	public void checkQrcode(Member member) {
+		QrcodeRule rule = qrcodeRuleDao.get(member.getAccount());
+		Calendar calendar = Calendar.getInstance();
+		calendar.add(Calendar.DAY_OF_MONTH, rule.getAheadUpdate());
+		if(member.getQrcodeExpireTime() == null || calendar.getTime().after(member.getQrcodeExpireTime())) {
+			createQrcode(member, rule);
+		}
+	}
+	
 	/**
 	 * 提现
 	 */
@@ -163,4 +203,5 @@ public class MemberService {
 		}
 		return null;
 	}
+
 }

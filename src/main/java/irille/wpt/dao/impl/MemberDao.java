@@ -44,4 +44,8 @@ public class MemberDao extends AbstractDao<Member, Integer> {
 	public List<Member> listByInvited1(Integer invitedId) {
 		return list("select from wx_user where invited1=?", invitedId);
 	}
+	//查询所有二维码为空的会员
+	public List<Member> listQrcodeIsNull(Integer account) {
+		return list("select from wx_user where account=? and qrcode is null", account);
+	}
 }

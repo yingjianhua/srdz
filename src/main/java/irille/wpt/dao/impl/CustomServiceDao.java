@@ -14,4 +14,7 @@ public class CustomServiceDao extends AbstractDao<CustomService, Integer>{
 		return list("select * from wpt_service where pkey in ("+ids+")");
 	}
 
+	public List<CustomService> listByAccount(Integer account) {
+		return list("select * from wpt_service where account=?", account);
+	}
 }

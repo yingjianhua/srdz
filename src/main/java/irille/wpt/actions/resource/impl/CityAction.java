@@ -18,15 +18,14 @@ import irille.wpt.service.impl.CityService;
 @Controller
 @Scope("prototype")
 public class CityAction extends AbstractCRUDAction<City> {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -5574652896687120596L;
+	private static final long serialVersionUID = 1L;
 	
 	private static final Log LOG = new Log(CityAction.class);
+	
 	private int id;
 	private String petitionCity;
 	private List<CityLine> listLine;
+	
 	@Resource
 	private CityService cityService;
 	

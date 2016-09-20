@@ -9,8 +9,8 @@ import irille.wpt.dao.AbstractDao;
 public class ServiceCenDao extends AbstractDao<ServiceCen, Integer>{
 
 	
-	public ServiceCen find(Integer accountId) {
-		return findUnique("select * from wpt_service_cen where account=?", accountId);
+	public ServiceCen find(Integer account) {
+		return findUnique("select * from wpt_service_cen where account=?", account);
 	}
 
 }

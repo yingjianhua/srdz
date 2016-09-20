@@ -74,4 +74,12 @@ public class CommissionJournalService {
 	public BigDecimal countFans1Sale(Integer memberId) {
 		return commissionJournalDao.countFans1Sale(memberId);
 	}
+	/**
+	 * 根据订单ID或者粉丝ID 搜索佣金流水
+	 * @param orderIdOrFanId
+	 * @return
+	 */
+	public List<CommissionJournal> list(Integer memberId, String orderIdOrFanId) {
+		return commissionJournalDao.listByOrderIdOrFanId(memberId, orderIdOrFanId);
+	}
 }

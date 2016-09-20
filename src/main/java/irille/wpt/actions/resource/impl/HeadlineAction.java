@@ -13,17 +13,14 @@ import irille.wpt.service.impl.HeadlineService;
 @Controller
 @Scope("prototype")
 public class HeadlineAction extends AbstractCRUDAction<Headline> {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -3731521594935712289L;
+	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
 	private Integer cityId;
 	private Integer areaId;
 	private Integer banquetId;
 	private Integer accountId;
+	
 	@Resource
 	private HeadlineService headlineService;
 

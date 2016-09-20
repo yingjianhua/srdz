@@ -5,7 +5,6 @@ import java.util.List;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import irille.core.sys.Sys.OEnabled;
 import irille.pub.bean.Bean;
@@ -21,7 +20,6 @@ public class ComboDao extends AbstractDao<Combo, Integer> {
 	private static final String pattern3 = "(\\d+),(\\d+)";
 	private static final String pattern4 = "(\\d+)";
 	
-	@Transactional
 	public List<Combo> pageByCondition(String banquet, String pnum, String budget, String city, String area, String longitude, String latitude, Integer start, Integer limit) {
 		SQLQuery query = createQueryByConditionOrderByDistance(banquet, pnum, budget, city, area, longitude, latitude);
 		if(start != null) {
@@ -35,7 +33,7 @@ public class ComboDao extends AbstractDao<Combo, Integer> {
 	private StringBuilder createQueryString(String banquet, String pnum, String budget, String city, String area) {
 		Session session = sessionFactory.getCurrentSession();
 		StringBuilder where = new StringBuilder();
-		where.append("select c.*,p.* from product_combo c left join product").append(" p on (c.comboId=p.pkey) left join ").append(WptRestaurant.TB.getCodeSqlTb()).append(" r ");
+		where.append("select c.*,p.* from wpt_combo c left join wpt_product").append(" p on (c.comboId=p.pkey) left join ").append(WptRestaurant.TB.getCodeSqlTb()).append(" r ");
 		where.append("on c.").append(WptCombo.T.RESTAURANT).append("=r.").append(WptCombo.T.PKEY).append(" where ");
 		where.append("p.").append(WptCombo.T.ENABLED).append("=").append(OEnabled.TRUE.getLine().getKey());
 		if(pnum != null && !pnum.equals("")) {

@@ -55,7 +55,7 @@ if(amount_sale == 0) {
 }
 function getFans(condition) {
 	$.ajax({
-		url: "resource/user_fanOrders?account.pkey=${account.pkey}",
+		url: "resource/member_fanOrders?account.pkey=${account.pkey}",
 		type: "post",
 		data: {
 			userid: "${sessionScope.openid}",
@@ -71,9 +71,9 @@ function getFans(condition) {
 				content += '<p class="createTime">'+journal.createTime+'</p>';
 				content += '</dt>';
 				content += '<dd>';
-				content += '<img class="head" src="'+journal.head+'">';
-				content += '<p class="nick">'+journal.nick+'</p>';
-				content += '<p class="userId">ID:'+journal.fanid+'</p>';
+				content += '<img class="head" src="'+journal.imageUrl+'">';
+				content += '<p class="nick">'+journal.nickname+'</p>';
+				content += '<p class="userId">ID:'+journal.fan.pkey+'</p>';
 				content += '<p class="orderStatus">'+journal.status+'</p>';
 				content += '<p class="price">￥'+journal.commission+'</p>';
 				content += '</dd>';

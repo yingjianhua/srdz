@@ -16,7 +16,6 @@ import irille.wpt.service.impl.MemberService;
 import irille.wpt.service.impl.OrderService;
 import irille.wpt.service.impl.UserService;
 import irille.wx.wx.WxAccount;
-import irille.wx.wx.WxUser;
 @Controller
 @Scope("prototype")
 public class ShowMeAction extends AbstractControllAction {

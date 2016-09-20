@@ -39,4 +39,7 @@ public class ComboService {
 			comboLineDao.save(comboLine);
 		}
 	}
+	public Combo get(Integer id) {
+		return comboDao.get(id);
+	}
 }

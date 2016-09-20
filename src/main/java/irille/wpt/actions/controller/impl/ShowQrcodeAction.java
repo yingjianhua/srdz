@@ -6,33 +6,32 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.wpt.actions.controller.AbstractControllAction;
-import irille.wpt.service.impl.UserService;
-import irille.wx.wx.WxUser;
+import irille.wpt.bean.Member;
+import irille.wpt.service.impl.MemberService;
 @Controller
 @Scope("prototype")
 public class ShowQrcodeAction extends AbstractControllAction {
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -5169235604893267915L;
+	private static final long serialVersionUID = 1L;
+
+	private Member member;
 	
 	@Resource
-	private UserService userService;
-	private WxUser user;
+	private MemberService memberService;
 
 	@Override
 	public String execute() throws Exception {
-		user = chkWxUser();
-		userService.checkQrcode(user);
+		member = chkMember();
+		memberService.checkQrcode(member);
 		setResult("me/qrcode.jsp");
 		return TRENDS;
 	}
 
-	public WxUser getUser() {
-		return user;
+	public Member getMember() {
+		return member;
 	}
-	public void setUser(WxUser user) {
-		this.user = user;
+
+	public void setMember(Member member) {
+		this.member = member;
 	}
+	
 }
