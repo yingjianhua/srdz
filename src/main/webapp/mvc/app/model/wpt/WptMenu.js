@@ -1,15 +1,20 @@
 Ext.define('mvc.model.wpt.WptMenu',{
 extend : 'Ext.data.Model',
-idProperty : 'bean.pkey',
+idProperty : 'pkey',
 proxy : {
 	type : 'ajax',
 	url : base_path+'/wpt_WptMenu_load'
 },
-fields : [{name : 'bean.pkey',mapping : 'pkey',type : 'int',useNull : true}
-	,{name : 'bean.restaurant',mapping : 'restaurant',type : 'string',outkey : true}
-	,{name : 'bean.name',mapping : 'name',type : 'string'}
-	,{name : 'bean.des',mapping : 'des',type : 'string'}
-	,{name : 'bean.price',mapping : 'price',type : 'float',useNull : true}
-	,{name : 'bean.rowVersion',mapping : 'rowVersion',type : 'int',useNull : true}
+fields : [{name : 'pkey',mapping : 'pkey',type : 'int',useNull : true}
+	,{name : 'restaurant.pkey',mapping : 'restaurant.pkey',type : 'string',outkey : true,
+		 convert: function(value, record) {
+			 if(record.raw.city)
+				 return record.raw.restaurant.pkey+bean_split+record.raw.restaurant.name;
+			 return value;
+         }}
+	,{name : 'name',mapping : 'name',type : 'string'}
+	,{name : 'des',mapping : 'des',type : 'string'}
+	,{name : 'price',mapping : 'price',type : 'float',useNull : true}
+	,{name : 'rowVersion',mapping : 'rowVersion',type : 'int',useNull : true}
 	]
 });

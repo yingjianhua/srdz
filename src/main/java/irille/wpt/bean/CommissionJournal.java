@@ -48,7 +48,7 @@ public class CommissionJournal implements Serializable {
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="wxuser")
-	private Member wxuser;
+	private Member member;
 
 	public CommissionJournal() {
 	}
@@ -141,12 +141,12 @@ public class CommissionJournal implements Serializable {
 		this.status = status;
 	}
 
-	public Member getWxuser() {
-		return this.wxuser;
+	public Member getMember() {
+		return this.member;
 	}
 
-	public void setWxuser(Member wxuser) {
-		this.wxuser = wxuser;
+	public void setMember(Member member) {
+		this.member = member;
 	}
 
 }

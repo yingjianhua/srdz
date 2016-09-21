@@ -158,18 +158,18 @@ mainActs.push({
 							type : 'table',
 							columns : 3
 						},
-						items : [{xtype : 'textfield',name : 'bean.name',fieldLabel : '餐厅名称'}
+						items : [{xtype : 'textfield',name : 'name',fieldLabel : '餐厅名称'}
 							,{
 								xtype : 'beantrigger',
-								name : 'bean.city',
+								name : 'city.pkey',
 								fieldLabel : '城市',
 								bean : 'WptCity',
 								beanType : 'wpt',
 								emptyText : form_empty_text
-							},{xtype : 'textfield',name : 'bean.mobile',fieldLabel : '电话'}
-							,{xtype : 'textfield',name : 'bean.manager',fieldLabel : '店长电话'}
-							,{xtype : 'textfield',name : 'bean.startdate',fieldLabel : '开始营业时间'}
-							,{xtype : 'textfield',name : 'bean.stopdate',fieldLabel : '结束营业时间'}
+							},{xtype : 'textfield',name : 'mobile',fieldLabel : '电话'}
+							,{xtype : 'textfield',name : 'manager',fieldLabel : '店长电话'}
+							,{xtype : 'textfield',name : 'startdate',fieldLabel : '开始营业时间'}
+							,{xtype : 'textfield',name : 'stopdate',fieldLabel : '结束营业时间'}
 							]
 					}]
 			}]
@@ -192,11 +192,11 @@ mainActs.push({
 				                	var DISABLE = 0;
 				                    if (records.length === 1){
 				                        this.mdMain.getForm().loadRecord(records[0]);
-        								this.mdLineTable.store.filter([{'id':'filter', 'property':'restaurant','value':records[0].get('bean.pkey')}]);
-        								this.mdMenuLineTable.store.filter([{'id':'filter', 'property':'restaurant','value':records[0].get('bean.pkey')}]);
-        								this.mdComboLineTable.store.filter([{'id':'filter', 'property':'restaurant','value':records[0].get('bean.pkey')}]);
-        								this.mdCaseLineTable.store.filter([{'id':'filter', 'property':'restaurant','value':records[0].get('bean.pkey')}]);
-        								this.mdBannerLineTable.store.filter([{'id':'filter', 'property':'restaurant','value':records[0].get('bean.pkey')}]);
+        								this.mdLineTable.store.filter([{'id':'filter', 'property':'restaurant','value':records[0].get('pkey')}]);
+        								this.mdMenuLineTable.store.filter([{'id':'filter', 'property':'restaurant','value':records[0].get('pkey')}]);
+        								this.mdComboLineTable.store.filter([{'id':'filter', 'property':'restaurant','value':records[0].get('pkey')}]);
+        								this.mdCaseLineTable.store.filter([{'id':'filter', 'property':'restaurant','value':records[0].get('pkey')}]);
+        								this.mdBannerLineTable.store.filter([{'id':'filter', 'property':'restaurant','value':records[0].get('pkey')}]);
     									if (this.roles.indexOf('upd') != -1)
 											this.down('#'+this.oldId+'upd').setDisabled(false);
 										if (this.roles.indexOf('del') != -1)
@@ -214,7 +214,7 @@ mainActs.push({
 										if (this.roles.indexOf('enableDisable') != -1) {
 											var bEnableDisable = this.down('#'+this.oldId+'enableDisable');
 											bEnableDisable.setDisabled(false);
-											if(records[0].get('bean.enabled') == ENABLE) {
+											if(records[0].get('enabled') == ENABLE) {
 												bEnableDisable.setText("停用");
 												bEnableDisable.setIconCls("unEnabled-icon");
 											} else {
@@ -327,7 +327,7 @@ onDel : function(){
 					var arr=new Array();
 					var arrv = new Array();
 					for(var i = 0; i < selection.length; i++){
-						arr.push(selection[i].get('bean.pkey'));
+						arr.push(selection[i].get('pkey'));
 						arrv.push(selection[i].get(BEAN_VERSION));
 					}
 					Ext.Ajax.request({
@@ -402,7 +402,7 @@ onAddHot : function(){
 					var arr = new Array();
 					var arrv = new Array();
 					for (var i = 0; i < selection.length; i++) {
-						arr.push(selection[i].get('bean.pkey'));
+						arr.push(selection[i].get('pkey'));
 						arrv.push(selection[i].get(BEAN_VERSION));
 					}
 					Ext.Ajax.request({
@@ -435,7 +435,7 @@ onDelHot : function(){
 					var arr = new Array();
 					var arrv = new Array();
 					for (var i = 0; i < selection.length; i++) {
-						arr.push(selection[i].get('bean.pkey'));
+						arr.push(selection[i].get('pkey'));
 						arrv.push(selection[i].get(BEAN_VERSION));
 					}
 					Ext.Ajax.request({
@@ -468,7 +468,7 @@ onAddSpec : function() {
 					var arr = new Array();
 					var arrv = new Array();
 					for (var i = 0; i < selection.length; i++) {
-						arr.push(selection[i].get('bean.pkey'));
+						arr.push(selection[i].get('pkey'));
 						arrv.push(selection[i].get(BEAN_VERSION));
 					}
 					Ext.Ajax.request({
@@ -510,7 +510,7 @@ onEnableDisable:function() {
 	if (selection) {
 		var me = this;
 		Ext.Ajax.request({
-			url : base_path + '/wpt_WptRestaurant_enableDisable?pkey='+selection.get('bean.pkey')+'&rowVersions='+selection.get('bean.rowVersion'),
+			url : base_path + '/wpt_WptRestaurant_enableDisable?pkey='+selection.get('pkey')+'&rowVersions='+selection.get('rowVersion'),
 			success : function(response, options) {
 				var result = Ext.decode(response.responseText);
 				if (result.success) {

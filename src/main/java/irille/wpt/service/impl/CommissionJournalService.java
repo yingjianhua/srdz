@@ -40,7 +40,7 @@ public class CommissionJournalService {
 			journal.setFan(fan);
 			journal.setImageUrl(fan.getImageUrl());
 			journal.setNickname(fan.getNickname());
-			journal.setWxuser(member);
+			journal.setMember(member);
 			journal.setStatus(OStatus.PAYMENT.getLine().getKey());
 			journal.setCreateTime(new Date());
 			journal.setAccount(order.getAccount());

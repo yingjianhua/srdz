@@ -6,7 +6,12 @@ proxy : {
 	url : base_path+'/wpt_WptCollect_load'
 },
 fields : [{name : 'pkey',mapping : 'pkey',type : 'int',useNull : true}
-	,{name : 'wxuser',mapping : 'wxuser',type : 'string',outkey : true}
+	,{name : 'member.pkey',mapping : 'member.pkey',type : 'string',outkey : true,
+		 convert: function(value, record) {
+			 if(record.raw.member)
+				 return record.raw.member.pkey+bean_split+record.raw.member.nickname;
+			 return value;
+         }}
 	,{name : 'headline.pkey',mapping : 'headline.pkey',type : 'string',outkey : true,
 		convert: function(value, record) {
 			 if(record.raw.headline)

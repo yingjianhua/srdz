@@ -7,33 +7,33 @@ roles : '',
 selModel : {selType : 'checkboxmodel'},
 viewConfig : {enableTextSelection : true},
 initComponent : function(){
-this.columns =[{text : '餐厅名称',width : 100,dataIndex : 'bean.name',sortable : true}
-	,{text : '电话',width : 100,dataIndex : 'bean.mobile',sortable : true}
-	,{text : '店长电话',width : 100,dataIndex : 'bean.manager',sortable : true}
-	,{text : '城市',width : 100,dataIndex : 'bean.city',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wpt',mn : 'view.wpt.WptCity.List'}
-	,{text : '区',width : 100,dataIndex : 'bean.cityline',sortable : true,renderer : mvc.Tools.beanRenderer()}
-	,{text : '地址',width : 100,dataIndex : 'bean.addr',sortable : true}
-	,{text : '经度',width : 100,dataIndex : 'bean.longitude',sortable : true}
-	,{text : '纬度',width : 100,dataIndex : 'bean.latitude',sortable : true}
+this.columns =[{text : '餐厅名称',width : 100,dataIndex : 'name',sortable : true}
+	,{text : '电话',width : 100,dataIndex : 'mobile',sortable : true}
+	,{text : '店长电话',width : 100,dataIndex : 'manager',sortable : true}
+	,{text : '城市',width : 100,dataIndex : 'city.pkey',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wpt',mn : 'view.wpt.WptCity.List'}
+	,{text : '区',width : 100,dataIndex : 'cityline.pkey',sortable : true,renderer : mvc.Tools.beanRenderer()}
+	,{text : '地址',width : 100,dataIndex : 'addr',sortable : true}
+	,{text : '经度',width : 100,dataIndex : 'longitude',sortable : true}
+	,{text : '纬度',width : 100,dataIndex : 'latitude',sortable : true}
 	, {
 			text : '图片',
 			width : 100,
-			dataIndex : 'bean.imgUrl',
+			dataIndex : 'imgUrl',
 			sortable : true,
 			renderer : function(v) {
 				return "<img src='../" + v + "'width='90px' height='70px'>"
 			}
 		}
-	,{text : '备注',width : 100,dataIndex : 'bean.rem',sortable : true}
-	,{text : '显示图片',width : 100,dataIndex : 'bean.display',sortable : true,renderer : mvc.Tools.optRenderer('sys','Sys','OYn')}
-	,{text : '描述',width : 100,dataIndex : 'bean.des',sortable : true}
-	,{text : '开始营业时间',width : 100,dataIndex : 'bean.startdate',sortable : true}
-	,{text : '结束营业时间',width : 100,dataIndex : 'bean.stopdate',sortable : true}
-	,{text : '人均消费',width : 100,dataIndex : 'bean.consumption',sortable : true,renderer : mvc.Tools.numberRenderer(),align : 'right'}
-	,{text : 'wifi账号',width : 100,dataIndex : 'bean.wifiaccount',sortable : true}
-	,{text : 'wifi密码',width : 100,dataIndex : 'bean.wifipassword',sortable : true}
-	,{text : '启用',width : 75,dataIndex : 'bean.enabled',sortable : true,renderer : mvc.Tools.optRenderer('sys','Sys','OEnabled')}
-	,{text : '模板',width : 100,dataIndex : 'bean.template',sortable : true,renderer : mvc.Tools.beanRenderer()}
+	,{text : '备注',width : 100,dataIndex : 'rem',sortable : true}
+	,{text : '显示图片',width : 100,dataIndex : 'display',sortable : true,renderer : mvc.Tools.optRenderer('sys','Sys','OYn')}
+	,{text : '描述',width : 100,dataIndex : 'des',sortable : true}
+	,{text : '开始营业时间',width : 100,dataIndex : 'startdate',sortable : true}
+	,{text : '结束营业时间',width : 100,dataIndex : 'stopdate',sortable : true}
+	,{text : '人均消费',width : 100,dataIndex : 'consumption',sortable : true,renderer : mvc.Tools.numberRenderer(),align : 'right'}
+	,{text : 'wifi账号',width : 100,dataIndex : 'wifiaccount',sortable : true}
+	,{text : 'wifi密码',width : 100,dataIndex : 'wifipassword',sortable : true}
+	,{text : '启用',width : 75,dataIndex : 'enabled',sortable : true,renderer : mvc.Tools.optRenderer('sys','Sys','OEnabled')}
+	,{text : '模板',width : 100,dataIndex : 'template',sortable : true,renderer : mvc.Tools.beanRenderer()}
 	];
 		this.store=Ext.create('mvc.store.wpt.WptRestaurant');
 		this.store.remoteFilter = true;
@@ -92,7 +92,7 @@ onDelRow : function(grid, rowIndex){
 					return;
 				var row = me.getStore().getAt(rowIndex);
 				Ext.Ajax.request({
-					url : '/wpt_WptRestaurant_del?pkey='+row.get('bean.pkey')+'&rowVersion='+row.get(BEAN_VERSION),
+					url : '/wpt_WptRestaurant_del?pkey='+row.get('pkey')+'&rowVersion='+row.get(BEAN_VERSION),
 					success : function (response, options) {
 						var result = Ext.decode(response.responseText);
 						if (result.success){

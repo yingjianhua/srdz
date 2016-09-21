@@ -7,7 +7,7 @@ remoteSort : false,
 autoLoad : false,
 proxy : {
 	type : 'ajax',
-	url : base_path+'/wpt_WptComboBanner_list',
+	url : base_path+'/wpt/resource/comboBanner_page',
 	reader : {
 		type : 'json',
 		root : 'items',

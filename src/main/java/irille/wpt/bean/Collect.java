@@ -39,7 +39,7 @@ public class Collect implements Serializable {
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="wxuser")
-	private Member wxuser;
+	private Member member;
 
 	public Collect() {
 	}
@@ -76,12 +76,12 @@ public class Collect implements Serializable {
 		this.headline = headline;
 	}
 
-	public Member getWxuser() {
-		return this.wxuser;
+	public Member getMember() {
+		return this.member;
 	}
 
-	public void setWxuser(Member wxuser) {
-		this.wxuser = wxuser;
+	public void setMember(Member member) {
+		this.member = member;
 	}
 
 }

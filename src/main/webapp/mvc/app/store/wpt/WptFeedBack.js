@@ -7,7 +7,7 @@ remoteSort : false,
 autoLoad : false,
 proxy : {
 	type : 'ajax',
-	url : base_path+'/wpt_WptFeedBack_list',
+	url : base_path+'/wpt/resource/feedback_page',
 	reader : {
 		type : 'json',
 		root : 'items',

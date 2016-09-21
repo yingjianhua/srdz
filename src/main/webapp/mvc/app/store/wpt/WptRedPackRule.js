@@ -7,7 +7,7 @@ remoteSort : false,
 autoLoad : false,
 proxy : {
 	type : 'ajax',
-	url : base_path+'/wpt_WptRedPackRule_list',
+	url : base_path+'/wpt/resource/redPackRule_page',
 	reader : {
 		type : 'json',
 		root : 'items',

@@ -7,7 +7,7 @@ remoteSort : false,
 autoLoad : false,
 proxy : {
 	type : 'ajax',
-	url : base_path+'/wpt_WptHot_list',
+	url : base_path+'/wpt/resource/hot_page',
 	reader : {
 		type : 'json',
 		root : 'items',

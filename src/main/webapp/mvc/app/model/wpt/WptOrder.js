@@ -1,34 +1,51 @@
 Ext.define('mvc.model.wpt.WptOrder',{
 extend : 'Ext.data.Model',
-idProperty : 'bean.pkey',
+idProperty : 'pkey',
 proxy : {
 	type : 'ajax',
 	url : base_path+'/wpt_WptOrder_load'
 },
-fields : [{name : 'bean.pkey',mapping : 'pkey',type : 'int',useNull : true}
-	,{name : 'bean.orderid',mapping : 'orderid',type : 'string'}
-	,{name : 'bean.depPayId',mapping : 'depPayId',type : 'string'}
-	,{name : 'bean.outRefundNo',mapping : 'outRefundNo',type : 'string'}
-	,{name : 'bean.wxuser',mapping : 'wxuser',type : 'string',outkey : true}
-	,{name : 'bean.restaurant',mapping : 'restaurant',type : 'string',outkey : true}
-	,{name : 'bean.banquet',mapping : 'banquet',type : 'string',outkey : true}
-	,{name : 'bean.time',mapping : 'time',type : 'date',dateFormat : 'Y-m-d H:i:s'}
-	,{name : 'bean.number',mapping : 'number',type : 'int',useNull : true}
-	,{name : 'bean.consumption',mapping : 'consumption',type : 'float',useNull : true}
-	,{name : 'bean.city',mapping : 'city',type : 'string',outkey : true}
-	,{name : 'bean.createTime',mapping : 'createTime',type : 'date',dateFormat : 'Y-m-d H:i:s'}
-	,{name : 'bean.status',mapping : 'status',type : 'int',useNull : true}
-	,{name : 'bean.deposit',mapping : 'deposit',type : 'float',useNull : true}
-	,{name : 'bean.residue',mapping : 'residue',type : 'float',useNull : true}
-	,{name : 'bean.contactMan',mapping : 'contactMan',type : 'string'}
-	,{name : 'bean.contactSex',mapping : 'contactSex',type : 'int',useNull : true}
-	,{name : 'bean.contactWay',mapping : 'contactWay',type : 'string'}
-	,{name : 'bean.contactType',mapping : 'contactType',type : 'int',useNull : true}
-	,{name : 'bean.rem',mapping : 'rem',type : 'string'}
-	,{name : 'bean.comboName',mapping : 'comboName',type : 'string'}
-	,{name : 'bean.price',mapping : 'price',type : 'float',useNull : true}
-	,{name : 'bean.isPt',mapping : 'isPt',type : 'int',useNull : true}
-	,{name : 'bean.checkcode',mapping : 'checkcode',type : 'string'}
-	,{name : 'bean.rowVersion',mapping : 'rowVersion',type : 'int',useNull : true}
+fields : [{name : 'pkey',mapping : 'pkey',type : 'int',useNull : true}
+	,{name : 'orderid',mapping : 'orderid',type : 'string'}
+	,{name : 'status',mapping : 'status',type : 'int',useNull : true}
+	,{name : 'restaurant.pkey',mapping : 'restaurant',type : 'string',outkey : true,
+		 convert: function(value, record) {
+			 if(record.raw.restaurant)
+				 return record.raw.restaurant.pkey+bean_split+record.raw.restaurant.name;
+			 return value;
+         }}
+	,{name : 'restaurantName',mapping : 'restaurantName',type : 'string'}
+	,{name : 'combo.pkey',mapping : 'combo',type : 'string',outkey : true,
+		 convert: function(value, record) {
+			 if(record.raw.combo)
+				 return record.raw.combo.pkey+bean_split+record.raw.combo.name;
+			 return value;
+         }}
+	,{name : 'comboName',mapping : 'comboName',type : 'string'}
+	,{name : 'member.pkey',mapping : 'member',type : 'string',outkey : true,
+		 convert: function(value, record) {
+			 if(record.raw.member)
+				 return record.raw.member.pkey+bean_split+record.raw.member.nickname;
+			 return value;
+         }}
+	,{name : 'number',mapping : 'number',type : 'int',useNull : true}
+	,{name : 'deposit',mapping : 'deposit',type : 'float',useNull : true}
+	,{name : 'price',mapping : 'price',type : 'float',useNull : true}
+	,{name : 'payment',mapping : 'payment',type : 'float',useNull : true}
+	,{name : 'time',mapping : 'time',type : 'date',dateFormat : 'Y-m-d H:i'}
+	,{name : 'checkcode',mapping : 'checkcode',type : 'string'}
+	,{name : 'contactMan',mapping : 'contactMan',type : 'string'}
+	,{name : 'contactSex',mapping : 'contactSex',type : 'int',useNull : true}
+	,{name : 'contactType',mapping : 'contactType',type : 'int',useNull : true}
+	,{name : 'contactWay',mapping : 'contactWay',type : 'string'}
+	,{name : 'city.pkey',mapping : 'city',type : 'string',outkey : true,
+		 convert: function(value, record) {
+			 if(record.raw.city)
+				 return record.raw.city.pkey+bean_split+record.raw.city.name;
+			 return value;
+         }}
+	,{name : 'rem',mapping : 'rem',type : 'string'}
+	,{name : 'createTime',mapping : 'createTime',type : 'date',dateFormat : 'Y-m-d H:i:s'}
+	,{name : 'rowVersion',mapping : 'rowVersion',type : 'int',useNull : true}
 	]
 });

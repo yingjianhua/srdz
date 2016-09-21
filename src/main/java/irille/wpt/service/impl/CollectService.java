@@ -38,7 +38,7 @@ public class CollectService {
 			collect = new Collect();
 			collect.setAccount(headline.getAccount());
 			collect.setHeadline(headline);
-			collect.setWxuser(member);
+			collect.setMember(member);
 			collectDao.save(collect);
 		} else {
 			collectDao.delete(collect);

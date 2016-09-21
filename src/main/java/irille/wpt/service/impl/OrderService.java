@@ -333,7 +333,7 @@ public class OrderService {
 		CommissionJournal journal = commissionJournalDao.findByOrderId(order.getOrderid());
 		journal.setStatus(OStatus.FINISH.getLine().getKey());
 		commissionJournalDao.update(journal);
-		Member invited2 = journal.getWxuser();
+		Member invited2 = journal.getMember();
 		invited2.setHistoryCommission(invited2.getHistoryCommission().add(journal.getCommission()));
 		invited2.setCashableCommission(invited2.getCashableCommission().add(journal.getCommission()));
 		memberDao.update(invited2);

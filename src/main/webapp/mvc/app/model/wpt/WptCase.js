@@ -1,14 +1,19 @@
 Ext.define('mvc.model.wpt.WptCase',{
 extend : 'Ext.data.Model',
-idProperty : 'bean.pkey',
+idProperty : 'pkey',
 proxy : {
 	type : 'ajax',
 	url : base_path+'/wpt_WptCase_load'
 },
-fields : [{name : 'bean.pkey',mapping : 'pkey',type : 'int',useNull : true}
-	,{name : 'bean.restaurant',mapping : 'restaurant',type : 'string',outkey : true}
-	,{name : 'bean.imgUrl',mapping : 'imgUrl',type : 'string'}
-	,{name : 'bean.des',mapping : 'des',type : 'string'}
-	,{name : 'bean.rowVersion',mapping : 'rowVersion',type : 'int',useNull : true}
+fields : [{name : 'pkey',mapping : 'pkey',type : 'int',useNull : true}
+	,{name : 'restaurant.pkey',mapping : 'restaurant.pkey',type : 'string',outkey : true,
+		 convert: function(value, record) {
+			 if(record.raw.restaurant)
+				 return record.raw.restaurant.pkey+bean_split+record.raw.restaurant.name;
+			 return value;
+         }}
+	,{name : 'imgUrl',mapping : 'imgUrl',type : 'string'}
+	,{name : 'des',mapping : 'des',type : 'string'}
+	,{name : 'rowVersion',mapping : 'rowVersion',type : 'int',useNull : true}
 	]
 });

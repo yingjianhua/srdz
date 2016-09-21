@@ -7,7 +7,7 @@ remoteSort : false,
 autoLoad : false,
 proxy : {
 	type : 'ajax',
-	url : base_path+'/wpt_WptRestaurantBsn_list',
+	url : base_path+'/wpt/resource/restaurantBsn_page',
 	reader : {
 		type : 'json',
 		root : 'items',

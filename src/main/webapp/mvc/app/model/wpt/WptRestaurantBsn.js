@@ -1,14 +1,24 @@
 Ext.define('mvc.model.wpt.WptRestaurantBsn',{
 extend : 'Ext.data.Model',
-idProperty : 'bean.pkey',
+idProperty : 'pkey',
 proxy : {
 	type : 'ajax',
 	url : base_path+'/wpt_WptRestaurantBsn_load'
 },
-fields : [{name : 'bean.pkey',mapping : 'pkey',type : 'int',useNull : true}
-	,{name : 'bean.restaurant',mapping : 'restaurant',type : 'string',outkey : true}
-	,{name : 'bean.wxuser',mapping : 'wxuser',type : 'string',outkey : true}
-	,{name : 'bean.createTime',mapping : 'createTime',type : 'date',dateFormat : 'Y-m-d H:i:s'}
-	,{name : 'bean.rowVersion',mapping : 'rowVersion',type : 'int',useNull : true}
+fields : [{name : 'pkey',mapping : 'pkey',type : 'int',useNull : true}
+	,{name : 'restaurant.pkey',mapping : 'restaurant.pkey',type : 'string',outkey : true,
+		 convert: function(value, record) {
+			 if(record.raw.restaurant)
+				 return record.raw.restaurant.pkey+bean_split+record.raw.restaurant.name;
+			 return value;
+         }}
+	,{name : 'member.pkey',mapping : 'member.pkey',type : 'string',outkey : true,
+		 convert: function(value, record) {
+			 if(record.raw.member)
+				 return record.raw.member.pkey+bean_split+record.raw.member.nickname;
+			 return value;
+         }}
+	,{name : 'createTime',mapping : 'createTime',type : 'date',dateFormat : 'Y-m-d H:i:s'}
+	,{name : 'rowVersion',mapping : 'rowVersion',type : 'int',useNull : true}
 	]
 });
