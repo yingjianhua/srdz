@@ -100,7 +100,7 @@ public class OrderAction extends AbstractCRUDAction<Order> {
 	@PermitAll
 	public void checkCode() throws IOException{
 		try {
-			orderService.complete(WptOrder.loadUniqueOrderid(false, orderid), checkCode);//TODO
+			orderService.completeOrder(orderid, checkCode);
 			ServletActionContext.getResponse().getWriter().print("ok");
 		} catch (Exp e) {
 			ServletActionContext.getResponse().getWriter().print(e.getLastMessage());

@@ -31,10 +31,6 @@ import irille.wx.wx.WxAccountDAO;
 import irille.wxpub.util.mch.MchUtil;
 @Service
 public class CustomFormService {
-	private static final String pattern1 = ",(\\d+)";
-	private static final String pattern2 = "(\\d+,)";
-	private static final String pattern3 = "(\\d+),(\\d+)";
-	private static final String pattern4 = "(\\d+)";
 	
 	@Resource
 	private CustomFormDao customFormDao;

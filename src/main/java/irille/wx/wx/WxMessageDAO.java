@@ -1,6 +1,5 @@
 package irille.wx.wx;
 
-import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.util.Date;
 
@@ -12,6 +11,7 @@ import irille.pub.Log;
 import irille.pub.PubInfs.IMsg;
 import irille.pub.idu.Idu;
 import irille.pub.idu.IduOther;
+import irille.wpt.bean.CommissionJournal;
 import irille.wx.wpt.WptCommissionJournal;
 import irille.wx.wx.Wx.OWxMsgDir;
 import irille.wx.wx.Wx.OWxMsgType;
@@ -119,6 +119,18 @@ public class WxMessageDAO {
    * 当用户获得一份佣金的时候，提醒用户
    */
   public static void notifyCommissionJournal(String accessToken, String openId, WptCommissionJournal journal){
+	  StringBuilder content = new StringBuilder();
+	  content.append("您的粉丝").append(journal.getNickname());
+	  content.append("在").append(DateFormat.getDateTimeInstance().format(journal.getCreateTime())).append("购物\n");
+	  content.append("订单号：").append(journal.getOrderid()).append("\n");
+	  content.append("订单金额：").append(journal.getPrice()).append("元\n");
+	  content.append("获得分享金额：").append(journal.getCommission()).append("元\n");
+	  sendTextMessage(accessToken, openId, content.toString());
+  }
+  /**
+   * 当用户获得一份佣金的时候，提醒用户
+   */
+  public static void notifyCommissionJournal(String accessToken, String openId, CommissionJournal journal){
 	  StringBuilder content = new StringBuilder();
 	  content.append("您的粉丝").append(journal.getNickname());
 	  content.append("在").append(DateFormat.getDateTimeInstance().format(journal.getCreateTime())).append("购物\n");

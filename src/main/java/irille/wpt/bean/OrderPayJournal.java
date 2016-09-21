@@ -37,6 +37,9 @@ public class OrderPayJournal implements Serializable {
 	@JoinColumn(name="order_id")
 	private Order order;
 	
+	//是否为付款
+	private Boolean income;
+	
 	//商户订单号
 	private String outTradeNo;
 	
@@ -52,6 +55,12 @@ public class OrderPayJournal implements Serializable {
 	
 	//退款成功时间
 	private Date refundTime;
+	
+	//支付途径
+	private Byte payChannel;
+	
+	//收款人
+	private Integer userId;
 	
 	public OrderPayJournal() {
 	}
@@ -70,6 +79,14 @@ public class OrderPayJournal implements Serializable {
 
 	public void setOrder(Order order) {
 		this.order = order;
+	}
+
+	public Boolean getIncome() {
+		return income;
+	}
+
+	public void setIncome(Boolean income) {
+		this.income = income;
 	}
 
 	public String getOutTradeNo() {
@@ -119,5 +136,21 @@ public class OrderPayJournal implements Serializable {
 	public void setRefundTime(Date refundTime) {
 		this.refundTime = refundTime;
 	}
-	
+
+	public Byte getPayChannel() {
+		return payChannel;
+	}
+
+	public void setPayChannel(Byte payChannel) {
+		this.payChannel = payChannel;
+	}
+
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
 }

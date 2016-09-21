@@ -40,14 +40,17 @@ public class CityAction extends AbstractCRUDAction<City> {
 		return OBJECT;
 	}
 	
-	@IncludeProperties({"\\[\\d+\\]\\.pkey","\\[\\d+\\]\\.name"})
+	@IncludeProperties({
+		"pkey",
+		"name"
+	})
 	@PermitAll
 	public String currCity() {
 		City city = (City)getSession().get(CityInterceptor.CITY);
 		if(city != null) {
-			object = city;
+			bean = city;
 		}
-		return OBJECT;
+		return BEAN;
 	}
 	
 	@IncludeProperties({"\\[\\d+\\]\\.pkey","\\[\\d+\\]\\.name"})

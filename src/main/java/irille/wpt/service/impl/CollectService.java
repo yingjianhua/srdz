@@ -33,7 +33,7 @@ public class CollectService {
 		if(headline == null) {
 			throw new ExtjsException("头条不存在");
 		}
-		Collect collect = collectDao.findByHeadlineInUser(member.getPkey(), headlineId);
+		Collect collect = collectDao.findByMemberHeadline(member.getPkey(), headlineId);
 		if (collect == null) {
 			collect = new Collect();
 			collect.setAccount(headline.getAccount());
@@ -53,6 +53,6 @@ public class CollectService {
 	}
 
 	public Collect findByHeadlineMember(Integer headlineId, Integer memberId) {
-		return collectDao.findByHeadlineMember(headlineId, memberId);
+		return collectDao.findByMemberHeadline(memberId, headlineId);
 	}
 }

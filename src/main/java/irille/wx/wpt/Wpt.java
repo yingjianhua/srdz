@@ -114,5 +114,19 @@ public class Wpt extends PackageBase {
 	      return _line;
 	    }
 	  }
+	public enum OPayChannel implements IEnumOpt {
+	    WX(0, "微信"),CASH(1, "现金");
+	    public static String NAME = "状态";
+	    public static OPayChannel DEFAULT = WX; // 定义缺省值
+	    private EnumLine _line;
+	    
+	    private OPayChannel(int key, String name) {
+	      _line = new EnumLine(this, key, name);
+	    }
+	    
+	    public EnumLine getLine() {
+	      return _line;
+	    }
+	  }
   // @formatter:on
 }

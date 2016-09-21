@@ -56,8 +56,8 @@
 	 	</a>
 	 	<div class="double_line"></div>
 		<a href="listOrder?account.pkey=${account.pkey}"><div>我的订单<em class="icon" id="num0">${orderNum }</em></div></a>
-		<a href="listCustomForm?account.pkey=${account.pkey}"><div>私人定制<em class="icon" id="num1">${customFormNum }</em></div></a>	
-		<a href="listCollect?account.pkey=${account.pkey}" style="display:none;"><div>我的收藏<em class="icon" id="num1">${collectNum }</em></div></a>
+		<a href="listCustomForm?account.pkey=${account.pkey}" style="display:none;"><div>私人定制<em class="icon" id="num1">${customFormNum }</em></div></a>	
+		<a href="listCollect?account.pkey=${account.pkey}"><div>我的收藏<em class="icon" id="num1">${collectNum }</em></div></a>
 		<a href="listFans?account.pkey=${account.pkey}"><div>我的粉丝<em class="icon text">${fansNum }人</em></div></a>
 		<a href="listFansSale?account.pkey=${account.pkey}"><div>粉丝销量<p class="icon text">${fansSaleAmount }元</p></div></a>	
 		<div class="double_line"></div>

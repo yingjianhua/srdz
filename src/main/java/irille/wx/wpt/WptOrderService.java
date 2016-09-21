@@ -10,8 +10,6 @@ import irille.pub.inf.IExtName;
 import irille.pub.tb.Fld;
 import irille.pub.tb.IEnumFld;
 import irille.pub.tb.Tb;
-import irille.wx.CmbWx;
-import irille.wx.wx.WxAccount;
 
 public class WptOrderService extends BeanInt<WptOrderService> implements IExtName {
 	private static final Log LOG = new Log(WptOrderService.class);
@@ -19,15 +17,11 @@ public class WptOrderService extends BeanInt<WptOrderService> implements IExtNam
 
 	public enum T implements IEnumFld {// @formatter:off
 		PKEY(TB.crtIntPkey()), // 主键
-		WPTORDER(WptOrder.fldOutKey()),
 		NAME(SYS.NAME__40,"名称"),
 		PRICE(SYS.AMT),
-		CMB_WX(CmbWx.fldFlds()),
-
+		ORDER_ID(WptOrder.fldOutKey()),
 
 		// >>>以下是自动产生的源代码行--内嵌字段定义--请保留此行用于识别>>>
-		ACCOUNT(TB.get("account")),	//公众帐号
-		ROW_VERSION(TB.get("rowVersion")),	//版本
 		// <<<以上是自动产生的源代码行--内嵌字段定义--请保留此行用于识别<<<
 		;
 		// >>>以下是自动产生的源代码行--自动建立的索引定义--请保留此行用于识别>>>
@@ -63,7 +57,6 @@ public class WptOrderService extends BeanInt<WptOrderService> implements IExtNam
 
 	static { // 在此可以加一些对FLD进行特殊设定的代码
 		T.PKEY.getFld().getTb().lockAllFlds();// 加锁所有字段,不可以修改
-		T.CMB_WX.getFld().getTb().lockAllFlds();
 	}
 
 	// @formatter:on
@@ -83,20 +76,16 @@ public class WptOrderService extends BeanInt<WptOrderService> implements IExtNam
 	// >>>以下是自动产生的源代码行--源代码--请保留此行用于识别>>>
   //实例变量定义-----------------------------------------
   private Integer _pkey;	// 编号  INT
-  private Integer _wptorder;	// 订单 <表主键:WptOrder>  INT
   private String _name;	// 名称  STR(40)
   private BigDecimal _price;	// 金额  DEC(16,2)
-  private Integer _account;	// 公众帐号 <表主键:WxAccount>  INT
-  private Short _rowVersion;	// 版本  SHORT
+  private Integer _orderId;	// 订单 <表主键:WptOrder>  INT
 
 	@Override
   public WptOrderService init(){
 		super.init();
-    _wptorder=null;	// 订单 <表主键:WptOrder>  INT
     _name=null;	// 名称  STR(40)
     _price=ZERO;	// 金额  DEC(16,2)
-    _account=null;	// 公众帐号 <表主键:WxAccount>  INT
-    _rowVersion=0;	// 版本  SHORT
+    _orderId=null;	// 订单 <表主键:WptOrder>  INT
     return this;
   }
 
@@ -106,23 +95,6 @@ public class WptOrderService extends BeanInt<WptOrderService> implements IExtNam
   }
   public void setPkey(Integer pkey){
     _pkey=pkey;
-  }
-  public Integer getWptorder(){
-    return _wptorder;
-  }
-  public void setWptorder(Integer wptorder){
-    _wptorder=wptorder;
-  }
-  public WptOrder gtWptorder(){
-    if(getWptorder()==null)
-      return null;
-    return (WptOrder)get(WptOrder.class,getWptorder());
-  }
-  public void stWptorder(WptOrder wptorder){
-    if(wptorder==null)
-      setWptorder(null);
-    else
-      setWptorder(wptorder.getPkey());
   }
   public String getName(){
     return _name;
@@ -136,28 +108,22 @@ public class WptOrderService extends BeanInt<WptOrderService> implements IExtNam
   public void setPrice(BigDecimal price){
     _price=price;
   }
-  public Integer getAccount(){
-    return _account;
+  public Integer getOrderId(){
+    return _orderId;
   }
-  public void setAccount(Integer account){
-    _account=account;
+  public void setOrderId(Integer orderId){
+    _orderId=orderId;
   }
-  public WxAccount gtAccount(){
-    if(getAccount()==null)
+  public WptOrder gtOrderId(){
+    if(getOrderId()==null)
       return null;
-    return (WxAccount)get(WxAccount.class,getAccount());
+    return (WptOrder)get(WptOrder.class,getOrderId());
   }
-  public void stAccount(WxAccount account){
-    if(account==null)
-      setAccount(null);
+  public void stOrderId(WptOrder orderId){
+    if(orderId==null)
+      setOrderId(null);
     else
-      setAccount(account.getPkey());
-  }
-  public Short getRowVersion(){
-    return _rowVersion;
-  }
-  public void setRowVersion(Short rowVersion){
-    _rowVersion=rowVersion;
+      setOrderId(orderId.getPkey());
   }
 
 	// <<<以上是自动产生的源代码行--源代码--请保留此行用于识别<<<

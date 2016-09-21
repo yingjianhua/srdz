@@ -1,7 +1,6 @@
 package irille.wpt.service.impl;
 
 import java.math.BigDecimal;
-import java.sql.ResultSet;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,12 +18,12 @@ import org.springframework.stereotype.Service;
 import irille.pub.Log;
 import irille.pub.Str;
 import irille.pub.bean.Bean;
-import irille.pub.bean.BeanBase;
-import irille.pub.idu.Idu;
 import irille.wpt.bean.City;
 import irille.wpt.bean.Combo;
 import irille.wpt.bean.ComboLine;
+import irille.wpt.bean.CommissionJournal;
 import irille.wpt.bean.CustomService;
+import irille.wpt.bean.DistributionRule;
 import irille.wpt.bean.Member;
 import irille.wpt.bean.Order;
 import irille.wpt.bean.OrderCustomService;
@@ -35,7 +34,10 @@ import irille.wpt.bean.ServiceCen;
 import irille.wpt.bean.WxTips;
 import irille.wpt.dao.impl.ComboDao;
 import irille.wpt.dao.impl.ComboLineDao;
+import irille.wpt.dao.impl.CommissionJournalDao;
 import irille.wpt.dao.impl.CustomServiceDao;
+import irille.wpt.dao.impl.DistributionRuleDao;
+import irille.wpt.dao.impl.MemberDao;
 import irille.wpt.dao.impl.OrderDao;
 import irille.wpt.dao.impl.OrderDetailDao;
 import irille.wpt.dao.impl.OrderPayJournalDao;
@@ -47,14 +49,11 @@ import irille.wpt.pay.WXPay;
 import irille.wpt.tools.Constant;
 import irille.wpt.tools.SmsTool;
 import irille.wx.wpt.Wpt.OContactStatus;
+import irille.wx.wpt.Wpt.OPayChannel;
 import irille.wx.wpt.Wpt.OStatus;
-import irille.wx.wpt.WptOrder;
-import irille.wx.wpt.WptOrderService;
-import irille.wx.wpt.WptServiceCen;
-import irille.wx.wpt.WptWxTips;
 import irille.wx.wx.WxAccount;
 import irille.wx.wx.WxAccountDAO;
-import irille.wx.wx.WxUser;
+import irille.wx.wx.WxMessageDAO;
 import irille.wxpub.util.mch.MchUtil;
 import irille.wxpub.util.mch.UnifiedOrder;
 @Service
@@ -69,7 +68,13 @@ public class OrderService {
 	private DistributionRuleService distributionRuleService;
 	@Resource
 	private QrcodeRuleService qrcodeRuleService;
+	@Resource
+	private CommissionJournalService commissionJournalService;
+	@Resource
+	private MemberService memberService;
 	
+	@Resource
+	private MemberDao memberDao;
 	@Resource
 	private ComboDao comboDao;
 	@Resource
@@ -86,6 +91,10 @@ public class OrderService {
 	private CustomServiceDao serviceDao;
 	@Resource
 	private ServiceCenDao serviceCenDao;
+	@Resource
+	private DistributionRuleDao distributionRuleDao;
+	@Resource
+	private CommissionJournalDao commissionJournalDao;
 	@Resource
 	private WxTipsDao wxTipsDao;
 	
@@ -204,6 +213,8 @@ public class OrderService {
 		payJournal.setOrder(order);
 		payJournal.setCreateTime(new Date());
 		payJournal.setPrice(needPay);
+		payJournal.setIncome(true);
+		payJournal.setPayChannel(OPayChannel.WX.getLine().getKey());
 		payJournal.setOutTradeNo(order.getPkey()+ORDERID_FORMAT.format(new Date()));
 		orderPayJournalDao.save(payJournal);
 		
@@ -249,16 +260,7 @@ public class OrderService {
 		wxpay.setPayPaySign(MchUtil.md5(buffer.toString()));
 		return wxpay;
 	}
-	
-	public List<Order> listByMember(Integer memberId) {
-		return orderDao.listByMember(memberId);
-	}
-	public List<Order> listByRestaurant(Integer restaurantId) {
-		return orderDao.listByRestaurant(restaurantId, null, OStatus.PAYMENT.getLine().getKey());
-	}
-	public List<Order> listByRestaurant(Integer restaurantId, String orderid, OStatus status) {
-		return orderDao.listByRestaurant(restaurantId, orderid, status.getLine().getKey());
-	}
+
 	/**
 	 * 用户申请取消订单
 	 */
@@ -307,50 +309,38 @@ public class OrderService {
 		orderDao.update(order);
 		return;
 	}
-	
-	/**
-	 * 用户申请取消订单
-	 * 私人订单：	
-	 * 	未受理-->关闭
-	 * 套餐订单：
-	 * 	未付款-->关闭
-	 */
-	public void cancelOrder(WptOrder order) {
-		String msg = "订单已取消";
-		if(order.gtIsPt() == true) {
-			if(order.gtStatus() == OStatus.NOTACCEPTED || order.gtStatus() == OStatus.ACCEPTED || order.gtStatus() == OStatus.DEPOSIT) {
-				order.stStatus(OStatus.CLOSE); msg = "订单已取消";
-			} else if(order.gtStatus() == OStatus.PAYMENT) {
-				order.stStatus(OStatus.REFUND); msg = "已申请退款";
-			} else {
-				msg = "订单状态已过期";
-			}
-		} else {
-			if(order.gtStatus() == OStatus.UNPAYMENT) {
-				order.stStatus(OStatus.CLOSE); msg = "订单已取消";
-			} else if(order.gtStatus() == OStatus.PAYMENT) {
-				order.stStatus(OStatus.REFUND); msg = "已申请退款";
-			}
-		}
-		order.upd();
-		throw LOG.err("showMsg", msg);
-	}
 
-	public WptOrder complete(WptOrder order, String checkCode) {
-		if(order.gtStatus() != OStatus.PAYMENT){
+	/**
+	 * 订单完成
+	 * @param order
+	 * @param checkCode
+	 * @return
+	 */
+	public Order completeOrder(String orderid, String checkCode) {
+		Order order = orderDao.findByOrderid(orderid);
+		if(!order.getStatus().equals(OStatus.PAYMENT.getLine().getKey())){
 			throw LOG.err("statusErr", "订单未付款");
 		} else if(!order.getCheckcode().equals(checkCode)) {
 			throw LOG.err("validCheckCode", "核验码不正确");
 		} 
-		order.stStatus(OStatus.FINISH);
-		order.upd();
-		//假如订单完成
-		if(order.gtStatus() == OStatus.FINISH) {
-			qrcodeRuleService.create(order.gtWxuser(), false);
-			distributionRuleService.orderBeenComplete(order);
-		}
+		order.setStatus(OStatus.FINISH.getLine().getKey());
+		orderDao.update(order);
+		
+		//判断用户是否符合成为会员条件，若符合，则成为会员并产生推广二维码
+		memberService.becomeMember(order.getMember(), false);
+		
+		//更新佣金流水的状态，并给邀请人增加佣金以及历史佣金
+		CommissionJournal journal = commissionJournalDao.findByOrderId(order.getOrderid());
+		journal.setStatus(OStatus.FINISH.getLine().getKey());
+		commissionJournalDao.update(journal);
+		Member invited2 = journal.getWxuser();
+		invited2.setHistoryCommission(invited2.getHistoryCommission().add(journal.getCommission()));
+		invited2.setCashableCommission(invited2.getCashableCommission().add(journal.getCommission()));
+		memberDao.update(invited2);
+		
 		return order;
 	}
+
 	/**
 	 * 生成订单发送消息给管理人员
 	 */
@@ -395,50 +385,6 @@ public class OrderService {
 	}
 
 	/**
-	 * 生成订单发送消息给管理人员
-	 */
-	@SuppressWarnings("unchecked")
-	public void doSent(WptOrder order){
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-		final WptServiceCen serviceCen = WptServiceCen.load(WptServiceCen.class, order.getAccount());
-		StringBuilder c = new StringBuilder("【享食光】私人订制 单生成,内容如下:\n");
-		c.append("订单号:").append(order.getOrderid()).append("\n");
-		c.append(" 餐厅 :").append(order.getRestaurant()!=null?order.gtRestaurant().getName():"无").append("\n");
-		c.append(" 用餐时间:").append(format.format(order.getTime())).append("\n");
-		c.append(" 联系人:").append(order.getContactMan()).append("\n");
-		c.append(" ").append(order.gtContactType().getLine().getName()).append(":").append(order.getContactWay()).append("\n");
-		c.append(" 宴会类型:").append(order.gtBanquet() != null?order.gtBanquet().getExtName():"无").append("\n");
-		c.append("人均预算:").append(order.getConsumption() != null?order.getConsumption():"无").append("\n");
-		c.append("人数:").append(order.getNumber() != null?order.getNumber():"无").append("\n");
-		c.append(" 服务 :[");
-		for( WptOrderService service : (List<WptOrderService>)Idu.getLines(WptOrderService.T.WPTORDER, order.getPkey())) {
-			c.append(service.getName()).append(" ");
-		}
-		c.append("]").append("\n");
-		if(order.getComboName() != null) {
-			c.append(" 套餐:").append(order.getComboName()).append("\n");
-		}
-		if(order.getRem() != null) {
-			c.append(" 备注:").append(order.getRem()).append("\n");
-		}
-		for(String line : serviceCen.getSmsTips().split(",")){
-			smsTool.doSent(line, c.toString());
-		}
-		
-		String sql = Idu.sqlString("select r.* from {0} r right join {1} s on (r.{2}=s.{3}) where s.{4}=?", WxUser.class, WptWxTips.class, WxUser.T.PKEY, WptWxTips.T.PKEY, WptWxTips.T.ACCOUNT);
-		List<WxUser> users = BeanBase.list(sql, new BeanBase.ResultSetBean<WxUser>() {
-			@Override
-			public WxUser tran(ResultSet set) {
-				WxUser bean = Bean.newInstance(WxUser.class);
-				bean.fromResultSet(set);
-				return bean;
-			}
-		}, order.getAccount());
-		String accessToken = WxAccountDAO.getAccessToken(order.gtAccount());
-		smsTool.doSend(accessToken, users, c.toString());
-	}
-	
-	/**
 	 * 支付完成后，微信回调通知，其中参数不做校验
 	 * @param outTradeNo 商户订单号
 	 * @param totalFee 支付金额，单位为分
@@ -446,34 +392,61 @@ public class OrderService {
 	 * @return
 	 */
 	public boolean paidCallback(String outTradeNo, String totalFee, String time_end) {
-		LOG.info("--------------paidCallback():start--------------");
-		WptOrder order = WptOrder.chkUniqueDepPayId(false, outTradeNo);
-		if(order == null) {
-			//假如不是定金的支付回调,说明是普通订单的支付或者是私人订制订单的余款支付，总之订单会进入已付款状态
-			order = WptOrder.chkUniqueOrderid(false, outTradeNo);
+		OrderPayJournal payJournal = orderPayJournalDao.findByOutTradeNo(outTradeNo);
+		payJournal.setPayTime(new Date());
+		orderPayJournalDao.update(payJournal);
+		
+		Order order = payJournal.getOrder();
+		order.setPayment(order.getPayment().add(payJournal.getPrice()));
+		if(order.getPayment().compareTo(order.getPayment()) >= 0) {//说明订单所有金额已支付完成,订单进入已付款状态,生成核验码,并进行分销处理
 			order.setCheckcode(MchUtil.createRandomNum(6));
-			order.stStatus(OStatus.PAYMENT);
-			LOG.info("orderId:"+order.getOrderid());
-			LOG.info("支付完成");
-			//根据分销规则进行处理
-			distributionRuleService.orderBeenPaid(order.gtWxuser(), order);
-			//订单完成
-			if(order.gtIsPt()) {
-				//若是私人订制的订单，需要设置余款的支付方式为微信支付
-				order.stResidueIsWxpay(true);
-			}
-		} else {
-			LOG.info("orderId:"+order.getOrderid());
-			LOG.info("支付定金");
-			//是支付定金的回调
-			order.stDepositIsWxpay(true);
-			order.stStatus(OStatus.DEPOSIT);
+			order.setStatus(OStatus.PAYMENT.getLine().getKey());
+			distribution(order.getMember(), order);
+		} else if(order.getPayment().compareTo(order.getDeposit()) >= 0) {//支付定金成功，订单进入已付定金状态
+			order.setStatus(OStatus.DEPOSIT.getLine().getKey());
 		}
-		order.upd();
-		LOG.info("--------------paidCallback():end--------------");
+		orderDao.update(order);
 		return true;
 	}
 	
+	/**
+	 * 用户订单进入已付款状态，根据分销规则，新增或更新佣金流水以及微信通知邀请人
+	 */
+	private void distribution(Member member, Order order){
+		if(!order.getStatus().equals(OStatus.PAYMENT.getLine().getKey())) {
+			LOG.err("statusErr", ""+order.getStatus());
+			return;
+		}
+		DistributionRule distributionRule = distributionRuleDao.get(member.getAccount());
+		CommissionJournal journal2 = null;
+		Member invited2 = null;
+		
+		if((invited2 = member.getInvited2()) != null) {
+			LOG.info("invited2:"+invited2);
+			BigDecimal commission2 = order.getPrice().multiply(BigDecimal.valueOf(distributionRule.getBonus2())).divide(BigDecimal.valueOf(100), 2, BigDecimal.ROUND_FLOOR);
+			//添加或者更新佣金流水
+			commissionJournalService.saveOrUpdate(order, member, commission2, invited2);
+		}
+		
+		try {
+			//邀请人获得佣金，提醒用户
+			String accessToken = WxAccountDAO.getAccessToken(Bean.get(WxAccount.class, member.getAccount()));
+			WxMessageDAO.notifyCommissionJournal(accessToken, invited2.getOpenId(), journal2);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		LOG.info("--------------orderBeenPaid():end--------------");
+	}
+	
+	public List<Order> listByMember(Integer memberId) {
+		return orderDao.listByMember(memberId);
+	}
+	public List<Order> listByRestaurant(Integer restaurantId) {
+		return orderDao.listByRestaurant(restaurantId, null, OStatus.PAYMENT.getLine().getKey());
+	}
+	public List<Order> listByRestaurant(Integer restaurantId, String orderid, OStatus status) {
+		return orderDao.listByRestaurant(restaurantId, orderid, status.getLine().getKey());
+	}
 	public Order findByOrderid(String orderid) {
 		return orderDao.findByOrderid(orderid);
 	}

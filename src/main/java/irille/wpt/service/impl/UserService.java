@@ -13,12 +13,9 @@ import org.springframework.stereotype.Service;
 import irille.pub.Log;
 import irille.pub.bean.Bean;
 import irille.pub.idu.Idu;
-import irille.wx.wpt.WptCashJournal;
 import irille.wx.wpt.WptCommissionJournal;
 import irille.wx.wpt.WptQrcodeRule;
-import irille.wx.wpt.WptRedPackRule;
 import irille.wx.wx.WxUser;
-import irille.wxpub.util.mch.SendRedPack;
 @Service
 public class UserService {
 	public static final Log LOG = new Log(UserService.class);

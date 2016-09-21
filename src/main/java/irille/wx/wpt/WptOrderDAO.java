@@ -80,7 +80,7 @@ public class WptOrderDAO {
 		public void after() {
 			super.after();
 			delLine(getLines(WptOrderLine.T.WPTORDER, getB().getPkey()));
-			delLine(getLines(WptOrderService.T.WPTORDER, getB().getPkey()));
+			delLine(getLines(WptOrderService.T.ORDER_ID, getB().getPkey()));
 		}
 	}
 	private static final String notify_pay_url = ServletActionContext.getServletContext().getInitParameter("webPath")+"/wpt/resource/order_notifyPay";

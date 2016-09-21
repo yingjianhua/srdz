@@ -75,11 +75,8 @@ public class WptOrderAction extends ActionWx<WptOrder,WptOrderAction> {
 		WptOrder order=WptOrder.load(WptOrder.class, getBean().getPkey());
 		List<WptOrderService> orderService = getListService();
 		if(orderService == null)
-			orderService = new ArrayList();
-		for(WptOrderService line : orderService){
-			line.setAccount(order.getAccount());
-		}
-		Idu.updLine(order, orderService, WptOrderService.T.WPTORDER.getFld());
+			orderService = new ArrayList<WptOrderService>();
+		Idu.updLine(order, orderService, WptOrderService.T.ORDER_ID.getFld());
 	}
 
 	/**
