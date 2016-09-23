@@ -20,6 +20,8 @@ fields : [{name : 'pkey',mapping : 'pkey',type : 'int',useNull : true}
 				 return record.raw.invited2.pkey+bean_split+record.raw.invited2.nickname;
 			 return value;
          }}
+	,{name : 'historyCommission',mapping : 'historyCommission',type : 'float',useNull : true}
+	,{name : 'cashableCommission',mapping : 'cashableCommission',type : 'float',useNull : true}
 	,{name : 'unionId',mapping : 'unionId',type : 'string'}
 	,{name : 'nickname',mapping : 'nickname',type : 'string'}
 	,{name : 'sex',mapping : 'sex',type : 'int',useNull : true}

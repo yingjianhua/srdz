@@ -7,15 +7,15 @@ viewConfig : {enableTextSelection : true},
 oneTdCount : 4,
 searchField : null,
 initComponent : function(){
-this.columns = [{text : '城市',width : 100,dataIndex : 'bean.city',sortable : true,renderer : mvc.Tools.beanRenderer()}
-	,{text : '区域',width : 100,dataIndex : 'bean.cityline',sortable : true,renderer : mvc.Tools.beanRenderer()}
-	,{text : '主题',width : 100,dataIndex : 'bean.banquet',sortable : true,renderer : mvc.Tools.beanRenderer()}
-	,{text : '标题',width : 100,dataIndex : 'bean.title',sortable : true}
-	,{text : '图片',width : 100,dataIndex : 'bean.imgUrl',sortable : true,renderer:function(v) {return "<img src='../"+v+"' height='70px'>"}}
-	,{text : '时间',width : 100,dataIndex : 'bean.date',sortable : true,renderer : Ext.util.Format.dateRenderer('Y-m-d')}
-	,{text : '链接',width : 100,dataIndex : 'bean.url',sortable : true}
-	,{text : '置顶',width : 100,dataIndex : 'bean.top',sortable : true,renderer : mvc.Tools.optRenderer('sys','Sys','OYn')}
-	,{text : '排序',width : 100,dataIndex : 'bean.sort',sortable : true}
+this.columns = [{text : '城市',width : 100,dataIndex : 'city.pkey',sortable : true,renderer : mvc.Tools.beanRenderer()}
+	,{text : '区域',width : 100,dataIndex : 'cityline.pkey',sortable : true,renderer : mvc.Tools.beanRenderer()}
+	,{text : '主题',width : 100,dataIndex : 'banquet.pkey',sortable : true,renderer : mvc.Tools.beanRenderer()}
+	,{text : '标题',width : 100,dataIndex : 'title',sortable : true}
+	,{text : '图片',width : 100,dataIndex : 'imgUrl',sortable : true,renderer:function(v) {return "<img src='../"+v+"' height='70px'>"}}
+	,{text : '时间',width : 100,dataIndex : 'date',sortable : true,renderer : Ext.util.Format.dateRenderer('Y-m-d')}
+	,{text : '链接',width : 100,dataIndex : 'url',sortable : true}
+	,{text : '置顶',width : 100,dataIndex : 'top',sortable : true,renderer : mvc.Tools.optRenderer('sys','Sys','OYn')}
+	,{text : '排序',width : 100,dataIndex : 'sort',sortable : true}
 	];
 		this.store=Ext.create('mvc.store.wpt.WptTop');this.dockedItems = [{
 		dock : 'top',
@@ -73,7 +73,7 @@ listeners : {
 onTriggerList : function(){
 			var selection = this.getView().getSelectionModel().getSelection()[0];
 		if (selection){
-			this.fireEvent('trigger', selection.get('bean.pkey') + bean_split + selection.get('bean.title'), null);
+			this.fireEvent('trigger', selection.get('pkey') + bean_split + selection.get('title'), null);
 		}
 }
 });

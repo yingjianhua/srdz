@@ -15,7 +15,8 @@ initComponent : function(){
 			formFlds.push
 ({
 		xtype : 'hiddenfield',
-		name : 'bean.pkey'
+		name : 'bean.pkey',
+		id : 'pkey'
 	});
 	this.items = [{
 		layout : {

@@ -19,12 +19,12 @@ mainActs.push({
 		handler : this.onToDo,
 		disabled : this.lock
 	});
-this.columns = [{text : '内容',width : 100,dataIndex : 'bean.content',sortable : true}
-	,{text : '联系方式',width : 100,dataIndex : 'bean.contactWay',sortable : true}
-	,{text : '联系方式类型',width : 100,dataIndex : 'bean.contactType',sortable : true,renderer : mvc.Tools.optRenderer('wpt','Wpt','OContactStatus')}
-	,{text : '处理人',width : 75,dataIndex : 'bean.handleMan',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'sys',mn : 'view.sys.SysUser.List'}
-	,{text : '处理时间',width : 140,dataIndex : 'bean.handleTime',sortable : true,renderer : Ext.util.Format.dateRenderer('Y-m-d H:i:s')}
-	,{text : '已处理',width : 100,dataIndex : 'bean.isHandle',sortable : true,renderer : mvc.Tools.optRenderer('sys','Sys','OYn')}
+this.columns = [{text : '内容',width : 100,dataIndex : 'content',sortable : true}
+	,{text : '联系方式',width : 100,dataIndex : 'contactWay',sortable : true}
+	,{text : '联系方式类型',width : 100,dataIndex : 'contactType',sortable : true,renderer : mvc.Tools.optRenderer('wpt','Wpt','OContactStatus')}
+	,{text : '处理人',width : 75,dataIndex : 'handleMan',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'sys',mn : 'view.sys.SysUser.List'}
+	,{text : '处理时间',width : 140,dataIndex : 'handleTime',sortable : true,renderer : Ext.util.Format.dateRenderer('Y-m-d H:i:s')}
+	,{text : '已处理',width : 100,dataIndex : 'isHandle',sortable : true,renderer : function(v) {return v?"是":"否"}}
 	];
 		if (mainActs.length > 0)
 			this.tbar=mainActs;
@@ -125,7 +125,7 @@ onDel : function(){
 					var arr=new Array();
 					var arrv = new Array();
 					for(var i = 0; i < selection.length; i++){
-						arr.push(selection[i].get('bean.pkey'));
+						arr.push(selection[i].get('pkey'));
 						arrv.push(selection[i].get(BEAN_VERSION));
 					}
 					Ext.Ajax.request({
@@ -157,7 +157,7 @@ onDelRow : function(grid, rowIndex){
 				if (btn != 'yes')
 					return;
 				Ext.Ajax.request({
-					url : base_path+'/wpt_WptFeedBack_del?pkey='+row.get('bean.pkey')+'&rowVersion='+row.get(BEAN_VERSION),
+					url : base_path+'/wpt_WptFeedBack_del?pkey='+row.get('pkey')+'&rowVersion='+row.get(BEAN_VERSION),
 					success : function (response, options) {
 						var result = Ext.decode(response.responseText);
 						if (result.success){
@@ -212,11 +212,15 @@ onToDo : function(){
 					var arr = new Array();
 					var arrv = new Array();
 					for (var i = 0; i < selection.length; i++) {
-						arr.push(selection[i].get('bean.pkey'));
+						arr.push(selection[i].get('pkey'));
 						arrv.push(selection[i].get(BEAN_VERSION));
 					}
 					Ext.Ajax.request({
-						url : base_path + '/wpt_WptFeedBack_toDo?pkeys='+arr.toString()+'&rowVersions='+arrv.toString(),
+						url : base_path + '/wpt/resource/feedback_toDo?',
+						params : {
+							"bean.pkey" : selection[0].get('pkey'),
+							"bean.rowVersion" : selection[0].get(BEAN_VERSION)
+						},
 						success : function(date) {
 							if (date != '') {
 								me.getStore().reload();

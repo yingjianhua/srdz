@@ -8,13 +8,13 @@ selModel : {selType : 'checkboxmodel'},
 viewConfig : {enableTextSelection : true},
 initComponent : function(){
 		this.columns =[
-		       {text : '标题',width : 100,dataIndex : 'bean.title',sortable : true},
-               {text : '城市',width : 100,dataIndex : 'bean.city',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wpt',mn : 'view.wpt.WptCity.List'},
-               {text : '忽略城市',width : 100,dataIndex : 'bean.ignoreCity',sortable : true,renderer : mvc.Tools.optRenderer('sys','Sys','OYn')},
-               {text : '顶图',width : 150,dataIndex : 'bean.topImgUrl',sortable : true,renderer:function(v) {return "<img src='../"+v+"'width='125px' height='70px'>"}},
-               {text : '底图',width : 130,dataIndex : 'bean.baseImgUrl',sortable : true,renderer:function(v) {return "<img src='../"+v+"'width='105px' height='70px'>"}},
-               {text : '介绍',width : 100,dataIndex : 'bean.intro',sortable : true},
-               {text : '排序',width : 100,dataIndex : 'bean.sort',sortable : true}
+		       {text : '标题',width : 100,dataIndex : 'title',sortable : true},
+               {text : '城市',width : 100,dataIndex : 'city.pkey',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wpt',mn : 'view.wpt.WptCity.List'},
+               {text : '忽略城市',width : 100,dataIndex : 'ignoreCity',sortable : true,renderer : mvc.Tools.optRenderer('sys','Sys','OYn')},
+               {text : '顶图',width : 150,dataIndex : 'topImgUrl',sortable : true,renderer:function(v) {return "<img src='../"+v+"'width='125px' height='70px'>"}},
+               {text : '底图',width : 130,dataIndex : 'baseImgUrl',sortable : true,renderer:function(v) {return "<img src='../"+v+"'width='105px' height='70px'>"}},
+               {text : '介绍',width : 100,dataIndex : 'intro',sortable : true},
+               {text : '排序',width : 100,dataIndex : 'sort',sortable : true}
         ];
 		this.store=Ext.create('mvc.store.wpt.WptSpecial');
 		this.store.remoteFilter = true;
@@ -65,7 +65,7 @@ onDelRow : function(grid, rowIndex){
 					return;
 				var row = me.getStore().getAt(rowIndex);
 				Ext.Ajax.request({
-					url : '/wpt_WptSpecial_del?pkey='+row.get('bean.pkey')+'&rowVersion='+row.get(BEAN_VERSION),
+					url : '/wpt_WptSpecial_del?pkey='+row.get('pkey')+'&rowVersion='+row.get(BEAN_VERSION),
 					success : function (response, options) {
 						var result = Ext.decode(response.responseText);
 						if (result.success){

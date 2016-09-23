@@ -7,9 +7,9 @@ viewConfig : {enableTextSelection : true},
 oneTdCount : 4,
 searchField : null,
 initComponent : function(){
-this.columns = [{text : '城市',width : 100,dataIndex : 'bean.city',sortable : true,renderer : mvc.Tools.beanRenderer()}
-	,{text : '餐厅',width : 100,dataIndex : 'bean.restaurant',sortable : true,renderer : mvc.Tools.beanRenderer()}
-	,{text : '排序',width : 100,dataIndex : 'bean.sort',sortable : true}
+this.columns = [{text : '城市',width : 100,dataIndex : 'city.pkey',sortable : true,renderer : mvc.Tools.beanRenderer()}
+	,{text : '餐厅',width : 100,dataIndex : 'restaurant.pkey',sortable : true,renderer : mvc.Tools.beanRenderer()}
+	,{text : '排序',width : 100,dataIndex : 'sort',sortable : true}
 	];
 		this.store=Ext.create('mvc.store.wpt.WptHot');this.dockedItems = [{
 		dock : 'top',
@@ -67,7 +67,7 @@ listeners : {
 onTriggerList : function(){
 			var selection = this.getView().getSelectionModel().getSelection()[0];
 		if (selection){
-			this.fireEvent('trigger', selection.get('bean.pkey') + bean_split + selection.get('bean.restaurant'), null);
+			this.fireEvent('trigger', selection.get('pkey') + bean_split + selection.get('restaurant'), null);
 		}
 }
 });

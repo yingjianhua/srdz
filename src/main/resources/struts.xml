@@ -54,21 +54,42 @@
 		<action name="cityLine_*" class="cityLineAction" method="{1}"></action>
 		<action name="petitionCity_*" class="petitionCityAction" method="{1}"></action>
 		<action name="order_*" class="orderAction" method="{1}"></action>
-		<action name="headline_*" class="headlineAction" method="{1}"></action>
+		<action name="customForm_*" class="customFormAction" method="{1}"></action>
 		<action name="collect_*" class="collectAction" method="{1}"></action>
 		<action name="feedback_*" class="feedbackAction" method="{1}"></action>
 		<action name="seller_*" class="sellerAction" method="{1}"></action>
+		<action name="special_*" class="specialAction" method="{1}"></action>
+		<action name="specialLine_*" class="specialLineAction" method="{1}"></action>
+		<action name="headline_*" class="headlineAction" method="{1}"></action>
+		<action name="hot_*" class="hotAction" method="{1}"></action>
+		<action name="distributionRule_*" class="distributionRuleAction" method="{1}"></action>
+		<action name="qrcodeRule_*" class="qrcodeRuleAction" method="{1}"></action>
+		<action name="redPackRule_*" class="redPackRuleAction" method="{1}"></action>
+		<action name="customService_*" class="customServiceAction" method="{1}"></action>
 		<action name="order_confirmOrder" class="orderAction" method="confirmOrder">
 			<interceptor-ref name="tokenSession" />
 			<interceptor-ref name="wpt_resource" />
 		</action>
+		<action name="orderDetail_*" class="orderDetailAction" method="{1}"></action>
+		<action name="orderCustomService_*" class="orderCustomServiceAction" method="{1}"></action>
+		<action name="orderPayJournal_*" class="orderPayJournalAction" method="{1}"></action>
 		<action name="user_*" class="userAction" method="{1}"></action>
 		<action name="member_*" class="memberAction" method="{1}"></action>
+		<action name="cashJournal_*" class="cashJournalAction" method="{1}"></action>
+		<action name="commissionJournal_*" class="commissionJournalAction" method="{1}"></action>
 		<action name="combo_*" class="comboAction" method="{1}"></action>
+		<action name="comboBanner_*" class="comboBannerAction" method="{1}"></action>
 		<action name="comboLine_*" class="comboLineAction" method="{1}"></action>
-		<action name="restaurantMenu_*" class="restaurantMenuAction" method="{1}"></action>
-		<action name="serviceCenter_*" class="serviceCenterAction" method="{1}"></action>
 		<action name="restaurant_*" class="restaurantAction" method="{1}"></action>
+		<action name="restaurantMenu_*" class="restaurantMenuAction" method="{1}"></action>
+		<action name="restaurantCase_*" class="restaurantCaseAction" method="{1}"></action>
+		<action name="restaurantLine_*" class="restaurantLineAction" method="{1}"></action>
+		<action name="restaurantBanner_*" class="restaurantBannerAction" method="{1}"></action>
+		<action name="restaurantBsn_*" class="restaurantBsnAction" method="{1}"></action>
+		<action name="restaurantTemplate_*" class="restaurantTemplateAction" method="{1}"></action>
+		<action name="banquet_*" class="banquetAction" method="{1}"></action>
+		<action name="serviceCenter_*" class="serviceCenterAction" method="{1}"></action>
+		<action name="wxTips_*" class="wxTipsAction" method="{1}"></action>
 	</package>
 	
 	<package name="wpt" namespace="/wpt" extends="wpt_resource">

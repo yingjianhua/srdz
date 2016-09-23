@@ -17,15 +17,17 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
+import irille.wpt.extjs.IComboTrigger;
+
 
 /**
  * The persistent class for the restaurant database table.
- * 
+ * 餐厅
  */
 @Entity
 @Table(name="wpt_restaurant")
 @NamedQuery(name="Restaurant.findAll", query="SELECT r FROM Restaurant r")
-public class Restaurant implements Serializable {
+public class Restaurant implements Serializable,IComboTrigger {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -308,4 +310,14 @@ public class Restaurant implements Serializable {
 		this.wifipassword = wifipassword;
 	}
 
+	@Override
+	public String getValue() {
+		return getPkey().toString();
+	}
+
+	@Override
+	public String getText() {
+		return getName();
+	}
+	
 }

@@ -7,15 +7,15 @@ viewConfig : {enableTextSelection : true},
 oneTdCount : 4,
 searchField : null,
 initComponent : function(){
-this.columns = [{text : '餐厅',width : 100,dataIndex : 'bean.restaurant',sortable : true,renderer : mvc.Tools.beanRenderer()}
-	,{text : '名称',width : 100,dataIndex : 'bean.name',sortable : true}
-	,{text : '图片',width : 100,dataIndex : 'bean.imgUrl',sortable : true,renderer:function(v) {return "<img src='../"+v+"'width='90px' height='70px'>"}}
-	,{text : '描述',width : 100,dataIndex : 'bean.des',sortable : true}
-	,{text : '价格',width : 100,dataIndex : 'bean.price',sortable : true,renderer : mvc.Tools.numberRenderer(),align : 'right'}
-	,{text : '最少人数',width : 100,dataIndex : 'bean.numberMin',sortable : true}
-	,{text : '最大人数',width : 100,dataIndex : 'bean.numberMax',sortable : true}
-	,{text : '使用日期',width : 100,dataIndex : 'bean.serviceDate',sortable : true}
-	,{text : '使用时段',width : 100,dataIndex : 'bean.serviceTime',sortable : true}
+this.columns = [{text : '餐厅',width : 100,dataIndex : 'restaurant',sortable : true,renderer : mvc.Tools.beanRenderer()}
+	,{text : '名称',width : 100,dataIndex : 'name',sortable : true}
+	,{text : '图片',width : 100,dataIndex : 'imgUrl',sortable : true,renderer:function(v) {return "<img src='../"+v+"'width='90px' height='70px'>"}}
+	,{text : '描述',width : 100,dataIndex : 'des',sortable : true}
+	,{text : '价格',width : 100,dataIndex : 'price',sortable : true,renderer : mvc.Tools.numberRenderer(),align : 'right'}
+	,{text : '最少人数',width : 100,dataIndex : 'numberMin',sortable : true}
+	,{text : '最大人数',width : 100,dataIndex : 'numberMax',sortable : true}
+	,{text : '使用日期',width : 100,dataIndex : 'serviceDate',sortable : true}
+	,{text : '使用时段',width : 100,dataIndex : 'serviceTime',sortable : true}
 	];
 		this.store=Ext.create('mvc.store.wpt.WptCombo');this.dockedItems = [{
 		dock : 'top',
@@ -73,7 +73,7 @@ listeners : {
 onTriggerList : function(){
 			var selection = this.getView().getSelectionModel().getSelection()[0];
 		if (selection){
-			this.fireEvent('trigger', selection.get('bean.pkey') + bean_split + selection.get('bean.name'), null);
+			this.fireEvent('trigger', selection.get('pkey') + bean_split + selection.get('name'), null);
 		}
 }
 });

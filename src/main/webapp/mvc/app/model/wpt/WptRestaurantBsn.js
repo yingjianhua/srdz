@@ -18,7 +18,7 @@ fields : [{name : 'pkey',mapping : 'pkey',type : 'int',useNull : true}
 				 return record.raw.member.pkey+bean_split+record.raw.member.nickname;
 			 return value;
          }}
-	,{name : 'createTime',mapping : 'createTime',type : 'date',dateFormat : 'Y-m-d H:i:s'}
+	,{name : 'createTime',mapping : 'createTime',type : 'date',dateFormat : 'Y-m-dTH:i:s'}
 	,{name : 'rowVersion',mapping : 'rowVersion',type : 'int',useNull : true}
 	]
 });

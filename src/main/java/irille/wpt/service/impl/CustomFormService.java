@@ -14,7 +14,7 @@ import irille.wpt.bean.City;
 import irille.wpt.bean.CustomForm;
 import irille.wpt.bean.CustomService;
 import irille.wpt.bean.Member;
-import irille.wpt.bean.ServiceCen;
+import irille.wpt.bean.ServiceCenter;
 import irille.wpt.bean.WxTips;
 import irille.wpt.dao.impl.BanquetDao;
 import irille.wpt.dao.impl.CityLineDao;
@@ -93,7 +93,7 @@ public class CustomFormService {
 	 */
 	public void doSent(CustomForm form){
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-		final ServiceCen serviceCen = serviceCenDao.find(form.getAccount());
+		final ServiceCenter serviceCen = serviceCenDao.find(form.getAccount());
 		StringBuilder c = new StringBuilder("【享食光】私人订制 表单生成,内容如下:\n");
 		c.append("表单号：").append(form.getFormid()).append("\n");
 		c.append("宴会类型：").append(form.getBanquet()).append("\n");

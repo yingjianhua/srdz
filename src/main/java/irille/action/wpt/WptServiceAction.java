@@ -1,19 +1,19 @@
 package irille.action.wpt;
 
 import irille.action.ActionWx;
-import irille.wx.wpt.WptService;
+import irille.wx.wpt.WptCustomService;
 
-public class WptServiceAction extends ActionWx<WptService,WptServiceAction> {
-	public WptService getBean() {
+public class WptServiceAction extends ActionWx<WptCustomService,WptServiceAction> {
+	public WptCustomService getBean() {
 		return _bean;
 	}
 
-	public void setBean(WptService bean) {
+	public void setBean(WptCustomService bean) {
 		this._bean = bean;
 	}
 
 	@Override
 	public Class beanClazz() {
-		return WptService.class;
+		return WptCustomService.class;
 	}
 }

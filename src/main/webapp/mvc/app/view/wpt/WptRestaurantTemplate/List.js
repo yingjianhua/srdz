@@ -37,9 +37,9 @@ mainActs.push({
 		disabled : this.lock
 	});
 this.columns = [
-                {text : '名字',width : 100,dataIndex : 'bean.name',sortable : true }, 
-                {text : '图片',width : 100,dataIndex : 'bean.imgUrl',sortable : true,renderer : function(v) {return "<img src='../" + v + "'width='90px' height='70px'>"}},
-                {text : '路径',width : 100,dataIndex : 'bean.path',sortable : true }
+                {text : '名字',width : 100,dataIndex : 'name',sortable : true }, 
+                {text : '图片',width : 100,dataIndex : 'imgUrl',sortable : true,renderer : function(v) {return "<img src='../" + v + "'width='90px' height='70px'>"}},
+                {text : '路径',width : 100,dataIndex : 'path',sortable : true }
                 ];
 		if (mainActs.length > 0)
 			this.tbar=mainActs;
@@ -145,7 +145,7 @@ onDel : function(){
 					var arr=new Array();
 					var arrv = new Array();
 					for(var i = 0; i < selection.length; i++){
-						arr.push(selection[i].get('bean.pkey'));
+						arr.push(selection[i].get('pkey'));
 						arrv.push(selection[i].get(BEAN_VERSION));
 					}
 					Ext.Ajax.request({
@@ -177,7 +177,7 @@ onDelRow : function(grid, rowIndex){
 				if (btn != 'yes')
 					return;
 				Ext.Ajax.request({
-					url : base_path+'/wpt_WptRestaurantTemplate_del?pkey='+row.get('bean.pkey')+'&rowVersion='+row.get(BEAN_VERSION),
+					url : base_path+'/wpt_WptRestaurantTemplate_del?pkey='+row.get('pkey')+'&rowVersion='+row.get(BEAN_VERSION),
 					success : function (response, options) {
 						var result = Ext.decode(response.responseText);
 						if (result.success){

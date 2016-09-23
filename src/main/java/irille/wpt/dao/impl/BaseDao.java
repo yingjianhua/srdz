@@ -20,7 +20,7 @@ public class BaseDao extends AbstractDao<Object, Integer> {
 	public <E> List<E> list(Class<E> entity, Integer start, Integer limit, String where) {
 		System.out.println("BaseDao.list.where:"+where);
 		Session session = sessionFactory.getCurrentSession();
-		Query query = session.createQuery("from "+entity.getSimpleName()+" where "+where);
+		Query query = session.createQuery("from "+entity.getSimpleName()+" this where "+where);
 		if(start!=null) {
 			query.setFirstResult(start);
 		}
@@ -32,8 +32,8 @@ public class BaseDao extends AbstractDao<Object, Integer> {
 	public <E> Page<E> page(Class<E> entity, Integer start, Integer limit, String where) {
 		System.out.println("BaseDao.page.where:"+where);
 		Session session = sessionFactory.getCurrentSession();
-		Query query = session.createQuery("from "+entity.getSimpleName()+" where "+where);
-		Long total = (Long)session.createQuery("select count(*) from "+entity.getSimpleName()+" where "+where).uniqueResult();
+		Query query = session.createQuery("from "+entity.getSimpleName()+" this where "+where);
+		Long total = (Long)session.createQuery("select count(*) from "+entity.getSimpleName()+" this where "+where).uniqueResult();
 		if(start!=null) {
 			query.setFirstResult(start);
 		}

@@ -97,7 +97,7 @@ mainActs.push({
 							type : 'table',
 							columns : 3
 						},
-						items : [{xtype : 'textfield',name : 'bean.title',fieldLabel : '标题'}
+						items : [{xtype : 'textfield',name : 'title',fieldLabel : '标题'}
 							]
 					}]
 			}]
@@ -118,7 +118,7 @@ mainActs.push({
 				                selectionchange: function(model, records) {
 				                    if (records.length === 1){
 				                        this.mdMain.getForm().loadRecord(records[0]);
-        								this.mdLineTable.store.filter([{'id':'filter', 'property':'special','value':records[0].get('bean.pkey')}]);
+        								this.mdLineTable.store.filter([{'id':'filter', 'property':'special','value':records[0].get('pkey')}]);
     									if (this.roles.indexOf('upd') != -1)
 											this.down('#'+this.oldId+'upd').setDisabled(false);
 										if (this.roles.indexOf('del') != -1)
@@ -183,7 +183,7 @@ onDel : function(){
 					var arr=new Array();
 					var arrv = new Array();
 					for(var i = 0; i < selection.length; i++){
-						arr.push(selection[i].get('bean.pkey'));
+						arr.push(selection[i].get('pkey'));
 						arrv.push(selection[i].get(BEAN_VERSION));
 					}
 					Ext.Ajax.request({

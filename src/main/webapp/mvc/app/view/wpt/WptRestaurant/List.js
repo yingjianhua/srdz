@@ -270,7 +270,7 @@ mainActs.push({
 					iconCls : 'tab-user-icon'
 				})
 			},{
-				xtype : Ext.create('mvc.view.wpt.WptRestaurant.ListLineWptCase',{
+				xtype : Ext.create('mvc.view.wpt.WptRestaurant.ListLineWptRestaurantCase',{
 					title : '案例',
 					itemId : this.oldId+'caselinetable',
 					iconCls : 'tab-user-icon'

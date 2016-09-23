@@ -18,10 +18,7 @@ initComponent : function(){
 			handler : this.onSet,
 		}];
 	}
-	this.columns = [
-	                {text : '一级邀请人提成百分比',width : 200,dataIndex : 'bean.bonus1',sortable : true},
-	                {text : '二级邀请人提成百分比',width : 200,dataIndex : 'bean.bonus2',sortable : true}
-	                ];
+	this.columns = [{text : '默认二级邀请人提成百分比',width : 200,dataIndex : 'bonus2',sortable : true}];
 	this.store=Ext.create('mvc.store.wpt.WptDistributionRule'); 
 	this.store.remoteFilter = true;
 	this.store.proxy.filterParam = 'filter';

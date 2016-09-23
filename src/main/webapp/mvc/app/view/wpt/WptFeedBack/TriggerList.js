@@ -7,12 +7,12 @@ viewConfig : {enableTextSelection : true},
 oneTdCount : 4,
 searchField : null,
 initComponent : function(){
-this.columns = [{text : '内容',width : 100,dataIndex : 'bean.content',sortable : true}
-	,{text : '联系方式',width : 100,dataIndex : 'bean.contactWay',sortable : true}
-	,{text : '联系方式类型',width : 100,dataIndex : 'bean.contactType',sortable : true,renderer : mvc.Tools.optRenderer('wpt','Wpt','OContactStatus')}
-	,{text : '处理人',width : 75,dataIndex : 'bean.handleMan',sortable : true,renderer : mvc.Tools.beanRenderer()}
-	,{text : '处理时间',width : 140,dataIndex : 'bean.handleTime',sortable : true,renderer : Ext.util.Format.dateRenderer('Y-m-d H:i:s')}
-	,{text : '已处理',width : 100,dataIndex : 'bean.isHandle',sortable : true,renderer : mvc.Tools.optRenderer('sys','Sys','OYn')}
+this.columns = [{text : '内容',width : 100,dataIndex : 'content',sortable : true}
+	,{text : '联系方式',width : 100,dataIndex : 'contactWay',sortable : true}
+	,{text : '联系方式类型',width : 100,dataIndex : 'contactType',sortable : true,renderer : mvc.Tools.optRenderer('wpt','Wpt','OContactStatus')}
+	,{text : '处理人',width : 75,dataIndex : 'handleMan',sortable : true,renderer : mvc.Tools.beanRenderer()}
+	,{text : '处理时间',width : 140,dataIndex : 'handleTime',sortable : true,renderer : Ext.util.Format.dateRenderer('Y-m-d H:i:s')}
+	,{text : '已处理',width : 100,dataIndex : 'isHandle',sortable : true,renderer : mvc.Tools.optRenderer('sys','Sys','OYn')}
 	];
 		this.store=Ext.create('mvc.store.wpt.WptFeedBack');this.dockedItems = [{
 		dock : 'top',
@@ -70,7 +70,7 @@ listeners : {
 onTriggerList : function(){
 			var selection = this.getView().getSelectionModel().getSelection()[0];
 		if (selection){
-			this.fireEvent('trigger', selection.get('bean.pkey') + bean_split + selection.get('bean.contactWay'), null);
+			this.fireEvent('trigger', selection.get('pkey') + bean_split + selection.get('contactWay'), null);
 		}
 }
 });

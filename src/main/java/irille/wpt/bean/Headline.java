@@ -35,8 +35,10 @@ public class Headline implements Serializable {
 	private Integer pkey;
 
 	private Integer account;
-
-	private Integer banquet;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="banquet")
+	private Banquet banquet;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="city")
@@ -85,11 +87,11 @@ public class Headline implements Serializable {
 		this.account = account;
 	}
 
-	public Integer getBanquet() {
+	public Banquet getBanquet() {
 		return this.banquet;
 	}
 
-	public void setBanquet(Integer banquet) {
+	public void setBanquet(Banquet banquet) {
 		this.banquet = banquet;
 	}
 

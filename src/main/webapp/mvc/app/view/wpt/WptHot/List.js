@@ -35,9 +35,9 @@ mainActs.push({
 		handler : this.onDel,
 		disabled : this.lock
 	});
-this.columns = [{text : '城市',width : 100,dataIndex : 'bean.city',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wpt',mn : 'view.wpt.WptCity.List'}
-	,{text : '餐厅',width : 100,dataIndex : 'bean.restaurant',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wpt',mn : 'view.wpt.WptRestaurant.List'}
-	,{text : '排序',width : 100,dataIndex : 'bean.sort',sortable : true}
+this.columns = [{text : '城市',width : 100,dataIndex : 'city.pkey',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wpt',mn : 'view.wpt.WptCity.List'}
+	,{text : '餐厅',width : 100,dataIndex : 'restaurant.pkey',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wpt',mn : 'view.wpt.WptRestaurant.List'}
+	,{text : '排序',width : 100,dataIndex : 'sort',sortable : true}
 	];
 		if (mainActs.length > 0)
 			this.tbar=mainActs;
@@ -101,7 +101,10 @@ listeners : {
 }
 },
 onSaveRecord : function(form, data){
-		this.store.insert(0,data);
+	console.log(data)
+	var bean = Ext.create('mvc.model.wpt.WptHot', data);
+	console.log(bean)
+		this.store.insert(0,Ext.create('mvc.model.wpt.WptHot', data));
 		this.getView().select(0);
 		Ext.example.msg(msg_title, msg_text);	
 },
@@ -114,7 +117,9 @@ onIns : function(){
 },
 onUpdateRecord : function(form, data){
 		var selection = this.getView().getSelectionModel().getSelection()[0];
+		console.log(data)
 		var bean = Ext.create('mvc.model.wpt.WptHot', data);
+		console.log(bean)
 		Ext.apply(selection.data,bean.data);
 		selection.commit();
 		this.getView().select(selection);
@@ -152,11 +157,15 @@ onDel : function(){
 					var arr=new Array();
 					var arrv = new Array();
 					for(var i = 0; i < selection.length; i++){
-						arr.push(selection[i].get('bean.pkey'));
+						arr.push(selection[i].get('pkey'));
 						arrv.push(selection[i].get(BEAN_VERSION));
 					}
 					Ext.Ajax.request({
-						url : base_path+'/wpt_WptHot_delMulti?pkeys='+arr.toString()+'&rowVersions='+arrv.toString(),
+						url : base_path+'/wpt/resource/hot_del',
+						params : {
+							"bean.pkey" : selection[0].get("pkey"),
+							"bean.rowVersion" : selection[0].get("rowVersion")
+						},
 						success : function (response, options) {
 							var result = Ext.decode(response.responseText);
 							if (result.success){
@@ -184,7 +193,7 @@ onDelRow : function(grid, rowIndex){
 				if (btn != 'yes')
 					return;
 				Ext.Ajax.request({
-					url : base_path+'/wpt_WptHot_del?pkey='+row.get('bean.pkey')+'&rowVersion='+row.get(BEAN_VERSION),
+					url : base_path+'/wpt_WptHot_del?pkey='+row.get('pkey')+'&rowVersion='+row.get(BEAN_VERSION),
 					success : function (response, options) {
 						var result = Ext.decode(response.responseText);
 						if (result.success){

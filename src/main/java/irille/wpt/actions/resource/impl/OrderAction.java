@@ -12,7 +12,6 @@ import javax.annotation.security.PermitAll;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.json.annotations.IncludeProperties;
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -24,10 +23,8 @@ import irille.wpt.bean.Order;
 import irille.wpt.interceptor.CityInterceptor;
 import irille.wpt.service.impl.CustomFormService;
 import irille.wpt.service.impl.OrderService;
-import irille.wx.wpt.WptOrder;
 import irille.wx.wpt.Wpt.OStatus;
 import irille.wx.wx.WxAccount;
-import irille.wx.wx.WxUser;
 import irille.wxpub.util.MessageUtil;
 import irille.wxpub.util.mch.MchUtil;
 @Controller

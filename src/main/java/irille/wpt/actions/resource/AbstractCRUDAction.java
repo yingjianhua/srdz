@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import irille.pub.Str;
 import irille.tools.GenericsUtils;
 import irille.wpt.actions.AbstractWptAction;
+import irille.wpt.extjs.ComboTriggerBuilder;
+import irille.wpt.extjs.IComboTrigger;
 import irille.wpt.service.impl.BaseService;
 import irille.wpt.tools.Page;
 import irille.wpt.tools.SqlBuilder;
@@ -53,6 +55,7 @@ public abstract class AbstractCRUDAction<T> extends AbstractWptAction {
 	//查询条件
 	private String filter;
 	private String query;
+	private String sarg1;//comboTrigger的查询条件
 	
 	@Resource
 	@Qualifier("baseService")
@@ -73,8 +76,7 @@ public abstract class AbstractCRUDAction<T> extends AbstractWptAction {
 	}
 	public String del() {
 		service.delete(bean);
-		object = "success";
-		return OBJECT;
+		return BEAN;
 	}
 	
 	//@MaxLevel(4)
@@ -90,6 +92,20 @@ public abstract class AbstractCRUDAction<T> extends AbstractWptAction {
 		String where = getFilter()==null?crtSqlByQuery():crtSqlByFilter();
 		pages = service.page(entityClass, start, limit, where);
 		return PAGES;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public String getComboTrigger() throws JSONException {
+		String where = crtQueryAll();
+		if (!Str.isEmpty(getSarg1()))
+			where += " and (" + getSarg1() + ")";
+		System.out.println(where);
+		beans = service.list(entityClass, null, null, where);
+		if(IComboTrigger.class.isAssignableFrom(entityClass)) {
+			ComboTriggerBuilder builder = new ComboTriggerBuilder((List<IComboTrigger>)beans);
+			object = builder.build();
+		}
+		return OBJECT;
 	}
 	
 	private String crtSqlByFilter() throws JSONException {
@@ -215,4 +231,11 @@ public abstract class AbstractCRUDAction<T> extends AbstractWptAction {
 	public void setQuery(String query) {
 		this.query = query;
 	}
+	public String getSarg1() {
+		return sarg1;
+	}
+	public void setSarg1(String sarg1) {
+		this.sarg1 = sarg1;
+	}
+	
 }

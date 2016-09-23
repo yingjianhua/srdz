@@ -15,6 +15,7 @@ public class Banquet implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer pkey;
 
 	private Integer account;
@@ -22,7 +23,7 @@ public class Banquet implements Serializable {
 	private String name;
 
 	@Column(name="row_version")
-	private Short rowVersion;
+	private Short rowVersion = 1;
 
 	public Banquet() {
 	}

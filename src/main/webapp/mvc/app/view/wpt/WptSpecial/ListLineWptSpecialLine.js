@@ -5,8 +5,8 @@ loadMask : true,
 multiSelect : true,
 viewConfig : {enableTextSelection : true},
 initComponent : function(){
-		this.columns = [{text : '餐厅',width : 100,dataIndex : 'bean.restaurant',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wpt',mn : 'view.wpt.WptRestaurant.List'}
-	,{text : '排序',width : 100,dataIndex : 'bean.sort',sortable : true}
+		this.columns = [{text : '餐厅',width : 100,dataIndex : 'restaurant.pkey',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wpt',mn : 'view.wpt.WptRestaurant.List'}
+	,{text : '排序',width : 100,dataIndex : 'sort',sortable : true}
 	];
 		this.store=Ext.create('mvc.store.wpt.WptSpecialLine');
 		this.store.remoteFilter = true;

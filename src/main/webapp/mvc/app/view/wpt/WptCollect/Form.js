@@ -20,11 +20,11 @@ initComponent : function(){
 			formFlds.push
 ({
 		xtype : 'beantrigger',
-		id:'wxuser',
-		name : 'bean.wxuser',
+		id:'member.pkey',
+		name : 'bean.member.pkey',
 		fieldLabel : '关注用户',
-		bean : 'WxUser',
-		beanType : 'wx',
+		bean : 'WptMember',
+		beanType : 'wpt',
 		emptyText : form_empty_text,
 		afterLabelTextTpl : required,
 		allowBlank : false

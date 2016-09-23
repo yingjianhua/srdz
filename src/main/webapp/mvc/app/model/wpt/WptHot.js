@@ -19,6 +19,7 @@ fields : [{name : 'pkey',mapping : 'pkey',type : 'int',useNull : true}
 			 return value;
          }}
 	,{name : 'sort',mapping : 'sort',type : 'int',useNull : true}
+	,{name : 'account',mapping : 'account',type : 'int',useNull : true}
 	,{name : 'rowVersion',mapping : 'rowVersion',type : 'int',useNull : true}
 	]
 });

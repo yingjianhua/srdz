@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 /**
  * The persistent class for the wpt_case database table.
- * 
+ * 餐厅私人订制案例
  */
 @Entity
 @Table(name="wpt_case")

@@ -22,7 +22,7 @@ public class WptFeedBackDAO {
 		@Override
 		public void before() {
 			super.before();
-			WptFeedBack model = WptService.load(WptFeedBack.class, getB().getPkey());
+			WptFeedBack model = WptCustomService.load(WptFeedBack.class, getB().getPkey());
 			PropertyUtils.copyPropertiesWithout(model, getB(), WptFeedBack.T.ACCOUNT);
 			setB(model);
 		}

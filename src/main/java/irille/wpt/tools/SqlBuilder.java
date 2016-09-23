@@ -40,54 +40,54 @@ public class SqlBuilder {
 			params = param.split("##");
 		}
 		if (Str.value(Sys.OOptCht.EMP).equals(params[0]))
-			return fieldName + " IS NULL";
+			return "this." + fieldName + " IS NULL";
 		if (Str.value(Sys.OOptCht.NOEMP).equals(params[0]))
-			return fieldName + " IS NOT NULL";
+			return "this." + fieldName + " IS NOT NULL";
 		if (fieldType.equals(String.class)) {
 			if (Str.value(Sys.OOptCht.INC).equals(params[0]))
-				return fieldName + " like '%" + params[1] + "%'";
+				return "this." + fieldName + " like '%" + params[1] + "%'";
 			if (Str.value(Sys.OOptCht.ST).equals(params[0]))
-				return fieldName + " like '" + params[1] + "%'";
+				return "this." + fieldName + " like '" + params[1] + "%'";
 			if (Str.value(Sys.OOptCht.EQU).equals(params[0]))
-				return fieldName + " = '" + params[1] + "'";
+				return "this." + fieldName + " = '" + params[1] + "'";
 			if (Str.value(Sys.OOptCht.NOEQU).equals(params[0]))
-				return fieldName + " <> '" + params[1] + "'";
+				return "this." + fieldName + " <> '" + params[1] + "'";
 		}
 		if (fieldType.equals(Date.class)) {
 			if (Str.value(Sys.OOptCht.EQU).equals(params[0]))
-				return fieldName + " = '" + params[1] + "'";
+				return "this." + fieldName + " = '" + params[1] + "'";
 			if (Str.value(Sys.OOptCht.NOEQU).equals(params[0]))
-				return fieldName + " <> '" + params[1] + "'";
+				return "this." + fieldName + " <> '" + params[1] + "'";
 			if (Str.value(Sys.OOptCht.GT).equals(params[0]))
-				return fieldName + " > '" + params[1] + "'";
+				return "this." + fieldName + " > '" + params[1] + "'";
 			if (Str.value(Sys.OOptCht.LT).equals(params[0]))
-				return fieldName + " < '" + params[1] + "'";
+				return "this." + fieldName + " < '" + params[1] + "'";
 			if (Str.value(Sys.OOptCht.GE).equals(params[0]))
-				return fieldName + " >= '" + params[1] + "'";
+				return "this." + fieldName + " >= '" + params[1] + "'";
 			if (Str.value(Sys.OOptCht.LE).equals(params[0]))
-				return fieldName + " <= '" + params[1] + "'";
+				return "this." + fieldName + " <= '" + params[1] + "'";
 			if (Str.value(Sys.OOptCht.BTW).equals(params[0])) {
 				if (params.length < 3)
-					return fieldName + " >= '" + params[1] + "'";
+					return "this." + fieldName + " >= '" + params[1] + "'";
 				if (Str.isEmpty(params[1]))
-					return fieldName + " <= '" + params[2] + "'";
-				return fieldName + " >= '" + params[1] + "' AND " + fieldName + " <= '" + params[2]
+					return "this." + fieldName + " <= '" + params[2] + "'";
+				return "this." + fieldName + " >= '" + params[1] + "' AND " + "this." + fieldName + " <= '" + params[2]
 				    + "'";
 			}
 		}
 		if (Str.isNum(params[1])) {
 			if (Str.value(Sys.OOptCht.EQU).equals(params[0]))
-				return fieldName + " = " + params[1];
+				return "this." + fieldName + " = " + params[1];
 			if (Str.value(Sys.OOptCht.NOEQU).equals(params[0]))
-				return fieldName + " <> " + params[1];
+				return "this." + fieldName + " <> " + params[1];
 			if (Str.value(Sys.OOptCht.GT).equals(params[0]))
-				return fieldName + " > " + params[1];
+				return "this." + fieldName + " > " + params[1];
 			if (Str.value(Sys.OOptCht.LT).equals(params[0]))
-				return fieldName + " < " + params[1];
+				return "this." + fieldName + " < " + params[1];
 			if (Str.value(Sys.OOptCht.GE).equals(params[0]))
-				return fieldName + " >= " + params[1];
+				return "this." + fieldName + " >= " + params[1];
 			if (Str.value(Sys.OOptCht.LE).equals(params[0]))
-				return fieldName + " <= " + params[1];
+				return "this." + fieldName + " <= " + params[1];
 		}
 		return ""; //TODO 其它特殊类型暂不考虑
 	}

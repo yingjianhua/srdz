@@ -10,9 +10,12 @@ import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Repository;
 
 import irille.tools.GenericsUtils;
+import irille.wpt.bean.CommissionJournal;
 import irille.wpt.tools.Page;
 
 @Repository
@@ -109,5 +112,17 @@ public abstract class AbstractDao<T,ID extends Serializable> {
 			query.setParameter(i, params[i]);
 		}
 		return query;
+	}
+	
+	public static void main(String[] args) {
+		BeanFactory bf = new ClassPathXmlApplicationContext("applicationContext.xml","spring-bean.xml");
+		SessionFactory sf = bf.getBean(SessionFactory.class);
+		Session session = sf.openSession();
+		Query query = session.createQuery("from CommissionJournal this where this.member=3859 and rowVersion=3");
+		List<CommissionJournal> list = query.list();
+		System.out.println(list.size());
+		for(CommissionJournal line:list) {
+			System.out.println(line);
+		}
 	}
 }

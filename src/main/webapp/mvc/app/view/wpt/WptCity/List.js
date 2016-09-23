@@ -184,7 +184,7 @@ onDel : function(){
 						arrv.push(selection[i].get(BEAN_VERSION));
 					}
 					Ext.Ajax.request({
-						url : base_path+'/wpt_WptCity_delMulti?pkeys='+arr.toString()+'&rowVersions='+arrv.toString(),
+						url : base_path+'/wpt/resource/city_del?bean.pkey='+arr.toString()+'&bean.rowVersion='+arrv.toString(),
 						success : function (response, options) {
 							var result = Ext.decode(response.responseText);
 							if (result.success){

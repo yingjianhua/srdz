@@ -7,9 +7,9 @@ viewConfig : {enableTextSelection : true},
 oneTdCount : 4,
 searchField : null,
 initComponent : function(){
-this.columns = [{text : '餐厅',width : 100,dataIndex : 'bean.restaurant',sortable : true,renderer : mvc.Tools.beanRenderer()}
-	,{text : '关注用户',width : 100,dataIndex : 'bean.wxuser',sortable : true,renderer : mvc.Tools.beanRenderer()}
-	,{text : '创建时间',width : 140,dataIndex : 'bean.createTime',sortable : true,renderer : Ext.util.Format.dateRenderer('Y-m-d H:i:s')}
+this.columns = [{text : '餐厅',width : 100,dataIndex : 'restaurant.pkey',sortable : true,renderer : mvc.Tools.beanRenderer()}
+	,{text : '关注用户',width : 100,dataIndex : 'member.pkey',sortable : true,renderer : mvc.Tools.beanRenderer()}
+	,{text : '创建时间',width : 140,dataIndex : 'createTime',sortable : true,renderer : Ext.util.Format.dateRenderer('Y-m-d H:i:s')}
 	];
 		this.store=Ext.create('mvc.store.wpt.WptRestaurantBsn');this.dockedItems = [{
 		dock : 'top',
@@ -67,7 +67,7 @@ listeners : {
 onTriggerList : function(){
 			var selection = this.getView().getSelectionModel().getSelection()[0];
 		if (selection){
-			this.fireEvent('trigger', selection.get('bean.pkey') + bean_split + selection.get('bean.wxuser'), null);
+			this.fireEvent('trigger', selection.get('pkey') + bean_split + selection.get('member.pkey'), null);
 		}
 }
 });

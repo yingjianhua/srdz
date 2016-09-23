@@ -18,11 +18,12 @@ initComponent : function(){
 				this.url = this.url + 'upd';
 			var formFlds = [];
 			formFlds.push
-({xtype : 'textfield',name : 'bean.name',afterLabelTextTpl : required,allowBlank : false,fieldLabel : '名称'}
-	,{xtype : 'numberfield',name : 'bean.rowVersion',value : 0,afterLabelTextTpl : required,allowBlank : false,fieldLabel : '版本',hidden : true,allowDecimals : false}
+({xtype : 'textfield',name : 'bean.name',id : 'name',afterLabelTextTpl : required,allowBlank : false,fieldLabel : '名称'}
+	,{xtype : 'numberfield',name : 'bean.rowVersion',id : 'rowVersion',value : 0,afterLabelTextTpl : required,allowBlank : false,fieldLabel : '版本',hidden : true,allowDecimals : false}
 	,{
 		xtype : 'hiddenfield',
-		name : 'bean.pkey'
+		name : 'bean.pkey',
+		id : 'pkey'
 	});
 	this.items = [{
 		layout : {

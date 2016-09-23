@@ -19,7 +19,7 @@ import javax.persistence.TemporalType;
 
 /**
  * The persistent class for the wpt_restaurant_bsn database table.
- * 
+ * 餐厅商家管理
  */
 @Entity
 @Table(name="wpt_restaurant_bsn")

@@ -7,12 +7,12 @@ viewConfig : {enableTextSelection : true},
 oneTdCount : 4,
 searchField : null,
 initComponent : function(){
-this.columns = [{text : '标题',width : 100,dataIndex : 'bean.title',sortable : true}
-	,{text : '城市',width : 100,dataIndex : 'bean.city',sortable : true,renderer : mvc.Tools.beanRenderer()}
-	,{text : '顶图',width : 100,dataIndex : 'bean.topImgUrl',sortable : true,renderer:function(v) {return "<img src='../"+v+"'width='90px' height='70px'>"}}
-	,{text : '底图',width : 100,dataIndex : 'bean.baseImgUrl',sortable : true,renderer:function(v) {return "<img src='../"+v+"'width='90px' height='70px'>"}}
-	,{text : '介绍',width : 100,dataIndex : 'bean.intro',sortable : true}
-	,{text : '排序',width : 100,dataIndex : 'bean.sort',sortable : true}
+this.columns = [{text : '标题',width : 100,dataIndex : 'title',sortable : true}
+	,{text : '城市',width : 100,dataIndex : 'city.pkey',sortable : true,renderer : mvc.Tools.beanRenderer()}
+	,{text : '顶图',width : 100,dataIndex : 'topImgUrl',sortable : true,renderer:function(v) {return "<img src='../"+v+"'width='90px' height='70px'>"}}
+	,{text : '底图',width : 100,dataIndex : 'baseImgUrl',sortable : true,renderer:function(v) {return "<img src='../"+v+"'width='90px' height='70px'>"}}
+	,{text : '介绍',width : 100,dataIndex : 'intro',sortable : true}
+	,{text : '排序',width : 100,dataIndex : 'sort',sortable : true}
 	];
 		this.store=Ext.create('mvc.store.wpt.WptSpecial');this.dockedItems = [{
 		dock : 'top',
@@ -70,7 +70,7 @@ listeners : {
 onTriggerList : function(){
 			var selection = this.getView().getSelectionModel().getSelection()[0];
 		if (selection){
-			this.fireEvent('trigger', selection.get('bean.pkey') + bean_split + selection.get('bean.title'), null);
+			this.fireEvent('trigger', selection.get('pkey') + bean_split + selection.get('title'), null);
 		}
 }
 });

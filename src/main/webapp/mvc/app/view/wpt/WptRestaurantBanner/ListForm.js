@@ -39,7 +39,7 @@ initComponent : function(){
 		        			 success : function(form, action) {
 		        				 var store = this.getStore();
 		        				 var model = Ext.create("mvc.model.wpt.WptRestaurantBanner",{
-		        					 "bean.imgUrl" : action.result.url
+		        					 "imgUrl" : action.result.url
 		        				 })
 		        				 store.insert(0, model);
 		        			 }
@@ -58,13 +58,13 @@ initComponent : function(){
 		{
 	text : '图片',
 	width : 200,
-	dataIndex : 'bean.imgUrl',
+	dataIndex : 'imgUrl',
 	sortable : true,
 	renderer : function(v,meta,record) {
 		return "<img src='../" + v + "'width='180px' height='140px'>"
 	}
 }
-//		,{text : '排序',width : 100,dataIndex : 'bean.sort',sortable : true,align : 'right', editor : {
+//		,{text : '排序',width : 100,dataIndex : 'sort',sortable : true,align : 'right', editor : {
 //			xtype : "numberfield"
 //		}}
 	],

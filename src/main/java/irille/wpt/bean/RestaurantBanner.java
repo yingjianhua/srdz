@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 /**
  * The persistent class for the wpt_restaurant_banner database table.
- * 
+ * 餐厅轮播图
  */
 @Entity
 @Table(name="wpt_restaurant_banner")

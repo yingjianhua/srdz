@@ -140,29 +140,22 @@ if (this.roles.indexOf('agreeRefund') != -1)
 							type : 'table',
 							columns : 3
 						},
-						items : [{xtype : 'textfield',name : 'bean.orderid',fieldLabel : '订单号'}
+						items : [{xtype : 'textfield',name : 'orderid',fieldLabel : '订单号'}
 							,{
 								xtype : 'beantrigger',
-								name : 'bean.wxuser',
+								name : 'member.pkey',
 								fieldLabel : '关注用户',
-								bean : 'WxUser',
-								beanType : 'wx',
+								bean : 'WptMember',
+								beanType : 'wpt',
 								emptyText : form_empty_text
 							},{
 								xtype : 'beantrigger',
-								name : 'bean.city',
+								name : 'city.pkey',
 								fieldLabel : '城市',
 								bean : 'WptCity',
 								beanType : 'wpt',
 								emptyText : form_empty_text
-							},{
-								xtype : 'beantrigger',
-								name : 'bean.banquet',
-								fieldLabel : '宴会类型',
-								bean : 'WptBanquet',
-								beanType : 'wpt',
-								emptyText : form_empty_text
-							},{xtype : 'datefield',name : 'bean.time',fieldLabel : '用餐时间',format : 'Y-m-d H:i:s'}
+							},{xtype : 'datefield',name : 'time',fieldLabel : '用餐时间',format : 'Y-m-d H:i:s'}
 							]
 					}]
 			}]
@@ -183,8 +176,9 @@ if (this.roles.indexOf('agreeRefund') != -1)
 				                selectionchange: function(model, records) {
 				                    if (records.length === 1){
 				                        this.mdMain.getForm().loadRecord(records[0]);
-        								this.mdLineTable.store.filter([{'id':'filter', 'property':'wptorder','value':records[0].get('bean.pkey')}]);
-        								this.mdServiceTable.store.filter([{'id':'filter', 'property':'wptorder','value':records[0].get('bean.pkey')}]);
+        								this.mdLineTable.store.filter([{'id':'filter', 'property':'order','value':records[0].get('pkey')}]);
+        								this.mdServiceTable.store.filter([{'id':'filter', 'property':'order','value':records[0].get('pkey')}]);
+        								this.mdPayJournalTable.store.filter([{'id':'filter', 'property':'order','value':records[0].get('pkey')}]);
         								var status = records[0].get("bean.status");
         								if (this.roles.indexOf('upd') != -1)
 											this.down('#'+this.oldId+'upd').setDisabled(status != 0 && status != 1);
@@ -224,15 +218,21 @@ if (this.roles.indexOf('agreeRefund') != -1)
 
 						})
 			},{
-				xtype : Ext.create('mvc.view.wpt.WptOrder.ListLineWptOrderLine',{
+				xtype : Ext.create('mvc.view.wpt.WptOrder.ListLineWptOrderDetail',{
 							title : '菜品',
 							itemId : this.oldId+'linetable',
 							iconCls : 'tab-user-icon'
 						})
 			},{
-				xtype : Ext.create('mvc.view.wpt.WptOrder.ListLineWptOrderService',{
+				xtype : Ext.create('mvc.view.wpt.WptOrder.ListLineWptOrderCustomService',{
 					title : '服务',
 					itemId : this.oldId+'servicetable',
+					iconCls : 'tab-user-icon'
+				})
+			},{
+				xtype : Ext.create('mvc.view.wpt.WptOrder.ListLineWptOrderPayJournal',{
+					title : '支付流水',
+					itemId : this.oldId+'payJournaltable',
 					iconCls : 'tab-user-icon'
 				})
 			}]
@@ -244,6 +244,8 @@ if (this.roles.indexOf('agreeRefund') != -1)
 		this.mdMainTable = this.down('#'+this.oldId+'maintable');
 		this.mdLineTable = this.down('#'+this.oldId+'linetable');
 		this.mdServiceTable = this.down('#'+this.oldId+'servicetable');
+		this.mdPayJournalTable = this.down('#'+this.oldId+'payJournaltable');
+		
 		mvc.Tools.onENTER2SearchBar(this.mdSearch,this);
 		if (mainActs.length == 0)
 			this.down('[region=north]').remove(this.mdAct);

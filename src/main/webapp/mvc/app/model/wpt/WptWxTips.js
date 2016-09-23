@@ -5,11 +5,26 @@ proxy : {
 	type : 'ajax',
 	url : base_path+'/wpt_WptWxTips_load'
 },
-fields : [{name : 'pkey',mapping : 'pkey',type : 'int',useNull : true}
-	,{name : 'nickname',mapping : 'nickname',type : 'string'}
-	,{name : 'imageUrl',mapping : 'imageUrl',type : 'string'}
-	,{name : 'rem',mapping : 'rem',type : 'string'}
-	,{name : 'status',mapping : 'status',type : 'int',useNull : true}
+fields : [{name : 'member.pkey',mapping : 'member.pkey',type : 'int',useNull : true,
+			 convert: function(value, record) {
+				 return record.raw.member.pkey;
+		     }}
+	,{name : 'member.nickname',mapping : 'member.nickname',type : 'string',
+		 convert: function(value, record) {
+			 return record.raw.member.nickname;
+	     }}
+	,{name : 'member.imageUrl',mapping : 'member.imageUrl',type : 'string',
+		 convert: function(value, record) {
+			 return record.raw.member.imageUrl;
+	     }}
+	,{name : 'member.rem',mapping : 'member.rem',type : 'string',
+		 convert: function(value, record) {
+			 return record.raw.member.rem;
+	     }}
+	,{name : 'member.status',mapping : 'member.status',type : 'int',useNull : true,
+		 convert: function(value, record) {
+			 return record.raw.member.status;
+	     }}
 	,{name : 'rowVersion',mapping : 'rowVersion',type : 'int',useNull : true}
 	]
 });

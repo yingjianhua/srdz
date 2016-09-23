@@ -17,10 +17,10 @@ public class AllTests {
 		suite.addTestSuite(WptMenu.class);
 		suite.addTestSuite(WptCombo.class);
 		suite.addTestSuite(WptComboLine.class);
-		suite.addTestSuite(WptService.class);
+		suite.addTestSuite(WptCustomService.class);
 		suite.addTestSuite(WptSpecial.class);
 		suite.addTestSuite(WptSpecialLine.class);
-		suite.addTestSuite(WptServiceCen.class);
+		suite.addTestSuite(WptServiceCenter.class);
 		suite.addTestSuite(WptFeedBack.class);
 		suite.addTestSuite(WptTop.class);
 		suite.addTestSuite(WptOrder.class);

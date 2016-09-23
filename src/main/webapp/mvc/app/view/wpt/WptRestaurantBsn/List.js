@@ -26,9 +26,9 @@ mainActs.push({
 		handler : this.onDel,
 		disabled : this.lock
 	});
-this.columns = [{text : '餐厅',width : 100,dataIndex : 'bean.restaurant',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wpt',mn : 'view.wpt.WptRestaurant.List'}
-	,{text : '关注用户',width : 100,dataIndex : 'bean.wxuser',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wxex',mn : 'view.wx.WxUser.List'}
-	,{text : '创建时间',width : 140,dataIndex : 'bean.createTime',sortable : true,renderer : Ext.util.Format.dateRenderer('Y-m-d H:i:s')}
+this.columns = [{text : '餐厅',width : 100,dataIndex : 'restaurant.pkey',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wpt',mn : 'view.wpt.WptRestaurant.List'}
+	,{text : '关注用户',width : 100,dataIndex : 'member.pkey',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wxex',mn : 'view.wpt.WptMember.List'}
+	,{text : '创建时间',width : 140,dataIndex : 'createTime',sortable : true,renderer : Ext.util.Format.dateRenderer('Y-m-d H:i:s')}
 	];
 		if (mainActs.length > 0)
 			this.tbar=mainActs;
@@ -112,7 +112,7 @@ onDel : function(){
 					var arr=new Array();
 					var arrv = new Array();
 					for(var i = 0; i < selection.length; i++){
-						arr.push(selection[i].get('bean.pkey'));
+						arr.push(selection[i].get('pkey'));
 						arrv.push(selection[i].get(BEAN_VERSION));
 					}
 					Ext.Ajax.request({
@@ -144,7 +144,7 @@ onDelRow : function(grid, rowIndex){
 				if (btn != 'yes')
 					return;
 				Ext.Ajax.request({
-					url : base_path+'/wpt_WptRestaurantBsn_del?pkey='+row.get('bean.pkey')+'&rowVersion='+row.get(BEAN_VERSION),
+					url : base_path+'/wpt_WptRestaurantBsn_del?pkey='+row.get('pkey')+'&rowVersion='+row.get(BEAN_VERSION),
 					success : function (response, options) {
 						var result = Ext.decode(response.responseText);
 						if (result.success){

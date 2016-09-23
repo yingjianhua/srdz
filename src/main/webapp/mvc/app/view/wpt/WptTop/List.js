@@ -44,15 +44,15 @@ mainActs.push({
 		handler : this.onEdit,
 		disabled : this.lock
 	});
-this.columns = [{text : '城市',width : 100,dataIndex : 'bean.city',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wpt',mn : 'view.wpt.WptCity.List'}
-	,{text : '区域',width : 100,dataIndex : 'bean.cityline',sortable : true,renderer : mvc.Tools.beanRenderer()}
-	,{text : '主题',width : 100,dataIndex : 'bean.banquet',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wpt',mn : 'view.wpt.WptBanquet.List'}
-	,{text : '标题',width : 100,dataIndex : 'bean.title',sortable : true}
-	,{text : '图片',width : 100,dataIndex : 'bean.imgUrl',sortable : true,renderer:function(v) {return "<img src='../"+v+"'width='90px' height='70px'>"}}
-	,{text : '时间',width : 100,dataIndex : 'bean.date',sortable : true,renderer : Ext.util.Format.dateRenderer('Y-m-d')}
-	,{text : '链接',width : 100,dataIndex : 'bean.url',sortable : true}
-	,{text : '置顶',width : 100,dataIndex : 'bean.top',sortable : true,renderer : mvc.Tools.optRenderer('sys','Sys','OYn')}
-	,{text : '排序',width : 100,dataIndex : 'bean.sort',sortable : true}
+this.columns = [{text : '城市',width : 100,dataIndex : 'city.pkey',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wpt',mn : 'view.wpt.WptCity.List'}
+	,{text : '区域',width : 100,dataIndex : 'cityline.pkey',sortable : true,renderer : mvc.Tools.beanRenderer()}
+	,{text : '主题',width : 100,dataIndex : 'banquet.pkey',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wpt',mn : 'view.wpt.WptBanquet.List'}
+	,{text : '标题',width : 100,dataIndex : 'title',sortable : true}
+	,{text : '图片',width : 100,dataIndex : 'imgUrl',sortable : true,renderer:function(v) {return "<img src='../"+v+"'width='90px' height='70px'>"}}
+	,{text : '时间',width : 100,dataIndex : 'date',sortable : true,renderer : Ext.util.Format.dateRenderer('Y-m-d')}
+	,{text : '链接',width : 100,dataIndex : 'url',sortable : true}
+	,{text : '置顶',width : 100,dataIndex : 'top',sortable : true,renderer : mvc.Tools.optRenderer('sys','Sys','OYn')}
+	,{text : '排序',width : 100,dataIndex : 'sort',sortable : true}
 	];
 		if (mainActs.length > 0)
 			this.tbar=mainActs;
@@ -197,7 +197,7 @@ onDel : function(){
 					var arr=new Array();
 					var arrv = new Array();
 					for(var i = 0; i < selection.length; i++){
-						arr.push(selection[i].get('bean.pkey'));
+						arr.push(selection[i].get('pkey'));
 						arrv.push(selection[i].get(BEAN_VERSION));
 					}
 					Ext.Ajax.request({
@@ -229,7 +229,7 @@ onDelRow : function(grid, rowIndex){
 				if (btn != 'yes')
 					return;
 				Ext.Ajax.request({
-					url : base_path+'/wpt_WptTop_del?pkey='+row.get('bean.pkey')+'&rowVersion='+row.get(BEAN_VERSION),
+					url : base_path+'/wpt_WptTop_del?pkey='+row.get('pkey')+'&rowVersion='+row.get(BEAN_VERSION),
 					success : function (response, options) {
 						var result = Ext.decode(response.responseText);
 						if (result.success){

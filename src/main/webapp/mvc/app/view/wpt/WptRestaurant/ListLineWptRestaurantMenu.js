@@ -5,11 +5,11 @@ loadMask : true,
 multiSelect : true,
 viewConfig : {enableTextSelection : true},
 initComponent : function(){
-		this.columns = [{text : '名称',width : 100,dataIndex : 'bean.name',sortable : true}
-		,{text : '描述',width : 100,dataIndex : 'bean.des',sortable : true}
-		,{text : '价格',width : 100,dataIndex : 'bean.price',sortable : true,renderer : mvc.Tools.numberRenderer(),align : 'right'}
+		this.columns = [{text : '名称',width : 100,dataIndex : 'name',sortable : true}
+		,{text : '描述',width : 100,dataIndex : 'des',sortable : true}
+		,{text : '价格',width : 100,dataIndex : 'price',sortable : true,renderer : mvc.Tools.numberRenderer(),align : 'right'}
 		];
-		this.store=Ext.create('mvc.store.wpt.WptMenu');
+		this.store=Ext.create('mvc.store.wpt.WptRestaurantMenu');
 		this.store.remoteFilter = true;
 		this.store.proxy.filterParam = 'filter';
 		this.on({cellclick:mvc.Tools.onCellclick});

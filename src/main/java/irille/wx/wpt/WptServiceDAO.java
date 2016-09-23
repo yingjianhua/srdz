@@ -16,24 +16,24 @@ public class WptServiceDAO {
 		private Msgs(String msg) { _msg=msg; }
 		public String getMsg() {return _msg; }
 	}
-	public static final Log LOG = new Log(WptService.class);
-	public static class Ins extends IduIns<Ins, WptService> {
+	public static final Log LOG = new Log(WptCustomService.class);
+	public static class Ins extends IduIns<Ins, WptCustomService> {
 		@Override
 		public void before() {
 			super.before();
 			WxAccount account = WxAccountDAO.getByUser(getUser());
 			getB().setAccount(account.getPkey());
-			if(WptService.chkUniqueName(false, getB().getName()) != null)
+			if(WptCustomService.chkUniqueName(false, getB().getName()) != null)
 				throw LOG.err(Msgs.uniqueErr, getB().getName());
 		}
 	}
 
-	public static class Upd extends IduUpd<Upd, WptService> {
+	public static class Upd extends IduUpd<Upd, WptCustomService> {
 		@Override
 		public void before() {
 			super.before();
-			WptService bean = WptService.chkUniqueName(false, getB().getName());
-			WptService model = null;
+			WptCustomService bean = WptCustomService.chkUniqueName(false, getB().getName());
+			WptCustomService model = null;
 			if (bean != null)
 				if (bean.getPkey() != getB().getPkey())
 					throw LOG.err(Msgs.uniqueErr, getB().getName());
@@ -41,7 +41,7 @@ public class WptServiceDAO {
 					model = bean;
 			else
 				model = load(getB().getPkey());
-			PropertyUtils.copyPropertiesWithout(model, getB(), WptService.T.ACCOUNT);
+			PropertyUtils.copyPropertiesWithout(model, getB(), WptCustomService.T.ACCOUNT);
 			setB(model);
 		}
 	}

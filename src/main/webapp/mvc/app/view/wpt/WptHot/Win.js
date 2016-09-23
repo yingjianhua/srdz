@@ -35,6 +35,8 @@ this.buttons =[{
 		this.form = this.items.items[0];
 },
 setActiveRecord : function(record){
+	console.log("setActiveRecord")
+	console.log(record)
 		this.form.activeRecord = record;
 		if (record || this.form.activeRecord) {
 			this.form.getForm().loadRecord(record);

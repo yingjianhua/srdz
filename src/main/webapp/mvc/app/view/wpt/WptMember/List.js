@@ -96,8 +96,8 @@ initComponent : function(){
 				                selectionchange: function(model, records) {
 				                    if (records.length === 1){
 				                        this.mdMain.getForm().loadRecord(records[0]);
-        								this.mdLineTable.store.filter([{'id':'filter', 'property':'wxuser','value':records[0].get('pkey')}]);
-        								this.mdLineTable2.store.filter([{'id':'filter', 'property':'wxuser','value':records[0].get('pkey')}]);
+        								this.mdLineTable.store.filter([{'id':'filter', 'property':'member','value':records[0].get('pkey')}]);
+        								this.mdLineTable2.store.filter([{'id':'filter', 'property':'member','value':records[0].get('pkey')}]);
 				                    }else{
 				                    	this.mdMain.getForm().reset();
 				                    	this.mdLineTable.store.removeAll();

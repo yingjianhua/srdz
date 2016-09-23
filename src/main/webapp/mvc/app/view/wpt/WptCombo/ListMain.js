@@ -7,17 +7,17 @@ roles : '',
 selModel : {selType : 'checkboxmodel'},
 viewConfig : {enableTextSelection : true},
 initComponent : function(){
-this.columns =[{text : '餐厅',width : 100,dataIndex : 'bean.restaurant.pkey',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wpt',mn : 'view.wpt.WptRestaurant.List'}
-	,{text : '名称',width : 100,dataIndex : 'bean.name',sortable : true}
-	,{text : '图片',width : 100,dataIndex : 'bean.imgUrl',sortable : true,renderer:function(v) {return "<img src='../"+v+"'width='90px' height='70px'>"}}
-	,{text : '描述',width : 100,dataIndex : 'bean.des',sortable : true}
-	,{text : '价格',width : 100,dataIndex : 'bean.price',sortable : true,renderer : mvc.Tools.numberRenderer(),align : 'right'}
-	,{text : '最少人数',width : 100,dataIndex : 'bean.numberMin',sortable : true}
-	,{text : '最大人数',width : 100,dataIndex : 'bean.numberMax',sortable : true}
-	,{text : '使用日期',width : 100,dataIndex : 'bean.serviceDate',sortable : true}
-	,{text : '使用时段',width : 100,dataIndex : 'bean.serviceTime',sortable : true}
-	,{text : '排序',width : 100,dataIndex : 'bean.sort',sortable : true}
-	,{text : '启用',width : 75,dataIndex : 'bean.enabled',sortable : true,renderer : mvc.Tools.optRenderer('sys','Sys','OEnabled')}
+this.columns =[{text : '餐厅',width : 100,dataIndex : 'restaurant.pkey',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wpt',mn : 'view.wpt.WptRestaurant.List'}
+	,{text : '名称',width : 100,dataIndex : 'name',sortable : true}
+	,{text : '图片',width : 100,dataIndex : 'imgUrl',sortable : true,renderer:function(v) {return "<img src='../"+v+"'width='90px' height='70px'>"}}
+	,{text : '描述',width : 100,dataIndex : 'des',sortable : true}
+	,{text : '价格',width : 100,dataIndex : 'price',sortable : true,renderer : mvc.Tools.numberRenderer(),align : 'right'}
+	,{text : '最少人数',width : 100,dataIndex : 'numberMin',sortable : true}
+	,{text : '最大人数',width : 100,dataIndex : 'numberMax',sortable : true}
+	,{text : '使用日期',width : 100,dataIndex : 'serviceDate',sortable : true}
+	,{text : '使用时段',width : 100,dataIndex : 'serviceTime',sortable : true}
+	,{text : '排序',width : 100,dataIndex : 'sort',sortable : true}
+	,{text : '启用',width : 75,dataIndex : 'enabled',sortable : true,renderer : mvc.Tools.optRenderer('sys','Sys','OEnabled')}
 	];
 		this.store=Ext.create('mvc.store.wpt.WptCombo');
 		this.store.remoteFilter = true;
@@ -76,7 +76,7 @@ onDelRow : function(grid, rowIndex){
 					return;
 				var row = me.getStore().getAt(rowIndex);
 				Ext.Ajax.request({
-					url : '/wpt_WptCombo_del?pkey='+row.get('bean.pkey')+'&rowVersion='+row.get(BEAN_VERSION),
+					url : '/wpt_WptCombo_del?pkey='+row.get('pkey')+'&rowVersion='+row.get(BEAN_VERSION),
 					success : function (response, options) {
 						var result = Ext.decode(response.responseText);
 						if (result.success){

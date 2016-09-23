@@ -28,6 +28,7 @@ Ext.define('mvc.view.wpt.WptTop.FormEdit',{
 			},  {
 				xtype : 'textfield',
 				name : 'bean.content',
+				id : 'content',
 				fieldLabel : '原文',
 				hidden:true,
 				listeners : {
@@ -41,6 +42,7 @@ Ext.define('mvc.view.wpt.WptTop.FormEdit',{
 			},{
 				xtype : 'numberfield',
 				name : 'bean.rowVersion',
+				id : 'rowVersion',
 				value : 0,
 				afterLabelTextTpl : required,
 				allowBlank : false,
@@ -49,7 +51,8 @@ Ext.define('mvc.view.wpt.WptTop.FormEdit',{
 				allowDecimals : false
 			}, {
 				xtype : 'hiddenfield',
-				name : 'bean.pkey'
+				name : 'bean.pkey',
+				id : 'pkey'
 			});
 		this.items = [ {
 			layout : {

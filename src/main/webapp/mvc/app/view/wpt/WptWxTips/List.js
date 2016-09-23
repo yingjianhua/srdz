@@ -26,10 +26,10 @@ initComponent : function(){
 			disabled : this.lock
 		});
 	this.columns = [
-			 {text : '昵称',width : 100,dataIndex : 'bean.nickname',sortable : true}
-			,{text : '头像',width : 100,dataIndex : 'bean.imageUrl',sortable : true, renderer: function(v) {return "<img src='"+v+"' height='50px'/ >"}}
-			,{text : '备注',width : 100,dataIndex : 'bean.rem',sortable : true}
-			,{text : '关注状态',width : 60,dataIndex : 'bean.status',sortable : true,renderer : mvc.Tools.optRenderer('wx','Wx','OStatus')}
+			 {text : '昵称',width : 100,dataIndex : 'member.nickname',sortable : true}
+			,{text : '头像',width : 100,dataIndex : 'member.imageUrl',sortable : true, renderer: function(v) {return "<img src='"+v+"' height='50px'/ >"}}
+			,{text : '备注',width : 100,dataIndex : 'member.rem',sortable : true}
+			,{text : '关注状态',width : 60,dataIndex : 'member.status',sortable : true,renderer : mvc.Tools.optRenderer('wx','Wx','OStatus')}
 			];
 			if (mainActs.length > 0)
 				this.tbar=mainActs;
@@ -64,12 +64,17 @@ onIns : function(){
 	var me = this;
 	function onTrigger(data, params) {
 		Ext.Ajax.request({
-			url : base_path+'/wpt_WptWxTips_ins?bean.pkey='+data.split(bean_split)[0],
+			url : base_path+'/wpt/resource/wxTips_ins?',
+			params : {
+				"bean.member.pkey" : data.split(bean_split)[0],
+				"bean.account" : me.account
+			},
 			success : function (response, options) {
 				var result = Ext.decode(response.responseText);
 				if (result.success){
-					console.log(result);
-					me.store.insert(0,result);
+					var model = Ext.create("mvc.model.wpt.WptWxTips", result);
+					console.log(model)
+					me.store.insert(0,model);
 					Ext.example.msg(msg_title, msg_text);
 				}else{
 					Ext.MessageBox.show({
@@ -86,10 +91,9 @@ onIns : function(){
 	win.on('trigger', onTrigger, this);
 	win.show();
 	var store = win.down('grid').getStore();
-	store.load();
+	store.filter([{'id':'filter', 'property':'account','value':this.account}]);
 },
 onDel : function(){
-	console.log("onDel()")
 		var selection = this.getView().getSelectionModel().getSelection();
 		if (selection){
 			var me = this;
@@ -100,15 +104,20 @@ onDel : function(){
 					var arr=new Array();
 					var arrv = new Array();
 					for(var i = 0; i < selection.length; i++){
-						arr.push(selection[i].get('bean.pkey'));
+						arr.push(selection[i].get('pkey'));
 						arrv.push(selection[i].get(BEAN_VERSION));
 					}
+					console.log(selection[0])
 					Ext.Ajax.request({
-						url : base_path+'/wpt_WptWxTips_delMulti?pkeys='+arr.toString()+'&rowVersions='+arrv.toString(),
+						url : base_path+'/wpt/resource/wxTips_del',
+						params : {
+							"bean.member.pkey" : selection[0].get('member.pkey'),
+							"bean.rowVersion" : selection[0].get('rowVersion')
+						},
 						success : function (response, options) {
 							var result = Ext.decode(response.responseText);
 							if (result.success){
-								me.getStore().remove(selection);
+								me.getStore().remove(selection[0]);
 								Ext.example.msg(msg_title, msg_del);
 							}else{
 								Ext.MessageBox.show({

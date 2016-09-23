@@ -5,7 +5,7 @@ loadMask : true,
 multiSelect : true,
 viewConfig : {enableTextSelection : true},
 initComponent : function(){
-		this.columns = [{text : '宴会类型',width : 100,dataIndex : 'bean.banquet',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wpt',mn : 'view.wpt.WptBanquet.List'}
+		this.columns = [{text : '宴会类型',width : 100,dataIndex : 'banquet.pkey',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wpt',mn : 'view.wpt.WptBanquet.List'}
 	];
 		this.store=Ext.create('mvc.store.wpt.WptRestaurantLine');
 		this.store.remoteFilter = true;

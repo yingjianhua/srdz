@@ -5,8 +5,8 @@ loadMask : true,
 multiSelect : true,
 viewConfig : {enableTextSelection : true},
 initComponent : function(){
-		this.columns = [{text : '图片',width : 100,dataIndex : 'bean.imgUrl',sortable : true,renderer:function(v) {return "<img src='../"+v+"'width='90px' height='70px'>"}}
-		,{text : '排序',width : 100,dataIndex : 'bean.sort',sortable : true,align : 'right'}
+		this.columns = [{text : '图片',width : 100,dataIndex : 'imgUrl',sortable : true,renderer:function(v) {return "<img src='../"+v+"'width='90px' height='70px'>"}}
+		,{text : '排序',width : 100,dataIndex : 'sort',sortable : true,align : 'right'}
 		];
 		this.store=Ext.create('mvc.store.wpt.WptComboBanner');
 		this.store.remoteFilter = true;

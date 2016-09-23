@@ -6,14 +6,14 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import irille.wpt.actions.controller.AbstractControllAction;
-import irille.wpt.bean.ServiceCen;
+import irille.wpt.bean.ServiceCenter;
 import irille.wpt.service.impl.ServiceCenService;
 @Controller
 @Scope("prototype")
 public class ShowServiceCenterAction extends AbstractControllAction {
 	private static final long serialVersionUID = 1L;
 
-	private ServiceCen serviceCenter;
+	private ServiceCenter serviceCenter;
 	
 	@Resource
 	private ServiceCenService serviceCenService;
@@ -28,11 +28,11 @@ public class ShowServiceCenterAction extends AbstractControllAction {
 		return TRENDS;
 	}
 
-	public ServiceCen getServiceCenter() {
+	public ServiceCenter getServiceCenter() {
 		return serviceCenter;
 	}
 
-	public void setServiceCenter(ServiceCen serviceCenter) {
+	public void setServiceCenter(ServiceCenter serviceCenter) {
 		this.serviceCenter = serviceCenter;
 	}
 	

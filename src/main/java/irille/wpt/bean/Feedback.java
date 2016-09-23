@@ -29,9 +29,7 @@ public class Feedback implements Serializable {
 
 	private String content;
 
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="handle_man")
-	private Member handleMan;
+	private Integer handleMan;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="handle_time")
@@ -86,11 +84,11 @@ public class Feedback implements Serializable {
 		this.content = content;
 	}
 
-	public Member getHandleMan() {
+	public Integer getHandleMan() {
 		return this.handleMan;
 	}
 
-	public void setHandleMan(Member handleMan) {
+	public void setHandleMan(Integer handleMan) {
 		this.handleMan = handleMan;
 	}
 

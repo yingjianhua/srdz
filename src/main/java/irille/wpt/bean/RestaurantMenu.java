@@ -17,7 +17,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the restaurant_menu database table.
- * 
+ * 餐厅菜品
  */
 @Entity
 @Table(name="wpt_menu")

@@ -1,8 +1,11 @@
 package irille.wpt.actions.resource.impl;
 
+import java.io.IOException;
+
 import javax.annotation.Resource;
 import javax.annotation.security.PermitAll;
 
+import org.json.JSONException;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -27,6 +30,14 @@ public class FeedbackAction extends AbstractCRUDAction<Feedback> {
 	@PermitAll
 	public String suggest(){
 		feedBackService.suggest(content, contactType, contactWay, getAccount().getPkey());
+		return BEAN;
+	}
+	
+	/**
+	 * 反馈处理
+	 */
+	public String toDo() throws IOException, JSONException{
+		bean = feedBackService.toDo(bean);
 		return BEAN;
 	}
 	

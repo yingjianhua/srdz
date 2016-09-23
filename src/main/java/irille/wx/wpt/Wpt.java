@@ -29,10 +29,10 @@ public class Wpt extends PackageBase {
 		addTb(7, WptMenu.class);
 		addTb(8, WptCombo.class);
 		addTb(9, WptComboLine.class);
-		addTb(10, WptService.class);
+		addTb(10, WptCustomService.class);
 		addTb(11, WptSpecial.class);
 		addTb(12, WptSpecialLine.class);
-		addTb(13, WptServiceCen.class);
+		addTb(13, WptServiceCenter.class);
 		addTb(14, WptFeedBack.class);
 		addTb(15, WptTop.class);
 		addTb(16, WptOrder.class);
@@ -41,7 +41,7 @@ public class Wpt extends PackageBase {
 		addTb(19, WptCollect.class);
 		addTb(20, WptHot.class);
 		addTb(21, WptRestaurantBsn.class);
-		addTb(22, WptCase.class);
+		addTb(22, WptRestaurantCase.class);
 		addTb(23, WptRestaurantBanner.class);
 		addTb(24, WptDistributionRule.class);
 		addTb(25, WptQrcodeRule.class);

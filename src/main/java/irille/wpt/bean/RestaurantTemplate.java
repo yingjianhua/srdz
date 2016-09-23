@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 /**
  * The persistent class for the wpt_restaurant_template database table.
- * 
+ * 餐厅页面模板
  */
 @Entity
 @Table(name="wpt_restaurant_template")

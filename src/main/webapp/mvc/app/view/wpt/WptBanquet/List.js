@@ -35,7 +35,7 @@ mainActs.push({
 		handler : this.onDel,
 		disabled : this.lock
 	});
-this.columns = [{text : '名称',width : 100,dataIndex : 'bean.name',sortable : true}
+this.columns = [{text : '名称',width : 100,dataIndex : 'name',sortable : true}
 	];
 		if (mainActs.length > 0)
 			this.tbar=mainActs;
@@ -138,7 +138,7 @@ onDel : function(){
 					var arr=new Array();
 					var arrv = new Array();
 					for(var i = 0; i < selection.length; i++){
-						arr.push(selection[i].get('bean.pkey'));
+						arr.push(selection[i].get('pkey'));
 						arrv.push(selection[i].get(BEAN_VERSION));
 					}
 					Ext.Ajax.request({
@@ -170,7 +170,7 @@ onDelRow : function(grid, rowIndex){
 				if (btn != 'yes')
 					return;
 				Ext.Ajax.request({
-					url : base_path+'/wpt_WptBanquet_del?pkey='+row.get('bean.pkey')+'&rowVersion='+row.get(BEAN_VERSION),
+					url : base_path+'/wpt_WptBanquet_del?pkey='+row.get('pkey')+'&rowVersion='+row.get(BEAN_VERSION),
 					success : function (response, options) {
 						var result = Ext.decode(response.responseText);
 						if (result.success){

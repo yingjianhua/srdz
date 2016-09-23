@@ -18,11 +18,12 @@ initComponent : function(){
 				this.url = this.url + 'upd';
 			var formFlds = [];
 			formFlds.push
-({xtype : 'textfield',name : 'bean.content',afterLabelTextTpl : required,allowBlank : false,fieldLabel : '内容'}
-	,{xtype : 'textfield',name : 'bean.contactWay',afterLabelTextTpl : required,allowBlank : false,fieldLabel : '联系方式'}
+({xtype : 'textfield',name : 'bean.content',id : 'content',afterLabelTextTpl : required,allowBlank : false,fieldLabel : '内容'}
+	,{xtype : 'textfield',name : 'bean.contactWay',id : 'contactWay',afterLabelTextTpl : required,allowBlank : false,fieldLabel : '联系方式'}
 	,
 		mvc.Tools.crtComboForm(false,{
 					name : 'bean.contactType',
+					id : 'contactType',
 					fieldLabel : '联系方式类型',
 					store : Ext.create('mvc.combo.wpt.WptOContactStatus'),
 					value : 0
@@ -30,6 +31,7 @@ initComponent : function(){
 	,{
 		xtype : 'beantrigger',
 		name : 'bean.handleMan',
+		id : 'handleMan',
 		fieldLabel : '处理人',
 		bean : 'SysUser',
 		beanType : 'sys',
@@ -39,14 +41,16 @@ initComponent : function(){
 	},
 		mvc.Tools.crtComboForm(false,{
 					name : 'bean.isHandle',
+					id : 'isHandle',
 					fieldLabel : '已处理',
 					store : Ext.create('mvc.combo.sys.SysOYn'),
 					value : 0
 				})
-	,{xtype : 'numberfield',name : 'bean.rowVersion',value : 0,afterLabelTextTpl : required,allowBlank : false,fieldLabel : '版本',hidden : true,allowDecimals : false}
+	,{xtype : 'numberfield',name : 'bean.rowVersion',id : 'rowVersion',value : 0,afterLabelTextTpl : required,allowBlank : false,fieldLabel : '版本',hidden : true,allowDecimals : false}
 	,{
 		xtype : 'hiddenfield',
-		name : 'bean.pkey'
+		name : 'bean.pkey',
+		id : 'pkey'
 	});
 	this.items = [{
 		layout : {

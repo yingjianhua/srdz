@@ -20,7 +20,8 @@ initComponent : function(){
 			formFlds.push
 ({
 		xtype : 'beantrigger',
-		name : 'bean.restaurant',
+		name : 'bean.restaurant.pkey',
+		id : 'restaurant.pkey',
 		fieldLabel : '餐厅',
 		bean : 'WptRestaurant',
 		beanType : 'wpt',
@@ -29,17 +30,19 @@ initComponent : function(){
 		allowBlank : false
 	},{
 		xtype : 'beantrigger',
-		name : 'bean.wxuser',
+		name : 'bean.member.pkey',
+		id : 'member.pkey',
 		fieldLabel : '关注用户',
-		bean : 'WxUser',
-		beanType : 'wx',
+		bean : 'WptMember',
+		beanType : 'wpt',
 		emptyText : form_empty_text,
 		afterLabelTextTpl : required,
 		allowBlank : false
-	},{xtype : 'numberfield',name : 'bean.rowVersion',value : 0,afterLabelTextTpl : required,allowBlank : false,fieldLabel : '版本',hidden : true,allowDecimals : false}
+	},{xtype : 'numberfield',name : 'bean.rowVersion',id : 'rowVersion',value : 0,afterLabelTextTpl : required,allowBlank : false,fieldLabel : '版本',hidden : true,allowDecimals : false}
 	,{
 		xtype : 'hiddenfield',
-		name : 'bean.pkey'
+		name : 'bean.pkey',
+		id : 'pkey'
 	});
 	this.items = [{
 		layout : {

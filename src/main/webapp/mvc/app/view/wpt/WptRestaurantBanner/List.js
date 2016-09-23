@@ -35,17 +35,17 @@ mainActs.push({
 		handler : this.onDel,
 		disabled : this.lock
 	});
-this.columns = [{text : '餐厅',width : 100,dataIndex : 'bean.restaurant',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wpt',mn : 'view.wpt.WptRestaurant.List'}
+this.columns = [{text : '餐厅',width : 100,dataIndex : 'restaurant.pkey',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wpt',mn : 'view.wpt.WptRestaurant.List'}
 , {
 	text : '图片',
 	width : 100,
-	dataIndex : 'bean.imgUrl',
+	dataIndex : 'imgUrl',
 	sortable : true,
 	renderer : function(v) {
 		return "<img src='../" + v + "'width='90px' height='70px'>"
 	}
 }
-	,{text : '排序',width : 100,dataIndex : 'bean.sort',sortable : true}
+	,{text : '排序',width : 100,dataIndex : 'sort',sortable : true}
 	];
 		if (mainActs.length > 0)
 			this.tbar=mainActs;
@@ -61,7 +61,7 @@ this.dockedItems=[{
 				text : '餐厅：'
 			},{
 				xtype : 'beantrigger',
-				name : 'restaurant',
+				name : 'restaurant.pkey',
 				bean : 'WptRestaurant',
 				beanType : 'wpt',
 				emptyText : form_empty_text
@@ -151,7 +151,7 @@ onDel : function(){
 					var arr=new Array();
 					var arrv = new Array();
 					for(var i = 0; i < selection.length; i++){
-						arr.push(selection[i].get('bean.pkey'));
+						arr.push(selection[i].get('pkey'));
 						arrv.push(selection[i].get(BEAN_VERSION));
 					}
 					Ext.Ajax.request({
@@ -183,7 +183,7 @@ onDelRow : function(grid, rowIndex){
 				if (btn != 'yes')
 					return;
 				Ext.Ajax.request({
-					url : base_path+'/wpt_WptRestaurantBanner_del?pkey='+row.get('bean.pkey')+'&rowVersion='+row.get(BEAN_VERSION),
+					url : base_path+'/wpt_WptRestaurantBanner_del?pkey='+row.get('pkey')+'&rowVersion='+row.get(BEAN_VERSION),
 					success : function (response, options) {
 						var result = Ext.decode(response.responseText);
 						if (result.success){

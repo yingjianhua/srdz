@@ -16,7 +16,8 @@ initComponent : function(){
 		scope : this,
 		handler : this.onDel
 	}];
-		this.tbar = mainActs;		this.columns =[{text : '餐厅',width : 100,dataIndex : 'bean.restaurant',sortable : true,renderer : mvc.Tools.beanRenderer(),
+		this.tbar = mainActs;		
+		this.columns =[{text : '餐厅',width : 100,dataIndex : 'restaurant.pkey',sortable : true,renderer : mvc.Tools.beanRenderer(),
 			editor : {xtype : 'beantriggercell',
 				onTrigger2Click : function() {
 			    	var win = Ext.create("mvc.view.wpt.WptRestaurant.Trigger");
@@ -29,7 +30,7 @@ initComponent : function(){
 		                property: 'param',
 		                value: '1=1'
 		            });
-		            var field = this.up("window").form.down("[name=bean.city]");
+		            var field = this.up("window").form.down("[name=city.pkey]");
 		            console.log(field)
 		            console.log(1)
 		            if(field.getValue()){
@@ -42,11 +43,11 @@ initComponent : function(){
 					store.filter(array);
 				},
 				bean : 'WptRestaurant',beanType : 'wpt'
-				,beanName : 'bean.restaurant'
+				,beanName : 'restaurant.pkey'
 				,grid : this
 				,emptyText : form_empty_text}
 		}
-	,{text : '排序',width : 100,dataIndex : 'bean.sort',sortable : true,editor : {xtype : 'numberfield',allowDecimals : false}
+	,{text : '排序',width : 100,dataIndex : 'sort',sortable : true,editor : {xtype : 'numberfield',allowDecimals : false}
 		}
 	];
 		this.store=Ext.create('mvc.store.wpt.WptSpecialLine');
@@ -65,8 +66,8 @@ onIns : function(){
 		tBean : "WptSpecialLine",
 		grid : this,
 		mapping : [{
-			orig : "bean.pkey"+bean_split+"bean.name",
-			targ : "bean.restaurant"
+			orig : "pkey"+bean_split+"name",
+			targ : "restaurant.pkey"
 		}],
 	});
 	win.show();

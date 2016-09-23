@@ -115,7 +115,7 @@ mainActs.push({
 							type : 'table',
 							columns : 3
 						},
-						items : [{xtype : 'textfield',name : 'bean.name',fieldLabel : '名称'}
+						items : [{xtype : 'textfield',name : 'name',fieldLabel : '名称'}
 							]
 					}]
 			}]
@@ -138,8 +138,8 @@ mainActs.push({
 				                    	var ENABLE = 1;
 					                	var DISABLE = 0;
 				                        this.mdMain.getForm().loadRecord(records[0]);
-        								this.mdLineTable.store.filter([{'id':'filter', 'property':'combo','value':records[0].get('bean.pkey')}]);
-        								this.mdBannerLineTable.store.filter([{'id':'filter', 'property':'combo','value':records[0].get('bean.pkey')}]);
+        								this.mdLineTable.store.filter([{'id':'filter', 'property':'combo','value':records[0].get('pkey')}]);
+        								this.mdBannerLineTable.store.filter([{'id':'filter', 'property':'combo','value':records[0].get('pkey')}]);
         								if (this.roles.indexOf('upd') != -1)
 											this.down('#'+this.oldId+'upd').setDisabled(false);
 										if (this.roles.indexOf('del') != -1)
@@ -149,7 +149,7 @@ mainActs.push({
 										if (this.roles.indexOf('enableDisable') != -1) {
 											var bEnableDisable = this.down('#'+this.oldId+'enableDisable');
 											bEnableDisable.setDisabled(false);
-											if(records[0].get('bean.enabled') == ENABLE) {
+											if(records[0].get('enabled') == ENABLE) {
 												bEnableDisable.setText("停用");
 												bEnableDisable.setIconCls("unEnabled-icon");
 											} else {
@@ -229,7 +229,7 @@ onDel : function(){
 					var arr=new Array();
 					var arrv = new Array();
 					for(var i = 0; i < selection.length; i++){
-						arr.push(selection[i].get('bean.pkey'));
+						arr.push(selection[i].get('pkey'));
 						arrv.push(selection[i].get(BEAN_VERSION));
 					}
 					Ext.Ajax.request({
@@ -273,7 +273,7 @@ onEnableDisable:function() {
 	if (selection) {
 		var me = this;
 		Ext.Ajax.request({
-			url : base_path + '/wpt_WptCombo_enableDisable?pkey='+selection.get('bean.pkey')+'&rowVersions='+selection.get('bean.rowVersion'),
+			url : base_path + '/wpt_WptCombo_enableDisable?pkey='+selection.get('pkey')+'&rowVersions='+selection.get('rowVersion'),
 			success : function(response, options) {
 				var result = Ext.decode(response.responseText);
 				if (result.success) {

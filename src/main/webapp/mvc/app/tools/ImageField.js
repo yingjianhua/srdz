@@ -10,6 +10,7 @@ Ext.define('mvc.tools.ImageField', {
 		labelWidth : 0,
 		blankText : null,
 		name : '',
+		id : null,
 		path : null,
 		file : null,
 		text : null,
@@ -26,6 +27,7 @@ Ext.define('mvc.tools.ImageField', {
 			this.items = [{
 				xtype : 'textfield',
 				name : me.name,
+				id : me.id,
 				fieldLabel : '照片',
 				hidden : true,
 				listeners : {

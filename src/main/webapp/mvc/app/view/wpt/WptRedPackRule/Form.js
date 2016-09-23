@@ -5,7 +5,7 @@ Ext.define('mvc.view.wpt.WptRedPackRule.Form', {
 	frame : false,
 	insFlag : true,
 	bodyPadding : '5 5 5 5',
-	url : base_path + '/wpt_WptRedPackRule_upd',
+	url : base_path + '/wpt/resource/redPackRule_upd',
 	fieldDefaults : {
 		labelWidth : 100,
 		labelStyle : 'font-weight : bold'
@@ -15,12 +15,14 @@ Ext.define('mvc.view.wpt.WptRedPackRule.Form', {
 		formFlds.push({
 			xtype : 'textfield',
 			name : 'bean.sendName',
+			id : 'sendName',
 			fieldLabel : '商户名称',
 			afterLabelTextTpl : required,
 			allowBlank : false
 		}, {
 			xtype : 'textfield',
 			name : 'bean.wishing',
+			id : 'wishing',
 			fieldLabel : '红包祝福语',
 			afterLabelTextTpl : required,
 			allowBlank : false
@@ -28,6 +30,7 @@ Ext.define('mvc.view.wpt.WptRedPackRule.Form', {
 		{
 			xtype : 'textfield',
 			name : 'bean.actName',
+			id : 'actName',
 			fieldLabel : '活动名称',
 			afterLabelTextTpl : required,
 			allowBlank : false
@@ -35,6 +38,7 @@ Ext.define('mvc.view.wpt.WptRedPackRule.Form', {
 		{
 			xtype : 'textfield',
 			name : 'bean.remark',
+			id : 'remark',
 			fieldLabel : '备注',
 			afterLabelTextTpl : required,
 			allowBlank : false
@@ -42,6 +46,7 @@ Ext.define('mvc.view.wpt.WptRedPackRule.Form', {
 		{
 			xtype : 'numberfield',
 			name : 'bean.leastAmt',
+			id : 'leastAmt',
 			afterLabelTextTpl : required,
 			allowBlank : false,
 			value : 0,
@@ -51,6 +56,7 @@ Ext.define('mvc.view.wpt.WptRedPackRule.Form', {
 		{
 			xtype : 'numberfield',
 			name : 'bean.rowVersion',
+			id : 'rowVersion',
 			value : 0,
 			afterLabelTextTpl : required,
 			allowBlank : false,
@@ -59,7 +65,8 @@ Ext.define('mvc.view.wpt.WptRedPackRule.Form', {
 			allowDecimals : false
 		}, {
 			xtype : 'hiddenfield',
-			name : 'bean.pkey'
+			name : 'bean.pkey',
+			id : 'pkey'
 		});
 		this.items = [ {
 			layout : {

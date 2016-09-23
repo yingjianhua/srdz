@@ -6,7 +6,7 @@ border : false,
 frame : false,
 insFlag : true,
 bodyPadding : '5 5 5 5',
-url : base_path+'/wpt_WptPetitionCity_',
+url : base_path+'/wpt/resource/petitionCity_',
 fieldDefaults : {
 	labelWidth : 100,
 	labelStyle : 'font-weight : bold'
@@ -18,19 +18,21 @@ initComponent : function(){
 				this.url = this.url + 'upd';
 			var formFlds = [];
 			formFlds.push
-({xtype : 'textfield',name : 'bean.name',afterLabelTextTpl : required,allowBlank : false,fieldLabel : '城市'}
-	,{xtype : 'numberfield',name : 'bean.count',value : 0,afterLabelTextTpl : required,allowBlank : false,fieldLabel : '数量',allowDecimals : false}
+({xtype : 'textfield',name : 'bean.name',id : 'name',afterLabelTextTpl : required,allowBlank : false,fieldLabel : '城市'}
+	,{xtype : 'numberfield',name : 'bean.count',id : 'count',value : 0,afterLabelTextTpl : required,allowBlank : false,fieldLabel : '数量',allowDecimals : false}
 	,
 		mvc.Tools.crtComboForm(false,{
 					name : 'bean.enabled',
+					id : 'enabled',
 					fieldLabel : '启用标志',
 					store : Ext.create('mvc.combo.sys.SysOEnabled'),
 					value : 1
 				})
-	,{xtype : 'numberfield',name : 'bean.rowVersion',value : 0,afterLabelTextTpl : required,allowBlank : false,fieldLabel : '版本',hidden : true,allowDecimals : false}
+	,{xtype : 'numberfield',name : 'bean.rowVersion',id : 'rowVersion',value : 0,afterLabelTextTpl : required,allowBlank : false,fieldLabel : '版本',hidden : true,allowDecimals : false}
 	,{
 		xtype : 'hiddenfield',
-		name : 'bean.pkey'
+		name : 'bean.pkey',
+		id : 'pkey'
 	});
 	this.items = [{
 		layout : {

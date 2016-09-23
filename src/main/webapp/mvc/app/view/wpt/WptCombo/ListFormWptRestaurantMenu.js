@@ -26,10 +26,10 @@ listeners:{
 },
 initComponent : function(){
 	this.columns =[
-           {text : '菜品',width : 100,dataIndex : 'bean.name',sortable : true},
-           {text : '价格',width : 100,dataIndex : 'bean.price',sortable : true,renderer : mvc.Tools.numberRenderer(),align : 'right'}
+           {text : '菜品',width : 100,dataIndex : 'name',sortable : true},
+           {text : '价格',width : 100,dataIndex : 'price',sortable : true,renderer : mvc.Tools.numberRenderer(),align : 'right'}
 	];
-		this.store=Ext.create('mvc.store.wpt.WptMenu');
+		this.store=Ext.create('mvc.store.wpt.WptRestaurantMenu');
 		this.store.pageSize = 0;
 		this.store.remoteFilter = true;
 		this.store.proxy.filterParam = 'query';

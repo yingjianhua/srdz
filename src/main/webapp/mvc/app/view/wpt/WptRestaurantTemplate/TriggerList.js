@@ -7,9 +7,9 @@ viewConfig : {enableTextSelection : true},
 oneTdCount : 4,
 searchField : null,
 initComponent : function(){
-this.columns = [{text : '名字',width : 100,dataIndex : 'bean.name',sortable : true }, 
-                {text : '图片',width : 100,dataIndex : 'bean.imgUrl',sortable : true,renderer : function(v) {return "<img src='../" + v + "'width='90px' height='70px'>"}},
-                {text : '路径',width : 100,dataIndex : 'bean.path',sortable : true }
+this.columns = [{text : '名字',width : 100,dataIndex : 'name',sortable : true }, 
+                {text : '图片',width : 100,dataIndex : 'imgUrl',sortable : true,renderer : function(v) {return "<img src='../" + v + "'width='90px' height='70px'>"}},
+                {text : '路径',width : 100,dataIndex : 'path',sortable : true }
 	];
 		this.store=Ext.create('mvc.store.wpt.WptRestaurantTemplate');
 		this.dockedItems = [{
@@ -68,7 +68,7 @@ listeners : {
 onTriggerList : function(){
 		var selection = this.getView().getSelectionModel().getSelection()[0];
 		if (selection){
-			this.fireEvent('trigger', selection.get('bean.pkey') + bean_split + selection.get('bean.name'), null);
+			this.fireEvent('trigger', selection.get('pkey') + bean_split + selection.get('name'), null);
 		}
 }
 });

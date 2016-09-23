@@ -27,9 +27,9 @@ mainActs.push({
 		handler : this.onUnEnabled,
 		disabled : this.lock
 	});
-this.columns = [{text : '城市',width : 100,dataIndex : 'bean.name',sortable : true}
-	,{text : '数量',width : 100,dataIndex : 'bean.count',sortable : true}
-	,{text : '启用标志',width : 75,dataIndex : 'bean.enabled',sortable : true,renderer : mvc.Tools.optRenderer('sys','Sys','OEnabled')}
+this.columns = [{text : '城市',width : 100,dataIndex : 'name',sortable : true}
+	,{text : '数量',width : 100,dataIndex : 'count',sortable : true}
+	,{text : '启用标志',width : 75,dataIndex : 'enabled',sortable : true,renderer : mvc.Tools.optRenderer('sys','Sys','OEnabled')}
 	];
 		if (mainActs.length > 0)
 			this.tbar=mainActs;
@@ -91,11 +91,15 @@ onDoEnabled : function(){
 						var arr = new Array();
 						var arrv = new Array();
 						for (var i = 0; i < selection.length; i++) {
-							arr.push(selection[i].get('bean.pkey'));
+							arr.push(selection[i].get('pkey'));
 							arrv.push(selection[i].get(BEAN_VERSION));
 						}
 						Ext.Ajax.request({
-							url : base_path + '/wpt_WptPetitionCity_doEnabled?pkeys='+arr.toString()+'&rowVersions='+arrv.toString(),
+							url : base_path + '/wpt/resource/petitionCity_doEnabled',
+							params: {
+								"bean.pkey" : selection[0].get('pkey'),
+								"bean.rowVersion" : selection[0].get(BEAN_VERSION)
+							},
 							success : function(response, options) {
 								var result = Ext.decode(response.responseText);
 								if (result.success) {
@@ -126,11 +130,15 @@ onUnEnabled : function(){
 						var arr = new Array();
 						var arrv = new Array();
 						for (var i = 0; i < selection.length; i++) {
-							arr.push(selection[i].get('bean.pkey'));
+							arr.push(selection[i].get('pkey'));
 							arrv.push(selection[i].get(BEAN_VERSION));
 						}
 						Ext.Ajax.request({
-							url : base_path + '/wpt_WptPetitionCity_unEnabled?pkeys='+arr.toString()+'&rowVersions='+arrv.toString(),
+							url : base_path + '/wpt/resource/petitionCity_unEnabled',
+							params: {
+								"bean.pkey" : selection[0].get('pkey'),
+								"bean.rowVersion" : selection[0].get(BEAN_VERSION)
+							},
 							success : function(response, options) {
 								var result = Ext.decode(response.responseText);
 								if (result.success) {

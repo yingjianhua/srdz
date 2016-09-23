@@ -7,7 +7,7 @@ viewConfig : {enableTextSelection : true},
 oneTdCount : 4,
 searchField : null,
 initComponent : function(){
-this.columns = [{text : '关注用户',width : 100,dataIndex : 'wxuser',sortable : true,renderer : mvc.Tools.beanRenderer()}
+this.columns = [{text : '关注用户',width : 100,dataIndex : 'member.pkey',sortable : true,renderer : mvc.Tools.beanRenderer()}
 	,{text : '头条',width : 100,dataIndex : 'headline',sortable : true,renderer : mvc.Tools.beanRenderer()}
 	];
 		this.store=Ext.create('mvc.store.wpt.WptCollect');this.dockedItems = [{

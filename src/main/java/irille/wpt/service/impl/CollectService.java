@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import irille.wpt.bean.Collect;
 import irille.wpt.bean.Headline;
@@ -13,7 +13,7 @@ import irille.wpt.dao.impl.CollectDao;
 import irille.wpt.dao.impl.HeadlineDao;
 import irille.wpt.exception.ExtjsException;
 
-@Repository
+@Service
 public class CollectService {
 	
 	@Resource

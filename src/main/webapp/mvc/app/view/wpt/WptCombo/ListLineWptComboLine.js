@@ -5,9 +5,9 @@ loadMask : true,
 multiSelect : true,
 viewConfig : {enableTextSelection : true},
 initComponent : function(){
-		this.columns = [{text : '菜品',width : 100,dataIndex : 'bean.menu',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wpt',mn : 'view.wpt.WptMenu.List'}
-	,{text : '价格',width : 100,dataIndex : 'bean.price',sortable : true,renderer : mvc.Tools.numberRenderer(),align : 'right'}
-	,{text : '排序',width : 100,dataIndex : 'bean.sort',sortable : true,align : 'right'}
+		this.columns = [{text : '菜品',width : 100,dataIndex : 'menu.pkey',sortable : true,renderer : mvc.Tools.beanRendererHref(),md : 'wpt',mn : 'view.wpt.WptMenu.List'}
+	,{text : '价格',width : 100,dataIndex : 'price',sortable : true,renderer : mvc.Tools.numberRenderer(),align : 'right'}
+	,{text : '排序',width : 100,dataIndex : 'sort',sortable : true,align : 'right'}
 	];
 		this.store=Ext.create('mvc.store.wpt.WptComboLine');
 		this.store.remoteFilter = true;

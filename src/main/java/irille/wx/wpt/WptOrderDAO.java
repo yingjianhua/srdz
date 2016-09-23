@@ -157,7 +157,7 @@ public class WptOrderDAO {
 		if(order.getRem() != null) {
 			builder.append("备注:").append(order.getRem()).append("\n");
 		}
-		builder.append("如有疑问，请联系客服:"+WptServiceCen.load(WptServiceCen.class, order.getAccount()).getSmsTips()).append("\n");
+		builder.append("如有疑问，请联系客服:"+WptServiceCenter.load(WptServiceCenter.class, order.getAccount()).getSmsTips()).append("\n");
 		SmsTool sms = new SmsTool();
 		sms.doSend(WxAccountDAO.getAccessToken(order.gtAccount()), order.gtWxuser(), builder.toString());
 		if(order.gtContactType() == OContactStatus.MOBILE) {

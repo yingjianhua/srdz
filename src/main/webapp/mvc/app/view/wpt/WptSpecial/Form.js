@@ -20,12 +20,14 @@ Ext.define('mvc.view.wpt.WptSpecial.Form', {
 		formFlds.push({
 			xtype : 'textfield',
 			name : 'bean.title',
+			id : 'title',
 			afterLabelTextTpl : required,
 			allowBlank : false,
 			fieldLabel : '标题'
 		}, {
 			xtype : 'beantrigger',
-			name : 'bean.city',
+			name : 'bean.city.pkey',
+			id : 'city.pkey',
 			fieldLabel : '城市',
 			bean : 'WptCity',
 			beanType : 'wpt',
@@ -42,12 +44,14 @@ Ext.define('mvc.view.wpt.WptSpecial.Form', {
 			}
 		}, mvc.Tools.crtComboForm(false, {
 			name : 'bean.ignoreCity',
+			id : 'ignoreCity',
 			fieldLabel : '忽略城市',
 			store : Ext.create('mvc.combo.sys.SysOYn'),
 			value : 0
 		}), {
 			xtype : 'imagefield',
 			name : 'bean.topImgUrl',
+			id : 'topImgUrl',
 			blankText : "推荐尺寸 640*359",
 			afterLabelTextTpl : required,
 			allowBlank : false,
@@ -56,6 +60,7 @@ Ext.define('mvc.view.wpt.WptSpecial.Form', {
 		}, {
 			xtype : 'imagefield',
 			name : 'bean.baseImgUrl',
+			id : 'baseImgUrl',
 			blankText : "推荐尺寸 640*427",
 			afterLabelTextTpl : required,
 			allowBlank : false,
@@ -64,10 +69,12 @@ Ext.define('mvc.view.wpt.WptSpecial.Form', {
 		}, {
 			xtype : 'textfield',
 			name : 'bean.intro',
+			id : 'intro',
 			fieldLabel : '介绍'
 		}, {
 			xtype : 'numberfield',
 			name : 'bean.sort',
+			id : 'sort',
 			value : 0,
 			afterLabelTextTpl : required,
 			allowBlank : false,
@@ -76,6 +83,7 @@ Ext.define('mvc.view.wpt.WptSpecial.Form', {
 		}, {
 			xtype : 'numberfield',
 			name : 'bean.rowVersion',
+			id : 'rowVersion',
 			value : 0,
 			afterLabelTextTpl : required,
 			allowBlank : false,
@@ -84,7 +92,8 @@ Ext.define('mvc.view.wpt.WptSpecial.Form', {
 			allowDecimals : false
 		}, {
 			xtype : 'hiddenfield',
-			name : 'bean.pkey'
+			name : 'bean.pkey',
+			id : 'pkey'
 		});
 		this.items = [ {
 			layout : {

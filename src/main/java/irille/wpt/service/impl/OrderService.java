@@ -30,7 +30,7 @@ import irille.wpt.bean.OrderCustomService;
 import irille.wpt.bean.OrderDetail;
 import irille.wpt.bean.OrderPayJournal;
 import irille.wpt.bean.Restaurant;
-import irille.wpt.bean.ServiceCen;
+import irille.wpt.bean.ServiceCenter;
 import irille.wpt.bean.WxTips;
 import irille.wpt.dao.impl.ComboDao;
 import irille.wpt.dao.impl.ComboLineDao;
@@ -346,7 +346,7 @@ public class OrderService {
 	 */
 	public void doSent(Order order){
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-		final ServiceCen serviceCen = serviceCenDao.find(order.getAccount());
+		final ServiceCenter serviceCen = serviceCenDao.find(order.getAccount());
 		StringBuilder c = new StringBuilder("【享食光】私人订制 单生成,内容如下:\n");
 		c.append("订单号：").append(order.getOrderid()).append("\n");
 		c.append("餐厅：").append(order.getRestaurantName()).append("\n");
