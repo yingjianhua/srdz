@@ -1,4 +1,4 @@
-Ext.define('mvc.view.wpt.WptTop.Trigger',{
+Ext.define('mvc.view.wpt.WptHeadline.Trigger',{
 extend : 'Ext.window.Window',
 width : 700,
 height : 400,
@@ -8,7 +8,7 @@ resizable : true,
 modal : true,
 border : false,
 initComponent : function(){
-		var list = Ext.create('mvc.view.wpt.WptTop.TriggerList');
+		var list = Ext.create('mvc.view.wpt.WptHeadline.TriggerList');
 		list.on('trigger', this.onTrigger, this);
 		this.items ={
 	anchor : '100%',

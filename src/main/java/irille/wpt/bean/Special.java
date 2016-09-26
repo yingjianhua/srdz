@@ -1,9 +1,21 @@
 package irille.wpt.bean;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
+import javax.persistence.Table;
 
 
 /**
@@ -34,11 +46,6 @@ public class Special implements Serializable {
 
 	private String intro;
 	
-    @OneToMany(fetch=FetchType.LAZY)
-    @JoinColumn(name="special")
-    @OrderBy("sort")
-	private Set<SpecialLine> lines;
-
 	@Column(name="row_version")
 	private Short rowVersion = 1;
 
@@ -98,14 +105,6 @@ public class Special implements Serializable {
 
 	public void setIntro(String intro) {
 		this.intro = intro;
-	}
-
-	public Set<SpecialLine> getLines() {
-		return lines;
-	}
-
-	public void setLines(Set<SpecialLine> lines) {
-		this.lines = lines;
 	}
 
 	public Short getRowVersion() {

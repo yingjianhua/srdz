@@ -17,9 +17,9 @@ import irille.pub.tb.Tb.Index;
 import irille.wx.CmbWx;
 import irille.wx.wx.WxAccount;
 
-public class WptTop extends BeanInt<WptTop> implements IExtName {
-	private static final Log LOG = new Log(WptTop.class);
-	public static final Tb TB = new Tb(WptTop.class, "头条").setAutoIncrement().addActIUDL().addActOpt("edit", "编辑", "edit-icon");
+public class WptHeadline extends BeanInt<WptHeadline> implements IExtName {
+	private static final Log LOG = new Log(WptHeadline.class);
+	public static final Tb TB = new Tb(WptHeadline.class, "头条").setAutoIncrement().addActIUDL().addActOpt("edit", "编辑", "edit-icon");
 
 	public enum T implements IEnumFld {// @formatter:off
 		PKEY(TB.crtIntPkey()), // 主键
@@ -111,7 +111,7 @@ public class WptTop extends BeanInt<WptTop> implements IExtName {
   private Short _rowVersion;	// 版本  SHORT
 
 	@Override
-  public WptTop init(){
+  public WptHeadline init(){
 		super.init();
     _city=null;	// 城市 <表主键:WptCity>  INT
     _cityline=null;	// 区域 <表主键:WptCityLine>  INT
@@ -129,11 +129,11 @@ public class WptTop extends BeanInt<WptTop> implements IExtName {
   }
 
   //方法----------------------------------------------
-  public static WptTop loadUniqueTitle(boolean lockFlag,String title) {
-    return (WptTop)loadUnique(T.IDX_TITLE,lockFlag,title);
+  public static WptHeadline loadUniqueTitle(boolean lockFlag,String title) {
+    return (WptHeadline)loadUnique(T.IDX_TITLE,lockFlag,title);
   }
-  public static WptTop chkUniqueTitle(boolean lockFlag,String title) {
-    return (WptTop)chkUnique(T.IDX_TITLE,lockFlag,title);
+  public static WptHeadline chkUniqueTitle(boolean lockFlag,String title) {
+    return (WptHeadline)chkUnique(T.IDX_TITLE,lockFlag,title);
   }
   public Integer getPkey(){
     return _pkey;

@@ -34,7 +34,7 @@ public class Wpt extends PackageBase {
 		addTb(12, WptSpecialLine.class);
 		addTb(13, WptServiceCenter.class);
 		addTb(14, WptFeedBack.class);
-		addTb(15, WptTop.class);
+		addTb(15, WptHeadline.class);
 		addTb(16, WptOrder.class);
 		addTb(17, WptOrderLine.class);
 		addTb(18, WptOrderService.class);

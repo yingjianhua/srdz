@@ -1,4 +1,4 @@
-Ext.define('mvc.view.wpt.WptTop.Form',{
+Ext.define('mvc.view.wpt.WptHeadline.Form',{
 extend : 'Ext.form.Panel',
 requires : ['Ext.ux.DataTip'],
 layout : 'form',
@@ -6,7 +6,7 @@ border : false,
 frame : false,
 insFlag : true,
 bodyPadding : '5 5 5 5',
-url : base_path+'/wpt_WptTop_',
+url : base_path+'/wpt/resource/headline_',
 fieldDefaults : {
 	labelWidth : 100,
 	labelStyle : 'font-weight : bold'
@@ -31,7 +31,7 @@ initComponent : function(){
 		listeners : {
 			scope : this,
 			change : function(field,newv,oldv){
-				var cl = this.down('[name=bean.cityline]');
+				var cl = this.down('[name=bean.cityline.pkey]');
 				var store = cl.getStore()
 				store.actWhere = 'city='+newv.split(bean_split)[0];
 				store.getProxy().extraParams={"sarg1":store.actWhere};

@@ -19,7 +19,7 @@ public class WptCollect extends BeanInt<WptCollect> {
 	public enum T implements IEnumFld {// @formatter:off
 		PKEY(TB.crtIntPkey()), // 主键
 		WXUSER(WxUser.fldOutKey()),//微信用户
-		TOP(WptTop.fldOutKey()),//头条
+		TOP(WptHeadline.fldOutKey()),//头条
 		CMB_WX(CmbWx.fldFlds()),
 
 
@@ -79,7 +79,7 @@ public class WptCollect extends BeanInt<WptCollect> {
   //实例变量定义-----------------------------------------
   private Integer _pkey;	// 编号  INT
   private Integer _wxuser;	// 关注用户 <表主键:WxUser>  INT
-  private Integer _top;	// 头条 <表主键:WptTop>  INT
+  private Integer _top;	// 头条 <表主键:WptHeadline>  INT
   private Integer _account;	// 公众帐号 <表主键:WxAccount>  INT
   private Short _rowVersion;	// 版本  SHORT
 
@@ -87,7 +87,7 @@ public class WptCollect extends BeanInt<WptCollect> {
   public WptCollect init(){
 		super.init();
     _wxuser=null;	// 关注用户 <表主键:WxUser>  INT
-    _top=null;	// 头条 <表主键:WptTop>  INT
+    _top=null;	// 头条 <表主键:WptHeadline>  INT
     _account=null;	// 公众帐号 <表主键:WxAccount>  INT
     _rowVersion=0;	// 版本  SHORT
     return this;
@@ -129,12 +129,12 @@ public class WptCollect extends BeanInt<WptCollect> {
   public void setTop(Integer top){
     _top=top;
   }
-  public WptTop gtTop(){
+  public WptHeadline gtTop(){
     if(getTop()==null)
       return null;
-    return (WptTop)get(WptTop.class,getTop());
+    return (WptHeadline)get(WptHeadline.class,getTop());
   }
-  public void stTop(WptTop top){
+  public void stTop(WptHeadline top){
     if(top==null)
       setTop(null);
     else

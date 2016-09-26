@@ -16,7 +16,7 @@ import irille.wx.wx.WxAccount;
 
 public class WptCustomService extends BeanInt<WptCustomService> implements IExtName {
 	private static final Log LOG = new Log(WptCustomService.class);
-	public static final Tb TB = new Tb(WptCustomService.class, "服务").setAutoIncrement().addActIUDL();
+	public static final Tb TB = new Tb(WptCustomService.class, "定制服务").setAutoIncrement().addActIUDL();
 
 	public enum T implements IEnumFld {// @formatter:off
 		PKEY(TB.crtIntPkey()), // 主键

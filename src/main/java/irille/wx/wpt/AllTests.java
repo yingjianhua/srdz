@@ -22,7 +22,7 @@ public class AllTests {
 		suite.addTestSuite(WptSpecialLine.class);
 		suite.addTestSuite(WptServiceCenter.class);
 		suite.addTestSuite(WptFeedBack.class);
-		suite.addTestSuite(WptTop.class);
+		suite.addTestSuite(WptHeadline.class);
 		suite.addTestSuite(WptOrder.class);
 		suite.addTestSuite(WptOrderLine.class);
 		suite.addTestSuite(WptOrderService.class);

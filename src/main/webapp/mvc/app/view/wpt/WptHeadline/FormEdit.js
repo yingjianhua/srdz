@@ -1,4 +1,4 @@
-Ext.define('mvc.view.wpt.WptTop.FormEdit',{
+Ext.define('mvc.view.wpt.WptHeadline.FormEdit',{
 	extend : 'Ext.form.Panel',
 	requires : [ 'Ext.ux.DataTip' ],
 	layout : 'form',
@@ -7,7 +7,7 @@ Ext.define('mvc.view.wpt.WptTop.FormEdit',{
 	article : null,
 	insFlag : true,
 	bodyPadding : '5 5 5 5',
-	url : base_path + '/wpt_WptTop_edit',
+	url : base_path + '/wpt/resource/headline_edit',
 	fieldDefaults : {
 		labelWidth : 100,
 		labelStyle : 'font-weight : bold'

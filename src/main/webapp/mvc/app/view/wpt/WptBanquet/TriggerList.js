@@ -7,9 +7,10 @@ viewConfig : {enableTextSelection : true},
 oneTdCount : 4,
 searchField : null,
 initComponent : function(){
-this.columns = [{text : '名称',width : 100,dataIndex : 'bean.name',sortable : true}
+this.columns = [{text : '名称',width : 100,dataIndex : 'name',sortable : true}
 	];
-		this.store=Ext.create('mvc.store.wpt.WptBanquet');this.dockedItems = [{
+		this.store=Ext.create('mvc.store.wpt.WptBanquet');
+		this.dockedItems = [{
 		dock : 'top',
 		xtype : 'toolbar',
 		items : ["搜索：",{
@@ -65,7 +66,7 @@ listeners : {
 onTriggerList : function(){
 			var selection = this.getView().getSelectionModel().getSelection()[0];
 		if (selection){
-			this.fireEvent('trigger', selection.get('bean.pkey') + bean_split + selection.get('bean.name'), null);
+			this.fireEvent('trigger', selection.get('pkey') + bean_split + selection.get('name'), null);
 		}
 }
 });

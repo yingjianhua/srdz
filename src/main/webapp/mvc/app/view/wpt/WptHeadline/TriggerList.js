@@ -1,4 +1,4 @@
-Ext.define('mvc.view.wpt.WptTop.TriggerList',{
+Ext.define('mvc.view.wpt.WptHeadline.TriggerList',{
 extend : 'Ext.grid.Panel',
 disableSelection : false,
 loadMask : true,
@@ -17,7 +17,7 @@ this.columns = [{text : '城市',width : 100,dataIndex : 'city.pkey',sortable : 
 	,{text : '置顶',width : 100,dataIndex : 'top',sortable : true,renderer : mvc.Tools.optRenderer('sys','Sys','OYn')}
 	,{text : '排序',width : 100,dataIndex : 'sort',sortable : true}
 	];
-		this.store=Ext.create('mvc.store.wpt.WptTop');this.dockedItems = [{
+		this.store=Ext.create('mvc.store.wpt.WptHeadline');this.dockedItems = [{
 		dock : 'top',
 		xtype : 'toolbar',
 		items : ["搜索：",{

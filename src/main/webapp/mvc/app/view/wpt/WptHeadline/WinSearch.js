@@ -1,6 +1,6 @@
-Ext.define('mvc.view.wpt.WptTop.WinSearch',{
+Ext.define('mvc.view.wpt.WptHeadline.WinSearch',{
 extend : 'Ext.window.Window',
-oldId : 'WptTop_searchWin_',
+oldId : 'WptHeadline_searchWin_',
 width : 680,
 layout : 'fit',
 resizable : true,
@@ -24,7 +24,7 @@ initComponent : function(){
 			border : false,
 			frame : false,
 			bodyPadding : '5 5 5 5',
-			url : base_path+'/wpt_WptTop_list',
+			url : base_path+'/wpt_WptHeadline_list',
 			fieldDefaults : {
 				labelWidth : 100,
 				labelStyle : 'font-weight : bold'

@@ -1,6 +1,6 @@
-Ext.define('mvc.view.wpt.WptTop.List',{
+Ext.define('mvc.view.wpt.WptHeadline.List',{
 extend : 'Ext.grid.Panel',
-oldId : 'btn_WptTop',
+oldId : 'btn_WptHeadline',
 lock : true,
 disableSelection : false,
 loadMask : true,
@@ -56,7 +56,7 @@ this.columns = [{text : '城市',width : 100,dataIndex : 'city.pkey',sortable : 
 	];
 		if (mainActs.length > 0)
 			this.tbar=mainActs;
-		this.store=Ext.create('mvc.store.wpt.WptTop'); 
+		this.store=Ext.create('mvc.store.wpt.WptHeadline'); 
 		this.store.remoteFilter = true;
 		this.store.proxy.filterParam = 'filter';
 		this.on({cellclick:mvc.Tools.onCellclick});
@@ -68,14 +68,14 @@ this.dockedItems=[{
 				text : '城市：'
 			},{
 				xtype : 'beantrigger',
-				name : 'city',
+				name : 'city.pkey',
 				bean : 'WptCity',
 				beanType : 'wpt',
 				emptyText : form_empty_text,
 				listeners : {
 					scope : this,
 					change : function(field,newv,oldv){
-						var cl = this.down('[name=cityline]');
+						var cl = this.down('[name=cityline.pkey]');
 						var store = cl.getStore()
 						store.actWhere = 'city='+newv.split(bean_split)[0];
 						store.getProxy().extraParams={"sarg1":store.actWhere};
@@ -86,8 +86,8 @@ this.dockedItems=[{
 				xtype : 'label',
 				text : '区域：'
 			},
-				mvc.Tools.crtComboTrigger(false,'wpt_WptCityLine','1=2',{
-							name : 'cityline'
+				mvc.Tools.crtComboTrigger(false,'wpt/resource/cityLine','1=2',{
+							name : 'cityline.pkey'
 						})
 			,'',{
 				xtype : 'label',
@@ -151,7 +151,7 @@ onSaveRecord : function(form, data){
 		Ext.example.msg(msg_title, msg_text);	
 },
 onIns : function(){
-		var win = Ext.create('mvc.view.wpt.WptTop.Win',{
+		var win = Ext.create('mvc.view.wpt.WptHeadline.Win',{
 			title : this.title+'>新增'
 		});
 		win.on('create',this.onSaveRecord,this);
@@ -159,7 +159,7 @@ onIns : function(){
 },
 onUpdateRecord : function(form, data){
 		var selection = this.getView().getSelectionModel().getSelection()[0];
-		var bean = Ext.create('mvc.model.wpt.WptTop', data);
+		var bean = Ext.create('mvc.model.wpt.WptHeadline', data);
 		Ext.apply(selection.data,bean.data);
 		selection.commit();
 		this.getView().select(selection);
@@ -177,7 +177,7 @@ onUpdRow : function(grid, rowIndex){
 },
 onUpdWin : function(selection){
 		if (selection){
-			var win = Ext.create('mvc.view.wpt.WptTop.Win',{
+			var win = Ext.create('mvc.view.wpt.WptHeadline.Win',{
 				title : this.title+'>修改',
 				insFlag : false
 			});
@@ -201,7 +201,11 @@ onDel : function(){
 						arrv.push(selection[i].get(BEAN_VERSION));
 					}
 					Ext.Ajax.request({
-						url : base_path+'/wpt_WptTop_delMulti?pkeys='+arr.toString()+'&rowVersions='+arrv.toString(),
+						url : base_path+'/wpt/resource/headline_del',
+						params : {
+							"bean.pkey" : selection[0].get("pkey"),
+							"bean.rowVersion" : selection[0].get("rowVersion")
+						},
 						success : function (response, options) {
 							var result = Ext.decode(response.responseText);
 							if (result.success){
@@ -229,7 +233,11 @@ onDelRow : function(grid, rowIndex){
 				if (btn != 'yes')
 					return;
 				Ext.Ajax.request({
-					url : base_path+'/wpt_WptTop_del?pkey='+row.get('pkey')+'&rowVersion='+row.get(BEAN_VERSION),
+					url : base_path+'/wpt/resource/headline_del',
+					params : {
+						"bean.pkey" : selection[0].get("pkey"),
+						"bean.rowVersion" : selection[0].get("rowVersion")
+					},
 					success : function (response, options) {
 						var result = Ext.decode(response.responseText);
 						if (result.success){
@@ -251,7 +259,7 @@ onDelRow : function(grid, rowIndex){
 onEdit : function(){
 		var selection = this.getView().getSelectionModel().getSelection()[0];
 		if (selection){
-			var win = Ext.create('mvc.view.wpt.WptTop.WinEdit',{
+			var win = Ext.create('mvc.view.wpt.WptHeadline.WinEdit',{
 				title : this.title+'>编辑'
 			});
 			win.show();
@@ -269,7 +277,7 @@ onSearch : function(){
 		this.onSearchDo(array);
 },
 onSearchAdv : function(){
-		var win = Ext.create('mvc.view.wpt.WptTop.WinSearch',{
+		var win = Ext.create('mvc.view.wpt.WptHeadline.WinSearch',{
 			title : this.title+'>高级搜索',
 			listCmp : this
 		});

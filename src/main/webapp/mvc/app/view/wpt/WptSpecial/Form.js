@@ -6,7 +6,7 @@ Ext.define('mvc.view.wpt.WptSpecial.Form', {
 	frame : false,
 	insFlag : true,
 	bodyPadding : '5 5 5 5',
-	url : base_path + '/wpt_WptSpecial_',
+	url : base_path + '/wpt/resource/special_',
 	fieldDefaults : {
 		labelWidth : 100,
 		labelStyle : 'font-weight : bold'

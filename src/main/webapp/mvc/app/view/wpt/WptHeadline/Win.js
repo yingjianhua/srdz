@@ -1,6 +1,6 @@
-Ext.define('mvc.view.wpt.WptTop.WinEdit',{
+Ext.define('mvc.view.wpt.WptHeadline.Win',{
 extend : 'Ext.window.Window',
-width : 820,
+width : 400,
 layout : 'fit',
 form : null,
 resizable : true,
@@ -11,7 +11,7 @@ initComponent : function(){
 		this.items ={
 	anchor : '100%',
 	plain : true,
-	xtype : Ext.create('mvc.view.wpt.WptTop.FormEdit',{	insFlag : this.insFlag})
+	xtype : Ext.create('mvc.view.wpt.WptHeadline.Form',{	insFlag : this.insFlag})
 };
 		this.buttonAlign = 'right',
 this.buttons =[{
@@ -49,7 +49,6 @@ onClose : function(){
 		this.close();
 },
 onSave : function(){
-	this.form.getValues();
 		var form = this.form.getForm();
 		if (form.isValid()) {
 			form.submit({

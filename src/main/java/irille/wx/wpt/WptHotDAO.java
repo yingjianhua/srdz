@@ -5,7 +5,6 @@ import irille.pub.PropertyUtils;
 import irille.pub.PubInfs.IMsg;
 import irille.pub.idu.IduIns;
 import irille.pub.idu.IduUpd;
-import irille.wx.wpt.WptTopDAO.Msgs;
 import irille.wx.wx.WxAccount;
 import irille.wx.wx.WxAccountDAO;
 

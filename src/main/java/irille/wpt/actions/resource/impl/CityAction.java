@@ -63,7 +63,6 @@ public class CityAction extends AbstractCRUDAction<City> {
 	@Override
 	public String ins() {
 		cityService.save(bean, listLine, account.getPkey());
-		System.out.println("cityAction.add.bean:"+bean);
 		return BEAN;
 	}
 	@Override

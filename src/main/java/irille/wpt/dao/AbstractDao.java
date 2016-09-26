@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 
 import irille.tools.GenericsUtils;
 import irille.wpt.bean.CommissionJournal;
+import irille.wpt.bean.SpecialLine;
 import irille.wpt.tools.Page;
 
 @Repository
@@ -118,10 +119,10 @@ public abstract class AbstractDao<T,ID extends Serializable> {
 		BeanFactory bf = new ClassPathXmlApplicationContext("applicationContext.xml","spring-bean.xml");
 		SessionFactory sf = bf.getBean(SessionFactory.class);
 		Session session = sf.openSession();
-		Query query = session.createQuery("from CommissionJournal this where this.member=3859 and rowVersion=3");
-		List<CommissionJournal> list = query.list();
+		Query query = session.createSQLQuery("select * from wpt_special_line where special=?").addEntity(SpecialLine.class).setParameter(0, 68);
+		List<Object> list = query.list();
 		System.out.println(list.size());
-		for(CommissionJournal line:list) {
+		for(Object line:list) {
 			System.out.println(line);
 		}
 	}

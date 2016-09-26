@@ -6,7 +6,7 @@ border : false,
 frame : false,
 insFlag : true,
 bodyPadding : '5 5 5 5',
-url : base_path+'/wpt_WptBanquet_',
+url : base_path+'/wpt/resource/banquet_',
 fieldDefaults : {
 	labelWidth : 100,
 	labelStyle : 'font-weight : bold'

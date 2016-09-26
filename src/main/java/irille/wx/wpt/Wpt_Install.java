@@ -33,7 +33,7 @@ public class Wpt_Install extends InstallBase {
 		
 		m.proc(WptCustomService.TB, 40, null);
 		m.proc(WptSpecial.TB, 50, null);
-		m.proc(WptTop.TB, 60, null);
+		m.proc(WptHeadline.TB, 60, null);
 		m.proc(WptHot.TB, 70, null);
 		m.proc(WptServiceCenter.TB, 70, null);
 		m.proc(WptFeedBack.TB, 80, null);

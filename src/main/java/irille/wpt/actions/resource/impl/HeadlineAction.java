@@ -39,7 +39,27 @@ public class HeadlineAction extends AbstractCRUDAction<Headline> {
 		beans = headlineService.search(cityId, areaId, banquetId, accountId);
 		return BEANS;
 	}
+	
+	@Override
+	public String ins() {
+		headlineService.save(bean);
+		return BEAN;
+	}
+	
+	@Override
+	public String upd() {
+		headlineService.update(bean);
+		return BEAN;
+	}
 
+	/**
+	 * 编辑
+	 */
+	public String edit() {
+		headlineService.edit(bean);
+		return BEAN;
+	}
+	
 	public Integer getId() {
 		return id;
 	}

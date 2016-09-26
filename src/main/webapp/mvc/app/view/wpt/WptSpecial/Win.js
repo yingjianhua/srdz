@@ -40,7 +40,7 @@ setActiveRecord : function(record){
 		this.form.activeRecord = record;
 		if (record || this.form.activeRecord) {
 			this.form.getForm().loadRecord(record);
-			this.lineTable.store.filter([{'id':'filter','property':'special','value':record.get('bean.pkey')}]);
+			this.lineTable.store.filter([{'id':'filter','property':'special','value':record.get('pkey')}]);
 		} else {
 			this.form.getForm().reset();
 			this.lineTable.store.removeAll();
