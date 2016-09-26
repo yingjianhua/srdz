@@ -6,7 +6,7 @@ border : false,
 frame : false,
 insFlag : true,
 bodyPadding : '5 5 5 5',
-url : base_path+'/wpt_WptRestaurantCase_',
+url : base_path+'/wpt/resource/restaurantCase_',
 fieldDefaults : {
 	labelWidth : 100,
 	labelStyle : 'font-weight : bold'
@@ -20,7 +20,7 @@ initComponent : function(){
 			formFlds.push
 ({
 		xtype : 'beantrigger',
-		name : 'bean.restaurant',
+		name : 'bean.restaurant.pkey',
 		id : 'restaurant.pkey',
 		fieldLabel : '餐厅',
 		bean : 'WptRestaurant',

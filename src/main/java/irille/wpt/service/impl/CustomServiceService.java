@@ -15,6 +15,16 @@ public class CustomServiceService {
 	@Resource
 	private CustomServiceDao customSerivceDao;
 	
+	public void save(CustomService bean, Integer account) {
+		bean.setAccount(account);
+		customSerivceDao.save(bean);
+	}
+	
+	public void update(CustomService bean, Integer account) {
+		bean.setAccount(account);
+		customSerivceDao.update(bean);
+	}
+	
 	public List<CustomService> listByAccount(Integer account) {
 		return customSerivceDao.listByAccount(account);
 	}

@@ -3,7 +3,7 @@ package irille.action.wpt;
 import irille.action.ActionBase;
 import irille.wx.wpt.WptRestaurantCase;
 
-public class WptCaseAction extends ActionBase<WptRestaurantCase> {
+public class WptRestaurantCaseAction extends ActionBase<WptRestaurantCase> {
 
 	public WptRestaurantCase getBean() {
 		return _bean;

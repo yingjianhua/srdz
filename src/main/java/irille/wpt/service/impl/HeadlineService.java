@@ -12,7 +12,6 @@ import irille.wpt.dao.impl.BanquetDao;
 import irille.wpt.dao.impl.CityDao;
 import irille.wpt.dao.impl.CityLineDao;
 import irille.wpt.dao.impl.HeadlineDao;
-import irille.wx.wpt.WptHeadline;
 import irille.wx.wx.WxAccountDAO;
 @Service
 public class HeadlineService {

@@ -116,7 +116,11 @@ onDel : function(){
 						arrv.push(selection[i].get(BEAN_VERSION));
 					}
 					Ext.Ajax.request({
-						url : base_path+'/wpt_WptRestaurantBsn_delMulti?pkeys='+arr.toString()+'&rowVersions='+arrv.toString(),
+						url : base_path+'/wpt/resource/restaurantBsn_del',
+						params : {
+							"bean.pkey" : selection[0].get("pkey"),
+							"bean.rowVersion" : selection[0].get("rowVersion")
+						},
 						success : function (response, options) {
 							var result = Ext.decode(response.responseText);
 							if (result.success){
@@ -144,7 +148,11 @@ onDelRow : function(grid, rowIndex){
 				if (btn != 'yes')
 					return;
 				Ext.Ajax.request({
-					url : base_path+'/wpt_WptRestaurantBsn_del?pkey='+row.get('pkey')+'&rowVersion='+row.get(BEAN_VERSION),
+					url : base_path+'/wpt/resource/restaurantBsn_del',
+					params : {
+						"bean.pkey" : selection[0].get("pkey"),
+						"bean.rowVersion" : selection[0].get("rowVersion")
+					},
 					success : function (response, options) {
 						var result = Ext.decode(response.responseText);
 						if (result.success){
