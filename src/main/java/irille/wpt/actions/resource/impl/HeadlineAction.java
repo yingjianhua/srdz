@@ -1,6 +1,5 @@
 package irille.wpt.actions.resource.impl;
 
-import javax.annotation.Resource;
 import javax.annotation.security.PermitAll;
 
 import org.apache.struts2.json.annotations.IncludeProperties;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Controller;
 
 import irille.wpt.actions.resource.AbstractCRUDAction;
 import irille.wpt.bean.Headline;
-import irille.wpt.service.impl.HeadlineService;
 @Controller
 @Scope("prototype")
 public class HeadlineAction extends AbstractCRUDAction<Headline> {
@@ -21,9 +19,6 @@ public class HeadlineAction extends AbstractCRUDAction<Headline> {
 	private Integer banquetId;
 	private Integer accountId;
 	
-	@Resource
-	private HeadlineService headlineService;
-
 	/**
 	 * 筛选
 	 */

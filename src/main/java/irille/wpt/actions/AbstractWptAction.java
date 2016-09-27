@@ -12,7 +12,40 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionSupport;
 
 import irille.wpt.bean.Member;
+import irille.wpt.service.impl.BanquetService;
+import irille.wpt.service.impl.CashJournalService;
+import irille.wpt.service.impl.CityLineService;
+import irille.wpt.service.impl.CityService;
+import irille.wpt.service.impl.CollectService;
+import irille.wpt.service.impl.ComboBannerService;
+import irille.wpt.service.impl.ComboLineService;
+import irille.wpt.service.impl.ComboService;
+import irille.wpt.service.impl.CommissionJournalService;
+import irille.wpt.service.impl.CustomFormService;
+import irille.wpt.service.impl.CustomServiceService;
+import irille.wpt.service.impl.DistributionRuleService;
+import irille.wpt.service.impl.FeedbackService;
+import irille.wpt.service.impl.HeadlineService;
+import irille.wpt.service.impl.HotService;
 import irille.wpt.service.impl.MemberService;
+import irille.wpt.service.impl.OrderCustomServiceService;
+import irille.wpt.service.impl.OrderDetailService;
+import irille.wpt.service.impl.OrderPayJournalService;
+import irille.wpt.service.impl.OrderService;
+import irille.wpt.service.impl.PetitionCityService;
+import irille.wpt.service.impl.QrcodeRuleService;
+import irille.wpt.service.impl.RedPackRuleService;
+import irille.wpt.service.impl.RestaurantBannerService;
+import irille.wpt.service.impl.RestaurantBsnService;
+import irille.wpt.service.impl.RestaurantCaseService;
+import irille.wpt.service.impl.RestaurantLineService;
+import irille.wpt.service.impl.RestaurantMenuService;
+import irille.wpt.service.impl.RestaurantService;
+import irille.wpt.service.impl.RestaurantTemplateService;
+import irille.wpt.service.impl.ServiceCenterService;
+import irille.wpt.service.impl.SpecialLineService;
+import irille.wpt.service.impl.SpecialService;
+import irille.wpt.service.impl.UserService;
 import irille.wx.wx.WxAccount;
 import irille.wx.wx.WxUser;
 
@@ -21,19 +54,85 @@ public abstract class AbstractWptAction extends ActionSupport implements Session
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 675006873821315991L;
-	private static String domain = null;
-	private String requestUrl = null;
-	private Map<String, Object> session;
-	private HttpServletRequest request;
-	private HttpServletResponse response;
+	protected static final long serialVersionUID = 675006873821315991L;
+	protected static String domain = null;
+	protected String requestUrl = null;
+	protected Map<String, Object> session;
+	protected HttpServletRequest request;
+	protected HttpServletResponse response;
 	protected WxAccount account;
-	private String result;
+	protected String result;
 	public static final String TRENDS = "trends";
 	public static final String RTRENDS = "rtrends";
 
 	@Resource
-	private MemberService memberService;
+	protected BanquetService banquetService;
+	@Resource
+	protected CashJournalService cashJournalService;
+	@Resource
+	protected CityLineService cityLineService;
+	@Resource
+	protected CityService cityService;
+	@Resource
+	protected CollectService collectService;
+	@Resource
+	protected ComboBannerService comboBannerService;
+	@Resource
+	protected ComboLineService comboLineService;
+	@Resource
+	protected ComboService comboService;
+	@Resource
+	protected CommissionJournalService commissionJournalService;
+	@Resource
+	protected CustomFormService customFormService;
+	@Resource
+	protected CustomServiceService customServiceService;
+	@Resource
+	protected DistributionRuleService distributionRuleService;
+	@Resource
+	protected FeedbackService feedbackService;
+	@Resource
+	protected HeadlineService headlineService;
+	@Resource
+	protected HotService hotService;
+	@Resource
+	protected MemberService memberService;
+	@Resource
+	protected OrderCustomServiceService orderCustomServiceService;
+	@Resource
+	protected OrderDetailService orderDetailService;
+	@Resource
+	protected OrderPayJournalService orderPayJournalService;
+	@Resource
+	protected OrderService orderService;
+	@Resource
+	protected PetitionCityService petitionCityService;
+	@Resource
+	protected QrcodeRuleService qrcodeRuleService;
+	@Resource
+	protected RedPackRuleService redPackRuleService;
+	@Resource
+	protected RestaurantBannerService restaurantBannerService;
+	@Resource
+	protected RestaurantBsnService restaurantBsnService;
+	@Resource
+	protected RestaurantCaseService restaurantCaseService;
+	@Resource
+	protected RestaurantLineService restaurantLineService;
+	@Resource
+	protected RestaurantMenuService restaurantMenuService;
+	@Resource
+	protected RestaurantService restaurantService;
+	@Resource
+	protected RestaurantTemplateService restaurantTemplateService;
+	@Resource
+	protected ServiceCenterService serviceCenterService;
+	@Resource
+	protected SpecialService specialService;
+	@Resource
+	protected SpecialLineService specialLineService;
+	@Resource
+	protected UserService userService;
 	
 	public Map<String, Object> getSession() {
 		if(session == null)

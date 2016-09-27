@@ -13,7 +13,7 @@ public class WxTipsAction extends AbstractCRUDAction<WxTips> {
 
 	@Override
 	public String ins() {
-		Member member = service.load(Member.class, bean.getMember().getPkey());
+		Member member = memberService.load(bean.getMember().getPkey());
 		bean.setMember(member);
 		service.save(bean);
 		return BEAN;

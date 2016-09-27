@@ -2,19 +2,14 @@ package irille.wpt.service.impl;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
 
 import irille.wpt.bean.CashJournal;
-import irille.wpt.dao.impl.CashJournalDao;
+import irille.wpt.service.AbstractService;
 
 @Service
-public class CashJournalService {
-	
-	@Resource
-	private CashJournalDao cashJournalDao;
-	
+public class CashJournalService extends AbstractService<CashJournal> {
+
 	public List<CashJournal> listByMember(Integer memberId) {
 		return cashJournalDao.listByMember(memberId);
 	}

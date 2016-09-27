@@ -15,7 +15,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Repository;
 
 import irille.tools.GenericsUtils;
-import irille.wpt.bean.CommissionJournal;
 import irille.wpt.bean.SpecialLine;
 import irille.wpt.tools.Page;
 
@@ -68,7 +67,31 @@ public abstract class AbstractDao<T,ID extends Serializable> {
 		query.addEntity(entityClass);
 		return query.list();
 	}
-	public Page<T> page(Integer start, Integer limit, String where, Object ... params) {
+	public List<T> list(Integer start, Integer limit, String where) {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("from "+entityClass.getName()+" this where "+where);
+		if(start!=null) {
+			query.setFirstResult(start);
+		}
+		if(limit!=null) {
+			query.setMaxResults(limit);
+		}
+		return query.list();
+	}
+	public Page<T> pageHql(Integer start, Integer limit, String where) {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("from "+entityClass.getSimpleName()+" this where "+where);
+		Long total = (Long)session.createQuery("select count(*) from "+entityClass.getSimpleName()+" this where "+where).uniqueResult();
+		if(start!=null) {
+			query.setFirstResult(start);
+		}
+		if(limit!=null) {
+			query.setMaxResults(limit);
+		}
+		List<T> items = query.list();
+		return new Page<T>(total, items);
+	}
+	public Page<T> pageSql(Integer start, Integer limit, String where, Object ... params) {
 		SQLQuery totalQuery = createSQLQuery("select count(*) "+where, params);
 		Long total = (Long)totalQuery.uniqueResult();
 		SQLQuery itemsQuery = createSQLQuery("select * "+where, params);
@@ -77,7 +100,7 @@ public abstract class AbstractDao<T,ID extends Serializable> {
 		Page<T> page = new Page<T>(total, items);
 		return page;
 	}
-	public Page<T> page(Integer start, Integer limit) {
+	public Page<T> pageSql(Integer start, Integer limit) {
 		Session session = sessionFactory.getCurrentSession();
 		Long total = (Long)session.createQuery("select count(*) from "+entityClass.getName()).uniqueResult();
 		Query query = session.createQuery("from "+entityClass.getName());

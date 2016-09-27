@@ -6,7 +6,6 @@ import java.text.ParseException;
 import java.util.Map;
 import java.util.TreeMap;
 
-import javax.annotation.Resource;
 import javax.annotation.security.PermitAll;
 
 import org.apache.struts2.ServletActionContext;
@@ -21,8 +20,6 @@ import irille.wpt.actions.resource.AbstractCRUDAction;
 import irille.wpt.bean.City;
 import irille.wpt.bean.Order;
 import irille.wpt.interceptor.CityInterceptor;
-import irille.wpt.service.impl.CustomFormService;
-import irille.wpt.service.impl.OrderService;
 import irille.wx.wpt.Wpt.OStatus;
 import irille.wx.wx.WxAccount;
 import irille.wxpub.util.MessageUtil;
@@ -52,11 +49,6 @@ public class OrderAction extends AbstractCRUDAction<Order> {
 	private Integer comboNumber;
 
 	private String checkCode;
-	
-	@Resource
-	private OrderService orderService;
-	@Resource
-	private CustomFormService customFormService;
 	
 	private Integer restaurantId;
 	private boolean isHistory;

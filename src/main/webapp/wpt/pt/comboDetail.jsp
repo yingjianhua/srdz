@@ -45,7 +45,7 @@
 	<h2 class="cbdet_head">${combo.name }</h2>
 	
 	<div class="cbdet_item">
-		<s:iterator value="combo.comboLines" var="comboLine">
+		<s:iterator value="comboLines" var="comboLine">
 			<p>
 				<s:if test="#comboLine.menu.name == 'space'"><br></s:if>
 				<s:else><s:property value="#comboLine.menu.name" /></s:else>

@@ -1,21 +1,12 @@
 package irille.wpt.service.impl;
 
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
 
 import irille.wpt.bean.RestaurantCase;
-import irille.wpt.dao.impl.RestaurantCaseDao;
-import irille.wpt.dao.impl.RestaurantDao;
+import irille.wpt.service.AbstractService;
 
 @Service
-public class RestaurantCaseService {
-	
-	@Resource
-	private RestaurantCaseDao restaurantCaseDao;
-	
-	@Resource
-	private RestaurantDao restaurantDao;
+public class RestaurantCaseService extends AbstractService<RestaurantCase> {
 	
 	public void save(RestaurantCase bean, Integer account) {
 		bean.setAccount(account);

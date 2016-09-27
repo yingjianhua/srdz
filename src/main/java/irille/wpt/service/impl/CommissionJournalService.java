@@ -4,19 +4,15 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
 
 import irille.wpt.bean.CommissionJournal;
 import irille.wpt.bean.Member;
 import irille.wpt.bean.Order;
-import irille.wpt.dao.impl.CommissionJournalDao;
+import irille.wpt.service.AbstractService;
 import irille.wx.wpt.Wpt.OStatus;
 @Service
-public class CommissionJournalService {
-	@Resource
-	private CommissionJournalDao commissionJournalDao;
+public class CommissionJournalService extends AbstractService<CommissionJournal> {
 	
 	/**
 	 * 用户订单付款后，根据订单信息产生或更新，邀请人的佣金流水

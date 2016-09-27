@@ -5,24 +5,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
 
 import irille.core.sys.Sys.OEnabled;
 import irille.pub.bean.Bean;
 import irille.pub.idu.Idu;
 import irille.wpt.bean.Restaurant;
-import irille.wpt.dao.impl.RestaurantDao;
+import irille.wpt.service.AbstractService;
 import irille.wx.wpt.WptCityLine;
 import irille.wx.wpt.WptCombo;
 import irille.wx.wpt.WptRestaurant;
 import irille.wx.wpt.WptRestaurantLine;
 @Service
-public class RestaurantService {
-	
-	@Resource
-	private RestaurantDao restaurantDao;
+public class RestaurantService extends AbstractService<Restaurant> {
 	
 	/**
 	 * 
@@ -66,7 +61,4 @@ public class RestaurantService {
 		return mapCombo;
 	}
 	
-	public Restaurant get(Integer id) {
-		return restaurantDao.get(id);
-	}
 }

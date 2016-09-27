@@ -16,13 +16,8 @@ import irille.wpt.bean.CustomService;
 import irille.wpt.bean.Member;
 import irille.wpt.bean.ServiceCenter;
 import irille.wpt.bean.WxTips;
-import irille.wpt.dao.impl.BanquetDao;
-import irille.wpt.dao.impl.CityLineDao;
-import irille.wpt.dao.impl.CustomFormDao;
-import irille.wpt.dao.impl.CustomServiceDao;
-import irille.wpt.dao.impl.ServiceCenDao;
-import irille.wpt.dao.impl.WxTipsDao;
 import irille.wpt.exception.ExtjsException;
+import irille.wpt.service.AbstractService;
 import irille.wpt.tools.RangeConditionTool;
 import irille.wpt.tools.SmsTool;
 import irille.wx.wpt.Wpt.OContactStatus;
@@ -30,20 +25,8 @@ import irille.wx.wx.WxAccount;
 import irille.wx.wx.WxAccountDAO;
 import irille.wxpub.util.mch.MchUtil;
 @Service
-public class CustomFormService {
+public class CustomFormService extends AbstractService<CustomForm> {
 	
-	@Resource
-	private CustomFormDao customFormDao;
-	@Resource
-	private BanquetDao banquetDao; 
-	@Resource
-	private CityLineDao citylineDao;
-	@Resource
-	private CustomServiceDao customServiceDao;
-	@Resource
-	private ServiceCenDao serviceCenDao;
-	@Resource
-	private WxTipsDao wxTipsDao;
 	@Resource
 	private SmsTool smsTool;
 
@@ -61,7 +44,7 @@ public class CustomFormService {
 			form.setNumber(RangeConditionTool.condition2Display1(number, "位"));
 			form.setTime(INPUT_DATE_FORMAT.parse(time));
 			form.setCity(city);
-			form.setCityline(citylineDao.load(areaId));
+			form.setCityline(cityLineDao.load(areaId));
 			StringBuilder sb = new StringBuilder();
 			for(CustomService customService:customServiceDao.listByIds(serviceIds)) {
 				sb.append(",").append(customService.getName());
@@ -93,7 +76,7 @@ public class CustomFormService {
 	 */
 	public void doSent(CustomForm form){
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-		final ServiceCenter serviceCen = serviceCenDao.find(form.getAccount());
+		final ServiceCenter serviceCen = serviceCenterDao.find(form.getAccount());
 		StringBuilder c = new StringBuilder("【享食光】私人订制 表单生成,内容如下:\n");
 		c.append("表单号：").append(form.getFormid()).append("\n");
 		c.append("宴会类型：").append(form.getBanquet()).append("\n");

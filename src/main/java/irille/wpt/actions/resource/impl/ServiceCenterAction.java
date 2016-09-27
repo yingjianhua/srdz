@@ -2,7 +2,6 @@ package irille.wpt.actions.resource.impl;
 
 import java.io.IOException;
 
-import javax.annotation.Resource;
 import javax.annotation.security.PermitAll;
 
 import org.apache.struts2.json.annotations.IncludeProperties;
@@ -12,15 +11,10 @@ import org.springframework.stereotype.Controller;
 
 import irille.wpt.actions.resource.AbstractCRUDAction;
 import irille.wpt.bean.ServiceCenter;
-import irille.wpt.service.impl.ServiceCenService;
 @Controller
 @Scope("prototype")
 public class ServiceCenterAction extends AbstractCRUDAction<ServiceCenter> {
 	private static final long serialVersionUID = 1L;
-	
-	@Resource
-	private ServiceCenService serviceCenService;
-	
 	
 	/**
 	 * 客服中心
@@ -31,7 +25,7 @@ public class ServiceCenterAction extends AbstractCRUDAction<ServiceCenter> {
 		"mobile"
 	})
 	public String info() throws Exception {
-		bean = service.load(ServiceCenter.class, getAccount().getPkey());
+		bean = serviceCenterService.load(getAccount().getPkey());
 		return BEAN;
 	}
 
@@ -39,7 +33,7 @@ public class ServiceCenterAction extends AbstractCRUDAction<ServiceCenter> {
 	 * 客服中心设置
 	 */
 	public String insOrUpd() throws IOException, JSONException {
-		serviceCenService.insOrUpd(bean);
+		serviceCenterService.insOrUpd(bean);
 		return BEAN;
 	}
 }

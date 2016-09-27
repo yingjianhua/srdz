@@ -1,20 +1,20 @@
 package irille.wpt.actions.resource;
 
+import java.lang.reflect.Field;
 import java.util.List;
 
-import javax.annotation.Resource;
+import javax.annotation.PostConstruct;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Qualifier;
 
 import irille.pub.Str;
 import irille.tools.GenericsUtils;
 import irille.wpt.actions.AbstractWptAction;
 import irille.wpt.extjs.ComboTriggerBuilder;
 import irille.wpt.extjs.IComboTrigger;
-import irille.wpt.service.impl.BaseService;
+import irille.wpt.service.AbstractService;
 import irille.wpt.tools.Page;
 import irille.wpt.tools.SqlBuilder;
 /**
@@ -57,13 +57,26 @@ public abstract class AbstractCRUDAction<T> extends AbstractWptAction {
 	private String query;
 	private String sarg1;//comboTrigger的查询条件
 	
-	@Resource
-	@Qualifier("baseService")
-	public BaseService service;
+	public AbstractService service;
 	
 	//初始化action并根据泛型赋值bean的class
 	public AbstractCRUDAction() {
 		entityClass = GenericsUtils.getSuperClassGenricType(getClass());
+	}
+	
+	@PostConstruct
+	public void init() {
+		String clazzName = entityClass.getSimpleName();
+		String clazzService = clazzName.substring(0, 1).toLowerCase() 
+				+ clazzName.substring(1) + "Service";
+		try {
+			Field clazzField = AbstractWptAction.class.getDeclaredField(clazzService);
+			Field baseField = AbstractCRUDAction.class.getDeclaredField("service");
+			baseField.set(this, clazzField.get(this)); //service就有值了
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
 	}
 
 	public String ins() {
@@ -83,14 +96,14 @@ public abstract class AbstractCRUDAction<T> extends AbstractWptAction {
 	public String list() throws JSONException {
 		System.out.println(service.getClass());
 		String where = getFilter()==null?crtSqlByQuery():crtSqlByFilter();
-		beans = service.list(entityClass, start, limit, where);
+		beans = service.list(start, limit, where);
 		return BEANS;
 	}
 	
 	public String page() throws JSONException {
 		System.out.println(service.getClass());
 		String where = getFilter()==null?crtSqlByQuery():crtSqlByFilter();
-		pages = service.page(entityClass, start, limit, where);
+		pages = service.page(start, limit, where);
 		return PAGES;
 	}
 	
@@ -100,7 +113,7 @@ public abstract class AbstractCRUDAction<T> extends AbstractWptAction {
 		if (!Str.isEmpty(getSarg1()))
 			where += " and (" + getSarg1() + ")";
 		System.out.println(where);
-		beans = service.list(entityClass, null, null, where);
+		beans = service.list(null, null, where);
 		if(IComboTrigger.class.isAssignableFrom(entityClass)) {
 			ComboTriggerBuilder builder = new ComboTriggerBuilder((List<IComboTrigger>)beans);
 			object = builder.build();

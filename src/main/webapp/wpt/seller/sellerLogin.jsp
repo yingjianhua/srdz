@@ -72,7 +72,7 @@ ${jsCode}
 		$(".selg_wait").show();
 		InterValObj = setInterval(SetRemainTime, 1000);
 	    $.ajax({
-	        url:'resource/seller_sendCheckCode?account.pkey=${account.pkey}',
+	        url:'resource/restaurnatBsn_sendCheckCode?account.pkey=${account.pkey}',
 	        type:"POST",
 	        data:$('#phone').serialize(),
 	        success: function(data) {
@@ -106,7 +106,7 @@ ${jsCode}
 				return false;
 			}else{
 		    $.ajax({
-		        url:'resource/seller_checkCode?account.pkey=${account.pkey}',
+		        url:'resource/restaurnatBsn_checkCode?account.pkey=${account.pkey}',
 		        type:"POST",
 		        data:{
 		        	manager : $("[name='manager']").val(),

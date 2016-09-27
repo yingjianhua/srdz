@@ -6,8 +6,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
 
 import irille.pub.Log;
@@ -16,34 +14,15 @@ import irille.wpt.bean.CashJournal;
 import irille.wpt.bean.Member;
 import irille.wpt.bean.QrcodeRule;
 import irille.wpt.bean.RedPackRule;
-import irille.wpt.dao.impl.CashJournalDao;
-import irille.wpt.dao.impl.CommissionJournalDao;
-import irille.wpt.dao.impl.MemberDao;
-import irille.wpt.dao.impl.OrderDao;
-import irille.wpt.dao.impl.QrcodeRuleDao;
-import irille.wpt.dao.impl.RedPackRuleDao;
+import irille.wpt.service.AbstractService;
 import irille.wpt.tools.Page;
 import irille.wx.wa.WaQRCodeDAO;
 import irille.wx.wx.WxAccount;
 import irille.wxpub.util.mch.SendRedPack;
 
 @Service
-public class MemberService {
+public class MemberService extends AbstractService<Member> {
 	private static final Log LOG = new Log(MemberService.class);
-
-	@Resource
-	private MemberDao memberDao;
-	@Resource
-	private QrcodeRuleDao qrcodeRuleDao;
-	@Resource
-	private CommissionJournalDao commissionJournalDao;
-	@Resource
-	private RedPackRuleDao redPackRuleDao;
-	@Resource
-	private CashJournalDao cashJournalDao;
-	@Resource
-	private OrderDao orderDao;
-	
 	
 	public Member findByOpenidInAccount(Integer accountId, String openid) {
 		return memberDao.findByOpenidInAccount(accountId, openid);

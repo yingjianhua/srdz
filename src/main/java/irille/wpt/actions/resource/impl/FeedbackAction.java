@@ -2,7 +2,6 @@ package irille.wpt.actions.resource.impl;
 
 import java.io.IOException;
 
-import javax.annotation.Resource;
 import javax.annotation.security.PermitAll;
 
 import org.json.JSONException;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Controller;
 
 import irille.wpt.actions.resource.AbstractCRUDAction;
 import irille.wpt.bean.Feedback;
-import irille.wpt.service.impl.FeedbackService;
 @Controller
 @Scope("prototype")
 public class FeedbackAction extends AbstractCRUDAction<Feedback> {
@@ -21,15 +19,12 @@ public class FeedbackAction extends AbstractCRUDAction<Feedback> {
 	private String contactWay;
 	private Byte contactType;
 	
-	@Resource
-	private FeedbackService feedBackService;
-	
 	/**
 	 * 把反馈插入到数据库
 	 */
 	@PermitAll
 	public String suggest(){
-		feedBackService.suggest(content, contactType, contactWay, getAccount().getPkey());
+		feedbackService.suggest(content, contactType, contactWay, getAccount().getPkey());
 		return BEAN;
 	}
 	
@@ -37,7 +32,7 @@ public class FeedbackAction extends AbstractCRUDAction<Feedback> {
 	 * 反馈处理
 	 */
 	public String toDo() throws IOException, JSONException{
-		bean = feedBackService.toDo(bean);
+		bean = feedbackService.toDo(bean);
 		return BEAN;
 	}
 	

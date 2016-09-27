@@ -1,8 +1,10 @@
 package irille.wpt.bean;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -42,9 +44,9 @@ public class Combo extends Product implements Serializable {
 	@Column(name="service_time")
 	private String serviceTime;
 
-    @OneToMany(fetch=FetchType.LAZY)
+    @OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval=true)
     @JoinColumn(name="combo")
-	private Set<ComboLine> comboLines;
+	private List<ComboLine> comboLines;
 	
     @OneToMany(fetch=FetchType.LAZY)
     @JoinColumn(name="combo")
@@ -96,11 +98,11 @@ public class Combo extends Product implements Serializable {
 		this.serviceTime = serviceTime;
 	}
 
-	public Set<ComboLine> getComboLines() {
+	public List<ComboLine> getComboLines() {
 		return comboLines;
 	}
 
-	public void setComboLines(Set<ComboLine> comboLines) {
+	public void setComboLines(List<ComboLine> comboLines) {
 		this.comboLines = comboLines;
 	}
 

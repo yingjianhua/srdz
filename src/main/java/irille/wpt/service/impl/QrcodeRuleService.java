@@ -8,13 +8,15 @@ import org.springframework.stereotype.Service;
 
 import irille.pub.bean.Bean;
 import irille.pub.idu.Idu;
+import irille.wpt.bean.QrcodeRule;
+import irille.wpt.service.AbstractService;
 import irille.wx.wa.WaQRCodeDAO;
 import irille.wx.wpt.Wpt.OStatus;
 import irille.wx.wpt.WptOrder;
 import irille.wx.wpt.WptQrcodeRule;
 import irille.wx.wx.WxUser;
 @Service
-public class QrcodeRuleService {
+public class QrcodeRuleService extends AbstractService<QrcodeRule> {
 	/**
 	 * 判断微信用户是否满足产生推广二维码的要求，并进行相应的操作
 	 * @param force 是否不管判断条件 强制将用户转换为会员， 并且生成推广二维码

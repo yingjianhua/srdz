@@ -1,6 +1,7 @@
 package irille.wpt.actions.controller.impl;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -12,6 +13,7 @@ import irille.wpt.actions.controller.IMenuShareAppMessage;
 import irille.wpt.actions.controller.IMenuShareTimeline;
 import irille.wpt.bean.Combo;
 import irille.wpt.bean.ComboLine;
+import irille.wpt.service.impl.ComboLineService;
 import irille.wpt.service.impl.ComboService;
 @Controller
 @Scope("prototype")
@@ -20,18 +22,22 @@ public class ShowComboAction extends AbstractControllAction implements IMenuShar
 	
 	private Integer id;
 	private Combo combo;
+	private List<ComboLine> comboLines;
 	private BigDecimal origPrice = BigDecimal.ZERO;
 	
 	@Resource
 	private ComboService comboService;
+	@Resource
+	private ComboLineService comboLineService;
 	/**
 	 * 显示套餐详情
 	 */
 	@Override
 	public String execute() throws Exception {
 		combo = comboService.get(id);
+		comboLines = comboLineService.listByCombo(id);
 		if(getCombo().getOrigPrice().intValue() == 0) {
-			for(ComboLine line:combo.getComboLines()) {
+			for(ComboLine line:comboLines) {
 				origPrice = origPrice.add(line.getPrice());
 			}
 		} else {

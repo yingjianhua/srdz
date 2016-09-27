@@ -7,7 +7,7 @@ viewConfig : {enableTextSelection : true},
 oneTdCount : 4,
 searchField : null,
 initComponent : function(){
-this.columns = [{text : '餐厅',width : 100,dataIndex : 'restaurant',sortable : true,renderer : mvc.Tools.beanRenderer()}
+this.columns = [{text : '餐厅',width : 100,dataIndex : 'restaurant.pkey',sortable : true,renderer : mvc.Tools.beanRenderer()}
 	,{text : '名称',width : 100,dataIndex : 'name',sortable : true}
 	,{text : '图片',width : 100,dataIndex : 'imgUrl',sortable : true,renderer:function(v) {return "<img src='../"+v+"'width='90px' height='70px'>"}}
 	,{text : '描述',width : 100,dataIndex : 'des',sortable : true}

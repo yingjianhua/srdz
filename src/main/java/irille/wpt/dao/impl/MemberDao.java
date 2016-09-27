@@ -21,11 +21,11 @@ public class MemberDao extends AbstractDao<Member, Integer> {
 	
 	//获取下一级粉丝
 	public Page<Member> pageByInvited2(Integer start, Integer limit, Integer invitedId) {
-		return page(start, limit, "from wx_user where invited2=?", invitedId);
+		return pageSql(start, limit, "from wx_user where invited2=?", invitedId);
 	}
 	//获取下下一级粉丝
 	public Page<Member> pageByInvited1(Integer start, Integer limit, Integer invitedId) {
-		return page(start, limit, "from wx_user where invited1=?", invitedId);
+		return pageSql(start, limit, "from wx_user where invited1=?", invitedId);
 	}
 	
 	//获取下一级粉丝

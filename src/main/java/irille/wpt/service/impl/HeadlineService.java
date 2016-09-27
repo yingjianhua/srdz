@@ -2,28 +2,14 @@ package irille.wpt.service.impl;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
 
 import irille.pub.idu.Idu;
 import irille.wpt.bean.Headline;
-import irille.wpt.dao.impl.BanquetDao;
-import irille.wpt.dao.impl.CityDao;
-import irille.wpt.dao.impl.CityLineDao;
-import irille.wpt.dao.impl.HeadlineDao;
+import irille.wpt.service.AbstractService;
 import irille.wx.wx.WxAccountDAO;
 @Service
-public class HeadlineService {
-	
-	@Resource
-	private HeadlineDao headlineDao;
-	@Resource
-	private CityDao cityDao;
-	@Resource
-	private CityLineDao cityLineDao;
-	@Resource
-	private BanquetDao banquetDao;
+public class HeadlineService extends AbstractService<Headline> {
 	
 	public void save(Headline bean) {
 		bean.setAccount(WxAccountDAO.getByUser(Idu.getUser()).getPkey());

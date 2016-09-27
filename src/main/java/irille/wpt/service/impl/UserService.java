@@ -13,12 +13,15 @@ import org.springframework.stereotype.Service;
 import irille.pub.Log;
 import irille.pub.bean.Bean;
 import irille.pub.idu.Idu;
+import irille.wpt.bean.Member;
+import irille.wpt.service.AbstractService;
 import irille.wx.wpt.WptCommissionJournal;
 import irille.wx.wpt.WptQrcodeRule;
 import irille.wx.wx.WxUser;
 @Service
-public class UserService {
+public class UserService extends AbstractService<Member> {
 	public static final Log LOG = new Log(UserService.class);
+	
 	@Resource
 	private CashJournalService cashJournalService;
 	@Resource

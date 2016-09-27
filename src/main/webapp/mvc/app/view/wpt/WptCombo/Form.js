@@ -13,7 +13,7 @@ fieldDefaults : {
 },
 initComponent : function(){
 			if (this.insFlag)
-				this.url = this.url + 'add';
+				this.url = this.url + 'ins';
 			else
 				this.url = this.url + 'upd';
 	var formFlds = [];

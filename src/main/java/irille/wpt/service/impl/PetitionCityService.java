@@ -1,25 +1,17 @@
 package irille.wpt.service.impl;
 
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
 
 import irille.pub.Log;
 import irille.wpt.bean.City;
 import irille.wpt.bean.PetitionCity;
-import irille.wpt.dao.impl.CityDao;
-import irille.wpt.dao.impl.PetitionCityDao;
 import irille.wpt.exception.ExtjsException;
+import irille.wpt.service.AbstractService;
 
 @Service
-public class PetitionCityService {
+public class PetitionCityService extends AbstractService<PetitionCity> {
 	public static final Log LOG = new Log(PetitionCityService.class);
 	
-	@Resource
-	private PetitionCityDao petitionCityDao;
-	@Resource
-	private CityDao cityDao;
-
 	public void petition(String name, Integer accountId) {
 		if(name == null) {
 			return ;

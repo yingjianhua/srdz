@@ -2,18 +2,13 @@ package irille.wpt.service.impl;
 
 import java.util.Date;
 
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
 
 import irille.pub.idu.Idu;
 import irille.wpt.bean.Feedback;
-import irille.wpt.dao.impl.FeedbackDao;
+import irille.wpt.service.AbstractService;
 @Service
-public class FeedbackService {
-	
-	@Resource
-	private FeedbackDao feedbackDao;
+public class FeedbackService extends AbstractService<Feedback> {
 
 	/**
 	 * 把反馈插入到数据库

@@ -2,25 +2,16 @@ package irille.wpt.service.impl;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
 
 import irille.wpt.bean.Collect;
 import irille.wpt.bean.Headline;
 import irille.wpt.bean.Member;
-import irille.wpt.dao.impl.CollectDao;
-import irille.wpt.dao.impl.HeadlineDao;
 import irille.wpt.exception.ExtjsException;
+import irille.wpt.service.AbstractService;
 
 @Service
-public class CollectService {
-	
-	@Resource
-	private CollectDao collectDao;
-	@Resource
-	private HeadlineDao headlineDao;
-	
+public class CollectService extends AbstractService<Collect> {
 
 	/**
 	 * 若未收藏，收藏 若已收藏，取消收藏

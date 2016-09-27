@@ -2,7 +2,6 @@ package irille.wpt.actions.resource.impl;
 
 import java.util.List;
 
-import javax.annotation.Resource;
 import javax.annotation.security.PermitAll;
 
 import org.apache.struts2.json.annotations.IncludeProperties;
@@ -14,7 +13,6 @@ import irille.wpt.actions.resource.AbstractCRUDAction;
 import irille.wpt.bean.City;
 import irille.wpt.bean.CityLine;
 import irille.wpt.interceptor.CityInterceptor;
-import irille.wpt.service.impl.CityService;
 @Controller
 @Scope("prototype")
 public class CityAction extends AbstractCRUDAction<City> {
@@ -26,12 +24,9 @@ public class CityAction extends AbstractCRUDAction<City> {
 	private String petitionCity;
 	private List<CityLine> listLine;
 	
-	@Resource
-	private CityService cityService;
-	
 	@PermitAll
 	public String select() {
-		City city = service.load(City.class, id);
+		City city = cityService.load(id);
 		LOG.info("select:{0}", city.getName());
 		if(city != null) {
 			getSession().put(CityInterceptor.CITY, city);

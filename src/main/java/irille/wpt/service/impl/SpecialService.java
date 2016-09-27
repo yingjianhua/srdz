@@ -5,26 +5,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
 
 import irille.wpt.bean.Special;
 import irille.wpt.bean.SpecialLine;
-import irille.wpt.dao.impl.CityDao;
-import irille.wpt.dao.impl.SpecialDao;
-import irille.wpt.dao.impl.SpecialLineDao;
 import irille.wpt.exception.ExtjsException;
+import irille.wpt.service.AbstractService;
 
 @Service
-public class SpecialService {
-
-	@Resource
-	private SpecialDao specialDao;
-	@Resource
-	private SpecialLineDao specialLineDao;
-	@Resource
-	private CityDao cityDao;
+public class SpecialService extends AbstractService<Special> {
 	
 	public void save(Special bean, List<SpecialLine> listLine, Integer account) {
 		bean.setAccount(account);

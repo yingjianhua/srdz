@@ -6,7 +6,7 @@ import irille.wpt.bean.ServiceCenter;
 import irille.wpt.dao.AbstractDao;
 
 @Repository
-public class ServiceCenDao extends AbstractDao<ServiceCenter, Integer>{
+public class ServiceCenterDao extends AbstractDao<ServiceCenter, Integer>{
 
 	
 	public ServiceCenter find(Integer account) {

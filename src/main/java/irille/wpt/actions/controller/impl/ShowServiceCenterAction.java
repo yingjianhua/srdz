@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 
 import irille.wpt.actions.controller.AbstractControllAction;
 import irille.wpt.bean.ServiceCenter;
-import irille.wpt.service.impl.ServiceCenService;
+import irille.wpt.service.impl.ServiceCenterService;
 @Controller
 @Scope("prototype")
 public class ShowServiceCenterAction extends AbstractControllAction {
@@ -16,7 +16,7 @@ public class ShowServiceCenterAction extends AbstractControllAction {
 	private ServiceCenter serviceCenter;
 	
 	@Resource
-	private ServiceCenService serviceCenService;
+	private ServiceCenterService serviceCenService;
 	
 	/**
 	 * 客服中心

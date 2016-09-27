@@ -76,7 +76,7 @@ onDelRow : function(grid, rowIndex){
 					return;
 				var row = me.getStore().getAt(rowIndex);
 				Ext.Ajax.request({
-					url : '/wpt_WptCombo_del?pkey='+row.get('pkey')+'&rowVersion='+row.get(BEAN_VERSION),
+					url : '/wpt/resource/combo_del?pkey='+row.get('pkey')+'&rowVersion='+row.get(BEAN_VERSION),
 					success : function (response, options) {
 						var result = Ext.decode(response.responseText);
 						if (result.success){

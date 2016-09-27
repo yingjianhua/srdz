@@ -32,20 +32,9 @@ import irille.wpt.bean.OrderPayJournal;
 import irille.wpt.bean.Restaurant;
 import irille.wpt.bean.ServiceCenter;
 import irille.wpt.bean.WxTips;
-import irille.wpt.dao.impl.ComboDao;
-import irille.wpt.dao.impl.ComboLineDao;
-import irille.wpt.dao.impl.CommissionJournalDao;
-import irille.wpt.dao.impl.CustomServiceDao;
-import irille.wpt.dao.impl.DistributionRuleDao;
-import irille.wpt.dao.impl.MemberDao;
-import irille.wpt.dao.impl.OrderDao;
-import irille.wpt.dao.impl.OrderDetailDao;
-import irille.wpt.dao.impl.OrderPayJournalDao;
-import irille.wpt.dao.impl.OrderServiceDao;
-import irille.wpt.dao.impl.ServiceCenDao;
-import irille.wpt.dao.impl.WxTipsDao;
 import irille.wpt.exception.ExtjsException;
 import irille.wpt.pay.WXPay;
+import irille.wpt.service.AbstractService;
 import irille.wpt.tools.Constant;
 import irille.wpt.tools.SmsTool;
 import irille.wx.wpt.Wpt.OContactStatus;
@@ -57,7 +46,7 @@ import irille.wx.wx.WxMessageDAO;
 import irille.wxpub.util.mch.MchUtil;
 import irille.wxpub.util.mch.UnifiedOrder;
 @Service
-public class OrderService {
+public class OrderService extends AbstractService<Order> {
 	private static final Log LOG = new Log(OrderService.class);
 	
 	@Resource
@@ -72,31 +61,6 @@ public class OrderService {
 	private CommissionJournalService commissionJournalService;
 	@Resource
 	private MemberService memberService;
-	
-	@Resource
-	private MemberDao memberDao;
-	@Resource
-	private ComboDao comboDao;
-	@Resource
-	private ComboLineDao comboLineDao;
-	@Resource
-	private OrderDao orderDao;
-	@Resource
-	private OrderDetailDao orderDetailDao;
-	@Resource
-	private OrderServiceDao orderServiceDao;
-	@Resource
-	private OrderPayJournalDao orderPayJournalDao;
-	@Resource
-	private CustomServiceDao serviceDao;
-	@Resource
-	private ServiceCenDao serviceCenDao;
-	@Resource
-	private DistributionRuleDao distributionRuleDao;
-	@Resource
-	private CommissionJournalDao commissionJournalDao;
-	@Resource
-	private WxTipsDao wxTipsDao;
 	
 	private static final SimpleDateFormat INPUT_DATE_FORMAT = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 	private static final SimpleDateFormat ORDERID_FORMAT = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -145,7 +109,7 @@ public class OrderService {
 				order.setStatus(OStatus.UNPAYMENT.getLine().getKey());
 			}
 			orderDao.save(order);
-			Set<ComboLine> comboLines = combo.getComboLines();
+			List<ComboLine> comboLines = comboLineDao.listByCombo(combo.getPkey());
 			Set<OrderDetail> details = new HashSet<OrderDetail>();
 			for(ComboLine comboLine:comboLines) {
 				OrderDetail detail = new OrderDetail();
@@ -158,7 +122,7 @@ public class OrderService {
 			}
 			order.setDetails(details);
 			if(!Str.isEmpty(serviceIds)) {
-				List<CustomService> services = serviceDao.listByIds(serviceIds);
+				List<CustomService> services = customServiceDao.listByIds(serviceIds);
 				Set<OrderCustomService> orderServices = new HashSet<OrderCustomService>();
 				for (irille.wpt.bean.CustomService service : services) {
 					OrderCustomService orderService = new OrderCustomService();
@@ -346,7 +310,7 @@ public class OrderService {
 	 */
 	public void doSent(Order order){
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-		final ServiceCenter serviceCen = serviceCenDao.find(order.getAccount());
+		final ServiceCenter serviceCen = serviceCenterDao.find(order.getAccount());
 		StringBuilder c = new StringBuilder("【享食光】私人订制 单生成,内容如下:\n");
 		c.append("订单号：").append(order.getOrderid()).append("\n");
 		c.append("餐厅：").append(order.getRestaurantName()).append("\n");

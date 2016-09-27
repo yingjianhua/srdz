@@ -2,18 +2,13 @@ package irille.wpt.service.impl;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
 
 import irille.wpt.bean.CityLine;
-import irille.wpt.dao.impl.CityLineDao;
+import irille.wpt.service.AbstractService;
 
 @Service
-public class CityLineService {
-	
-	@Resource
-	private CityLineDao cityLineDao;
+public class CityLineService extends AbstractService<CityLine> {
 	
 	public List<CityLine> listByCity(Integer cityId) {
 		return cityLineDao.listByCity(cityId);

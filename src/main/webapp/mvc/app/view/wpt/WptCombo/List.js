@@ -233,7 +233,7 @@ onDel : function(){
 						arrv.push(selection[i].get(BEAN_VERSION));
 					}
 					Ext.Ajax.request({
-						url : base_path+'/wpt_WptCombo_delMulti?pkeys='+arr.toString()+'&rowVersions='+arrv.toString(),
+						url : base_path+'/wpt/resource/combo_delMulti?pkeys='+arr.toString()+'&rowVersions='+arrv.toString(),
 						success : function (response, options) {
 							var result = Ext.decode(response.responseText);
 							if (result.success){
@@ -273,7 +273,7 @@ onEnableDisable:function() {
 	if (selection) {
 		var me = this;
 		Ext.Ajax.request({
-			url : base_path + '/wpt_WptCombo_enableDisable?pkey='+selection.get('pkey')+'&rowVersions='+selection.get('rowVersion'),
+			url : base_path + '/wpt/resource/combo_enableDisable?pkey='+selection.get('pkey')+'&rowVersions='+selection.get('rowVersion'),
 			success : function(response, options) {
 				var result = Ext.decode(response.responseText);
 				if (result.success) {

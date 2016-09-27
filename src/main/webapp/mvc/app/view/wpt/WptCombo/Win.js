@@ -49,7 +49,7 @@ setActiveRecord : function(record){
 		this.form.activeRecord = record;
 		if (record || this.form.activeRecord) {
 			this.form.getForm().loadRecord(record);
-			this.comboLine.store.filter([{'id':'filter','property':'combo','value':record.get('bean.pkey')}]);
+			this.comboLine.store.filter([{'id':'filter','property':'combo','value':record.get('pkey')}]);
 		} else {
 			this.form.getForm().reset();
 			this.comboLine.store.removeAll();

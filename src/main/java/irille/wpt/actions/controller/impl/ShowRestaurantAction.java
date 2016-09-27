@@ -28,7 +28,7 @@ public class ShowRestaurantAction extends AbstractControllAction implements IMen
 	 */
 	@Override
 	public String execute() throws Exception {
-		restaurant = restaurantService.get(id);
+		restaurant = restaurantService.load(id);
 		if(getRestaurant().getTemplate() != null) {
 			setResult(getRestaurant().getTemplate().getPath());
 		} else {
@@ -78,7 +78,7 @@ public class ShowRestaurantAction extends AbstractControllAction implements IMen
 	
 	public Restaurant getRestaurant() {
 		if(restaurant == null) 
-			restaurant = restaurantService.get(id);
+			restaurant = restaurantService.load(id);
 		return restaurant;
 	}
 	public void setRestaurant(Restaurant restaurant) {

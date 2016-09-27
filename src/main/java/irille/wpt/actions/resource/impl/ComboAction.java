@@ -3,7 +3,6 @@ package irille.wpt.actions.resource.impl;
 import java.io.IOException;
 import java.util.List;
 
-import javax.annotation.Resource;
 import javax.annotation.security.PermitAll;
 
 import org.apache.struts2.json.annotations.IncludeProperties;
@@ -16,15 +15,10 @@ import irille.wpt.bean.City;
 import irille.wpt.bean.Combo;
 import irille.wpt.bean.ComboLine;
 import irille.wpt.interceptor.CityInterceptor;
-import irille.wpt.service.impl.ComboService;
 
 @Controller
 @Scope("prototype")
 public class ComboAction extends AbstractCRUDAction<Combo> {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	private String banquetId;
@@ -36,13 +30,22 @@ public class ComboAction extends AbstractCRUDAction<Combo> {
 	
 	private List<ComboLine> listLine;
 	
-	@Resource
-	protected ComboService service;
-	
 	@Override
 	public String ins() {
-		
-		return OBJECT;
+		comboService.save(bean, listLine, account.getPkey());
+		return BEAN;
+	}
+	
+	@Override
+	public String upd() {
+		comboService.update(bean, listLine, account.getPkey());
+		return BEAN;
+	}
+	
+	@Override
+	public String del() {
+		comboService.delete(bean);
+		return BEAN;
 	}
 	
 	@PermitAll
@@ -56,7 +59,7 @@ public class ComboAction extends AbstractCRUDAction<Combo> {
 		"\\[\\d+\\]\\.restaurant\\.longitude",
 		"\\[\\d+\\]\\.restaurant\\.latitude"})
 	public String search() throws JSONException, IOException {
-		beans = service.findByCondition(banquetId, pnum, budget, ((City)getSession().get(CityInterceptor.CITY)).getPkey().toString(), areaId, longitude, latitude);
+		beans = comboService.findByCondition(banquetId, pnum, budget, ((City)getSession().get(CityInterceptor.CITY)).getPkey().toString(), areaId, longitude, latitude);
 		System.out.println(beans.size());
 		return BEANS;
 	}
