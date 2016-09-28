@@ -35,14 +35,29 @@ public class ComboService extends AbstractService<Combo> {
 			comboLine.setCombo(bean);
 			comboLineDao.save(comboLine);
 		}
+		bean.setRestaurant(restaurantDao.get(bean.getRestaurant().getPkey()));
 	}
 	
-	public void update(Combo bean, List<ComboLine> listLine, Integer account) {
+	public Combo update(Combo bean, List<ComboLine> listLine, Integer account) {
 		if(listLine == null || listLine.size() == 0) {
 			throw new ExtjsException("请设置菜单");
 		}
+		Combo local = comboDao.get(bean.getPkey());
+		local.setRestaurant(bean.getRestaurant());
+		local.setName(bean.getName());
+		local.setImgUrl(bean.getImgUrl());
+		local.setDes(bean.getDes());
+		local.setOrigPrice(local.getOrigPrice());
+		local.setPrice(bean.getPrice());
+		local.setNumberMin(bean.getNumberMin());
+		local.setNumberMax(bean.getNumberMax());
+		local.setServiceDate(bean.getServiceDate());
+		local.setServiceTime(bean.getServiceTime());
+		local.setRem(bean.getRem());
+		local.setEnabled(bean.getEnabled());
+		
 		Map<Integer, ComboLine> oMap = new HashMap<Integer, ComboLine>();
-		for(ComboLine comboLine:comboLineDao.listByCombo(bean.getPkey())) {
+		for(ComboLine comboLine:local.getComboLines()) {
 			oMap.put(comboLine.getMenu().getPkey(), comboLine);
 		}
 		Map<Integer, ComboLine> nMap = new HashMap<Integer, ComboLine>();
@@ -66,23 +81,34 @@ public class ComboService extends AbstractService<Combo> {
 		}
 		//删除comboLine
 		for(ComboLine comboLine:needDel) {
-			comboLineDao.delete(comboLine);
+			local.getComboLines().remove(comboLine);
 		}
 		//新增comboLine
 		for(ComboLine comboLine:needAdd) {
 			comboLine.setAccount(account);
 			comboLine.setCombo(bean);
-			comboLineDao.save(comboLine);
+			local.getComboLines().add(comboLine);
 		}
-		bean.setAccount(account);
-		bean.setComboLines(comboLineDao.listByCombo(bean.getPkey()));
-		comboDao.update(bean);
+		comboDao.update(local);
+		local.setRestaurant(restaurantDao.get(bean.getRestaurant().getPkey()));
+		return local;
 	}
 	
-	public void delete(Combo combo) {
-		combo = comboDao.get(combo.getPkey());
-		comboLineDao.delete(comboLineDao.listByCombo(combo.getPkey()));
-		comboDao.delete(combo);
+	public void delete(Combo bean) {
+		bean = comboDao.get(bean.getPkey());
+		comboLineDao.delete(comboLineDao.listByCombo(bean.getPkey()));
+		comboDao.delete(bean);
+	}
+	
+	public Combo enableDisable(Combo bean) {
+		Combo local = comboDao.get(bean.getPkey());
+		if(local.getEnabled()) {
+			local.setEnabled(false);
+		} else {
+			local.setEnabled(true);
+		}
+		comboDao.update(local);
+		return local;
 	}
 	
 	public Combo get(Integer id) {

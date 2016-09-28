@@ -17,7 +17,7 @@ this.columns =[{text : '餐厅',width : 100,dataIndex : 'restaurant.pkey',sortab
 	,{text : '使用日期',width : 100,dataIndex : 'serviceDate',sortable : true}
 	,{text : '使用时段',width : 100,dataIndex : 'serviceTime',sortable : true}
 	,{text : '排序',width : 100,dataIndex : 'sort',sortable : true}
-	,{text : '启用',width : 75,dataIndex : 'enabled',sortable : true,renderer : mvc.Tools.optRenderer('sys','Sys','OEnabled')}
+	,{text : '启用',width : 75,dataIndex : 'enabled',sortable : true,renderer : function(v){return v?"是":"否";}}
 	];
 		this.store=Ext.create('mvc.store.wpt.WptCombo');
 		this.store.remoteFilter = true;
@@ -76,7 +76,11 @@ onDelRow : function(grid, rowIndex){
 					return;
 				var row = me.getStore().getAt(rowIndex);
 				Ext.Ajax.request({
-					url : '/wpt/resource/combo_del?pkey='+row.get('pkey')+'&rowVersion='+row.get(BEAN_VERSION),
+					url : '/wpt/resource/combo_del?',
+					params : {
+						"bean.pkey" : selection[0].get('pkey'),
+						"bean.rowVersion" : selection[0].get("rowVersion")
+					},
 					success : function (response, options) {
 						var result = Ext.decode(response.responseText);
 						if (result.success){

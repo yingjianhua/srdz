@@ -149,7 +149,7 @@ mainActs.push({
 										if (this.roles.indexOf('enableDisable') != -1) {
 											var bEnableDisable = this.down('#'+this.oldId+'enableDisable');
 											bEnableDisable.setDisabled(false);
-											if(records[0].get('enabled') == ENABLE) {
+											if(records[0].get('enabled')) {
 												bEnableDisable.setText("停用");
 												bEnableDisable.setIconCls("unEnabled-icon");
 											} else {
@@ -230,10 +230,14 @@ onDel : function(){
 					var arrv = new Array();
 					for(var i = 0; i < selection.length; i++){
 						arr.push(selection[i].get('pkey'));
-						arrv.push(selection[i].get(BEAN_VERSION));
+						arrv.push(selection[i].get("rowVersion"));
 					}
 					Ext.Ajax.request({
-						url : base_path+'/wpt/resource/combo_delMulti?pkeys='+arr.toString()+'&rowVersions='+arrv.toString(),
+						url : base_path+'/wpt/resource/combo_del',
+						params : {
+							"bean.pkey" : selection[0].get('pkey'),
+							"bean.rowVersion" : selection[0].get("rowVersion")
+						},
 						success : function (response, options) {
 							var result = Ext.decode(response.responseText);
 							if (result.success){
@@ -273,7 +277,11 @@ onEnableDisable:function() {
 	if (selection) {
 		var me = this;
 		Ext.Ajax.request({
-			url : base_path + '/wpt/resource/combo_enableDisable?pkey='+selection.get('pkey')+'&rowVersions='+selection.get('rowVersion'),
+			url : base_path + '/wpt/resource/combo_enableDisable?',
+			params : {
+				"bean.pkey" : selection.get('pkey'),
+				"bean.rowVersion" : selection.get("rowVersion")
+			},
 			success : function(response, options) {
 				var result = Ext.decode(response.responseText);
 				if (result.success) {

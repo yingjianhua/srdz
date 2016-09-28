@@ -164,8 +164,17 @@ public class MyJSONResult implements Result {
 	            	if(am.isAnnotationPresent(MaxLevel.class)) {
 	            		maxLevel = method.getAnnotation(MaxLevel.class).value();
 	            	} else {
-	            		if(rootObject.getClass().isArray() || rootObject instanceof Iterable) maxLevel = 4;
-	            		else maxLevel = 3;
+	            		if(this.root.equals(AbstractCRUDAction.BEAN)) {
+	            			maxLevel = 2;
+	            		} else if(this.root.equals(AbstractCRUDAction.BEANS)) {
+	            			maxLevel = 3;
+	            		} else if(this.root.equals(AbstractCRUDAction.PAGES)) {
+	            			maxLevel = 3;
+	            		} else if(rootObject.getClass().isArray() || rootObject instanceof Iterable) {
+	            			maxLevel = 3;
+	            		} else {
+	            			maxLevel = 2;
+	            		}
 	            	}
 	            	if(maxLevel > 0) {
 	            		int i = 0;

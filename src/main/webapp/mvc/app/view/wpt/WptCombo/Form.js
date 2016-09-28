@@ -66,8 +66,8 @@ initComponent : function(){
 				name : 'bean.enabled',
 				id : 'enabled',
 				fieldLabel : '启用',
-				store : Ext.create('mvc.combo.sys.SysOEnabled'),
-				value : 1,
+				store : Ext.create('mvc.combo.wpt.WptOEnabled'),
+				value : true,
 			})
 	,{xtype : 'numberfield',name : 'bean.rowVersion',id : 'rowVersion',value : 0,afterLabelTextTpl : required,allowBlank : false,fieldLabel : '版本',hidden : true,allowDecimals : false}
 	,{

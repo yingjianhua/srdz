@@ -51,7 +51,7 @@ public class Combo extends Product implements Serializable {
     @OneToMany(fetch=FetchType.LAZY)
     @JoinColumn(name="combo")
     @OrderBy("sort")
-	private Set<ComboBanner> banners;
+	private List<ComboBanner> banners;
     
 	private Integer sort;
 
@@ -106,11 +106,11 @@ public class Combo extends Product implements Serializable {
 		this.comboLines = comboLines;
 	}
 
-	public Set<ComboBanner> getBanners() {
+	public List<ComboBanner> getBanners() {
 		return banners;
 	}
 
-	public void setBanners(Set<ComboBanner> banners) {
+	public void setBanners(List<ComboBanner> banners) {
 		this.banners = banners;
 	}
 

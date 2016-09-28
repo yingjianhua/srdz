@@ -21,7 +21,7 @@ fields : [{name : 'pkey',mapping : 'pkey',type : 'int',useNull : true}
 	,{name : 'serviceTime',mapping : 'serviceTime',type : 'string'}
 	,{name : 'rem',mapping : 'rem',type : 'string'}
 	,{name : 'sort',mapping : 'sort',type : 'int', defaultValue : 0, useNull : true}
-	,{name : 'enabled',mapping : 'enabled',type : 'int',useNull : true}	
+	,{name : 'enabled',mapping : 'enabled',type : 'boolean',useNull : true}	
 	,{name : 'rowVersion',mapping : 'rowVersion',type : 'int',useNull : true}
 	]
 });

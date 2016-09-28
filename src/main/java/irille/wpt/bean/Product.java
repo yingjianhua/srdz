@@ -22,7 +22,7 @@ public abstract class Product {
 
 	private String des;
 
-	private Byte enabled;
+	private Boolean enabled;
 
 	@Column(name="img_url")
 	private String imgUrl;
@@ -53,10 +53,10 @@ public abstract class Product {
 	public void setDes(String des) {
 		this.des = des;
 	}
-	public Byte getEnabled() {
+	public Boolean getEnabled() {
 		return enabled;
 	}
-	public void setEnabled(Byte enabled) {
+	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 	}
 	public String getImgUrl() {

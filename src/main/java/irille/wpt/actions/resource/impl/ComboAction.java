@@ -38,13 +38,19 @@ public class ComboAction extends AbstractCRUDAction<Combo> {
 	
 	@Override
 	public String upd() {
-		comboService.update(bean, listLine, account.getPkey());
+		bean = comboService.update(bean, listLine, account.getPkey());
 		return BEAN;
 	}
 	
 	@Override
 	public String del() {
 		comboService.delete(bean);
+		return BEAN;
+	}
+	
+	//启停用
+	public String enableDisable() {
+		bean = comboService.enableDisable(bean);
 		return BEAN;
 	}
 	
