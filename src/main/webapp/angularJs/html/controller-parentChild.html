@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="UTF-8">
+<script src="../js/angular.min.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+<div ng-controller="parentController">
+	<div ng-controller="childController">
+		<button ng-click="setName('Carol')">add</button>
+		{{person}}
+	</div>
+</div>
+<script>
+var app = angular.module("myApp", []);
+app.controller("parentController", function($scope) {
+	$scope.person = {greeted : false};	
+})
+app.controller("childController", function($scope) {
+	$scope.setName = function(name) {
+		$scope.person.name = name;
+	}
+})
+</script>
+</body>
+</html>

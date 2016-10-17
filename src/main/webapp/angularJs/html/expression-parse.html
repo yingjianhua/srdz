@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="UTF-8">
+<script src="../js/angular.min.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+<div ng-controller="myController">
+	<input ng-model="expr" type="text" placeholder="Enter an expression">
+	<h2>{{parseValue}}</h2>
+</div>
+<script>
+var app = angular.module("myApp", []);
+app.controller("myController", function($scope, $parse) {
+	$scope.$watch('expr', function(newVal, oldVal, scope) {
+		var parseFun = $parse(newVal);
+		console.log(parseFun)
+		$scope.parseValue = parseFun(scope)
+	})
+})
+</script>
+</body>
+</html>

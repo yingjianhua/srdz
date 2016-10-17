@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="UTF-8">
+<script src="../js/angular.min.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+<div ng-controller="myController">
+	Hello {{name}} !!
+</div>
+<script>
+angular.module("myApp", []).controller("myController", function($scope) {
+	console.log($scope);
+	console.log($rootScope);
+	$scope.name = "World";
+})
+</script>
+</body>
+</html>
