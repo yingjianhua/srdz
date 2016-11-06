@@ -3,8 +3,6 @@ angular.module("mainApp")
                        "$window",
                        "$document",
                        function(e,t){
-                    	   console.log(e)
-                    	   console.log(t)
                     	   var o=angular.element(e),
                     	   n=t[0],
                     	   a=!1,

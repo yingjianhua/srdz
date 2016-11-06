@@ -1,4 +1,4 @@
-var app = angular.module("mainApp", ["ngRoute", "ngSanitize", "configModule", "resourceModule", "angular-carousel"]);
+var app = angular.module("mainApp", ["ngRoute", "ngSanitize", "configModule", "resourceModule", "angular-carousel", "wu.masonry"]);
 app.config([
             "$routeProvider",
             "$locationProvider", 

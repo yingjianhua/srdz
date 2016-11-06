@@ -4,10 +4,12 @@ angular.module("mainApp")
 	"$scope", 
 	"$location",
 	"commonService",
-	function(r, s, l, c) {
+	"$sce",
+	function(r, s, l, c, $sce) {
 		console.log("homeController")
 		r.home.currentTabId = 1;
 		console.log("homeController2")
-		s.des = c.getHomeDes();
+		s.des = $sce.trustAsHtml(c.getHomeDes());
+		console.log(s.des)
 	}]
 );
