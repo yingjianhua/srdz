@@ -8,6 +8,12 @@
 	<constant name="struts.multipart.maxSize" value="204857600" />
 	<constant name="struts.objectFactory" value="spring"/>
 	
+	<package name="vote" namespace="/vote" extends="struts-default">
+		<action name="*" class="voteAction">
+			<result>/vote/index.html</result>
+		</action>
+	</package>
+	
 	<package name="wpt_resource" namespace="/wpt/resource" extends="struts-default">
 		<result-types>
             <result-type name="json" class="org.apache.struts2.json.MyJSONResult"/>
@@ -186,6 +192,10 @@
         </action>
         -->
 
+		<action name="vote" class="voteAction">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result>/vote/index.html</result>
+		</action>
 		<action name="wechat" class="irille.action.wx.WechatAction" method="execute">  
 			<interceptor-ref name="ItpDb" />
 			<interceptor-ref name="defaultStack" />

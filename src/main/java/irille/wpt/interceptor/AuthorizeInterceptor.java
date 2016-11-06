@@ -112,8 +112,8 @@ public class AuthorizeInterceptor extends AbstractInterceptor {
 		if(account.gtAccountType() == OAccountType.SUBSCRIPTION) {
 			throw LOG.err(Msgs.oauthErr);
 		}
-		session.put("openid", "oPhA9t6_sV4FZATKsv1iecFwjdUA");
-		session.put("accountPkey", 10);
+		session.put("openid", "oWCRKxHRBEHrNvtYkXzYF2kT4CE8");
+		session.put("accountPkey", 11);
 		if(session.get("openid") != null && account.getPkey().equals(session.get("accountPkey"))) {
 			//已经做过网页授权，不用再重复做了
 			return false;

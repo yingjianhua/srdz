@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="UTF-8">
+<script src="../js/angular.min.js"></script>
+<title>ng-href</title>
+</head>
+<body>
+<a ng-href="{{myHref}}">click me ng-href</a>
+<a href="{{myHref}}">click me href</a>
+<script>
+var app = angular.module("myApp", []);
+app.run(function($rootScope, $timeout) {
+	$timeout(function() {
+		$rootScope.myHref = "http://baidu.com";
+	}, 2000)
+})
+</script>
+</body>
+</html>

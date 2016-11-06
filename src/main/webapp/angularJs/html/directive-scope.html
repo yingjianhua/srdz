@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="UTF-8">
+<script src="../js/angular.min.js"></script>
+<title>指令:自定义HTML元素和属性</title>
+</head>
+<body>
+<div ng-controller="ParentController">
+	<p>We can access: {{rootProperty}}
+	and {{parentProperty}}</p>
+	<div ng-controller="ChildController">
+		<p>
+			We can access:
+			{{rootProperty}} and
+			{{parentProperty}} and
+			{{childProperty}}
+		</p>
+		<p>{{fullSentenceFromChild}}</p>
+	</div>
+</div>
+<script>
+var app = angular.module("myApp", []);
+app.run(function($rootScope) {
+	$rootScope.rootProperty = 'root scope';
+})
+app.controller("ParentController", function($scope) {
+	$scope.parentProperty = 'parent scope';
+})
+app.controller("ChildController", function($scope) {
+	$scope.childProperty = 'child scope';
+	$scope.fullSentenceFromChild = 'Same $scope: We can access:' +
+		$scope.rootProperty + ' and ' +
+		$scope.parentProperty + ' and ' +
+		$scope.childProperty;
+})
+app.directive("myDirective", function() {
+	return {
+		restrict : 'E',
+		template : '<a href="http://baidu.com">Click me to go to Baidu</a>',
+	};
+});
+</script>
+</body>
+</html>

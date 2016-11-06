@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="UTF-8">
+<script src="../js/angular.min.js"></script>
+<title>指令:自定义HTML元素和属性</title>
+</head>
+<body>
+<label>Their URL field:</label>
+<input type="text" ng-model="theirUrl">
+<div my-directive some-attr="theirUrl" my-link-text="Click me to go to Google"></div>
+<script>
+var app = angular.module("myApp", []);
+app.directive("myDirective", function() {
+	return {
+		restrict: 'A',
+		replace : true,
+		scope   : {//创建独立作用域
+			myUrl : '=someAttr',//@绑定策略：将dom中的my-url属性值赋值给myUrl
+			myLinkText: '@'
+		},
+		template: '\
+		<div>\
+			<label>My URL Field:</label>\
+			<input type="text" ng-model="myUrl"/>\
+			<a href="{{myUrl}}">{{myLinkTextText}}</a>\
+		</div>'
+	}
+})
+</script>
+</body>
+</html>

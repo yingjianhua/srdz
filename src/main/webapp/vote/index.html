@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app="mainApp">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>微信投票系统</title>
+<script type="text/javascript" src="js/lib/flexible/flexible.js"></script>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/angular-carousel.min.css">
+<base href="/srdz/vote/">
+</head>
+<header ng-if="page.showHeader" ng-include="'templates/header.html'" onload="carouselSlide = banners"></header>
+<section ng-view></section>
+<div ng-include="templates/menu.html"></div>
+<footer ng-if="page.showFooter" ng-include="'templates/menu.html'"></footer>
+<script src="js/lib/angular/1.2.9/angular.js"></script>
+<script src="js/lib/angular/1.2.9/angular-route.min.js"></script>
+<script src="js/lib/angular/1.2.9/angular-touch.min.js"></script>
+<script src="js/lib/angular/1.2.9/angular-sanitize.min.js"></script>
+<script src="js/lib/angular-carousel/1.0.1/angular-carousel.js"></script>
+<!-- <script src="js/lib/bootstrap/2.3.2/bootstrap-carousel.js"></script> -->
+<!-- <script src="js/lib/angular-modules.min.js"></script> -->
+<script src="js/module/configModule.js"></script>
+<script src="js/module/resourceModule.js"></script>
+<script src="js/service/commonService.js"></script>
+<script src="js/module/mainApp.js"></script>
+<script src="js/directive/yLazySrc.js"></script>
+<script src="js/controller/homeController.js"></script>
+<script src="js/controller/rankController.js"></script>
+<script src="js/controller/entryController.js"></script>
+<script src="js/controller/DemoCtrl.js"></script>
+</body>
+</html>

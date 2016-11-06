@@ -1,0 +1,78 @@
+mainApp.controller("contestHostController",[
+                                            "$scope",
+                                            "$rootScope",
+                                            "$window",
+                                            "$location",
+                                            "$routeParams",
+                                            "snsService",
+                                            "$sce",
+                                            "commonService",
+                                            "$q",
+                                            "utilService",
+                                            function(e,t,o,n,a,r,i,s,l,c){
+                                            	e.tagId=22,
+                                            	e.hostId=c.clearId(a.hostId)||"",
+                                            	e.tabs=c.getShareTagTabName(),
+                                            	t.page.pageTitle="#吃货研究所#颜值餐厅晒照大赛",
+                                            	t.$emit("pageTitleChanged"),
+                                            	e.isShareTagHeaderStikcy=!1,
+                                            	r.getSnsCampaignUserRank()
+                                            		.success(function(t,o,n){
+                                            			"0"===t.code&&t.data&&(e.top10RankLists=t.data.rankList.slice(0,9))
+                                            		}),
+                                            	e.shareTagUploadUrl="/share-tag-upload?id="+e.tagId+"&key="+encodeURIComponent("#吃货研究所#")+"&hostId="+e.hostId+"&fromUrl="+encodeURIComponent("/contest-host/"+e.hostId)+"&toUrl="+encodeURIComponent("/contest-host-mobile-bind?fromUrl="+encodeURIComponent("/contest-host/"+e.hostId)),
+                                            	t.inWX&&s.initWxConfig(n.absUrl(),t.page.pageTitle,"吃货研究所",n.absUrl(),e.iconUrl),
+                                            	e.currentTabId=0,
+                                            	e.tabContents=new Array(2);
+                                            	for(var d=0;d<e.tabContents.length;d++)
+                                            		e.tabContents[d]={isEnd:!1,isBusy:!1,page:1,pid:null};
+                                            	e.picUrls=[],
+                                            	e.currentActive=0,
+                                            	e.bigPic=!1,
+                                            	e.openBigPic=function(t,o){
+                                            		e.picUrls=t,e.currentActive=o,e.bigPic=!0
+                                            	},
+                                            	e.closeBigPic=function(){
+                                            		e.bigPic=!1
+                                            	},
+                                            	e.switchTab=function(t){
+                                            		e.currentTabId=t
+                                            	},
+                                            	e.loadPage=function(){
+                                            		if(!e.tabContents[e.currentTabId].isEnd&&!e.tabContents[e.currentTabId].isBusy){
+                                            			e.tabContents[e.currentTabId].isBusy=!0;
+                                            			var t=e.tagId?e.tagId:e.hostId;
+                                            			r.shareTagNew(t,e.currentTabId,e.tabContents[e.currentTabId].page,10,e.tabContents[e.currentTabId].pid)
+                                            				.success(function(t,o,n){
+                                            					if("0"===t.code&&t.data){
+                                            						1===t.data.isEnd&&(e.tabContents[e.currentTabId].isEnd=!0);
+                                            						var a=t.data.doc;
+                                            						e.tabContents[e.currentTabId].list?e.tabContents[e.currentTabId].list=e.tabContents[e.currentTabId].list.concat(a):e.tabContents[e.currentTabId].list=a,e.tabContents[e.currentTabId].page++,e.tabContents[e.currentTabId].isBusy=!1,e.tabContents[e.currentTabId].pid=t.data.pid
+                                            					}
+                                            				})
+                                            		}
+                                            	},
+                                            	e.loadPage();
+                                            	var p=function(){
+                                            		o.pageYOffset+o.innerHeight>document.body.scrollHeight-10&&e.loadPage()
+                                            	};
+                                        		e.$on("$routeChangeSuccess",function(){
+                                        			angular.element(o).on("scroll touchmove",p)
+                                        			}),
+                                        		e.reloadPage=function(){
+                                        			e.currentTabId;
+                                        			e.tabContents[e.currentTabId].isEnd=!1,
+                                        			e.tabContents[e.currentTabId].page=1,
+                                        			e.tabContents[e.currentTabId].list=[],
+                                        			e.loadPage()},
+                                        			e.likeShare=function(t){
+                                        				e.tabContents[e.currentTabId].list[t].data.isLike=0==e.tabContents[e.currentTabId].list[t].data.isLike?1:0,
+                                        				1==e.tabContents[e.currentTabId].list[t].data.isLike?e.tabContents[e.currentTabId].list[t].data.likeUserNum+=1:e.tabContents[e.currentTabId].list[t].data.likeUserNum-=1,
+                                        				r.likeShare(e.tabContents[e.currentTabId].list[t].data.isLike,
+                                        				e.tabContents[e.currentTabId].list[t].data.id)
+                                        					.success(function(e,t,o){
+                                        						"0"===e.code&&e.data
+                                        						})
+                                        			}
+                                            	}]
+)

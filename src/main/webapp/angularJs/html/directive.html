@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="UTF-8">
+<script src="../js/angular.min.js"></script>
+<title>指令:自定义HTML元素和属性</title>
+</head>
+<body>
+<my-directive></my-directive>
+<h1 ng-init='greeting="HelloWorld"'>{{greeting}}</h1>
+<script>
+var app = angular.module("myApp", []);
+app.directive("myDirective", function() {
+	return {
+		restrict : 'E',
+		template : '<a href="http://baidu.com">Click me to go to Baidu</a>',
+	};
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<div class="banner">
+	<div class="bd">
+	    <ul rn-carousel rn-carousel-auto-slide rn-carousel-loop class="carousel1">
+			<li ng-repeat="banner in carouselSlide">
+				<a ng-href="{{banner.linkUrl}}">
+					<img ng-src="{{banner.picUrl}}" des="{{banner.title}}"/>
+				</a>
+			</li>
+	    </ul>
+	</div>
+</div>
+<div class="wxhd_nav">
+	<ul class="clearfix">
+		<li><a>
+				<p class="wxhd_nav_tt1">已报名</p>
+				<p class="wxhd_nav_tt2">
+					<span ng-bind="voteInfo.entrycount"></span>
+				</p>
+		</a></li>
+		<li><a>
+				<p class="wxhd_nav_tt1">投票数</p>
+				<p class="wxhd_nav_tt2">
+					<span ng-bind="voteInfo.votecount"></span>
+				</p>
+		</a></li>
+		<li><a>
+				<p class="wxhd_nav_tt1">阅读量</p>
+				<p class="wxhd_nav_tt2">
+					<span ng-bind="voteInfo.visitcount"></span>
+				</p>
+		</a></li>
+	</ul>
+</div>

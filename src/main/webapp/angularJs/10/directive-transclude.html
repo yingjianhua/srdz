@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="UTF-8">
+<script src="../js/angular.min.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+<div sidebox title="Links">
+	<ul>
+		<li>First link</li>
+		<li>Second link</li>
+	</ul>
+</div>
+
+<script>
+var app = angular.module('myApp', [])
+app.directive('sidebox', function() {
+	return {
+		restrict:'AE',
+		scope:{
+			title:'@'
+		},
+		transclude:true,
+		template:'<div class="sidebox">\
+			<div class="content">\
+				<h2 class="header">{{title}}</h2>\
+				<span class="content" ng-transclude>\
+				</span>\
+			</div>\
+		</div>'
+	}
+})
+</script>
+</body>
+</html>

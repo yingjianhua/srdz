@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="../js/angular.min.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+<div ng-app="myApp" ng-init="someProperty='some data'">
+	<div ng-init="siblingProperty='moredata'">Inside Div Two: {{aThirdProperty}}
+		<div ng-init="aThirdProperty='data for 3rd property'" ng-controller="SomeController">
+			Inside Div Three:{{aThirdProperty}}
+			<div ng-controller="SecondController">
+				Inside Div Four:{{aThirdProperty}}<br>
+				Outside myDirective:{{myProperty}}
+				<div my-directive ng-init="myProperty='wow, this is cool'">
+					Inside myDirective:{{myProperty}}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+var app = angular.module('myApp', [])
+app.controller("SomeController", function() {})
+app.controller("SecondController", function() {})
+app.directive('myDirective', function() {
+	return {
+		restrict:'A',
+		scope:true
+	}
+})
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="UTF-8">
+<script src="../js/angular.min.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+<div ng-controller="firstController">
+	<form name="form1" novalidate><! novalidate 屏蔽了浏览器对表单的默认验证行为><! 表单加上name属性之后可以直接在$scope中访问到>
+		<label>必填项</label><input type="text" required/><br/>
+		<label>最小长度为5</label><input type="text" ng-minlength="5"/><br/>
+		<label>最大长度为20</label><input type="text" ng-maxlength="20"/><br/>
+		<label>字母</label><input type="text" ng-jpattern="[a-zA-Z]"/><br/>
+		<label>email格式</label><input type="email" name="email" ng-model="user.email"/><br/>
+		<label>数字</label><input type="number" name="age" ng-model="user.age" /><br/>
+		<label>url格式</label><input type="url" name="homepage" ng-model="user.facebook_url"/><br/>
+		<input ng-click="submit()" type="submit" name="提交" value="submit"/>
+	</form>
+</div>
+<script>
+//当表单校验不通过时，通过ng-model绑定的数据将不能传递到$scope中
+angular.module("myApp", []).controller("firstController", function($scope) {
+	$scope.submit = function() {
+		console.log($scope.form1);
+	}
+})
+</script>
+</body>
+</html>

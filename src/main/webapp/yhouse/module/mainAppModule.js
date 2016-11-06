@@ -1,0 +1,20 @@
+angular.module("mainApp",[
+                      "ngRoute",
+                      "ngTouch",
+                      "ngAnimate",
+                      "ngMd5",
+                      "ngSanitize",
+                      "ngCookies",
+                      "pascalprecht.translate",
+                      "angulartics.piwik",
+                      "com.2fdevs.videogular",
+                      "com.2fdevs.videogular.plugins.controls",
+                      "com.2fdevs.videogular.plugins.overlayplay",
+                      "com.2fdevs.videogular.plugins.poster",
+                      "com.2fdevs.videogular.plugins.analytics",
+                      "com.2fdevs.videogular.plugins.buffering",
+                      "angular-carousel",
+                      "configModule",
+                      "resourceModule",
+                      "utilModule"
+]);

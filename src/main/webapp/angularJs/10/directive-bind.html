@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="UTF-8">
+<script src="../js/angular.min.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+<input type="text" ng-model="to"/>
+<div scope-example ng-model="to" on-send="sendMail(email)" from-name="ari@fullstack.io" />
+
+<script>
+var app = angular.module('myApp', [])
+app.directive('scopeExample', function() {
+	return {
+		restrict:'A',
+		scope:{
+			ngModel:'=',
+			onSend:'&',
+			fromName:'@'
+		}
+	}
+})
+</script>
+</body>
+</html>

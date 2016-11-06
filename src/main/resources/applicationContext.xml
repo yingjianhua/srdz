@@ -14,7 +14,8 @@
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx.xsd">
 	<context:component-scan base-package="irille/wpt" />
-	
+	<context:component-scan base-package="irille/vote" />
+		
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
 		<property name="url" value="jdbc:mysql://localhost:3306/srdz?useUnicode=true&amp;characterEncoding=UTF8"></property>

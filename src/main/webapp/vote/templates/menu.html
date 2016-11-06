@@ -1,0 +1,7 @@
+<div class="menu">
+	<ul class="clearfix">
+		<li ng-repeat="homeTab in homeTabs">
+			<a ng-bind="homeTab.name"  ng-click="switchTab(homeTab)" class="{{homeTab.icon}}" ng-class="{curr:homeTab.id == home.currentTabId}"></a>
+		</li>
+	</ul>
+</div>

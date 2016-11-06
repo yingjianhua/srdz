@@ -1,0 +1,35 @@
+<div class="wxhd_sign">
+	<a href="/srdz/vote/entry">我要报名</a>
+</div>
+
+<form action="expand_wa_WaActVoteEntry_showList" method="post">
+	<div class="wxhd_search clearfix">
+		<input type="text" name="sarg1" placeholder="请输入名字或编号" value="">
+		<input type="hidden" name="rank" value="">
+		<input type="hidden" name="vote.pkey" value="">
+		<a href="javascript:void(0)">
+		</a>
+	</div>
+</form>
+
+<div>
+	<div class="wxhd_tabs">
+		<ul class="clearfix">
+			<li><a href="javascript:void(0);">最新参赛</a></li>
+			<li><a href="javascript:void(0);">投票排行</a></li>
+		</ul>
+	</div>
+	<div id="wx_container" class="wxhd_conts " style="display:block; visibility:visible">
+		<div class="item" entry="1">
+		       <a href="javascript:void(0)" onclick="window.location.href='expand_wa_WaActVoteEntry_showInfo?pkey=${entry.pkey}'">
+		    	<img src="">
+		    </a>
+		    <p class="wxhd_conts_li_num">编号001</p>
+		    <div class="wxhd_conts_li_btn">
+		        <span>3票</span>
+		        <a href="javascript:void(0);">给TA投票</a>
+		    </div>
+		</div>
+	</div>
+	<div class="wxhd_conts_footer"></div>
+</div>
