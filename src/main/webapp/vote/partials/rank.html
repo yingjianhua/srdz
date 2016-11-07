@@ -20,8 +20,8 @@
 	</div>
 	<div id="wx_container" class="wxhd_conts" masonry>
 		<ul>
-		<li class="masonry-brick" entry="{{entry.id}}" ng-repeat="entry in entrys">
-			<a href="javascript:void(0)" onclick="window.location.href='expand_wa_WaActVoteEntry_showInfo?pkey=${entry.pkey}'">
+		<li class="masonry-brick" entry="{{entry.id}}" ng-repeat="entry in entrys" >
+			<a ng-click="showDetail(entry)">
 				<img ng-src="{{entry.picUrl}}">
 			</a>
 			<p class="wxhd_conts_li_num" ng-bind="entry.number|numberFilter"></p>
@@ -32,8 +32,7 @@
 		</li>
 		</ul>
 	</div>
-	<div class="wxhd_sign">
+	<div class="wxhd_loadmore">
 		<a ng-click="getMore()">加载更多</a>
 	</div>
-	<div class="wxhd_conts_footer"></div>
 </div>

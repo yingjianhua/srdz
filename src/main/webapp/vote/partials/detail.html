@@ -1,0 +1,23 @@
+<div class="user_detail clearfix">
+	<div class="user_info">
+		<p class="user_info_title">选手信息</p>
+		<p class="user_info_tt1" ng-cloak>姓名:{{detail.name}}<p></p>
+		<p class="user_info_tt1" ng-cloak>编号:{{detail.number}}<p></p>
+		<p class="user_info_tt1" ng-cloak>票数:{{detail.count}} 排名:{{detail.rank}}</p>
+	</div>
+	<div class="user_img">
+		<div class="bd">
+		    <ul rn-carousel rn-carousel-auto-slide rn-carousel-loop class="carousel1">
+		     <li ng-repeat="picUrl in detail.picUrls track by $index">
+		    		<img ng-src="{{picUrl}}"/>
+		     </li>
+		    </ul>
+		</div>
+	</div>
+</div>
+
+<div class="user_btns">
+	<a ng-click="vote()">给TA投票</a>
+	<a ng-click="signUp()">我要参加</a>
+</div>
+<div class="brick"></div>

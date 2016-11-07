@@ -1,0 +1,17 @@
+<div id="layer_qrcode" ng-if="message.show&&message.type==2">
+	<div class="layer_qrcode_cont">
+		<div id="layer_qrcode_close">
+			<a ng-click="message.show=false"></a>
+		</div>
+		<p class="layer_qrcode_tt">长按识别下方二维码<br>关注公众号</p>
+		<div id="layer_qrcode_img"><img ng-src="{{actionInfo.account.qrcode}}"></div>
+	</div>
+</div>
+<div id="layer_ok" ng-if="message.show&&message.type==1">
+	<div class="layer_message_cont">
+		<p class="layer_qrcode_tt" ng-bind="message.text"></p>
+		<div id="layer_ok_btn">
+			<a ng-click="message.show=false;message&&message.callback()">确定</a>
+		</div>
+	</div>
+</div>

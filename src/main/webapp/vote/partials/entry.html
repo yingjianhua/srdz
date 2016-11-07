@@ -1,1 +1,25 @@
-<h2>报名页面</h2>
+<div class="wxhd_sign_cont">
+	<p class="wxhd_news_title1">活动报名</p>
+		<form name="entry_form" ng-submit="entrySubmit()" novalidate>
+		<div class="wxhd_form_td clearfix" ng-repeat="param in params">
+			<div class="wxhd_form_tt" ng-bind-html="param.form_text"></div>
+			<div ng-if="param.type==1" class="wxhd_form_input">
+				<input type="text" name="{{param.name}}" ng-model="param.value"require/>
+			</div>
+			<div ng-if="param.type==2" class="wxhd_form_input">
+				<ul class="wxhd_sign_img_list clearfix" id="imgUL">
+				<img ng-src="">
+				<li id="choseLI">
+					<a id="chooseImage"></a>
+				</li>
+				</ul>
+			</div>
+		</div>
+		<div class="wxhd_form_td clearfix" style="text-align: center;">
+			<input type="hidden" name="vote.pkey" value="${vote.pkey}" />
+			<button type="submit" class="wxhd_sign_ok" ng-disabled="entry_form.$invalid">确认报名</button>
+		</div>
+	</form>
+	<div class="wxhd_form_td wxhd_sign_tt" ng-bind="tips"></div>
+	<div class="brick"></div>
+</div>

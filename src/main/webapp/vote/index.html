@@ -4,15 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 <title>微信投票系统</title>
-<script type="text/javascript" src="js/lib/flexible/flexible.js"></script>
+<base href="/srdz/vote/">
+<script src="js/lib/flexible/flexible.js"></script>
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/reset.css">
 <link rel="stylesheet" href="css/angular-carousel.min.css">
-<base href="/srdz/vote/">
 </head>
 <header ng-if="page.showHeader" ng-include="'templates/header.html'" onload="carouselSlide = banners"></header>
 <section ng-view></section>
-<div ng-include="templates/menu.html"></div>
+<div ng-include="'templates/message.html'"></div>
 <footer ng-if="page.showFooter" ng-include="'templates/menu.html'"></footer>
 <script src="js/lib/jquery/1.11.1/jquery-1.11.1.min.js"></script>
 <script src="js/lib/masonry/masonry.pkgd.min.js"></script>
@@ -34,6 +34,8 @@
 <script src="js/controller/homeController.js"></script>
 <script src="js/controller/rankController.js"></script>
 <script src="js/controller/entryController.js"></script>
+<script src="js/controller/404Controller.js"></script>
+<script src="js/controller/detailController.js"></script>
 <script src="js/controller/DemoCtrl.js"></script>
 </body>
 </html>

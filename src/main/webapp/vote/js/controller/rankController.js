@@ -16,7 +16,6 @@ angular.module("mainApp")
 		s.getMore = function() {
 			var items = c.getEntryList(s.page++).items;
 			items.length>0&&items.forEach(function(item) {
-				setTimeout(1000,function(){});
 				s.entrys.push(item);
 			})
 		}

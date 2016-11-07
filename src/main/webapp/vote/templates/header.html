@@ -1,7 +1,7 @@
-<div class="banner">
+<div class="banner" ng-if="banners">
 	<div class="bd">
 	    <ul rn-carousel rn-carousel-auto-slide rn-carousel-loop class="carousel1">
-			<li ng-repeat="banner in carouselSlide">
+			<li ng-repeat="banner in banners">
 				<a ng-href="{{banner.linkUrl}}">
 					<img ng-src="{{banner.picUrl}}" des="{{banner.title}}"/>
 				</a>
@@ -9,7 +9,7 @@
 	    </ul>
 	</div>
 </div>
-<div class="wxhd_nav">
+<div class="wxhd_nav" ng-if="voteInfo">
 	<ul class="clearfix">
 		<li><a>
 				<p class="wxhd_nav_tt1">已报名</p>
