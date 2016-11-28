@@ -14,12 +14,18 @@ app.config([
 	.otherwise({redirectTo:"/0/404"})
 }])
 app.run(["$rootScope", "$location", "commonService", "SITE_CONFIG", function(r, $location, commonService, SITE_CONFIG) {
+	var g=document.createElement("script");
+	g.src="//res.wx.qq.com/open/js/jweixin-1.0.0.js",
+	g.async=!1;
+	var f=document.getElementsByTagName("script")[0];
+	f.parentNode.insertBefore(g,f);
+	
 	r.page = {
 			showHeader : SITE_CONFIG.SHOW_HEADER,
 			showFooter : SITE_CONFIG.SHOW_FOOTER,
 			baseUrl : SITE_CONFIG.BASE_URL
 	}
-	r.message = {show:false, type:1, text:""};
+	r.message = {show:false, type:1, text:""}; 
 	r.showDetail = function(entry) {
 		$location.path("/"+r.voteId+"/detail/"+entry.id)
 	}

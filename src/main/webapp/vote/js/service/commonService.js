@@ -34,7 +34,12 @@ angular.module("resourceModule")
 			}
 		},
 		getActionInfo:function(voteId) {
-			return {account:{qrcode:"http://www.51xiangshiguang.com/wx/wa/vote/1601/assets/img/qrcode/13.jpg"}};
+			return {
+				"id":voteId, 
+				"account":{
+					"qrcode":"http://www.51xiangshiguang.com/wx/wa/vote/1601/assets/img/qrcode/13.jpg"
+					}
+			};
 		},
 		getEntryList:function(page) {
 			var data = [{"id":1, "number":1, "record":10,"picUrl":"http://lorempixel.com/400/600/abstract"},
