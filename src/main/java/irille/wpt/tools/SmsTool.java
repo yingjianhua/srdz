@@ -44,25 +44,27 @@ public class SmsTool {
 			String urlStr = "http://218.244.141.161:8888/sms.aspx?action=send&userid=339&account=bl1174&password=xiangshiguang1030&mobile="+mobile+"&content="
 					+ content + "&sendTime=&extno=";
 			LOG.info(urlStr);
+			System.out.println("短信机发送:"+urlStr);
 			//短信机请求，获取返回的xml文件格式的字符串
 			String xmlStr = HttpRequestUtil.httpRequestPost(urlStr);
 			LOG.info(xmlStr);
+			System.out.println("短信机接收:"+xmlStr);
 			
 			//获取节点系列mobile对应的值
 			List<String> status = ReadXmlUtil.getValues("returnstatus", xmlStr);
 			List<String> messages = ReadXmlUtil.getValues("message", xmlStr);
 			List<String> remainpoint = ReadXmlUtil.getValues("remainpoint", xmlStr);
 			if (status.get(0).equals("Faild"))
-				throw LOG.err(Msgs.faildErr,messages.get(0),remainpoint.get(0));
+				LOG.err(Msgs.faildErr,messages.get(0),remainpoint.get(0));
 			/**************************************/
 		} catch (UnsupportedEncodingException e) {
-			throw LOG.err(Msgs.xmlErr,"编码异常");
+			LOG.err(Msgs.xmlErr,"编码异常");
 		} catch (ParserConfigurationException e) {
-			throw LOG.err(Msgs.xmlErr,"XML异常");
+			LOG.err(Msgs.xmlErr,"XML异常");
 		} catch (SAXException e) {
-			throw LOG.err(Msgs.xmlErr,"SAX解析异常");
+			LOG.err(Msgs.xmlErr,"SAX解析异常");
 		} catch (IOException e) {
-			throw LOG.err(Msgs.xmlErr,"IO异常");
+			LOG.err(Msgs.xmlErr,"IO异常");
 		}
 	}
 	public void doSend(String accessToken, List<WxUser> users, String content) {

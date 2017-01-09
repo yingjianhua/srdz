@@ -43,7 +43,7 @@ public class HttpRequestUtil {
 		//关闭流  
 		dos.close();  
 		// 取得输入流，并使用Reader读取  
-		BufferedReader reader = new BufferedReader(new InputStreamReader(httpConn.getInputStream()));  
+		BufferedReader reader = new BufferedReader(new InputStreamReader(httpConn.getInputStream(),"utf-8"));  
 		String result = null;
 		while ((result = reader.readLine()) != null) {
 			buffer.append(result);

@@ -28,5 +28,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="src/main/resources/lib/ueditor-1.1.2.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

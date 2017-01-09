@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
+encoding//src/main/resources/sql/srdz.sql=UTF-8
 encoding//src/main/webapp/vote/partials/srdz.html=UTF-8
 encoding//src/main/webapp/vote/templates/menu.html=UTF-8
 encoding//src/main/webapp/wpt/me/serviceCenter.jsp=UTF-8
